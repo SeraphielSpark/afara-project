@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wisdom of Afara For All People of African Descent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Light palette */
+      --page-bg:    #FDFAF4;       /* warm white / parchment */
+      --section-alt:#F5EDD8;       /* cream for alternating sections */
+      --section-deep:#EDE0C4;      /* slightly deeper cream */
+      --forest:     #1B3A2D;
+      --forest-mid: #2A5940;
+      --forest-pale:#E8F0EB;       /* very pale sage */
+      --gold:       #B07D20;       /* deepened for contrast on light */
+      --gold-light: #C9952A;
+      --gold-pale:  #E8B84B;
+      --terra:      #8B3A1A;
+      --terra-light:#C1501F;
+      --text-dark:  #1C1710;       /* main body text */
+      --text-mid:   #4A3C2A;
+      --text-muted: #7A6A52;
+      --border:     rgba(176,125,32,0.22);
+      --card-bg:    #FFFFFF;
+      --card-border:rgba(176,125,32,0.18);
+      --nav-bg:     rgba(253,250,244,0.97);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--page-bg);
+      color: var(--text-dark);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--section-alt); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); }
+
+    /* ════ TOP BAR ════ */
+    .topbar {
+      background: var(--forest);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 9px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10.5px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(245,237,216,0.85);
+    }
+    .topbar-right { display: flex; gap: 24px; align-items: center; }
+    .topbar a { color: rgba(245,237,216,0.75); text-decoration: none; transition: color 0.2s; }
+    .topbar a:hover { color: var(--gold-pale); }
+    .topbar a.cta { color: var(--gold-pale) !important; font-weight: 700; }
+
+    /* ════ NAV ════ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 74px;
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1; text-decoration: none; }
+    .logo-main {
+      font-family: 'Playfair Display', serif;
+      font-size: 21px;
+      font-weight: 900;
+      color: var(--forest);
+      letter-spacing: 0.5px;
+    }
+    .logo-sub {
+      font-size: 8.5px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+    .nav-links { display: flex; list-style: none; align-items: center; gap: 0; }
+    .nav-links li { position: relative; }
+    .nav-links > li > a {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      height: 74px;
+      padding: 0 17px;
+      font-size: 10.5px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .nav-links > li > a:hover { color: var(--gold); }
+    .nav-links li:hover .dropdown { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .dropdown {
+      position: absolute;
+      top: 74px;
+      left: 0;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--gold);
+      min-width: 230px;
+      padding: 10px 0;
+      z-index: 600;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: all 0.2s ease;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+    .dropdown a {
+      display: block;
+      padding: 10px 24px;
+      font-size: 10.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      text-decoration: none;
+      height: auto;
+      transition: all 0.2s;
+    }
+    .dropdown a:hover { background: rgba(176,125,32,0.06); color: var(--gold); padding-left: 30px; }
+    .nav-cta {
+      background: var(--forest) !important;
+      color: #fff !important;
+      padding: 11px 24px !important;
+      height: auto !important;
+      font-weight: 700 !important;
+      margin-left: 12px;
+      transition: background 0.25s, transform 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--forest-mid) !important; transform: translateY(-1px); }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--forest); transition: all 0.3s; }
+
+    /* ════ BUTTONS ════ */
+    .btn-primary {
+      display: inline-block;
+      background: var(--forest);
+      color: #fff;
+      padding: 16px 36px;
+      font-size: 10px;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-family: 'Lato', sans-serif;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--forest-mid); transform: translateY(-2px); box-shadow: 0 16px 40px rgba(27,58,45,0.25); }
+    .btn-outline {
+      display: inline-block;
+      border: 1.5px solid var(--forest);
+      color: var(--forest);
+      padding: 16px 36px;
+      font-size: 10px;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-family: 'Lato', sans-serif;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-outline:hover { background: var(--forest); color: #fff; transform: translateY(-2px); }
+    .btn-gold {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      padding: 16px 36px;
+      font-size: 10px;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-family: 'Lato', sans-serif;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(176,125,32,0.25); }
+
+    /* ════ HERO ════ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      background: var(--page-bg);
+    }
+    .hero-left {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 100px 80px 100px 80px;
+      z-index: 2;
+    }
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      right: -1px;
+      top: 10%;
+      width: 1px;
+      height: 80%;
+      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    }
+    .hero-bg-geo {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .hero-bg-geo::before {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(27,58,45,0.07) 0%, transparent 70%);
+    }
+    .hero-bg-geo::after {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: 50px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(176,125,32,0.08) 0%, transparent 70%);
+    }
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 32px;
+      opacity: 0; animation: fadeUp 1s 0.2s forwards;
+    }
+    .eyebrow-line { width: 50px; height: 1px; background: var(--gold); }
+    .eyebrow-text { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(44px, 5.5vw, 80px);
+      font-weight: 900;
+      line-height: 1.0;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: fadeUp 1s 0.4s forwards;
+    }
+    .hero-title em { font-style: italic; color: var(--forest); display: block; }
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(16px, 2vw, 22px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-mid);
+      margin-bottom: 30px;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeUp 1s 0.6s forwards;
+    }
+    .hero-desc {
+      font-size: 14.5px;
+      line-height: 1.85;
+      color: var(--text-muted);
+      max-width: 460px;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 1s 0.75s forwards;
+    }
+    .hero-actions {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 1s 0.9s forwards;
+    }
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      background: var(--section-alt);
+    }
+    .hero-right img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      filter: brightness(0.9) saturate(0.95);
+    }
+    .hero-right::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, var(--page-bg) 0%, transparent 25%);
+      z-index: 1;
+    }
+    .hero-right::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(245,237,216,0.4) 0%, transparent 50%);
+      z-index: 1;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ════ MISSION STRIP ════ */
+    .mission-strip {
+      background: var(--forest);
+      padding: 64px 80px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+    }
+    .mission-strip-item {
+      padding: 0 48px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .mission-strip-item:last-child { border-right: none; }
+    .mission-strip-item:first-child { padding-left: 0; }
+    .mission-label {
+      font-size: 9px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold-pale); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .mission-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold-pale); }
+    .mission-strip-item h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 600; color: #fff;
+      margin-bottom: 14px; line-height: 1.3;
+    }
+    .mission-strip-item p { font-size: 13.5px; line-height: 1.8; color: rgba(245,237,216,0.65); }
+
+    /* ════ SECTION HEADER ════ */
+    .section-header { text-align: center; margin-bottom: 64px; }
+    .section-eyebrow {
+      font-size: 9.5px; letter-spacing: 5px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px; display: block;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 4vw, 52px); font-weight: 700;
+      color: var(--text-dark); line-height: 1.15;
+    }
+    .section-title em { font-style: italic; color: var(--forest); }
+    .section-rule { width: 60px; height: 1px; background: var(--gold); margin: 20px auto 0; }
+    .section-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px; font-style: italic; color: var(--text-muted);
+      margin-top: 16px; max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.6;
+    }
+
+    /* ════ ABOUT ════ */
+    .about {
+      padding: 120px 80px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: center;
+      background: var(--section-alt);
+    }
+    .about-images { position: relative; height: 580px; }
+    .about-img-main {
+      position: absolute; top: 0; left: 0; width: 72%; height: 80%;
+      object-fit: cover; filter: brightness(0.95) saturate(0.9);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+    .about-img-secondary {
+      position: absolute; bottom: 0; right: 0; width: 52%; height: 55%;
+      object-fit: cover; filter: brightness(0.95) saturate(0.9);
+      border: 4px solid var(--page-bg);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+    }
+    .about-img-accent {
+      position: absolute; top: 30px; left: 30px; right: 30px; bottom: 30px;
+      border: 1px solid rgba(176,125,32,0.25); pointer-events: none; z-index: 2;
+    }
+    .about-badge {
+      position: absolute; bottom: 40px; left: -20px;
+      background: var(--forest); color: #fff;
+      padding: 20px 24px; z-index: 3;
+      font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700;
+      text-align: center; line-height: 1.4;
+      box-shadow: 0 12px 40px rgba(27,58,45,0.3);
+    }
+    .about-badge .num { font-size: 36px; display: block; color: var(--gold-pale); }
+    .about-content p { font-size: 15px; line-height: 1.9; color: var(--text-muted); margin-bottom: 20px; }
+    .about-content p strong { color: var(--text-dark); font-weight: 600; }
+    .about-quote {
+      border-left: 2.5px solid var(--gold);
+      padding: 20px 28px; margin: 32px 0;
+      background: rgba(176,125,32,0.05);
+    }
+    .about-quote blockquote {
+      font-family: 'Cormorant Garamond', serif; font-size: 21px;
+      font-style: italic; font-weight: 300; color: var(--text-dark); line-height: 1.5;
+    }
+    .about-quote cite {
+      display: block; margin-top: 12px; font-size: 10px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold); font-style: normal;
+    }
+
+    /* ════ DIASPORA ════ */
+    .diaspora {
+      padding: 120px 80px;
+      background: var(--page-bg);
+      position: relative;
+    }
+    .diaspora::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(27,58,45,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .diaspora-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .diaspora-card { position: relative; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; }
+    .diaspora-card img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s ease, filter 0.4s ease;
+      filter: brightness(0.7) saturate(0.8);
+    }
+    .diaspora-card:hover img { transform: scale(1.06); filter: brightness(0.8) saturate(1); }
+    .diaspora-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, transparent 55%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 32px 28px;
+    }
+    .diaspora-region { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold-pale); margin-bottom: 8px; }
+    .diaspora-name { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 10px; }
+    .diaspora-desc { font-size: 12.5px; color: rgba(255,255,255,0.65); line-height: 1.6; max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .diaspora-card:hover .diaspora-desc { max-height: 80px; }
+    .diaspora-link { display: inline-flex; align-items: center; gap: 8px; color: var(--gold-pale); font-size: 9.5px; letter-spacing: 2.5px; text-transform: uppercase; text-decoration: none; margin-top: 14px; opacity: 0; transition: opacity 0.3s; }
+    .diaspora-card:hover .diaspora-link { opacity: 1; }
+    .diaspora-link::after { content: '→'; }
+
+    /* ════ TEACHINGS ════ */
+    .teachings { padding: 120px 80px; background: var(--section-alt); }
+    .teachings-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto; gap: 16px;
+    }
+    .teaching-card {
+      position: relative; overflow: hidden;
+      background: #fff;
+      border: 1px solid var(--card-border);
+      transition: border-color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .teaching-card:hover { border-color: rgba(176,125,32,0.4); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+    .teaching-card.featured { grid-row: span 2; }
+    .teaching-card-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; filter: brightness(0.9) saturate(0.85); transition: filter 0.4s; }
+    .teaching-card.featured .teaching-card-img { aspect-ratio: auto; height: 55%; }
+    .teaching-card:hover .teaching-card-img { filter: brightness(1) saturate(1); }
+    .teaching-card-body { padding: 28px 28px 32px; }
+    .teaching-category { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .teaching-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--text-dark); line-height: 1.3; margin-bottom: 12px; }
+    .teaching-card.featured .teaching-title { font-size: 30px; }
+    .teaching-excerpt { font-size: 13px; color: var(--text-muted); line-height: 1.75; margin-bottom: 20px; }
+    .teaching-meta { display: flex; align-items: center; justify-content: space-between; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; }
+    .teaching-read-more { color: var(--forest); text-decoration: none; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; transition: gap 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+    .teaching-read-more:hover { gap: 12px; color: var(--gold); }
+    .teaching-read-more::after { content: '→'; }
+
+    /* ════ STATS ════ */
+    .stats {
+      background: var(--forest);
+      padding: 80px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    }
+    .stat-item { padding: 0 48px; border-right: 1px solid rgba(255,255,255,0.1); text-align: center; }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 900; color: var(--gold-pale); line-height: 1; margin-bottom: 8px; }
+    .stat-label { font-size: 9.5px; letter-spacing: 3px; text-transform: uppercase; color: rgba(245,237,216,0.55); line-height: 1.5; }
+
+    /* ════ PROGRAMS ════ */
+    .programs { padding: 120px 80px; background: var(--page-bg); }
+    .programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .program-card {
+      background: #fff;
+      border: 1px solid var(--card-border);
+      overflow: hidden; transition: all 0.35s; position: relative;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .program-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--gold); transform: scaleX(0); transition: transform 0.3s;
+    }
+    .program-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.1); }
+    .program-card:hover::before { transform: scaleX(1); }
+    .program-img { width: 100%; height: 200px; object-fit: cover; filter: brightness(0.88) saturate(0.85); transition: filter 0.4s; }
+    .program-card:hover .program-img { filter: brightness(0.95) saturate(1); }
+    .program-body { padding: 28px; }
+    .program-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+    .program-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--text-dark); margin-bottom: 12px; line-height: 1.25; }
+    .program-desc { font-size: 13px; color: var(--text-muted); line-height: 1.75; margin-bottom: 20px; }
+    .program-link { color: var(--forest); text-decoration: none; font-size: 9.5px; letter-spacing: 2.5px; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px; transition: gap 0.2s, color 0.2s; }
+    .program-link:hover { gap: 14px; color: var(--gold); }
+    .program-link::after { content: '→'; }
+
+    /* ════ QUOTE BANNER ════ */
+    .quote-banner {
+      padding: 100px 80px; text-align: center; position: relative;
+      overflow: hidden; background: var(--terra);
+    }
+    .quote-banner::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, transparent 70%);
+    }
+    .quote-banner-pattern {
+      position: absolute; inset: 0; opacity: 0.07;
+      background-image: repeating-linear-gradient(45deg, #fff 0px, #fff 1px, transparent 1px, transparent 20px),
+                        repeating-linear-gradient(-45deg, #fff 0px, #fff 1px, transparent 1px, transparent 20px);
+    }
+    .quote-banner blockquote {
+      position: relative;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 4vw, 44px); font-style: italic; font-weight: 700;
+      color: #fff; max-width: 900px; margin: 0 auto 28px; line-height: 1.3;
+    }
+    .quote-banner blockquote::before {
+      content: '\201C'; position: absolute; top: -40px; left: -20px;
+      font-size: 120px; color: rgba(255,255,255,0.1); font-family: 'Playfair Display', serif; line-height: 1;
+    }
+    .quote-banner cite { font-size: 10.5px; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,0.6); font-style: normal; }
+
+    /* ════ NEWS ════ */
+    .news { padding: 120px 80px; background: var(--section-deep); }
+    .news-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .news-card {
+      background: #fff;
+      overflow: hidden; border: 1px solid var(--card-border);
+      transition: border-color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .news-card:hover { border-color: rgba(176,125,32,0.4); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+    .news-img { width: 100%; height: 220px; object-fit: cover; filter: brightness(0.9) saturate(0.85); transition: filter 0.4s, transform 0.5s; }
+    .news-card:hover .news-img { filter: brightness(1) saturate(1); transform: scale(1.03); }
+    .news-card-body { padding: 28px; }
+    .news-tag { font-size: 9px; letter-spacing: 3.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: block; }
+    .news-title { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 600; color: var(--text-dark); line-height: 1.35; margin-bottom: 12px; }
+    .news-excerpt { font-size: 13px; color: var(--text-muted); line-height: 1.75; margin-bottom: 20px; }
+    .news-meta { display: flex; justify-content: space-between; align-items: center; font-size: 10px; letter-spacing: 1px; color: #bbb; text-transform: uppercase; }
+    .news-read { color: var(--forest); text-decoration: none; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s, color 0.2s; }
+    .news-read::after { content: '→'; }
+    .news-read:hover { gap: 10px; color: var(--gold); }
+
+    /* ════ JOIN CTA ════ */
+    .join { position: relative; overflow: hidden; min-height: 520px; display: flex; align-items: center; }
+    .join-bg { position: absolute; inset: 0; }
+    .join-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.45) saturate(0.7); }
+    .join-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(27,58,45,0.75) 0%, rgba(11,11,9,0.55) 100%);
+    }
+    .join-content { position: relative; z-index: 2; text-align: center; padding: 80px; width: 100%; }
+    .join-content h2 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 60px); font-weight: 900; color: #fff; line-height: 1.15; margin-bottom: 20px; }
+    .join-content h2 em { font-style: italic; color: var(--gold-pale); }
+    .join-content p { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic; color: rgba(255,255,255,0.78); max-width: 560px; margin: 0 auto 40px; line-height: 1.6; }
+    .join-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ════ NEWSLETTER ════ */
+    .newsletter {
+      background: var(--forest-pale);
+      padding: 72px 80px;
+      display: flex; align-items: center; justify-content: space-between; gap: 48px;
+      border-top: 1px solid rgba(27,58,45,0.12);
+      border-bottom: 1px solid rgba(27,58,45,0.12);
+    }
+    .newsletter-text h3 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
+    .newsletter-text p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+    .newsletter-form { display: flex; flex: 1; max-width: 480px; }
+    .newsletter-form input {
+      flex: 1; background: #fff;
+      border: 1.5px solid rgba(27,58,45,0.2); border-right: none;
+      padding: 14px 20px; color: var(--text-dark); font-family: 'Lato', sans-serif; font-size: 13px; outline: none;
+    }
+    .newsletter-form input::placeholder { color: #bbb; }
+    .newsletter-form input:focus { border-color: var(--forest); }
+    .newsletter-form button {
+      background: var(--forest); color: #fff; border: none;
+      padding: 14px 28px; font-size: 9.5px; letter-spacing: 2.5px; text-transform: uppercase;
+      font-weight: 700; font-family: 'Lato', sans-serif; cursor: pointer; transition: background 0.25s;
+    }
+    .newsletter-form button:hover { background: var(--forest-mid); }
+
+    /* ════ FOOTER ════ */
+    footer { background: var(--forest); padding: 80px 80px 40px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 24px; color: #fff; font-weight: 900; }
+    .footer-brand p { font-size: 13px; color: rgba(245,237,216,0.5); line-height: 1.75; margin: 16px 0 24px; max-width: 280px; }
+    .footer-socials { display: flex; gap: 12px; }
+    .footer-social {
+      width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(245,237,216,0.5); text-decoration: none; font-size: 12px; transition: all 0.25s;
+    }
+    .footer-social:hover { border-color: var(--gold-pale); color: var(--gold-pale); background: rgba(245,237,216,0.05); }
+    .footer-col h4 { font-size: 9.5px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold-pale); margin-bottom: 20px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { font-size: 13px; color: rgba(245,237,216,0.45); text-decoration: none; transition: color 0.2s; letter-spacing: 0.5px; }
+    .footer-col ul li a:hover { color: var(--gold-pale); }
+    .footer-bottom {
+      padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 11px; color: rgba(245,237,216,0.3); letter-spacing: 1px;
+    }
+    .footer-bottom a { color: var(--gold-pale); text-decoration: none; opacity: 0.6; }
+    .footer-bottom a:hover { opacity: 1; }
+
+    /* ════ KENTE ════ */
+    .kente-bar { height: 6px; display: flex; width: 100%; }
+    .kente-bar span { flex: 1; }
+
+    /* ════ RESPONSIVE ════ */
+    @media (max-width: 1100px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 100px 48px; }
+      .mission-strip { grid-template-columns: 1fr; gap: 32px; padding: 64px 48px; }
+      .mission-strip-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 0 0 32px; }
+      .about { grid-template-columns: 1fr; padding: 80px 48px; gap: 48px; }
+      .about-images { height: 360px; }
+      .diaspora-grid { grid-template-columns: 1fr 1fr; }
+      .teachings-grid { grid-template-columns: 1fr; }
+      .teaching-card.featured { grid-row: span 1; }
+      .stats { grid-template-columns: 1fr 1fr; gap: 32px; padding: 60px 48px; }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0 0 24px; }
+      .programs-grid { grid-template-columns: 1fr; }
+      .news-grid { grid-template-columns: 1fr; }
+      .newsletter { flex-direction: column; padding: 60px 48px; }
+      .newsletter-form { max-width: 100%; width: 100%; }
+      footer { padding: 60px 48px 32px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .topbar { padding: 8px 24px; }
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .teachings, .programs, .news, .diaspora { padding: 80px 48px; }
+    }
+    @media (max-width: 640px) {
+      .diaspora-grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; padding: 48px 24px; }
+      .hero-left { padding: 80px 24px; }
+      .about, .teachings, .programs, .news, .diaspora, .join-content, .quote-banner { padding: 64px 24px; }
+      .newsletter { padding: 48px 24px; }
+      footer { padding: 48px 24px 24px; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- KENTE TOP BAR -->
+  <div class="kente-bar" aria-hidden="true">
+    <span style="background:#C9952A"></span>
+    <span style="background:#1B3A2D"></span>
+    <span style="background:#8B3A1A"></span>
+    <span style="background:#C9952A"></span>
+    <span style="background:#1B3A2D"></span>
+    <span style="background:#C9952A"></span>
+    <span style="background:#8B3A1A"></span>
+    <span style="background:#C9952A"></span>
+    <span style="background:#1B3A2D"></span>
+    <span style="background:#8B3A1A"></span>
+    <span style="background:#C9952A"></span>
+    <span style="background:#1B3A2D"></span>
+  </div>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <span>For All People of African Descent Worldwide</span>
+    <div class="topbar-right">
+      <a href="#">Contact</a>
+      <a href="#">Newsletter</a>
+      <a href="#" class="cta">Support Afara</a>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <span class="logo-main">Wisdom of Afara</span>
+      <span class="logo-sub">wisdomofafara.org</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li>
+        <a href="#">About Us ▾</a>
+        <div class="dropdown">
+          <a href="#">Florence's Story</a>
+          <a href="#">Mission &amp; Vision</a>
+          <a href="#">Our Values</a>
+          <a href="#">Why the Diaspora</a>
+          <a href="#">Our Team</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Teachings ▾</a>
+        <div class="dropdown">
+          <a href="#">African Philosophy</a>
+          <a href="#">Diaspora Heritage</a>
+          <a href="#">Ancestral Traditions</a>
+          <a href="#">Black Identity</a>
+          <a href="#">Video &amp; Podcasts</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">The Diaspora ▾</a>
+        <div class="dropdown">
+          <a href="#">African Americans</a>
+          <a href="#">Afro-Caribbeans</a>
+          <a href="#">Afro-Latinos</a>
+          <a href="#">Africans in Europe</a>
+          <a href="#">Global Diaspora</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Programs ▾</a>
+        <div class="dropdown">
+          <a href="#">Workshops &amp; Webinars</a>
+          <a href="#">Annual Gatherings</a>
+          <a href="#">Youth Programs</a>
+          <a href="#">Community Initiatives</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">News &amp; Stories ▾</a>
+        <div class="dropdown">
+          <a href="#">News</a>
+          <a href="#">Blog</a>
+          <a href="#">Member Stories</a>
+          <a href="#">Newsletter</a>
+        </div>
+      </li>
+      <li><a href="#" class="nav-cta">Get Involved</a></li>
+    </ul>
+    <div class="nav-hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-bg-geo"></div>
+      <div class="hero-eyebrow">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-text">Est. 2024 For All People of African Descent</span>
+      </div>
+      <h1 class="hero-title">
+        Wisdom
+        <em>of Afara</em>
+      </h1>
+      <p class="hero-tagline">
+        Reclaiming our roots, restoring our wisdom,<br>reuniting our people across every continent.
+      </p>
+      <p class="hero-desc">
+        We are an organisation dedicated to the education, empowerment and cultural healing of all people of African descent from the continent, from the Caribbean, from the Americas, from Europe and beyond. We believe the wisdom of our ancestors belongs to every descendant of Africa.
+      </p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary">Explore Our Teachings</a>
+        <a href="#" class="btn-outline">Our Story</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img
+        src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=900&q=85&fit=crop&crop=top"
+        alt="Woman of African descent in traditional attire"
+        loading="eager"
+      />
+    </div>
+  </section>
+
+  <!-- KENTE DIVIDER -->
+  <div class="kente-bar" aria-hidden="true">
+    <span style="background:#8B3A1A"></span>
+    <span style="background:#C9952A"></span>
+    <span style="background:#1B3A2D"></span>
+    <span style="background:#C9952A"></span>
+    <span style="background:#8B3A1A"></span>
+    <span style="background:#1B3A2D"></span>
+    <span style="background:#C9952A"></span>
+    <span style="background:#8B3A1A"></span>
+    <span style="background:#1B3A2D"></span>
+    <span style="background:#C9952A"></span>
+    <span style="background:#8B3A1A"></span>
+    <span style="background:#1B3A2D"></span>
+  </div>
+
+  <!-- MISSION STRIP -->
+  <div class="mission-strip">
+    <div class="mission-strip-item">
+      <div class="mission-label">Our Mission</div>
+      <h3>To Educate, Empower &amp; Reconnect</h3>
+      <p>We convene descendants of Africa worldwide to reclaim ancestral wisdom, heal intergenerational wounds, and build bridges across the entire African Diaspora.</p>
+    </div>
+    <div class="mission-strip-item">
+      <div class="mission-label">Our Vision</div>
+      <h3>One People, Many Homelands</h3>
+      <p>A world where every person of African descent wherever they were born knows their heritage, stands in their power, and walks with pride and purpose.</p>
+    </div>
+    <div class="mission-strip-item">
+      <div class="mission-label">Our Reach</div>
+      <h3>From Africa to Every Corner of the World</h3>
+      <p>African Americans, Afro-Caribbeans, Afro-Latinos, Africans in Europe, and the continent Wisdom of Afara belongs to all of us.</p>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-images">
+      <img class="about-img-main"
+        src="https://images.pexels.com/photos/30879260/pexels-photo-30879260/free-photo-of-traditional-nigerian-gathering-with-cultural-attire.jpeg?auto=compress&cs=tinysrgb&w=700&q=80&fit=crop"
+        alt="African cultural gathering"
+      />
+      <img class="about-img-secondary"
+        src="https://plus.unsplash.com/premium_photo-1732464747450-2eaa741d181c?w=500&q=80&fit=crop"
+        alt="African diaspora community"
+      />
+      <div class="about-img-accent"></div>
+      <div class="about-badge">
+        <span class="num">100+</span>
+        Years of Wisdom<br>Preserved
+      </div>
+    </div>
+    <div class="about-content">
+      <div class="section-header" style="text-align:left; margin-bottom:32px;">
+        <span class="section-eyebrow">About Florence &amp; Afara</span>
+        <h2 class="section-title">A Daughter of the <em>Diaspora</em>, Teaching for All</h2>
+        <div class="section-rule" style="margin-left:0;"></div>
+      </div>
+      <p>Florence Cook is a descendant of those Africans whose ancestors were taken from their homeland as enslaved people to build new worlds across the Americas and Caribbean. She carries their resilience, their pain, and their extraordinary wisdom within her.</p>
+      <p><strong>Wisdom of Afara</strong> was born from her conviction that the teachings of African philosophy, culture, and ancestral heritage should belong equally to every person of African descent not just those living on the continent today.</p>
+      <div class="about-quote">
+        <blockquote>"I am a descendant of those people so I care about them as much as Africans. This wisdom belongs to all of us."</blockquote>
+        <cite>— Florence Cook, Founder, Wisdom of Afara</cite>
+      </div>
+      <a href="#" class="btn-outline" style="margin-top:8px;">Read Florence's Full Story</a>
+    </div>
+  </section>
+
+  <!-- DIASPORA -->
+  <section class="diaspora" id="diaspora">
+    <div class="section-header">
+      <span class="section-eyebrow">The Global African Family</span>
+      <h2 class="section-title">One Blood, <em>Many Shores</em></h2>
+      <div class="section-rule"></div>
+      <p class="section-sub">Wherever we are in the world, our roots connect us. Wisdom of Afara is for every branch of our family tree.</p>
+    </div>
+    <div class="diaspora-grid">
+      <div class="diaspora-card">
+        <img src="https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=600&q=80&fit=crop&crop=top" alt="African Americans" loading="lazy"/>
+        <div class="diaspora-card-overlay">
+          <span class="diaspora-region">Americas</span>
+          <h3 class="diaspora-name">African Americans</h3>
+          <p class="diaspora-desc">Descendants of the enslaved, whose resilience, culture and spirit built a nation and whose African roots run deep and strong.</p>
+          <a href="#" class="diaspora-link">Explore</a>
+        </div>
+      </div>
+      <div class="diaspora-card">
+        <img src="https://images.unsplash.com/photo-1551009175-8a68da93d5f9?w=600&q=80&fit=crop&crop=faces" alt="Afro-Caribbean people" loading="lazy"/>
+        <div class="diaspora-card-overlay">
+          <span class="diaspora-region">Caribbean</span>
+          <h3 class="diaspora-name">Afro-Caribbeans</h3>
+          <p class="diaspora-desc">From Jamaica to Trinidad, Barbados to Haiti vibrant cultures born from African roots, shaped by struggle, soaring with spirit.</p>
+          <a href="#" class="diaspora-link">Explore</a>
+        </div>
+      </div>
+      <div class="diaspora-card">
+        <img src="https://plus.unsplash.com/premium_photo-1670226145708-fe8e83e8d9da?w=600&q=80&fit=crop&crop=top" alt="African continent" loading="lazy"/>
+        <div class="diaspora-card-overlay">
+          <span class="diaspora-region">The Continent</span>
+          <h3 class="diaspora-name">Mother Africa</h3>
+          <p class="diaspora-desc">The source of all our wisdom. Home to 1.4 billion people, thousands of languages, and the oldest civilisations on Earth.</p>
+          <a href="#" class="diaspora-link">Explore</a>
+        </div>
+      </div>
+      <div class="diaspora-card">
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80&fit=crop&crop=top" alt="Afro-Latino people" loading="lazy"/>
+        <div class="diaspora-card-overlay">
+          <span class="diaspora-region">Latin America</span>
+          <h3 class="diaspora-name">Afro-Latinos</h3>
+          <p class="diaspora-desc">From Brazil to Colombia, Cuba to Panama African heritage pulses at the heart of Latin American culture, music and identity.</p>
+          <a href="#" class="diaspora-link">Explore</a>
+        </div>
+      </div>
+      <div class="diaspora-card">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80&fit=crop" alt="Africans in Europe" loading="lazy"/>
+        <div class="diaspora-card-overlay">
+          <span class="diaspora-region">Europe</span>
+          <h3 class="diaspora-name">Africans in Europe</h3>
+          <p class="diaspora-desc">Millions of Africans and their descendants have made Europe home bridging cultures, challenging systems, carrying heritage forward.</p>
+          <a href="#" class="diaspora-link">Explore</a>
+        </div>
+      </div>
+      <div class="diaspora-card">
+        <img src="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?w=600&q=80&fit=crop" alt="Global African community" loading="lazy"/>
+        <div class="diaspora-card-overlay">
+          <span class="diaspora-region">Worldwide</span>
+          <h3 class="diaspora-name">The Global Family</h3>
+          <p class="diaspora-desc">Wherever you are in the world if African blood flows through your veins, Wisdom of Afara is yours. You belong here.</p>
+          <a href="#" class="diaspora-link">Join Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEACHINGS -->
+  <section class="teachings" id="teachings">
+    <div class="section-header">
+      <span class="section-eyebrow">Knowledge &amp; Heritage</span>
+      <h2 class="section-title">Our <em>Teachings</em></h2>
+      <div class="section-rule"></div>
+      <p class="section-sub">Ancient wisdom for modern descendants. Philosophy, history, and identity freely shared with all.</p>
+    </div>
+    <div class="teachings-grid">
+      <div class="teaching-card">
+        <img class="teaching-card-img" src="https://images.unsplash.com/photo-1605302596032-15e67c3cf66a?w=800&q=80&fit=crop" alt="African philosophy and wisdom" loading="lazy"/>
+        <div class="teaching-card-body">
+          <div class="teaching-category">Featured Teaching</div>
+          <h3 class="teaching-title">Ubuntu: I Am Because We Are The Philosophy That Can Heal the Diaspora</h3>
+          <p class="teaching-excerpt">The ancient Nguni Bantu concept of Ubuntu teaches us that our humanity is bound together. Across the Diaspora, this philosophy offers a powerful foundation for reconnection, healing and collective strength.</p>
+          <div class="teaching-meta">
+            <span>African Philosophy</span>
+            <a href="#" class="teaching-read-more">Read More</a>
+          </div>
+        </div>
+      </div>
+      <div class="teaching-card">
+        <img class="teaching-card-img" src="https://plus.unsplash.com/premium_photo-1661871550357-4bb6d3d5755b?w=800&q=80&fit=crop" alt="African history" loading="lazy"/>
+        <div class="teaching-card-body">
+          <div class="teaching-category">Diaspora History</div>
+          <h3 class="teaching-title">The Middle Passage: Understanding Our Shared Wound</h3>
+          <p class="teaching-excerpt">A deep look at the transatlantic slave trade and its generational impact on all Diaspora communities.</p>
+          <div class="teaching-meta">
+            <span>History</span>
+            <a href="#" class="teaching-read-more">Read</a>
+          </div>
+        </div>
+      </div>
+      <div class="teaching-card">
+        <img class="teaching-card-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&fit=crop" alt="African traditions" loading="lazy"/>
+        <div class="teaching-card-body">
+          <div class="teaching-category">Ancestral Traditions</div>
+          <h3 class="teaching-title">Naming Ceremonies Across the Diaspora</h3>
+          <p class="teaching-excerpt">From Akan naming traditions in Ghana to Afro-Brazilian ceremonies how Africans worldwide honour life through naming.</p>
+          <div class="teaching-meta">
+            <span>Culture</span>
+            <a href="#" class="teaching-read-more">Read</a>
+          </div>
+        </div>
+      </div>
+      <div class="teaching-card">
+        <img class="teaching-card-img" src="https://plus.unsplash.com/premium_photo-1661964011836-7b10e7972e1e?w=600&q=80&fit=crop" alt="Black identity" loading="lazy"/>
+        <div class="teaching-card-body">
+          <div class="teaching-category">Identity &amp; Pride</div>
+          <h3 class="teaching-title">What Does It Mean to Be African, Wherever You Are?</h3>
+          <p class="teaching-excerpt">A powerful exploration of Black identity, belonging, and the meaning of African heritage for those born outside the continent.</p>
+          <div class="teaching-meta">
+            <span>Identity</span>
+            <a href="#" class="teaching-read-more">Read</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-num">1.4B</div>
+      <div class="stat-label">Africans on the<br>Continent</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">200M+</div>
+      <div class="stat-label">Afro-descendants in<br>the Americas</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">40M+</div>
+      <div class="stat-label">African Americans<br>in the USA</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">55+</div>
+      <div class="stat-label">Countries of the<br>African Family</div>
+    </div>
+  </div>
+
+  <!-- PROGRAMS -->
+  <section class="programs" id="programs">
+    <div class="section-header">
+      <span class="section-eyebrow">What We Offer</span>
+      <h2 class="section-title">Our <em>Programs</em></h2>
+      <div class="section-rule"></div>
+      <p class="section-sub">Transformative programs designed to educate, connect and empower the entire African Diaspora community.</p>
+    </div>
+    <div class="programs-grid">
+      <div class="program-card">
+        <img class="program-img" src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=700&q=80&fit=crop" alt="Workshops and webinars" loading="lazy"/>
+        <div class="program-body">
+          <span class="program-icon">🌿</span>
+          <h3 class="program-title">Wisdom Workshops &amp; Webinars</h3>
+          <p class="program-desc">Monthly live teachings on African philosophy, Diaspora history, ancestral traditions, and Black identity open to all people of African descent worldwide.</p>
+          <a href="#" class="program-link">Learn More</a>
+        </div>
+      </div>
+      <div class="program-card">
+        <img class="program-img" src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=700&q=80&fit=crop" alt="Annual gathering" loading="lazy"/>
+        <div class="program-body">
+          <span class="program-icon">🥁</span>
+          <h3 class="program-title">Annual Diaspora Gathering</h3>
+          <p class="program-desc">A yearly celebration and conference bringing together Africans from the continent, the Caribbean, the Americas and Europe to learn, share and reconnect.</p>
+          <a href="#" class="program-link">Learn More</a>
+        </div>
+      </div>
+      <div class="program-card">
+        <img class="program-img" src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=700&q=80&fit=crop" alt="Youth education" loading="lazy"/>
+        <div class="program-body">
+          <span class="program-icon">📚</span>
+          <h3 class="program-title">Youth Heritage Education</h3>
+          <p class="program-desc">Dedicated programs for young people of African descent to discover their history, embrace their identity, and walk proudly into their future.</p>
+          <a href="#" class="program-link">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE BANNER -->
+  <div class="quote-banner">
+    <div class="quote-banner-pattern"></div>
+    <blockquote>"Until the lion learns to write, every story will glorify the hunter."</blockquote>
+    <cite>— African Proverb</cite>
+  </div>
+
+  <!-- NEWS -->
+  <section class="news" id="news">
+    <div class="section-header">
+      <span class="section-eyebrow">Latest From Afara</span>
+      <h2 class="section-title">News &amp; <em>Stories</em></h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="news-grid">
+      <div class="news-card">
+        <img class="news-img" src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=700&q=80&fit=crop" alt="Diaspora community event" loading="lazy"/>
+        <div class="news-card-body">
+          <span class="news-tag">Community</span>
+          <h3 class="news-title">Wisdom of Afara Launches Its First Online Teaching Circle</h3>
+          <p class="news-excerpt">Participants from 12 countries joined our inaugural wisdom circle a powerful moment of connection across continents and cultures for all African descendants.</p>
+          <div class="news-meta">
+            <span>April 2025</span>
+            <a href="#" class="news-read">Read More</a>
+          </div>
+        </div>
+      </div>
+      <div class="news-card">
+        <img class="news-img" src="https://images.unsplash.com/photo-1573167507387-6b4b98cb7c13?w=700&q=80&fit=crop" alt="African heritage" loading="lazy"/>
+        <div class="news-card-body">
+          <span class="news-tag">Heritage</span>
+          <h3 class="news-title">Why the Children of the Diaspora Must Know Their Ancestral Names</h3>
+          <p class="news-excerpt">Florence writes on the importance of reclaiming African names and the cultural identity they carry for all descendants of the transatlantic slave trade.</p>
+          <div class="news-meta">
+            <span>March 2025</span>
+            <a href="#" class="news-read">Read More</a>
+          </div>
+        </div>
+      </div>
+      <div class="news-card">
+        <img class="news-img" src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=700&q=80&fit=crop&crop=top" alt="African wisdom" loading="lazy"/>
+        <div class="news-card-body">
+          <span class="news-tag">Teachings</span>
+          <h3 class="news-title">The Seven Principles of Ma'at Ancient Egyptian Wisdom for Modern Times</h3>
+          <p class="news-excerpt">The ancient Egyptian concept of Ma'at truth, justice, harmony, balance offers profound guidance for the African Diaspora today.</p>
+          <div class="news-meta">
+            <span>February 2025</span>
+            <a href="#" class="news-read">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:56px;">
+      <a href="#" class="btn-outline">View All News &amp; Stories</a>
+    </div>
+  </section>
+
+  <!-- JOIN CTA -->
+  <section class="join" id="join">
+    <div class="join-bg">
+      <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1400&q=80&fit=crop" alt="African people united" loading="lazy"/>
+    </div>
+    <div class="join-content">
+      <h2>You Belong Here.<br><em>Come Home</em> to Your Wisdom.</h2>
+      <p>Whether your ancestors came from West Africa, East Africa, the Caribbean, the Americas this is your heritage. This is your invitation.</p>
+      <div class="join-actions">
+        <a href="#" class="btn-gold">Join Our Community</a>
+        <a href="#" class="btn-outline" style="border-color:rgba(255,255,255,0.5);color:#fff;">Explore Teachings</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter">
+    <div class="newsletter-text">
+      <h3>Stay Connected to Your Roots</h3>
+      <p>Receive teachings, stories and news from Wisdom of Afara delivered to all people of African descent, wherever you are in the world.</p>
+    </div>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Your email address…" />
+      <button type="button">Subscribe</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">Wisdom of Afara</div>
+        <p>An organisation dedicated to the wisdom, heritage and unity of all people of African descent across Africa, the Americas, the Caribbean, Europe and the world.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social" title="Facebook">f</a>
+          <a href="#" class="footer-social" title="Instagram">ig</a>
+          <a href="#" class="footer-social" title="YouTube">yt</a>
+          <a href="#" class="footer-social" title="X / Twitter">x</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Florence's Story</a></li>
+          <li><a href="#">Mission &amp; Vision</a></li>
+          <li><a href="#">Our Values</a></li>
+          <li><a href="#">Our Team</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Teachings</h4>
+        <ul>
+          <li><a href="#">African Philosophy</a></li>
+          <li><a href="#">Diaspora History</a></li>
+          <li><a href="#">Traditions</a></li>
+          <li><a href="#">Black Identity</a></li>
+          <li><a href="#">Video Library</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="#">Become a Member</a></li>
+          <li><a href="#">Volunteer</a></li>
+          <li><a href="#">Partner With Us</a></li>
+          <li><a href="#">Support Afara</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Wisdom of Afara. All Rights Reserved.</span>
+      <span>
+        <a href="#">Privacy Policy</a> &nbsp;·&nbsp;
+        <a href="#">Terms of Use</a> &nbsp;·&nbsp;
+        <a href="#">wisdomofafara.org</a>
+      </span>
+    </div>
+  </footer>
+
+  <!-- KENTE BOTTOM BAR -->
+  <div class="kente-bar" aria-hidden="true">
+    <span style="background:#C9952A"></span>
+    <span style="background:#8B3A1A"></span>
+    <span style="background:#1B3A2D"></span>
+    <span style="background:#C9952A"></span>
+    <span style="background:#1B3A2D"></span>
+    <span style="background:#8B3A1A"></span>
+    <span style="background:#C9952A"></span>
+    <span style="background:#1B3A2D"></span>
+    <span style="background:#8B3A1A"></span>
+    <span style="background:#C9952A"></span>
+    <span style="background:#1B3A2D"></span>
+    <span style="background:#8B3A1A"></span>
+  </div>
+
+  <script>
+    const observerOptions = { threshold: 0.12, rootMargin: '0px 0px -60px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    document.querySelectorAll('.mission-strip-item, .about-images, .about-content, .diaspora-card, .teaching-card, .stat-item, .program-card, .news-card').forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(28px)';
+      el.style.transition = `opacity 0.7s ease ${i * 0.08}s, transform 0.7s ease ${i * 0.08}s`;
+      observer.observe(el);
+    });
+
+    function animateCounter(el, target, suffix) {
+      let start = 0;
+      const duration = 2000;
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = (suffix === 'B' || suffix === 'M+')
+          ? (eased * parseFloat(target)).toFixed(target.includes('.') ? 1 : 0) + suffix
+          : Math.floor(eased * parseInt(target)) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.stat-num').forEach(num => {
+            const text = num.textContent;
+            if (text.includes('B')) animateCounter(num, text.replace('B',''), 'B');
+            else if (text.includes('M+')) animateCounter(num, text.replace('M+',''), 'M+');
+            else if (text.includes('+')) animateCounter(num, text.replace('+',''), '+');
+          });
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    const statsEl = document.querySelector('.stats');
+    if (statsEl) statsObserver.observe(statsEl);
+
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').style.boxShadow = window.scrollY > 40
+        ? '0 2px 24px rgba(0,0,0,0.08)' : 'none';
+    });
+  </script>
+</body>
+</html>
