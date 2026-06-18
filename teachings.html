@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teachings - Wisdom of Afara</title>
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#C9952A',
+            dark: '#1a1a1a',
+            light: '#ffffff',
+            terracotta: '#C1440E',
+          },
+          fontFamily: {
+            display: ['Georgia', 'serif'], 
+            sans: ['system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #1a1a1a;
+      margin: 0;
+      padding: 0;
+    }
+    .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #C9952A;
+      font-weight: 600;
+    }
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: #C9952A;
+      color: #ffffff;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: background-color 0.3s;
+    }
+    .btn-gold:hover {
+      background-color: #a87b20;
+    }
+    .btn-outline-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid #C9952A;
+      color: #C9952A;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.3s;
+    }
+    .btn-outline-gold:hover {
+      background-color: #C9952A;
+      color: #ffffff;
+    }
+    .kente-thin {
+      height: 1px;
+      background: linear-gradient(90deg, #C9952A 0%, #a87b20 50%, #C9952A 100%);
+      width: 100%;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+
+  <!-- HEADER -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md py-4 border-b border-gray-200">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between">
+      <a href="/" class="text-2xl font-display font-bold text-gray-900">
+        Wisdom of <span class="italic text-gold">Afara</span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="/" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Home</a>
+        <a href="/about.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">About</a>
+        <a href="/teachings.html" class="text-[12px] tracking-[0.2em] uppercase text-gold font-semibold">Teachings</a>
+        <a href="/books.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Bookstore</a>
+        <a href="/diaspora.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">The Diaspora</a>
+        <a href="/programs.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Programs</a>
+        <a href="/news.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">News & Stories</a>
+      </nav>
+      <div class="hidden lg:flex items-center gap-5">
+        <a href="/get-involved.html" class="btn-gold text-[11px] py-3 px-6">Join the Family</a>
+      </div>
+      <button id="mobile-menu-btn" class="lg:hidden text-gray-900 p-2">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="pt-24">
+    <!-- PAGE HERO -->
+    <section class="relative py-24 lg:py-32 bg-gray-50 border-b border-gray-200">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center gap-12">
+        <div class="flex-1">
+          <div class="eyebrow mb-6">The Library</div>
+          <h1 class="font-display text-5xl md:text-6xl text-gray-900 leading-tight mb-6">
+            Ancestral knowledge for a modern world.
+          </h1>
+          <p class="text-xl text-gray-600 max-w-2xl leading-relaxed">
+            Read carefully curated teachings on philosophy, history, traditions, and the complex identity of the global African Diaspora.
+          </p>
+        </div>
+        <div class="w-full md:w-1/3 aspect-[4/3] relative shadow-lg">
+          <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219458866_84750114.png" alt="Manuscript" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </section>
+
+    <!-- FILTER BAR -->
+    <section class="py-6 border-b border-gray-200 sticky top-[72px] bg-white/95 backdrop-blur z-30 shadow-sm">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex flex-wrap gap-2" id="filter-container">
+        <!-- Javascript handles the active states -->
+        <button data-cat="All" class="filter-btn px-5 py-2.5 text-xs tracking-[0.2em] uppercase font-sans border transition-colors bg-gold text-white border-gold">All</button>
+        <button data-cat="Philosophy" class="filter-btn px-5 py-2.5 text-xs tracking-[0.2em] uppercase font-sans border transition-colors border-gray-300 text-gray-600 hover:border-gold hover:text-gold">Philosophy</button>
+        <button data-cat="Diaspora History" class="filter-btn px-5 py-2.5 text-xs tracking-[0.2em] uppercase font-sans border transition-colors border-gray-300 text-gray-600 hover:border-gold hover:text-gold">Diaspora History</button>
+        <button data-cat="Ancestral Traditions" class="filter-btn px-5 py-2.5 text-xs tracking-[0.2em] uppercase font-sans border transition-colors border-gray-300 text-gray-600 hover:border-gold hover:text-gold">Ancestral Traditions</button>
+        <button data-cat="Black Identity" class="filter-btn px-5 py-2.5 text-xs tracking-[0.2em] uppercase font-sans border transition-colors border-gray-300 text-gray-600 hover:border-gold hover:text-gold">Black Identity</button>
+      </div>
+    </section>
+
+    <!-- FEATURED TEACHING -->
+    <section id="featured-section" class="py-20 bg-white border-b border-gray-200">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+        <article class="group cursor-pointer grid lg:grid-cols-2 gap-12 items-center">
+          <div class="aspect-[4/3] lg:aspect-square overflow-hidden shadow-md">
+            <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219458866_84750114.png" alt="Ubuntu" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          </div>
+          <div>
+            <div class="flex items-center gap-4 mb-4">
+              <span class="bg-gray-100 px-3 py-1 text-[10px] tracking-[0.2em] uppercase text-gray-600 border border-gray-200">Philosophy</span>
+              <span class="text-xs tracking-widest text-gold uppercase">8 min read</span>
+            </div>
+            <h2 class="font-display text-4xl md:text-5xl text-gray-900 group-hover:text-gold transition-colors leading-tight mb-6">
+              Ubuntu I Am Because We Are
+            </h2>
+            <p class="text-gray-700 text-lg leading-relaxed mb-8">
+              A deep dive into the Southern African philosophy of interconnectedness. Discover how the concept of Ubuntu shaped community structures on the continent and survived the transatlantic crossing to influence civil rights movements worldwide. We explore its relevance in healing the fractures of the modern world.
+            </p>
+            <div class="flex items-center gap-4 text-sm font-sans">
+              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219226697_6a7ee26a.png" alt="Florence Cook" class="w-10 h-10 rounded-full object-cover border border-gold" />
+              <div>
+                <p class="font-bold text-gray-900 tracking-wider uppercase text-[10px]">Florence Cook</p>
+                <p class="text-gray-500">Elder & Cultural Director</p>
+              </div>
+            </div>
+            <div class="mt-8 text-xs tracking-[0.22em] uppercase text-gold font-bold flex items-center gap-2">
+              Read Teaching <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TEACHINGS GALLERY -->
+    <section class="py-20 bg-gray-50">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+        <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          
+          <!-- Teaching 1 (Hidden in 'All', but shown in Philosophy filter) -->
+          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Philosophy" style="display: none;">
+            <div class="aspect-[4/3] overflow-hidden mb-5">
+              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219458866_84750114.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="eyebrow text-[10px] text-gray-500">Philosophy</span>
+              <span class="text-xs text-gold uppercase tracking-widest">8 min read</span>
+            </div>
+            <h3 class="font-display text-2xl text-gray-900 group-hover:text-gold transition-colors leading-snug mb-3">Ubuntu I Am Because We Are</h3>
+            <p class="text-gray-600 text-sm mb-6 line-clamp-3">A deep dive into the Southern African philosophy of interconnectedness and how it survived the transatlantic crossing.</p>
+            <div class="text-[10px] tracking-[0.2em] uppercase text-gray-900 font-bold border-t border-gray-100 pt-4">By Florence Cook</div>
+          </article>
+
+          <!-- Teaching 2 -->
+          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Diaspora History">
+            <div class="aspect-[4/3] overflow-hidden mb-5">
+              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219780390_bb832ec7.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="eyebrow text-[10px] text-gray-500">Diaspora History</span>
+              <span class="text-xs text-gold uppercase tracking-widest">12 min read</span>
+            </div>
+            <h3 class="font-display text-2xl text-gray-900 group-hover:text-gold transition-colors leading-snug mb-3">The Door of No Return: Memory & Meaning</h3>
+            <p class="text-gray-600 text-sm mb-6 line-clamp-3">Reflecting on the emotional and historical weight of the coastal forts of West Africa, and what they mean to the modern Diaspora returning home.</p>
+            <div class="text-[10px] tracking-[0.2em] uppercase text-gray-900 font-bold border-t border-gray-100 pt-4">By Dr. Amara Okonkwo</div>
+          </article>
+
+          <!-- Teaching 3 -->
+          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Ancestral Traditions">
+            <div class="aspect-[4/3] overflow-hidden mb-5">
+              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219610302_237d3119.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="eyebrow text-[10px] text-gray-500">Ancestral Traditions</span>
+              <span class="text-xs text-gold uppercase tracking-widest">6 min read</span>
+            </div>
+            <h3 class="font-display text-2xl text-gray-900 group-hover:text-gold transition-colors leading-snug mb-3">Sankofa: Looking Back to Move Forward</h3>
+            <p class="text-gray-600 text-sm mb-6 line-clamp-3">Understanding the ancient Akan symbol of the bird reaching backwards. Why we must recover our past to plant our feet in the future.</p>
+            <div class="text-[10px] tracking-[0.2em] uppercase text-gray-900 font-bold border-t border-gray-100 pt-4">By Elder Kwabena Nyong</div>
+          </article>
+
+          <!-- Teaching 4 -->
+          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Black Identity">
+            <div class="aspect-[4/3] overflow-hidden mb-5">
+              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219594169_7354bebe.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="eyebrow text-[10px] text-gray-500">Black Identity</span>
+              <span class="text-xs text-gold uppercase tracking-widest">10 min read</span>
+            </div>
+            <h3 class="font-display text-2xl text-gray-900 group-hover:text-gold transition-colors leading-snug mb-3">On Being Black in a Many-Coloured World</h3>
+            <p class="text-gray-600 text-sm mb-6 line-clamp-3">How the definition of Blackness shifts from Lagos to London to Bahia, and how we find common ground in a globalised society.</p>
+            <div class="text-[10px] tracking-[0.2em] uppercase text-gray-900 font-bold border-t border-gray-100 pt-4">By Marcus Beaumont</div>
+          </article>
+
+          <!-- Teaching 5 -->
+          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Diaspora History">
+            <div class="aspect-[4/3] overflow-hidden mb-5">
+              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219316514_c138e5be.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="eyebrow text-[10px] text-gray-500">Diaspora History</span>
+              <span class="text-xs text-gold uppercase tracking-widest">15 min read</span>
+            </div>
+            <h3 class="font-display text-2xl text-gray-900 group-hover:text-gold transition-colors leading-snug mb-3">The Haitian Revolution: A Blueprint for Freedom</h3>
+            <p class="text-gray-600 text-sm mb-6 line-clamp-3">A thorough examination of the first successful slave rebellion in history, its spiritual underpinnings, and its enduring legacy across the Americas.</p>
+            <div class="text-[10px] tracking-[0.2em] uppercase text-gray-900 font-bold border-t border-gray-100 pt-4">By Dr. Amara Okonkwo</div>
+          </article>
+
+          <!-- Teaching 6 -->
+          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Philosophy">
+            <div class="aspect-[4/3] overflow-hidden mb-5">
+              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219430250_5b282351.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="eyebrow text-[10px] text-gray-500">Philosophy</span>
+              <span class="text-xs text-gold uppercase tracking-widest">7 min read</span>
+            </div>
+            <h3 class="font-display text-2xl text-gray-900 group-hover:text-gold transition-colors leading-snug mb-3">Maat: The Ancient Egyptian Concept of Balance</h3>
+            <p class="text-gray-600 text-sm mb-6 line-clamp-3">Exploring truth, justice, and cosmic order. How the principles of Maat continue to influence contemporary pan-African ethical frameworks.</p>
+            <div class="text-[10px] tracking-[0.2em] uppercase text-gray-900 font-bold border-t border-gray-100 pt-4">By Elder Kwabena Nyong</div>
+          </article>
+
+          <!-- Teaching 7 -->
+          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Black Identity">
+            <div class="aspect-[4/3] overflow-hidden mb-5">
+              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219274444_b9685329.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="eyebrow text-[10px] text-gray-500">Black Identity</span>
+              <span class="text-xs text-gold uppercase tracking-widest">9 min read</span>
+            </div>
+            <h3 class="font-display text-2xl text-gray-900 group-hover:text-gold transition-colors leading-snug mb-3">Hair as History, Hair as Resistance</h3>
+            <p class="text-gray-600 text-sm mb-6 line-clamp-3">From the intricate braiding patterns of West African kingdoms to the natural hair movements of the 21st century. Unpacking the politics of Black hair.</p>
+            <div class="text-[10px] tracking-[0.2em] uppercase text-gray-900 font-bold border-t border-gray-100 pt-4">By Florence Cook</div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-50 border-t border-gray-200">
+    <div class="border-b border-gray-200">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16 grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="eyebrow mb-4">Letters from Afara</div>
+          <h3 class="font-display text-3xl md:text-4xl text-gray-900 leading-tight">
+            Reflections, teachings & gatherings delivered to your door once a moon.
+          </h3>
+        </div>
+        <form onsubmit="event.preventDefault(); alert('Subscribed to the journal. Welcome to the family.'); this.reset();" class="flex flex-col sm:flex-row gap-3">
+          <input type="email" placeholder="Your email address" class="flex-1 bg-white border border-gray-300 px-5 py-4 text-gray-900 focus:outline-none focus:border-gold text-lg" required>
+          <button type="submit" class="btn-gold whitespace-nowrap">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-4">
+        <a href="/" class="text-2xl font-display font-bold text-gray-900 block mb-2">
+          Wisdom of <span class="italic text-gold">Afara</span>
+        </a>
+        <p class="text-gray-500 text-sm mb-6 uppercase tracking-widest">A home for the Diaspora</p>
+        <p class="text-gray-600 text-lg italic mb-6">
+          "I am a descendant of those people, so I care about them as much as Africans. This wisdom belongs to all of us."
+        </p>
+        <p class="text-gold text-sm font-semibold uppercase tracking-widest">— Florence Cook, Founder</p>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h4 class="eyebrow mb-5 text-gray-900">Discover</h4>
+        <ul class="space-y-3 text-gray-600">
+          <li><a href="/about.html" class="hover:text-gold">Our Story</a></li>
+          <li><a href="/teachings.html" class="hover:text-gold">Teachings</a></li>
+          <li><a href="/diaspora.html" class="hover:text-gold">The Diaspora</a></li>
+          <li><a href="/programs.html" class="hover:text-gold">Programs</a></li>
+          <li><a href="/news.html" class="hover:text-gold">News & Stories</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h4 class="eyebrow mb-5 text-gray-900">Family</h4>
+        <ul class="space-y-3 text-gray-600">
+          <li><a href="/diaspora.html#african-americans" class="hover:text-gold">African Americans</a></li>
+          <li><a href="/diaspora.html#afro-caribbean" class="hover:text-gold">Afro-Caribbeans</a></li>
+          <li><a href="/diaspora.html#afro-latino" class="hover:text-gold">Afro-Latinos</a></li>
+          <li><a href="/diaspora.html#european" class="hover:text-gold">Africans in Europe</a></li>
+          <li><a href="/diaspora.html#mother-africa" class="hover:text-gold">Mother Africa</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h4 class="eyebrow mb-5 text-gray-900">Engage</h4>
+        <ul class="space-y-3 text-gray-600">
+          <li><a href="/get-involved.html" class="hover:text-gold">Become a Member</a></li>
+          <li><a href="/get-involved.html#volunteer" class="hover:text-gold">Volunteer</a></li>
+          <li><a href="/get-involved.html#partner" class="hover:text-gold">Partner</a></li>
+          <li><a href="/get-involved.html#donate" class="hover:text-gold">Donate</a></li>
+          <li><a href="/get-involved.html#contact" class="hover:text-gold">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h4 class="eyebrow mb-5 text-gray-900">Reach Us</h4>
+        <ul class="space-y-4 text-gray-600">
+          <li class="flex items-start gap-2">
+            <i data-lucide="mail" class="w-4 h-4 mt-1 text-gold shrink-0"></i>
+            <span>hello@wisdomofafara.org</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <i data-lucide="map-pin" class="w-4 h-4 mt-1 text-gold shrink-0"></i>
+            <span>London · Lagos · Brooklyn · Salvador</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-200">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 uppercase tracking-widest">
+        <p>© 2026 Wisdom of Afara · wisdomofafara.org · A registered cultural foundation</p>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-gold">Privacy</a>
+          <a href="#" class="hover:text-gold">Terms</a>
+          <a href="#" class="hover:text-gold">Press</a>
+          <a href="#" class="hover:text-gold">Built on</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactivity Scripts -->
+  <script>
+    // Initialize Icons
+    lucide.createIcons();
+
+    // Mobile Menu Logic
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.createElement('div');
+    mobileMenu.className = 'hidden lg:hidden bg-white border-t border-gray-200 mt-3 absolute w-full left-0 z-50 shadow-lg';
+    mobileMenu.innerHTML = `
+      <div class="px-6 py-6 space-y-4 flex flex-col">
+        <a href="/" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">Home</a>
+        <a href="/about.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">About</a>
+        <a href="/teachings.html" class="text-sm tracking-[0.2em] uppercase text-gold">Teachings</a>
+        <a href="/books.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">Bookstore</a>
+        <a href="/diaspora.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">The Diaspora</a>
+        <a href="/programs.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">Programs</a>
+        <a href="/news.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">News & Stories</a>
+      </div>
+    `;
+    document.getElementById('header').appendChild(mobileMenu);
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Category Filtering Logic
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const featuredSection = document.getElementById('featured-section');
+    const gridItems = document.querySelectorAll('.grid-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Reset all buttons to inactive state
+        filterBtns.forEach(b => {
+          b.className = 'filter-btn px-5 py-2.5 text-xs tracking-[0.2em] uppercase font-sans border transition-colors border-gray-300 text-gray-600 hover:border-gold hover:text-gold';
+        });
+        
+        // Set clicked button to active state
+        btn.className = 'filter-btn px-5 py-2.5 text-xs tracking-[0.2em] uppercase font-sans border transition-colors bg-gold text-white border-gold';
+
+        const selectedCategory = btn.getAttribute('data-cat');
+
+        if (selectedCategory === 'All') {
+          // Show the featured section
+          featuredSection.style.display = 'block';
+          
+          // Show items from index 1 onwards in the grid, hide the first item (since it's featured)
+          gridItems.forEach((item, index) => {
+            if (index === 0) {
+              item.style.display = 'none';
+            } else {
+              item.style.display = 'block';
+            }
+          });
+        } else {
+          // Hide the featured section entirely
+          featuredSection.style.display = 'none';
+          
+          // Show all items in the grid that match the selected category
+          gridItems.forEach(item => {
+            if (item.getAttribute('data-category') === selectedCategory) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

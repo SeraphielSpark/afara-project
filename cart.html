@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart - Wisdom of Afara</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#C9952A',
+            dark: '#1a1a1a',
+            light: '#ffffff',
+            terracotta: '#C1440E',
+          },
+          fontFamily: {
+            display: ['Georgia', 'serif'], 
+            sans: ['system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #1a1a1a;
+      margin: 0;
+      padding: 0;
+    }
+    .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #C9952A;
+      font-weight: 600;
+    }
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background-color: #C9952A;
+      color: #ffffff;
+      padding: 1rem 1.5rem;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: background-color 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-gold:hover {
+      background-color: #a87b20;
+    }
+    .btn-outline-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border: 1px solid #C9952A;
+      color: #C9952A;
+      background-color: transparent;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .btn-outline-gold:hover {
+      background-color: #C9952A;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md py-4 border-b border-gray-200">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between">
+      <a href="/" class="text-2xl font-display font-bold text-gray-900">
+        Wisdom of <span class="italic text-gold">Afara</span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="/" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Home</a>
+        <a href="/about.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">About</a>
+        <a href="/teachings.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Teachings</a>
+        <a href="/books.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Bookstore</a>
+        <a href="/diaspora.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">The Diaspora</a>
+        <a href="/programs.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Programs</a>
+        <a href="/news.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">News & Stories</a>
+      </nav>
+      <div class="hidden lg:flex items-center gap-5">
+        <a href="/cart.html" class="text-gold relative">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          <span id="cart-badge-header" class="absolute -top-1 -right-2 bg-terracotta text-white text-[9px] w-4 h-4 flex items-center justify-center rounded-full">2</span>
+        </a>
+        <a href="/get-involved.html" class="btn-gold text-[11px] py-3 px-6">Join the Family</a>
+      </div>
+      <button id="mobile-menu-btn" class="lg:hidden text-gray-900 p-2">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="pt-32 pb-24 min-h-[70vh]">
+    <div class="max-w-[1200px] mx-auto px-6 lg:px-12">
+      
+      <h1 class="font-display text-4xl lg:text-5xl text-gray-900 mb-2">Your Cart</h1>
+      <p class="text-gray-500 mb-10"><span id="cart-count">2</span> items in your bag</p>
+
+      <div class="grid lg:grid-cols-12 gap-12">
+        
+        <div class="lg:col-span-8">
+          
+          <div id="empty-cart-msg" class="hidden text-center py-20 bg-gray-50 border border-gray-200">
+            <i data-lucide="shopping-bag" class="w-12 h-12 text-gray-300 mx-auto mb-4"></i>
+            <h2 class="font-display text-2xl text-gray-900 mb-2">Your cart is empty</h2>
+            <p class="text-gray-500 mb-6">Discover the wisdom of the elders in our bookstore.</p>
+            <a href="/books.html" class="btn-outline-gold">Return to Bookstore</a>
+          </div>
+
+          <div id="cart-items-container" class="space-y-6">
+            
+            <div class="cart-item flex flex-col sm:flex-row gap-6 p-6 bg-white border border-gray-200 shadow-sm" data-price="29.99" data-impact-pct="0.40">
+              <div class="w-24 h-32 shrink-0 bg-gray-100 overflow-hidden shadow-inner">
+                <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219458866_84750114.png" alt="The Roots of Afara" class="w-full h-full object-cover" />
+              </div>
+              <div class="flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex justify-between items-start mb-1">
+                    <h3 class="font-display text-xl text-gray-900">The Roots of Afara</h3>
+                    <button class="remove-btn text-gray-400 hover:text-terracotta transition-colors" title="Remove item"><i data-lucide="x" class="w-5 h-5"></i></button>
+                  </div>
+                  <p class="font-sans text-[10px] tracking-[0.15em] uppercase text-gray-500 mb-3">Dr. Amara Nkemdirim</p>
+                  <p class="font-sans text-[10px] tracking-[0.15em] uppercase text-gold font-bold">40% Gives Back</p>
+                </div>
+                
+                <div class="flex items-end justify-between mt-4">
+                  <div class="flex items-center border border-gray-200 bg-white">
+                    <button class="qty-minus p-2 text-gray-500 hover:text-gold transition-colors"><i data-lucide="minus" class="w-3.5 h-3.5"></i></button>
+                    <span class="qty-display w-8 text-center font-display text-lg text-gray-900">1</span>
+                    <button class="qty-plus p-2 text-gray-500 hover:text-gold transition-colors"><i data-lucide="plus" class="w-3.5 h-3.5"></i></button>
+                  </div>
+                  <div class="font-display text-2xl text-gray-900 item-total-price">$29.99</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cart-item flex flex-col sm:flex-row gap-6 p-6 bg-white border border-gray-200 shadow-sm" data-price="24.99" data-impact-pct="0.35">
+              <div class="w-24 h-32 shrink-0 bg-gray-100 overflow-hidden shadow-inner">
+                <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219780390_bb832ec7.png" alt="Voices of the Ancestors" class="w-full h-full object-cover" />
+              </div>
+              <div class="flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex justify-between items-start mb-1">
+                    <h3 class="font-display text-xl text-gray-900">Voices of the Ancestors</h3>
+                    <button class="remove-btn text-gray-400 hover:text-terracotta transition-colors" title="Remove item"><i data-lucide="x" class="w-5 h-5"></i></button>
+                  </div>
+                  <p class="font-sans text-[10px] tracking-[0.15em] uppercase text-gray-500 mb-3">Kwame Osei</p>
+                  <p class="font-sans text-[10px] tracking-[0.15em] uppercase text-gold font-bold">35% Gives Back</p>
+                </div>
+                
+                <div class="flex items-end justify-between mt-4">
+                  <div class="flex items-center border border-gray-200 bg-white">
+                    <button class="qty-minus p-2 text-gray-500 hover:text-gold transition-colors"><i data-lucide="minus" class="w-3.5 h-3.5"></i></button>
+                    <span class="qty-display w-8 text-center font-display text-lg text-gray-900">1</span>
+                    <button class="qty-plus p-2 text-gray-500 hover:text-gold transition-colors"><i data-lucide="plus" class="w-3.5 h-3.5"></i></button>
+                  </div>
+                  <div class="font-display text-2xl text-gray-900 item-total-price">$24.99</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="lg:col-span-4">
+          <div class="bg-gray-50 border border-gray-200 p-8 sticky top-24 shadow-sm">
+            <h2 class="font-display text-2xl text-gray-900 mb-6">Order Summary</h2>
+            
+            <div class="space-y-4 mb-6 pb-6 border-b border-gray-200">
+              <div class="flex justify-between text-gray-600">
+                <span>Subtotal</span>
+                <span id="summary-subtotal" class="font-display text-lg text-gray-900">$54.98</span>
+              </div>
+              <div class="flex justify-between text-gray-600">
+                <span>Shipping</span>
+                <span class="text-sm italic">Calculated at checkout</span>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-baseline mb-8">
+              <span class="font-bold text-gray-900">Total</span>
+              <span id="summary-total" class="font-display text-3xl text-gray-900">$54.98</span>
+            </div>
+
+            <a href="/checkout.html" id="checkout-btn" class="btn-gold w-full justify-center mb-6">Proceed to Checkout</a>
+
+            <div class="bg-orange-50 border border-gold/30 p-5">
+              <div class="flex items-center gap-2 mb-2">
+                <i data-lucide="heart" class="w-4 h-4 text-terracotta"></i>
+                <span class="font-sans text-[10px] tracking-[0.2em] uppercase text-terracotta font-bold">Mission Impact</span>
+              </div>
+              <p class="text-sm text-gray-700 leading-relaxed">
+                This order will direct <strong id="summary-impact" class="text-gray-900 font-display text-lg">$20.74</strong> to our educational programs and cultural preservation funds. Thank you.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-gray-50 border-t border-gray-200">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 uppercase tracking-widest">
+      <p>© 2026 Wisdom of Afara · wisdomofafara.org</p>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-gold">Privacy</a>
+        <a href="#" class="hover:text-gold">Terms</a>
+        <a href="#" class="hover:text-gold">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Icons
+    lucide.createIcons();
+
+    // Mobile Menu Logic
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.createElement('div');
+    mobileMenu.className = 'hidden lg:hidden bg-white border-t border-gray-200 mt-3 absolute w-full left-0 z-50 shadow-lg';
+    mobileMenu.innerHTML = `
+      <div class="px-6 py-6 space-y-4 flex flex-col">
+        <a href="/" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">Home</a>
+        <a href="/books.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">Bookstore</a>
+      </div>
+    `;
+    document.getElementById('header').appendChild(mobileMenu);
+    menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+
+    // Cart Logic
+    function updateCartTotals() {
+      const cartItems = document.querySelectorAll('.cart-item');
+      let subtotal = 0;
+      let totalImpact = 0;
+      let totalQty = 0;
+
+      cartItems.forEach(item => {
+        const price = parseFloat(item.getAttribute('data-price'));
+        const impactPct = parseFloat(item.getAttribute('data-impact-pct'));
+        const qtyElement = item.querySelector('.qty-display');
+        const qty = parseInt(qtyElement.innerText);
+        
+        const itemTotal = price * qty;
+        const itemImpact = itemTotal * impactPct;
+
+        // Update individual item line price
+        item.querySelector('.item-total-price').innerText = `$${itemTotal.toFixed(2)}`;
+
+        subtotal += itemTotal;
+        totalImpact += itemImpact;
+        totalQty += qty;
+      });
+
+      // Update Order Summary
+      document.getElementById('summary-subtotal').innerText = `$${subtotal.toFixed(2)}`;
+      document.getElementById('summary-total').innerText = `$${subtotal.toFixed(2)}`;
+      document.getElementById('summary-impact').innerText = `$${totalImpact.toFixed(2)}`;
+      
+      // Update counts
+      document.getElementById('cart-count').innerText = totalQty;
+      const headerBadge = document.getElementById('cart-badge-header');
+      if (totalQty > 0) {
+        headerBadge.innerText = totalQty;
+        headerBadge.classList.remove('hidden');
+      } else {
+        headerBadge.classList.add('hidden');
+      }
+
+      // Handle Empty State
+      const emptyMsg = document.getElementById('empty-cart-msg');
+      const itemsContainer = document.getElementById('cart-items-container');
+      const checkoutBtn = document.getElementById('checkout-btn');
+
+      if (totalQty === 0) {
+        emptyMsg.classList.remove('hidden');
+        itemsContainer.classList.add('hidden');
+        checkoutBtn.classList.add('opacity-50', 'pointer-events-none');
+        checkoutBtn.innerText = 'Cart is empty';
+      }
+    }
+
+    // Attach Event Listeners to Buttons
+    document.querySelectorAll('.cart-item').forEach(item => {
+      const minusBtn = item.querySelector('.qty-minus');
+      const plusBtn = item.querySelector('.qty-plus');
+      const removeBtn = item.querySelector('.remove-btn');
+      const qtyDisplay = item.querySelector('.qty-display');
+
+      minusBtn.addEventListener('click', () => {
+        let qty = parseInt(qtyDisplay.innerText);
+        if (qty > 1) {
+          qtyDisplay.innerText = qty - 1;
+          updateCartTotals();
+        }
+      });
+
+      plusBtn.addEventListener('click', () => {
+        let qty = parseInt(qtyDisplay.innerText);
+        qtyDisplay.innerText = qty + 1;
+        updateCartTotals();
+      });
+
+      removeBtn.addEventListener('click', () => {
+        item.remove();
+        updateCartTotals();
+      });
+    });
+
+    // Initial calculation
+    updateCartTotals();
+
+  </script>
+</body>
+</html>

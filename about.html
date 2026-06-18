@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Wisdom of Afara</title>
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#C9952A',
+            dark: '#1a1a1a',
+            light: '#ffffff',
+            terracotta: '#C1440E',
+          },
+          fontFamily: {
+            display: ['Georgia', 'serif'], 
+            sans: ['system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #1a1a1a;
+      margin: 0;
+      padding: 0;
+    }
+    .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #C9952A;
+      font-weight: 600;
+    }
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: #C9952A;
+      color: #ffffff;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: background-color 0.3s;
+    }
+    .btn-gold:hover {
+      background-color: #a87b20;
+    }
+    .kente-thin {
+      height: 1px;
+      background: linear-gradient(90deg, #C9952A 0%, #a87b20 50%, #C9952A 100%);
+      width: 100%;
+    }
+    .kente-strip {
+      height: 6px;
+      background: repeating-linear-gradient(
+        90deg,
+        #C9952A 0 28px,
+        #f9fafb 28px 32px,
+        #C1440E 32px 56px,
+        #f9fafb 56px 60px,
+        #1B4332 60px 84px,
+        #f9fafb 84px 88px,
+        #1a1a1a 88px 96px,
+        #f9fafb 96px 100px
+      );
+    }
+    .drop-cap::first-letter {
+      font-family: 'Georgia', serif;
+      font-size: 4.5em;
+      float: left;
+      line-height: 0.85;
+      margin: 0.08em 0.12em 0 0;
+      color: #C9952A;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+
+  <!-- HEADER -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md py-4 border-b border-gray-200">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between">
+      <a href="/" class="text-2xl font-display font-bold text-gray-900">
+        Wisdom of <span class="italic text-gold">Afara</span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="/" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Home</a>
+        <a href="/about.html" class="text-[12px] tracking-[0.2em] uppercase text-gold font-semibold">About</a>
+        <a href="/teachings.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Teachings</a>
+        <a href="/books.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Bookstore</a>
+        <a href="/diaspora.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">The Diaspora</a>
+        <a href="/programs.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Programs</a>
+        <a href="/news.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">News & Stories</a>
+      </nav>
+      <div class="hidden lg:flex items-center gap-5">
+        <a href="/get-involved.html" class="btn-gold text-[11px] py-3 px-6">Join the Family</a>
+      </div>
+      <button id="mobile-menu-btn" class="lg:hidden text-gray-900 p-2">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="pt-24">
+    <!-- PAGE HERO -->
+    <section class="relative py-24 lg:py-32 bg-gray-50 border-b border-gray-200">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center gap-12">
+        <div class="flex-1">
+          <div class="eyebrow mb-6">About Wisdom of Afara</div>
+          <h1 class="font-display text-5xl md:text-6xl text-gray-900 leading-tight mb-6">
+            A daughter of the Diaspora, gathering her family home.
+          </h1>
+          <p class="text-xl text-gray-600 max-w-2xl">
+            The story of Florence Cook, and the foundation she built for all of us.
+          </p>
+        </div>
+        <div class="w-full md:w-1/3 aspect-square relative shadow-lg">
+          <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219226697_6a7ee26a.png" alt="Florence Cook" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </section>
+
+    <!-- FLORENCE'S STORY -->
+    <section class="py-32 bg-white">
+      <div class="max-w-[1100px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-5">
+          <div class="aspect-[4/5] overflow-hidden mb-6 shadow-md">
+            <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219226697_6a7ee26a.png" alt="Florence Cook" class="w-full h-full object-cover" />
+          </div>
+          <div class="kente-thin"></div>
+          <p class="eyebrow mt-4">Florence Cook Founder</p>
+        </div>
+        <div class="lg:col-span-7">
+          <div class="eyebrow mb-6">Her Story</div>
+          <h2 class="font-display text-4xl md:text-5xl text-gray-900 leading-tight mb-10">
+            "I am a descendant of those people, so I care about them as much as Africans."
+          </h2>
+          <p class="text-gray-700 text-xl leading-relaxed mb-6 drop-cap">
+            Florence Cook grew up between two worlds her mother's Jamaica and her father's Ghana in a working-class corner of South London where her name was always mispronounced. As a girl, she was told her hair was wrong, her skin was political, her history was a footnote.
+          </p>
+          <p class="text-gray-700 text-lg leading-relaxed mb-6">
+            She refused that inheritance. For three decades she has travelled the world sitting in courtyards in Salvador, kitchens in Brixton, sweat lodges in Mississippi, libraries in Timbuktu collecting the wisdom that an enslaving world tried to erase.
+          </p>
+          <p class="text-gray-700 text-lg leading-relaxed mb-6">
+            What she found, again and again, is that <em class="text-gold not-italic font-semibold">we are one people</em>. The Yoruba prayers in a Cuban grandmother's mouth. The Igbo proverb tucked inside a Carolina spiritual. The Akan symbol stitched into a Brazilian flag. The same family. Just dispersed.
+          </p>
+          <p class="text-gray-700 text-lg leading-relaxed">
+            Wisdom of Afara is her gift back to that family a place where every son and daughter of the Diaspora can come home.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="kente-strip"></div>
+
+    <!-- MISSION & VISION -->
+    <section class="py-32 bg-gray-50 border-b border-gray-200">
+      <div class="max-w-[1300px] mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16">
+        <div>
+          <div class="eyebrow mb-6">Mission</div>
+          <h3 class="font-display text-3xl md:text-4xl text-gray-900 leading-tight mb-6">
+            To educate, empower and reconnect.
+          </h3>
+          <p class="text-gray-600 text-lg leading-relaxed">
+            We exist to recover, protect and transmit the cultural, spiritual and intellectual inheritance of the African Diaspora and to place that inheritance directly into the hands of every person who has a right to it. Not behind paywalls. Not in white-walled museums. In our own hands.
+          </p>
+        </div>
+        <div>
+          <div class="eyebrow mb-6">Vision</div>
+          <h3 class="font-display text-3xl md:text-4xl text-gray-900 leading-tight mb-6">
+            A reunited family across every shore.
+          </h3>
+          <p class="text-gray-600 text-lg leading-relaxed">
+            We see a world in which every child of African descent wherever they were born knows their lineage, walks in their dignity, and recognises their kin in the face of every other Black person they meet. A world in which the Diaspora is not scattered. It is gathered.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY THE DIASPORA -->
+    <section class="relative py-32 overflow-hidden bg-white">
+      <div class="absolute inset-0 opacity-[0.03]">
+        <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&q=80" alt="" class="w-full h-full object-cover grayscale" />
+      </div>
+      <div class="relative max-w-4xl mx-auto px-6 text-center">
+        <div class="eyebrow mb-6">Why The Diaspora?</div>
+        <h2 class="font-display text-4xl md:text-6xl text-gray-900 leading-tight italic">
+          Because the family was never broken only separated.
+        </h2>
+        <p class="text-gray-700 text-xl mt-10 leading-relaxed">
+          Twelve million people were taken from West and Central Africa across the Atlantic. Millions more across the Sahara and Indian Ocean. Their descendants now live in over 140 countries. They speak Portuguese, French, English, Spanish, Dutch, Arabic, Swahili, Creole.
+        </p>
+        <p class="text-gold text-2xl mt-8 italic font-display">
+          But they share one mother. And she is calling.
+        </p>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="py-32 bg-gray-50 border-y border-gray-200">
+      <div class="max-w-[1100px] mx-auto px-6 lg:px-12">
+        <div class="mb-20 text-center">
+          <div class="eyebrow mb-4">The Journey</div>
+          <h2 class="font-display text-4xl text-gray-900">A path to Afara.</h2>
+        </div>
+        
+        <div class="relative">
+          <!-- Center Line -->
+          <div class="absolute left-[15px] md:left-1/2 top-0 bottom-0 w-px bg-gold/30"></div>
+          
+          <!-- Timeline Items -->
+          <!-- 1974 -->
+          <div class="relative grid md:grid-cols-2 gap-8 mb-16">
+            <div class="pl-12 md:pl-0 md:text-right md:pr-12">
+              <div class="font-display text-5xl text-gold mb-2">1974</div>
+              <h3 class="font-display text-2xl text-gray-900 mb-3">Born of Two Worlds</h3>
+              <p class="text-gray-600 text-lg leading-relaxed">Florence is born to a Jamaican mother and a Ghanaian father in South London a child of every Diaspora at once.</p>
+            </div>
+            <div class="hidden md:block"></div>
+            <div class="absolute left-[15px] md:left-1/2 top-4 -translate-x-1/2 w-3 h-3 bg-gold rounded-full ring-4 ring-gray-50"></div>
+          </div>
+
+          <!-- 1992 -->
+          <div class="relative grid md:grid-cols-2 gap-8 mb-16 md:[&>*:first-child]:order-2">
+            <div class="pl-12 md:pl-12">
+              <div class="font-display text-5xl text-gold mb-2">1992</div>
+              <h3 class="font-display text-2xl text-gray-900 mb-3">The First Question</h3>
+              <p class="text-gray-600 text-lg leading-relaxed">At 18, walking through the slave fort at Cape Coast, Florence asks: "If I am a daughter of this place, why does no one teach me its songs?"</p>
+            </div>
+            <div class="hidden md:block"></div>
+            <div class="absolute left-[15px] md:left-1/2 top-4 -translate-x-1/2 w-3 h-3 bg-gold rounded-full ring-4 ring-gray-50"></div>
+          </div>
+
+          <!-- 2003 -->
+          <div class="relative grid md:grid-cols-2 gap-8 mb-16">
+            <div class="pl-12 md:pl-0 md:text-right md:pr-12">
+              <div class="font-display text-5xl text-gold mb-2">2003</div>
+              <h3 class="font-display text-2xl text-gray-900 mb-3">A Decade of Listening</h3>
+              <p class="text-gray-600 text-lg leading-relaxed">Florence travels to Brazil, Cuba, Trinidad, Senegal, Ethiopia, Mississippi recording elders, gathering stories, learning what no university teaches.</p>
+            </div>
+            <div class="hidden md:block"></div>
+            <div class="absolute left-[15px] md:left-1/2 top-4 -translate-x-1/2 w-3 h-3 bg-gold rounded-full ring-4 ring-gray-50"></div>
+          </div>
+
+          <!-- 2014 -->
+          <div class="relative grid md:grid-cols-2 gap-8 mb-16 md:[&>*:first-child]:order-2">
+            <div class="pl-12 md:pl-12">
+              <div class="font-display text-5xl text-gold mb-2">2014</div>
+              <h3 class="font-display text-2xl text-gray-900 mb-3">The Roots Circle</h3>
+              <p class="text-gray-600 text-lg leading-relaxed">The first informal circle gathers in her North London living room. Twelve people. One promise: we will not let this knowledge die.</p>
+            </div>
+            <div class="hidden md:block"></div>
+            <div class="absolute left-[15px] md:left-1/2 top-4 -translate-x-1/2 w-3 h-3 bg-gold rounded-full ring-4 ring-gray-50"></div>
+          </div>
+
+          <!-- 2021 -->
+          <div class="relative grid md:grid-cols-2 gap-8 mb-16">
+            <div class="pl-12 md:pl-0 md:text-right md:pr-12">
+              <div class="font-display text-5xl text-gold mb-2">2021</div>
+              <h3 class="font-display text-2xl text-gray-900 mb-3">Afara is Born</h3>
+              <p class="text-gray-600 text-lg leading-relaxed">Wisdom of Afara is registered as a global cultural foundation, with a single mission: to reconnect every branch of the African family.</p>
+            </div>
+            <div class="hidden md:block"></div>
+            <div class="absolute left-[15px] md:left-1/2 top-4 -translate-x-1/2 w-3 h-3 bg-gold rounded-full ring-4 ring-gray-50"></div>
+          </div>
+
+          <!-- Today -->
+          <div class="relative grid md:grid-cols-2 gap-8 mb-16 md:[&>*:first-child]:order-2">
+            <div class="pl-12 md:pl-12">
+              <div class="font-display text-5xl text-gold mb-2">Today</div>
+              <h3 class="font-display text-2xl text-gray-900 mb-3">A Family of Thousands</h3>
+              <p class="text-gray-600 text-lg leading-relaxed">From Lagos to São Paulo, from London to Atlanta tens of thousands gather under the banner of Afara.</p>
+            </div>
+            <div class="hidden md:block"></div>
+            <div class="absolute left-[15px] md:left-1/2 top-4 -translate-x-1/2 w-3 h-3 bg-gold rounded-full ring-4 ring-gray-50"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="py-32 bg-white">
+      <div class="max-w-[1300px] mx-auto px-6 lg:px-12">
+        <div class="mb-16">
+          <div class="eyebrow mb-4">What We Stand For</div>
+          <h2 class="font-display text-4xl text-gray-900">Six values, one promise.</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+          <!-- 01 -->
+          <div class="bg-gray-50 border border-gray-200 p-10 h-full">
+            <div class="font-display text-gray-300 text-5xl mb-4">01</div>
+            <h3 class="font-display text-2xl text-gray-900 mb-4">Ancestry</h3>
+            <div class="kente-thin mb-4 max-w-[60px]"></div>
+            <p class="text-gray-600 text-base leading-relaxed">We honour those who came before. Every teaching begins with a name spoken aloud.</p>
+          </div>
+          <!-- 02 -->
+          <div class="bg-gray-50 border border-gray-200 p-10 h-full">
+            <div class="font-display text-gray-300 text-5xl mb-4">02</div>
+            <h3 class="font-display text-2xl text-gray-900 mb-4">Inclusion</h3>
+            <div class="kente-thin mb-4 max-w-[60px]"></div>
+            <p class="text-gray-600 text-base leading-relaxed">Pan-African means all of Africa's children regardless of passport, language or shade.</p>
+          </div>
+          <!-- 03 -->
+          <div class="bg-gray-50 border border-gray-200 p-10 h-full">
+            <div class="font-display text-gray-300 text-5xl mb-4">03</div>
+            <h3 class="font-display text-2xl text-gray-900 mb-4">Truth</h3>
+            <div class="kente-thin mb-4 max-w-[60px]"></div>
+            <p class="text-gray-600 text-base leading-relaxed">We tell history honestly: the splendour and the suffering, the kingdoms and the chains.</p>
+          </div>
+          <!-- 04 -->
+          <div class="bg-gray-50 border border-gray-200 p-10 h-full">
+            <div class="font-display text-gray-300 text-5xl mb-4">04</div>
+            <h3 class="font-display text-2xl text-gray-900 mb-4">Beauty</h3>
+            <div class="kente-thin mb-4 max-w-[60px]"></div>
+            <p class="text-gray-600 text-base leading-relaxed">Black culture is not a crisis to be solved. It is a treasure to be celebrated.</p>
+          </div>
+          <!-- 05 -->
+          <div class="bg-gray-50 border border-gray-200 p-10 h-full">
+            <div class="font-display text-gray-300 text-5xl mb-4">05</div>
+            <h3 class="font-display text-2xl text-gray-900 mb-4">Service</h3>
+            <div class="kente-thin mb-4 max-w-[60px]"></div>
+            <p class="text-gray-600 text-base leading-relaxed">Wisdom that is not shared is wisdom that dies. We teach freely.</p>
+          </div>
+          <!-- 06 -->
+          <div class="bg-gray-50 border border-gray-200 p-10 h-full">
+            <div class="font-display text-gray-300 text-5xl mb-4">06</div>
+            <h3 class="font-display text-2xl text-gray-900 mb-4">Sovereignty</h3>
+            <div class="kente-thin mb-4 max-w-[60px]"></div>
+            <p class="text-gray-600 text-base leading-relaxed">We are not waiting for permission. We define ourselves, on our own terms.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="py-32 bg-gray-50 border-t border-gray-200">
+      <div class="max-w-[1300px] mx-auto px-6 lg:px-12">
+        <div class="mb-16">
+          <div class="eyebrow mb-4">Custodians</div>
+          <h2 class="font-display text-4xl text-gray-900">The team & council.</h2>
+          <p class="text-gray-600 mt-4 text-lg">Florence is supported by scholars, elders and organisers from across the Diaspora.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-20">
+          <div class="group">
+            <div class="aspect-[4/5] overflow-hidden mb-5 shadow-sm bg-white p-2 border border-gray-200">
+              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219226697_6a7ee26a.png" alt="Florence Cook" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale hover:grayscale-0">
+            </div>
+            <div class="kente-thin mb-4 max-w-[40px]"></div>
+            <h3 class="font-display text-xl text-gray-900">Florence Cook</h3>
+            <p class="eyebrow mt-2 text-gray-500">Founder & Cultural Director</p>
+          </div>
+          <div class="group">
+            <div class="aspect-[4/5] overflow-hidden mb-5 shadow-sm bg-white p-2 border border-gray-200">
+              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219396085_582dd6c3.png" alt="Dr. Amara Okonkwo" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale hover:grayscale-0">
+            </div>
+            <div class="kente-thin mb-4 max-w-[40px]"></div>
+            <h3 class="font-display text-xl text-gray-900">Dr. Amara Okonkwo</h3>
+            <p class="eyebrow mt-2 text-gray-500">Head of Teachings</p>
+          </div>
+          <div class="group">
+            <div class="aspect-[4/5] overflow-hidden mb-5 shadow-sm bg-white p-2 border border-gray-200">
+              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219274444_b9685329.jpg" alt="Marcus Beaumont" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale hover:grayscale-0">
+            </div>
+            <div class="kente-thin mb-4 max-w-[40px]"></div>
+            <h3 class="font-display text-xl text-gray-900">Marcus Beaumont</h3>
+            <p class="eyebrow mt-2 text-gray-500">Director of Programs</p>
+          </div>
+          <div class="group">
+            <div class="aspect-[4/5] overflow-hidden mb-5 shadow-sm bg-white p-2 border border-gray-200">
+              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219430250_5b282351.png" alt="Elder Kwabena Nyong" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale hover:grayscale-0">
+            </div>
+            <div class="kente-thin mb-4 max-w-[40px]"></div>
+            <h3 class="font-display text-xl text-gray-900">Elder Kwabena Nyong</h3>
+            <p class="eyebrow mt-2 text-gray-500">Council of Elders</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-32 text-center bg-white border-t border-gray-200">
+      <div class="max-w-2xl mx-auto px-6">
+        <h2 class="font-display text-4xl md:text-5xl text-gray-900 mb-8">
+          Walk with us.
+        </h2>
+        <a href="/get-involved.html" class="btn-gold">Become a Member</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-50 border-t border-gray-200">
+    <div class="border-b border-gray-200">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16 grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="eyebrow mb-4">Letters from Afara</div>
+          <h3 class="font-display text-3xl md:text-4xl text-gray-900 leading-tight">
+            Reflections, teachings & gatherings delivered to your door once a moon.
+          </h3>
+        </div>
+        <form class="flex flex-col sm:flex-row gap-3">
+          <input type="email" placeholder="Your email address" class="flex-1 bg-white border border-gray-300 px-5 py-4 text-gray-900 focus:outline-none focus:border-gold text-lg" required>
+          <button type="submit" class="btn-gold whitespace-nowrap">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-4">
+        <a href="/" class="text-2xl font-display font-bold text-gray-900 block mb-2">
+          Wisdom of <span class="italic text-gold">Afara</span>
+        </a>
+        <p class="text-gray-500 text-sm mb-6 uppercase tracking-widest">A home for the Diaspora</p>
+        <p class="text-gray-600 text-lg italic mb-6">
+          "I am a descendant of those people, so I care about them as much as Africans. This wisdom belongs to all of us."
+        </p>
+        <p class="text-gold text-sm font-semibold uppercase tracking-widest">— Florence Cook, Founder</p>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h4 class="eyebrow mb-5 text-gray-900">Discover</h4>
+        <ul class="space-y-3 text-gray-600">
+          <li><a href="/about.html" class="hover:text-gold">Our Story</a></li>
+          <li><a href="/teachings.html" class="hover:text-gold">Teachings</a></li>
+          <li><a href="/diaspora.html" class="hover:text-gold">The Diaspora</a></li>
+          <li><a href="/programs.html" class="hover:text-gold">Programs</a></li>
+          <li><a href="/news.html" class="hover:text-gold">News & Stories</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h4 class="eyebrow mb-5 text-gray-900">Family</h4>
+        <ul class="space-y-3 text-gray-600">
+          <li><a href="/diaspora.html#african-americans" class="hover:text-gold">African Americans</a></li>
+          <li><a href="/diaspora.html#afro-caribbean" class="hover:text-gold">Afro-Caribbeans</a></li>
+          <li><a href="/diaspora.html#afro-latino" class="hover:text-gold">Afro-Latinos</a></li>
+          <li><a href="/diaspora.html#european" class="hover:text-gold">Africans in Europe</a></li>
+          <li><a href="/diaspora.html#mother-africa" class="hover:text-gold">Mother Africa</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h4 class="eyebrow mb-5 text-gray-900">Engage</h4>
+        <ul class="space-y-3 text-gray-600">
+          <li><a href="/get-involved.html" class="hover:text-gold">Become a Member</a></li>
+          <li><a href="/get-involved.html#volunteer" class="hover:text-gold">Volunteer</a></li>
+          <li><a href="/get-involved.html#partner" class="hover:text-gold">Partner</a></li>
+          <li><a href="/get-involved.html#donate" class="hover:text-gold">Donate</a></li>
+          <li><a href="/get-involved.html#contact" class="hover:text-gold">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h4 class="eyebrow mb-5 text-gray-900">Reach Us</h4>
+        <ul class="space-y-4 text-gray-600">
+          <li class="flex items-start gap-2">
+            <i data-lucide="mail" class="w-4 h-4 mt-1 text-gold shrink-0"></i>
+            <span>hello@wisdomofafara.org</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <i data-lucide="map-pin" class="w-4 h-4 mt-1 text-gold shrink-0"></i>
+            <span>London · Lagos · Brooklyn · Salvador</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-200">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 uppercase tracking-widest">
+        <p>© 2026 Wisdom of Afara · wisdomofafara.org · A registered cultural foundation</p>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-gold">Privacy</a>
+          <a href="#" class="hover:text-gold">Terms</a>
+          <a href="#" class="hover:text-gold">Press</a>
+          <a href="#" class="hover:text-gold">Built on</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactivity Scripts -->
+  <script>
+    // Initialize Icons
+    lucide.createIcons();
+
+    // Mobile Menu Logic
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.createElement('div');
+    mobileMenu.className = 'hidden lg:hidden bg-white border-t border-gray-200 mt-3 absolute w-full left-0 z-50';
+    mobileMenu.innerHTML = `
+      <div class="px-6 py-6 space-y-4 flex flex-col">
+        <a href="/" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">Home</a>
+        <a href="/about.html" class="text-sm tracking-[0.2em] uppercase text-gold">About</a>
+        <a href="/teachings.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">Teachings</a>
+        <a href="/books.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">Bookstore</a>
+        <a href="/diaspora.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">The Diaspora</a>
+        <a href="/programs.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">Programs</a>
+        <a href="/news.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">News & Stories</a>
+      </div>
+    `;
+    document.getElementById('header').appendChild(mobileMenu);
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>

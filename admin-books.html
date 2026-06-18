@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Books - Wisdom of Afara Admin</title>
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#C9952A',
+            dark: '#1a1a1a',
+            light: '#ffffff',
+            terracotta: '#C1440E',
+          },
+          fontFamily: {
+            display: ['Georgia', 'serif'], 
+            sans: ['system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background-color: #f9fafb; /* gray-50 */
+      color: #1a1a1a;
+      margin: 0;
+      padding: 0;
+    }
+    .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6b7280; /* gray-500 */
+      font-weight: 600;
+    }
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: #C9952A;
+      color: #ffffff;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: background-color 0.3s;
+      border: none;
+      cursor: pointer;
+      border-radius: 0.25rem;
+    }
+    .btn-gold:hover {
+      background-color: #a87b20;
+    }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid #d1d5db;
+      color: #374151;
+      background-color: #ffffff;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+      cursor: pointer;
+      border-radius: 0.25rem;
+    }
+    .btn-outline:hover {
+      background-color: #f3f4f6;
+    }
+    .form-input {
+      width: 100%;
+      background-color: #ffffff;
+      border: 1px solid #d1d5db;
+      padding: 0.75rem 1rem;
+      color: #1a1a1a;
+      font-family: 'system-ui', sans-serif;
+      outline: none;
+      border-radius: 0.25rem;
+      transition: border-color 0.3s;
+    }
+    .form-input:focus {
+      border-color: #C9952A;
+      box-shadow: 0 0 0 1px rgba(201, 149, 42, 0.2);
+    }
+    
+    /* Sidebar Styles */
+    #sidebar {
+      transition: transform 0.3s ease-in-out;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      color: #4b5563;
+      border-radius: 0.375rem;
+      transition: all 0.2s;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    .nav-item:hover {
+      background-color: #f3f4f6;
+      color: #111827;
+    }
+    .nav-item.active {
+      background-color: #fef9c3;
+      color: #a87b20;
+    }
+    .nav-item.active i {
+      color: #C9952A;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden">
+
+  <div class="flex h-screen overflow-hidden">
+    
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 transform -translate-x-full lg:translate-x-0 lg:static lg:flex-shrink-0 flex flex-col shadow-sm">
+      <div class="h-16 flex items-center px-6 border-b border-gray-200 justify-between">
+        <a href="/" class="text-xl font-display font-bold text-gray-900">
+          Afara <span class="italic text-gold">Admin</span>
+        </a>
+        <button id="close-sidebar" class="lg:hidden text-gray-500 hover:text-gray-900">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+        <div class="eyebrow px-3 mb-2 mt-4 text-gray-400">Overview</div>
+        <a href="/admin.html" class="nav-item">
+          <i data-lucide="layout-dashboard" class="w-5 h-5 text-gray-400"></i> Dashboard
+        </a>
+        <a href="#" class="nav-item">
+          <i data-lucide="bar-chart-3" class="w-5 h-5 text-gray-400"></i> Analytics
+        </a>
+
+        <div class="eyebrow px-3 mb-2 mt-8 text-gray-400">Content</div>
+        <a href="#" class="nav-item">
+          <i data-lucide="file-text" class="w-5 h-5 text-gray-400"></i> Teachings
+        </a>
+        <a href="/admin-books.html" class="nav-item active">
+          <i data-lucide="book-open" class="w-5 h-5"></i> Bookstore Inventory
+        </a>
+        <a href="#" class="nav-item">
+          <i data-lucide="calendar" class="w-5 h-5 text-gray-400"></i> Programs & Events
+        </a>
+
+        <div class="eyebrow px-3 mb-2 mt-8 text-gray-400">Community</div>
+        <a href="#" class="nav-item">
+          <i data-lucide="users" class="w-5 h-5 text-gray-400"></i> Members
+        </a>
+        <a href="#" class="nav-item">
+          <i data-lucide="message-square" class="w-5 h-5 text-gray-400"></i> Comments & Reviews
+        </a>
+        <a href="#" class="nav-item">
+          <i data-lucide="heart" class="w-5 h-5 text-gray-400"></i> Donations
+        </a>
+      </nav>
+
+      <div class="p-4 border-t border-gray-200">
+        <a href="#" class="nav-item text-gray-500 hover:text-red-600">
+          <i data-lucide="log-out" class="w-5 h-5"></i> Sign Out
+        </a>
+      </div>
+    </aside>
+
+    <!-- MOBILE OVERLAY -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-gray-900 bg-opacity-50 z-40 hidden lg:hidden"></div>
+
+    <!-- MAIN CONTENT -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+      
+      <!-- TOP HEADER -->
+      <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 shadow-sm z-10">
+        <div class="flex items-center gap-4">
+          <button id="open-sidebar" class="lg:hidden text-gray-500 hover:text-gray-900">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+          <h1 class="font-display text-xl text-gray-900 hidden sm:block">Manage Bookstore</h1>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <button class="text-gray-400 hover:text-gold relative">
+            <i data-lucide="bell" class="w-5 h-5"></i>
+          </button>
+          <div class="h-8 w-8 rounded-full border border-gold overflow-hidden">
+            <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219226697_6a7ee26a.png" alt="Admin" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </header>
+
+      <!-- MAIN SCROLLABLE AREA -->
+      <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 p-6 lg:p-8">
+        
+        <div class="flex justify-between items-center mb-8">
+          <div>
+            <h2 class="font-display text-2xl text-gray-900">Inventory</h2>
+            <p class="text-sm text-gray-500 mt-1">Add, edit, or remove books from the Afara Press catalog.</p>
+          </div>
+          <button id="toggle-form-btn" class="btn-gold">
+            <i data-lucide="plus" class="w-4 h-4"></i> Add New Book
+          </button>
+        </div>
+
+        <!-- ADD / EDIT FORM (Hidden by default) -->
+        <div id="book-form-container" class="bg-white rounded-lg border border-gray-200 shadow-sm p-8 mb-10 hidden">
+          <div class="flex items-center justify-between mb-6 border-b border-gray-100 pb-4">
+            <h3 id="form-title" class="font-display text-xl text-gray-900 flex items-center gap-2">
+              <i data-lucide="plus" class="w-5 h-5 text-gold"></i> Add a New Book
+            </h3>
+            <button id="cancel-form-btn" class="text-xs font-semibold text-gray-500 hover:text-red-500 uppercase tracking-widest flex items-center gap-1">
+              <i data-lucide="x" class="w-4 h-4"></i> Cancel
+            </button>
+          </div>
+
+          <form id="book-form" class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-xs font-bold text-gray-600 uppercase tracking-widest mb-2">Book Title *</label>
+                <input type="text" id="book-title" required class="form-input" placeholder="e.g. The Roots of Afara" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-600 uppercase tracking-widest mb-2">Author *</label>
+                <input type="text" id="book-author" required class="form-input" placeholder="e.g. Dr. Amara Nkemdirim" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-600 uppercase tracking-widest mb-2">Price in USD *</label>
+                <input type="number" step="0.01" id="book-price" required class="form-input" placeholder="e.g. 29.99" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-600 uppercase tracking-widest mb-2">Pages (Optional)</label>
+                <input type="number" id="book-pages" class="form-input" placeholder="e.g. 342" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-gray-600 uppercase tracking-widest mb-2">Description *</label>
+              <textarea id="book-desc" required rows="3" class="form-input resize-none" placeholder="A brief summary of the book (min 20 chars)..."></textarea>
+            </div>
+
+            <!-- Cover Upload Mockup -->
+            <div>
+              <label class="block text-xs font-bold text-gray-600 uppercase tracking-widest mb-2">Cover Image *</label>
+              <label class="flex items-center gap-3 cursor-pointer border border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 rounded-md px-4 py-6 transition-colors justify-center">
+                <i data-lucide="upload" class="w-5 h-5 text-gray-400"></i>
+                <span class="text-gray-600 text-sm font-medium">Click to upload cover image</span>
+                <input type="file" accept="image/*" class="hidden" />
+              </label>
+            </div>
+
+            <!-- Tags -->
+            <div>
+              <label class="block text-xs font-bold text-gray-600 uppercase tracking-widest mb-2">Showcase In</label>
+              <div class="flex flex-wrap gap-2" id="tag-container">
+                <button type="button" class="tag-btn px-4 py-2 border border-gray-300 text-gray-600 text-xs tracking-widest uppercase font-semibold rounded-md hover:border-gold transition-colors" data-active="false">Featured</button>
+                <button type="button" class="tag-btn px-4 py-2 border border-gray-300 text-gray-600 text-xs tracking-widest uppercase font-semibold rounded-md hover:border-gold transition-colors" data-active="false">Best Seller</button>
+                <button type="button" class="tag-btn px-4 py-2 border border-gray-300 text-gray-600 text-xs tracking-widest uppercase font-semibold rounded-md hover:border-gold transition-colors" data-active="false">New Release</button>
+                <button type="button" class="tag-btn px-4 py-2 border border-gray-300 text-gray-600 text-xs tracking-widest uppercase font-semibold rounded-md hover:border-gold transition-colors" data-active="false">Most Impactful</button>
+              </div>
+            </div>
+
+            <!-- Mission Impact Fields -->
+            <div class="border-t border-gray-200 pt-6 mt-6">
+              <h4 class="text-xs font-bold text-gold uppercase tracking-widest mb-4 flex items-center gap-2"><i data-lucide="heart" class="w-4 h-4"></i> Mission Impact Details</h4>
+              <div class="grid md:grid-cols-2 gap-5">
+                <div>
+                  <label class="block text-[10px] text-gray-500 uppercase tracking-widest mb-1">Impact % (0-100) *</label>
+                  <input type="number" id="mission-pct" required min="0" max="100" class="form-input" placeholder="e.g. 40" />
+                </div>
+                <div>
+                  <label class="block text-[10px] text-gray-500 uppercase tracking-widest mb-1">Project Category *</label>
+                  <input type="text" required class="form-input" placeholder="e.g. Cultural Preservation" />
+                </div>
+                <div>
+                  <label class="block text-[10px] text-gray-500 uppercase tracking-widest mb-1">Educational Program *</label>
+                  <input type="text" required class="form-input" placeholder="e.g. Pan-African Youth Curriculum" />
+                </div>
+                <div>
+                  <label class="block text-[10px] text-gray-500 uppercase tracking-widest mb-1">Community Initiative *</label>
+                  <input type="text" required class="form-input" placeholder="e.g. Diaspora Libraries" />
+                </div>
+                <div class="md:col-span-2">
+                  <label class="block text-[10px] text-gray-500 uppercase tracking-widest mb-1">Child Assistance Program *</label>
+                  <input type="text" required class="form-input" placeholder="e.g. Afara Scholars Fund" />
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-4 flex justify-end">
+              <button type="submit" class="btn-gold">
+                <i data-lucide="save" class="w-4 h-4"></i> Save Book
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- PUBLISHED BOOKS LIST -->
+        <h3 class="font-display text-xl text-gray-900 mb-4">Published Books (4)</h3>
+        
+        <div class="space-y-4">
+          
+          <!-- Book 1 -->
+          <div class="flex flex-col md:flex-row gap-6 bg-white border border-gray-200 p-6 rounded-lg shadow-sm">
+            <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219458866_84750114.png" alt="Book Cover" class="w-24 h-32 object-cover bg-gray-100 border border-gray-200 shadow-sm shrink-0" />
+            <div class="flex-1">
+              <h4 class="font-display text-xl text-gray-900 mb-1">The Roots of Afara</h4>
+              <p class="text-sm font-semibold text-gray-600 mb-1">Dr. Amara Nkemdirim &nbsp;&middot;&nbsp; <span class="text-gold">$29.99</span></p>
+              <p class="text-xs text-gray-500 mb-3"><span class="font-bold text-terracotta">40% to mission</span> &nbsp;&middot;&nbsp; Cultural Preservation</p>
+              <div class="flex gap-2 flex-wrap">
+                <span class="text-[10px] tracking-widest uppercase bg-gray-100 text-gray-600 px-2 py-1 rounded">Featured</span>
+              </div>
+            </div>
+            <div class="flex md:flex-col gap-2 justify-center md:justify-start">
+              <button class="btn-outline w-full md:w-auto text-xs py-1.5 px-3" onclick="editMockBook()"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit</button>
+              <button class="btn-outline w-full md:w-auto text-xs py-1.5 px-3 text-red-600 border-red-200 hover:bg-red-50" onclick="deleteMockBook(this)"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Delete</button>
+            </div>
+          </div>
+
+          <!-- Book 2 -->
+          <div class="flex flex-col md:flex-row gap-6 bg-white border border-gray-200 p-6 rounded-lg shadow-sm">
+            <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219780390_bb832ec7.png" alt="Book Cover" class="w-24 h-32 object-cover bg-gray-100 border border-gray-200 shadow-sm shrink-0" />
+            <div class="flex-1">
+              <h4 class="font-display text-xl text-gray-900 mb-1">Voices of the Ancestors</h4>
+              <p class="text-sm font-semibold text-gray-600 mb-1">Kwame Osei &nbsp;&middot;&nbsp; <span class="text-gold">$24.99</span></p>
+              <p class="text-xs text-gray-500 mb-3"><span class="font-bold text-terracotta">35% to mission</span> &nbsp;&middot;&nbsp; Oral History</p>
+              <div class="flex gap-2 flex-wrap">
+                <span class="text-[10px] tracking-widest uppercase bg-gray-100 text-gray-600 px-2 py-1 rounded">Best Seller</span>
+              </div>
+            </div>
+            <div class="flex md:flex-col gap-2 justify-center md:justify-start">
+              <button class="btn-outline w-full md:w-auto text-xs py-1.5 px-3" onclick="editMockBook()"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit</button>
+              <button class="btn-outline w-full md:w-auto text-xs py-1.5 px-3 text-red-600 border-red-200 hover:bg-red-50" onclick="deleteMockBook(this)"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Delete</button>
+            </div>
+          </div>
+
+          <!-- Book 3 -->
+          <div class="flex flex-col md:flex-row gap-6 bg-white border border-gray-200 p-6 rounded-lg shadow-sm">
+            <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219610302_237d3119.jpg" alt="Book Cover" class="w-24 h-32 object-cover bg-gray-100 border border-gray-200 shadow-sm shrink-0" />
+            <div class="flex-1">
+              <h4 class="font-display text-xl text-gray-900 mb-1">Daughters of the Sun</h4>
+              <p class="text-sm font-semibold text-gray-600 mb-1">Adaeze Mbeki &nbsp;&middot;&nbsp; <span class="text-gold">$27.99</span></p>
+              <p class="text-xs text-gray-500 mb-3"><span class="font-bold text-terracotta">50% to mission</span> &nbsp;&middot;&nbsp; Women's Empowerment</p>
+              <div class="flex gap-2 flex-wrap">
+                <span class="text-[10px] tracking-widest uppercase bg-gray-100 text-gray-600 px-2 py-1 rounded">New Release</span>
+                <span class="text-[10px] tracking-widest uppercase bg-gray-100 text-gray-600 px-2 py-1 rounded">Most Impactful</span>
+              </div>
+            </div>
+            <div class="flex md:flex-col gap-2 justify-center md:justify-start">
+              <button class="btn-outline w-full md:w-auto text-xs py-1.5 px-3" onclick="editMockBook()"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit</button>
+              <button class="btn-outline w-full md:w-auto text-xs py-1.5 px-3 text-red-600 border-red-200 hover:bg-red-50" onclick="deleteMockBook(this)"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Delete</button>
+            </div>
+          </div>
+
+          <!-- Book 4 -->
+          <div class="flex flex-col md:flex-row gap-6 bg-white border border-gray-200 p-6 rounded-lg shadow-sm">
+            <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219594169_7354bebe.png" alt="Book Cover" class="w-24 h-32 object-cover bg-gray-100 border border-gray-200 shadow-sm shrink-0" />
+            <div class="flex-1">
+              <h4 class="font-display text-xl text-gray-900 mb-1">The Bridge Home</h4>
+              <p class="text-sm font-semibold text-gray-600 mb-1">Marcus Adeyemi &nbsp;&middot;&nbsp; <span class="text-gold">$25.99</span></p>
+              <p class="text-xs text-gray-500 mb-3"><span class="font-bold text-terracotta">45% to mission</span> &nbsp;&middot;&nbsp; Educational Program</p>
+              <div class="flex gap-2 flex-wrap">
+                <span class="text-[10px] tracking-widest uppercase bg-gray-100 text-gray-600 px-2 py-1 rounded">Featured</span>
+              </div>
+            </div>
+            <div class="flex md:flex-col gap-2 justify-center md:justify-start">
+              <button class="btn-outline w-full md:w-auto text-xs py-1.5 px-3" onclick="editMockBook()"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit</button>
+              <button class="btn-outline w-full md:w-auto text-xs py-1.5 px-3 text-red-600 border-red-200 hover:bg-red-50" onclick="deleteMockBook(this)"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Delete</button>
+            </div>
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Interactivity Scripts -->
+  <script>
+    lucide.createIcons();
+
+    // Mobile Sidebar Toggle Logic
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    const openBtn = document.getElementById('open-sidebar');
+    const closeBtn = document.getElementById('close-sidebar');
+
+    function openSidebar() {
+      sidebar.classList.remove('-translate-x-full');
+      overlay.classList.remove('hidden');
+    }
+
+    function closeSidebar() {
+      sidebar.classList.add('-translate-x-full');
+      overlay.classList.add('hidden');
+    }
+
+    openBtn.addEventListener('click', openSidebar);
+    closeBtn.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+
+    // Form Toggle Logic
+    const toggleFormBtn = document.getElementById('toggle-form-btn');
+    const cancelFormBtn = document.getElementById('cancel-form-btn');
+    const formContainer = document.getElementById('book-form-container');
+    const formTitle = document.getElementById('form-title');
+    const bookForm = document.getElementById('book-form');
+
+    function openForm(isEdit = false) {
+      formContainer.classList.remove('hidden');
+      if (isEdit) {
+        formTitle.innerHTML = `<i data-lucide="edit-3" class="w-5 h-5 text-gold"></i> Edit Book`;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        formTitle.innerHTML = `<i data-lucide="plus" class="w-5 h-5 text-gold"></i> Add a New Book`;
+        bookForm.reset();
+        resetTags();
+      }
+      lucide.createIcons();
+    }
+
+    function closeForm() {
+      formContainer.classList.add('hidden');
+      bookForm.reset();
+      resetTags();
+    }
+
+    toggleFormBtn.addEventListener('click', () => openForm(false));
+    cancelFormBtn.addEventListener('click', closeForm);
+
+    // Tag Selection Logic
+    const tagBtns = document.querySelectorAll('.tag-btn');
+    
+    function resetTags() {
+      tagBtns.forEach(btn => {
+        btn.setAttribute('data-active', 'false');
+        btn.classList.replace('bg-gold', 'bg-transparent');
+        btn.classList.replace('text-white', 'text-gray-600');
+        btn.classList.replace('border-gold', 'border-gray-300');
+      });
+    }
+
+    tagBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isActive = btn.getAttribute('data-active') === 'true';
+        if (isActive) {
+          btn.setAttribute('data-active', 'false');
+          btn.classList.replace('bg-gold', 'bg-transparent');
+          btn.classList.replace('text-white', 'text-gray-600');
+          btn.classList.replace('border-gold', 'border-gray-300');
+        } else {
+          btn.setAttribute('data-active', 'true');
+          btn.classList.replace('bg-transparent', 'bg-gold');
+          btn.classList.replace('text-gray-600', 'text-white');
+          btn.classList.replace('border-gray-300', 'border-gold');
+        }
+      });
+    });
+
+    // Form Submission Mock
+    bookForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Book saved successfully! (Mocked action)');
+      closeForm();
+    });
+
+    // Edit/Delete Mocks
+    function editMockBook() {
+      openForm(true);
+      // In a real app, you would populate the form fields here.
+      document.getElementById('book-title').value = "Sample Book Title";
+      document.getElementById('book-author').value = "Sample Author";
+      document.getElementById('book-price').value = "29.99";
+      document.getElementById('mission-pct').value = "40";
+    }
+
+    function deleteMockBook(btnElement) {
+      if(confirm('Are you sure you want to remove this book?')) {
+        // Remove the closest parent card
+        btnElement.closest('.flex-col').remove();
+        alert('Book removed. (Mocked action)');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookstore - Wisdom of Afara Press</title>
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#C9952A',
+            dark: '#1a1a1a',
+            light: '#ffffff',
+            terracotta: '#C1440E',
+          },
+          fontFamily: {
+            display: ['Georgia', 'serif'], 
+            sans: ['system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #1a1a1a;
+      margin: 0;
+      padding: 0;
+    }
+    .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #C9952A;
+      font-weight: 600;
+    }
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: #C9952A;
+      color: #ffffff;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: background-color 0.3s;
+    }
+    .btn-gold:hover {
+      background-color: #a87b20;
+    }
+    .btn-outline-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid #C9952A;
+      color: #C9952A;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.3s;
+    }
+    .btn-outline-gold:hover {
+      background-color: #C9952A;
+      color: #ffffff;
+    }
+    .kente-thin {
+      height: 1px;
+      background: linear-gradient(90deg, #C9952A 0%, #a87b20 50%, #C9952A 100%);
+      width: 100%;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+
+  <!-- HEADER -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md py-4 border-b border-gray-200">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between">
+      <a href="/" class="text-2xl font-display font-bold text-gray-900">
+        Wisdom of <span class="italic text-gold">Afara</span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="/" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Home</a>
+        <a href="/about.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">About</a>
+        <a href="/teachings.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Teachings</a>
+        <a href="/books.html" class="text-[12px] tracking-[0.2em] uppercase text-gold font-semibold">Bookstore</a>
+        <a href="/diaspora.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">The Diaspora</a>
+        <a href="/programs.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Programs</a>
+        <a href="/news.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">News & Stories</a>
+      </nav>
+      <div class="hidden lg:flex items-center gap-5">
+        <a href="/get-involved.html" class="btn-gold text-[11px] py-3 px-6">Join the Family</a>
+      </div>
+      <button id="mobile-menu-btn" class="lg:hidden text-gray-900 p-2">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="pt-24">
+    <!-- HERO SECTION -->
+    <section class="relative py-24 lg:py-32 bg-gray-50 border-b border-gray-200 text-center">
+      <div class="max-w-3xl mx-auto px-6">
+        <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold mb-5">
+          Wisdom of Afara Press
+        </p>
+        <h1 class="font-display text-5xl lg:text-6xl text-gray-900 leading-tight mb-6">
+          Read. Learn. Empower.
+        </h1>
+        <p class="text-lg text-gray-600 leading-relaxed">
+          Our books are created to educate, inspire, preserve African heritage, and create lasting
+          impact. Every purchase contributes to educational programs, cultural preservation projects,
+          and support for vulnerable communities.
+        </p>
+      </div>
+    </section>
+
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16">
+      
+      <!-- STATS TILES -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-20">
+        <div class="text-center px-4 py-6 border border-gray-200 bg-gray-50 shadow-sm">
+          <i data-lucide="book-open" class="w-6 h-6 text-gold mx-auto mb-3"></i>
+          <div class="font-display text-3xl text-gray-900 mb-1">48</div>
+          <div class="font-sans text-[10px] tracking-[0.2em] uppercase text-gray-500">Books Published</div>
+        </div>
+        <div class="text-center px-4 py-6 border border-gray-200 bg-gray-50 shadow-sm">
+          <i data-lucide="graduation-cap" class="w-6 h-6 text-gold mx-auto mb-3"></i>
+          <div class="font-display text-3xl text-gray-900 mb-1">31,200+</div>
+          <div class="font-sans text-[10px] tracking-[0.2em] uppercase text-gray-500">Total Readers</div>
+        </div>
+        <div class="text-center px-4 py-6 border border-gray-200 bg-gray-50 shadow-sm">
+          <i data-lucide="heart" class="w-6 h-6 text-gold mx-auto mb-3"></i>
+          <div class="font-display text-3xl text-gray-900 mb-1">$185K</div>
+          <div class="font-sans text-[10px] tracking-[0.2em] uppercase text-gray-500">Funds Raised Through Books</div>
+        </div>
+        <div class="text-center px-4 py-6 border border-gray-200 bg-gray-50 shadow-sm">
+          <i data-lucide="globe" class="w-6 h-6 text-gold mx-auto mb-3"></i>
+          <div class="font-display text-3xl text-gray-900 mb-1">76</div>
+          <div class="font-sans text-[10px] tracking-[0.2em] uppercase text-gray-500">Communities Impacted</div>
+        </div>
+      </div>
+
+      <!-- MISSION DESCRIPTION BANNER -->
+      <section class="mb-20 border border-gold/30 bg-orange-50/20 p-10 lg:p-14 shadow-sm">
+        <div class="flex items-center gap-2 mb-5">
+          <i data-lucide="sparkles" class="w-5 h-5 text-gold"></i>
+          <p class="font-sans text-[12px] tracking-[0.25em] uppercase text-gold font-bold">
+            The Mission
+          </p>
+        </div>
+        <h2 class="font-display text-4xl text-gray-900 mb-6">Books That Create Impact</h2>
+        <div class="grid lg:grid-cols-2 gap-8 text-gray-700 text-lg leading-relaxed">
+          <p>
+            When you purchase a Wisdom of Afara book, you are doing more than buying a publication.
+            You are helping preserve history, educate future generations, support cultural awareness,
+            and contribute to programs that uplift vulnerable communities.
+          </p>
+          <p>
+            A portion of every book purchase directly supports educational initiatives, cultural
+            preservation projects, community development programs, and assistance for orphaned and
+            underprivileged children. <span class="text-gold font-semibold">Every book becomes a tool for both learning and positive change.</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- THE FULL CATALOG COLLECTION -->
+      <section class="mb-20">
+        <div class="flex items-end justify-between mb-12 border-b border-gray-200 pb-4">
+          <div>
+            <h2 class="font-display text-3xl text-gray-900">The Collection</h2>
+            <p class="text-gray-500 mt-1">Hand-picked titles and foundational readings</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          
+          <!-- Book 1 -->
+          <div class="bg-white border border-gray-200 p-6 flex flex-col justify-between shadow-sm group">
+            <div>
+              <div class="aspect-[3/4] mb-6 overflow-hidden bg-gray-50 border border-gray-100 shadow-inner">
+                <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219458866_84750114.png" alt="The Roots of Afara" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              </div>
+              <span class="text-[10px] uppercase font-bold text-white bg-gold px-2 py-1 inline-block mb-4">40% gives back</span>
+              <p class="text-xs text-gray-400 uppercase tracking-widest mb-1">Dr. Amara Nkemdirim</p>
+              <h3 class="font-display text-2xl text-gray-900 mb-3 group-hover:text-gold transition-colors leading-tight">The Roots of Afara</h3>
+              <p class="text-gray-600 text-sm leading-relaxed mb-6">A sweeping journey through the origins of African civilization, tracing the wisdom, traditions, and spiritual heritage that shaped a continent and its diaspora. Richly illustrated and meticulously researched.</p>
+            </div>
+            <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+              <span class="text-xl font-bold text-gray-900">$29.99</span>
+              <a href="/book-detail.html" class="btn-outline-gold text-xs py-2 px-4 flex items-center gap-1">View <i data-lucide="eye" class="w-3.5 h-3.5"></i></a>
+            </div>
+          </div>
+
+          <!-- Book 2 -->
+          <div class="bg-white border border-gray-200 p-6 flex flex-col justify-between shadow-sm group">
+            <div>
+              <div class="aspect-[3/4] mb-6 overflow-hidden bg-gray-50 border border-gray-100 shadow-inner">
+                <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219780390_bb832ec7.png" alt="Voices of the Ancestors" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              </div>
+              <span class="text-[10px] uppercase font-bold text-white bg-gold px-2 py-1 inline-block mb-4">35% gives back</span>
+              <p class="text-xs text-gray-400 uppercase tracking-widest mb-1">Kwame Osei</p>
+              <h3 class="font-display text-2xl text-gray-900 mb-3 group-hover:text-gold transition-colors leading-tight">Voices of the Ancestors</h3>
+              <p class="text-gray-600 text-sm leading-relaxed mb-6">An anthology of oral traditions, proverbs, and stories passed down through generations, preserving the living memory of African peoples for the world.</p>
+            </div>
+            <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+              <span class="text-xl font-bold text-gray-900">$24.99</span>
+              <a href="/book-detail.html" class="btn-outline-gold text-xs py-2 px-4 flex items-center gap-1">View <i data-lucide="eye" class="w-3.5 h-3.5"></i></a>
+            </div>
+          </div>
+
+          <!-- Book 3 -->
+          <div class="bg-white border border-gray-200 p-6 flex flex-col justify-between shadow-sm group">
+            <div>
+              <div class="aspect-[3/4] mb-6 overflow-hidden bg-gray-50 border border-gray-100 shadow-inner">
+                <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219610302_237d3119.jpg" alt="Daughters of the Sun" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              </div>
+              <span class="text-[10px] uppercase font-bold text-white bg-gold px-2 py-1 inline-block mb-4">50% gives back</span>
+              <p class="text-xs text-gray-400 uppercase tracking-widest mb-1">Adaeze Mbeki</p>
+              <h3 class="font-display text-2xl text-gray-900 mb-3 group-hover:text-gold transition-colors leading-tight">Daughters of the Sun</h3>
+              <p class="text-gray-600 text-sm leading-relaxed mb-6">Celebrating the matriarchs, queens, and everyday heroines whose strength built nations. A tribute to African womanhood across the ages.</p>
+            </div>
+            <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+              <span class="text-xl font-bold text-gray-900">$27.99</span>
+              <a href="/book-detail.html" class="btn-outline-gold text-xs py-2 px-4 flex items-center gap-1">View <i data-lucide="eye" class="w-3.5 h-3.5"></i></a>
+            </div>
+          </div>
+
+          <!-- Book 4 -->
+          <div class="bg-white border border-gray-200 p-6 flex flex-col justify-between shadow-sm group">
+            <div>
+              <div class="aspect-[3/4] mb-6 overflow-hidden bg-gray-50 border border-gray-100 shadow-inner">
+                <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219594169_7354bebe.png" alt="The Bridge Home" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              </div>
+              <span class="text-[10px] uppercase font-bold text-white bg-gold px-2 py-1 inline-block mb-4">45% gives back</span>
+              <p class="text-xs text-gray-400 uppercase tracking-widest mb-1">Marcus Adeyemi</p>
+              <h3 class="font-display text-2xl text-gray-900 mb-3 group-hover:text-gold transition-colors leading-tight">The Bridge Home</h3>
+              <p class="text-gray-600 text-sm leading-relaxed mb-6">A moving exploration of the diaspora experience, connecting the descendants of Africa scattered across the world back to their shared roots.</p>
+            </div>
+            <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+              <span class="text-xl font-bold text-gray-900">$25.99</span>
+              <a href="/book-detail.html" class="btn-outline-gold text-xs py-2 px-4 flex items-center gap-1">View <i data-lucide="eye" class="w-3.5 h-3.5"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- GLOBAL MAP STATS / INTERMEDIATE FOOTER QUOTE -->
+    <section class="py-24 bg-gray-50 border-t border-gray-200 text-center px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-gold font-display text-7xl leading-none mb-6">“</div>
+        <p class="font-display italic text-3xl md:text-5xl text-gray-900 leading-tight">
+          When you know your history, no one can write it for you.
+        </p>
+        <p class="eyebrow mt-10 text-gray-500">— Yoruba Proverb</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-50 border-t border-gray-200">
+    <div class="border-b border-gray-200">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16 grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="eyebrow mb-4">Letters from Afara</div>
+          <h3 class="font-display text-3xl md:text-4xl text-gray-900 leading-tight">
+            Reflections, teachings & gatherings — delivered to your door once a moon.
+          </h3>
+        </div>
+        <form onsubmit="event.preventDefault(); alert('Subscribed to the journal. Welcome to the family.'); this.reset();" class="flex flex-col sm:flex-row gap-3">
+          <input type="email" placeholder="Your email address" class="flex-1 bg-white border border-gray-300 px-5 py-4 text-gray-900 focus:outline-none focus:border-gold text-lg" required>
+          <button type="submit" class="btn-gold whitespace-nowrap">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-4">
+        <a href="/" class="text-2xl font-display font-bold text-gray-900 block mb-2">
+          Wisdom of <span class="italic text-gold">Afara</span>
+        </a>
+        <p class="text-gray-500 text-sm mb-6 uppercase tracking-widest">A home for the Diaspora</p>
+        <p class="text-gray-600 text-lg italic mb-6">
+          "I am a descendant of those people, so I care about them as much as Africans. This wisdom belongs to all of us."
+        </p>
+        <p class="text-gold text-sm font-semibold uppercase tracking-widest">— Florence Cook, Founder</p>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h4 class="eyebrow mb-5 text-gray-900">Discover</h4>
+        <ul class="space-y-3 text-gray-600">
+          <li><a href="/about.html" class="hover:text-gold">Our Story</a></li>
+          <li><a href="/teachings.html" class="hover:text-gold">Teachings</a></li>
+          <li><a href="/diaspora.html" class="hover:text-gold">The Diaspora</a></li>
+          <li><a href="/programs.html" class="hover:text-gold">Programs</a></li>
+          <li><a href="/news.html" class="hover:text-gold">News & Stories</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h4 class="eyebrow mb-5 text-gray-900">Family</h4>
+        <ul class="space-y-3 text-gray-600">
+          <li><a href="/diaspora.html#african-americans" class="hover:text-gold">African Americans</a></li>
+          <li><a href="/diaspora.html#afro-caribbean" class="hover:text-gold">Afro-Caribbeans</a></li>
+          <li><a href="/diaspora.html#afro-latino" class="hover:text-gold">Afro-Latinos</a></li>
+          <li><a href="/diaspora.html#european" class="hover:text-gold">Africans in Europe</a></li>
+          <li><a href="/diaspora.html#mother-africa" class="hover:text-gold">Mother Africa</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h4 class="eyebrow mb-5 text-gray-900">Engage</h4>
+        <ul class="space-y-3 text-gray-600">
+          <li><a href="/get-involved.html" class="hover:text-gold">Become a Member</a></li>
+          <li><a href="/get-involved.html#volunteer" class="hover:text-gold">Volunteer</a></li>
+          <li><a href="/get-involved.html#partner" class="hover:text-gold">Partner</a></li>
+          <li><a href="/get-involved.html#donate" class="hover:text-gold">Donate</a></li>
+          <li><a href="/get-involved.html#contact" class="hover:text-gold">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h4 class="eyebrow mb-5 text-gray-900">Reach Us</h4>
+        <ul class="space-y-4 text-gray-600">
+          <li class="flex items-start gap-2">
+            <i data-lucide="mail" class="w-4 h-4 mt-1 text-gold shrink-0"></i>
+            <span>hello@wisdomofafara.org</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <i data-lucide="map-pin" class="w-4 h-4 mt-1 text-gold shrink-0"></i>
+            <span>London · Lagos · Brooklyn · Salvador</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-200">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 uppercase tracking-widest">
+        <p>© 2026 Wisdom of Afara · wisdomofafara.org · A registered cultural foundation</p>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-gold">Privacy</a>
+          <a href="#" class="hover:text-gold">Terms</a>
+          <a href="#" class="hover:text-gold">Press</a>
+          <a href="#" class="hover:text-gold">Built on</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactivity Scripts -->
+  <script>
+    // Initialize Icons
+    lucide.createIcons();
+
+    // Mobile Menu Logic
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.createElement('div');
+    mobileMenu.className = 'hidden lg:hidden bg-white border-t border-gray-200 mt-3 absolute w-full left-0 z-50 shadow-lg';
+    mobileMenu.innerHTML = `
+      <div class="px-6 py-6 space-y-4 flex flex-col">
+        <a href="/" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">Home</a>
+        <a href="/about.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">About</a>
+        <a href="/teachings.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">Teachings</a>
+        <a href="/books.html" class="text-sm tracking-[0.2em] uppercase text-gold">Bookstore</a>
+        <a href="/diaspora.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">The Diaspora</a>
+        <a href="/programs.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">Programs</a>
+        <a href="/news.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">News & Stories</a>
+      </div>
+    `;
+    document.getElementById('header').appendChild(mobileMenu);
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>

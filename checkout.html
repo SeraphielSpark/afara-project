@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Wisdom of Afara</title>
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#C9952A',
+            dark: '#1a1a1a',
+            light: '#ffffff',
+            terracotta: '#C1440E',
+          },
+          fontFamily: {
+            display: ['Georgia', 'serif'], 
+            sans: ['system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #1a1a1a;
+      margin: 0;
+      padding: 0;
+    }
+    .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #C9952A;
+      font-weight: 600;
+    }
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background-color: #C9952A;
+      color: #ffffff;
+      padding: 1rem 1.5rem;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: background-color 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-gold:hover {
+      background-color: #a87b20;
+    }
+    .btn-gold:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .form-input {
+      width: 100%;
+      background-color: #ffffff;
+      border: 1px solid #d1d5db; /* gray-300 */
+      padding: 0.875rem 1rem;
+      color: #1a1a1a;
+      font-family: 'Georgia', serif;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .form-input:focus {
+      border-color: #C9952A;
+    }
+    .form-input::placeholder {
+      color: #9ca3af; /* gray-400 */
+    }
+    
+    /* Custom Stripe Mockup Style */
+    .stripe-mockup {
+      display: flex;
+      gap: 0.5rem;
+      background-color: #ffffff;
+      border: 1px solid #d1d5db;
+      padding: 0.875rem 1rem;
+    }
+    .stripe-mockup input {
+      border: none;
+      outline: none;
+      font-family: 'Georgia', serif;
+      color: #1a1a1a;
+      background: transparent;
+    }
+    .stripe-mockup input::placeholder {
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+
+  <!-- CHECKOUT HEADER (Simplified to reduce distraction) -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 py-5">
+    <div class="max-w-[1080px] mx-auto px-6 flex items-center justify-between">
+      <a href="/" class="text-2xl font-display font-bold text-gray-900">
+        Wisdom of <span class="italic text-gold">Afara</span>
+      </a>
+      <a href="/cart.html" class="flex items-center gap-2 text-sm text-gray-500 hover:text-gold transition-colors font-sans uppercase tracking-widest">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Return to Cart
+      </a>
+    </div>
+  </header>
+
+  <main class="pt-32 pb-24 min-h-screen">
+    <div class="max-w-[1080px] mx-auto px-6">
+      
+      <h1 class="font-display text-4xl text-gray-900 mb-10">Checkout</h1>
+
+      <div class="grid lg:grid-cols-3 gap-12">
+        
+        <!-- FORMS COLUMN -->
+        <div class="lg:col-span-2 space-y-8">
+          
+          <!-- STEP 1: SHIPPING FORM -->
+          <div id="step-shipping" class="bg-white border border-gray-200 shadow-sm p-8">
+            <div class="flex items-center gap-3 mb-6 border-b border-gray-100 pb-4">
+              <span class="w-6 h-6 rounded-full bg-gold text-white flex items-center justify-center text-xs font-bold">1</span>
+              <h2 class="font-display text-2xl text-gray-900">Shipping Address</h2>
+            </div>
+            
+            <form id="shipping-form" class="grid grid-cols-2 gap-5">
+              <div class="col-span-2">
+                <input type="text" required placeholder="Full Name" class="form-input" />
+              </div>
+              <div class="col-span-2">
+                <input type="email" required placeholder="Email Address" class="form-input" />
+              </div>
+              <div class="col-span-2">
+                <input type="text" required placeholder="Street Address" class="form-input" />
+              </div>
+              <div class="col-span-2 md:col-span-1">
+                <input type="text" required placeholder="City" class="form-input" />
+              </div>
+              <div class="col-span-2 md:col-span-1">
+                <input type="text" required placeholder="State / Province" id="state-input" class="form-input" />
+              </div>
+              <div class="col-span-2 md:col-span-1">
+                <input type="text" required placeholder="ZIP / Postal Code" class="form-input" />
+              </div>
+              <div class="col-span-2 md:col-span-1">
+                <select required class="form-input text-gray-600">
+                  <option value="US">United States</option>
+                  <option value="UK">United Kingdom</option>
+                  <option value="CA">Canada</option>
+                  <option value="BR">Brazil</option>
+                  <option value="NG">Nigeria</option>
+                </select>
+              </div>
+              
+              <div class="col-span-2 mt-4">
+                <button type="submit" id="continue-btn" class="btn-gold w-full justify-center text-base py-4">
+                  Continue to Payment
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- STEP 2: PAYMENT FORM (Hidden initially) -->
+          <div id="step-payment" class="bg-white border border-gray-200 shadow-sm p-8 hidden opacity-0 transition-opacity duration-500">
+            <div class="flex items-center justify-between mb-6 border-b border-gray-100 pb-4">
+              <div class="flex items-center gap-3">
+                <span class="w-6 h-6 rounded-full bg-gold text-white flex items-center justify-center text-xs font-bold">2</span>
+                <h2 class="font-display text-2xl text-gray-900">Payment</h2>
+              </div>
+              <button id="edit-shipping-btn" class="text-xs uppercase tracking-widest text-gray-400 hover:text-gold transition-colors">Edit Shipping</button>
+            </div>
+            
+            <form id="payment-form" class="space-y-6">
+              
+              <!-- Fake Stripe Element -->
+              <div>
+                <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Credit Card Details</label>
+                <div class="stripe-mockup focus-within:border-gold">
+                  <i data-lucide="credit-card" class="w-5 h-5 text-gray-400 mt-0.5"></i>
+                  <input type="text" placeholder="Card number" required class="flex-1" maxlength="19" />
+                  <input type="text" placeholder="MM / YY" required class="w-20 border-l border-gray-200 pl-3" maxlength="5" />
+                  <input type="text" placeholder="CVC" required class="w-16 border-l border-gray-200 pl-3" maxlength="4" />
+                </div>
+              </div>
+
+              <div id="payment-error" class="hidden text-terracotta font-sans text-sm"></div>
+
+              <button type="submit" id="pay-btn" class="btn-gold w-full justify-center flex items-center gap-2 py-4 text-base mt-4">
+                <i data-lucide="lock" class="w-4 h-4"></i> Pay $54.98
+              </button>
+              
+              <p class="text-center text-xs text-gray-400 mt-4 flex items-center justify-center gap-1">
+                <i data-lucide="shield-check" class="w-4 h-4"></i> Payments are secure and encrypted.
+              </p>
+            </form>
+          </div>
+
+        </div>
+
+        <!-- ORDER SUMMARY COLUMN -->
+        <div class="lg:col-span-1">
+          <div class="bg-gray-50 border border-gray-200 p-8 sticky top-28 shadow-sm">
+            <h2 class="font-display text-xl text-gray-900 mb-6">Order Summary</h2>
+            
+            <!-- Items -->
+            <div class="space-y-4 mb-6 pb-6 border-b border-gray-200">
+              <div class="flex justify-between font-sans text-sm text-gray-600">
+                <span class="flex items-center gap-2">
+                  <div class="w-8 h-12 bg-gray-200 shrink-0 overflow-hidden">
+                    <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219458866_84750114.png" class="w-full h-full object-cover"/>
+                  </div>
+                  <div>
+                    <span class="block text-gray-900 font-display">The Roots of Afara</span>
+                    <span class="text-xs text-gray-400">Qty: 1</span>
+                  </div>
+                </span>
+                <span class="font-display">$29.99</span>
+              </div>
+              <div class="flex justify-between font-sans text-sm text-gray-600">
+                <span class="flex items-center gap-2">
+                  <div class="w-8 h-12 bg-gray-200 shrink-0 overflow-hidden">
+                    <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219780390_bb832ec7.png" class="w-full h-full object-cover"/>
+                  </div>
+                  <div>
+                    <span class="block text-gray-900 font-display">Voices of the Ancestors</span>
+                    <span class="text-xs text-gray-400">Qty: 1</span>
+                  </div>
+                </span>
+                <span class="font-display">$24.99</span>
+              </div>
+            </div>
+
+            <!-- Totals -->
+            <div class="space-y-3 mb-6 pb-6 border-b border-gray-200">
+              <div class="flex justify-between font-sans text-gray-600 text-sm">
+                <span>Subtotal</span>
+                <span class="font-display">$54.98</span>
+              </div>
+              <div class="flex justify-between font-sans text-gray-600 text-sm">
+                <span>Shipping</span>
+                <span class="text-gold font-semibold">Free</span>
+              </div>
+              <div class="flex justify-between font-sans text-gray-600 text-sm">
+                <span>Tax</span>
+                <span class="font-display" id="tax-display">$0.00</span>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-baseline mb-6">
+              <span class="font-bold text-gray-900 font-display text-xl">Total</span>
+              <span class="font-display text-3xl text-gray-900" id="total-display">$54.98</span>
+            </div>
+
+            <div class="flex items-start gap-2 font-sans text-xs text-gray-500 mt-5">
+              <i data-lucide="heart" class="w-4 h-4 text-terracotta shrink-0 mt-0.5"></i>
+              <p>Your purchase supports educational programs and cultural heritage preservation globally.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-50 border-t border-gray-200">
+    <div class="max-w-[1080px] mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 uppercase tracking-widest">
+      <p>© 2026 Wisdom of Afara · wisdomofafara.org</p>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-gold">Privacy</a>
+        <a href="#" class="hover:text-gold">Terms</a>
+        <a href="#" class="hover:text-gold">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactivity Scripts -->
+  <script>
+    // Initialize Icons
+    lucide.createIcons();
+
+    // DOM Elements
+    const shippingForm = document.getElementById('shipping-form');
+    const paymentForm = document.getElementById('payment-form');
+    const stepShipping = document.getElementById('step-shipping');
+    const stepPayment = document.getElementById('step-payment');
+    const editShippingBtn = document.getElementById('edit-shipping-btn');
+    const continueBtn = document.getElementById('continue-btn');
+    const payBtn = document.getElementById('pay-btn');
+    const stateInput = document.getElementById('state-input');
+    const taxDisplay = document.getElementById('tax-display');
+    const totalDisplay = document.getElementById('total-display');
+    const paymentError = document.getElementById('payment-error');
+
+    let subtotal = 54.98;
+    let tax = 0.00;
+
+    // Fake Tax Calculation based on State blur
+    stateInput.addEventListener('blur', (e) => {
+      const state = e.target.value.toLowerCase().trim();
+      if (state === 'ny' || state === 'new york') {
+        tax = subtotal * 0.08875; // Approx NY tax
+      } else if (state === 'ca' || state === 'california') {
+        tax = subtotal * 0.0725; // Approx CA tax
+      } else {
+        tax = 0.00;
+      }
+      
+      const total = subtotal + tax;
+      taxDisplay.innerText = `$${tax.toFixed(2)}`;
+      totalDisplay.innerText = `$${total.toFixed(2)}`;
+      payBtn.innerHTML = `<i data-lucide="lock" class="w-4 h-4"></i> Pay $${total.toFixed(2)}`;
+      lucide.createIcons();
+    });
+
+    // Handle Shipping Submission
+    shippingForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Simulate loading
+      continueBtn.disabled = true;
+      continueBtn.innerHTML = 'Loading...';
+
+      setTimeout(() => {
+        // Hide Shipping, Show Payment
+        stepShipping.classList.add('opacity-50', 'pointer-events-none');
+        stepPayment.classList.remove('hidden');
+        
+        // Small delay for fade-in effect
+        setTimeout(() => {
+          stepPayment.classList.remove('opacity-0');
+        }, 50);
+
+        continueBtn.disabled = false;
+        continueBtn.innerHTML = 'Continue to Payment';
+      }, 600);
+    });
+
+    // Handle Edit Shipping
+    editShippingBtn.addEventListener('click', () => {
+      stepPayment.classList.add('opacity-0');
+      
+      setTimeout(() => {
+        stepPayment.classList.add('hidden');
+        stepShipping.classList.remove('opacity-50', 'pointer-events-none');
+      }, 500);
+    });
+
+    // Handle Payment Submission
+    paymentForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      paymentError.classList.add('hidden');
+      
+      const originalText = payBtn.innerHTML;
+      payBtn.disabled = true;
+      payBtn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Processing...';
+      lucide.createIcons();
+
+      // Simulate API Call / Stripe Processing
+      setTimeout(() => {
+        // 90% success rate simulation
+        if (Math.random() > 0.1) {
+          payBtn.innerHTML = '<i data-lucide="check" class="w-4 h-4"></i> Payment Successful';
+          payBtn.classList.replace('bg-gold', 'bg-green-600');
+          payBtn.classList.replace('hover:bg-[#a87b20]', 'hover:bg-green-700');
+          lucide.createIcons();
+
+          // Redirect to confirmation (or alert for this demo)
+          setTimeout(() => {
+            alert('Order complete! Thank you for supporting Wisdom of Afara.');
+            window.location.href = "/";
+          }, 1500);
+        } else {
+          // Simulate decline
+          payBtn.disabled = false;
+          payBtn.innerHTML = originalText;
+          paymentError.innerText = 'Your card was declined. Please check your details and try again.';
+          paymentError.classList.remove('hidden');
+          lucide.createIcons();
+        }
+      }, 2000);
+    });
+  </script>
+</body>
+</html>

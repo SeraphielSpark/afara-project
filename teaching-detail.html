@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ubuntu — I Am Because We Are - Wisdom of Afara</title>
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#C9952A',
+            dark: '#1a1a1a',
+            light: '#ffffff',
+            terracotta: '#C1440E',
+          },
+          fontFamily: {
+            display: ['Georgia', 'serif'], 
+            sans: ['system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #1a1a1a;
+      margin: 0;
+      padding: 0;
+    }
+    .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #C9952A;
+      font-weight: 600;
+    }
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: #C9952A;
+      color: #ffffff;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: background-color 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-gold:hover {
+      background-color: #a87b20;
+    }
+    .btn-outline-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid #C9952A;
+      color: #C9952A;
+      background-color: transparent;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .btn-outline-gold:hover {
+      background-color: #C9952A;
+      color: #ffffff;
+    }
+    .form-input {
+      width: 100%;
+      background-color: #ffffff;
+      border: 1px solid #e5e7eb;
+      padding: 0.75rem 1rem;
+      color: #1a1a1a;
+      font-family: 'Georgia', serif;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .form-input:focus {
+      border-color: #C9952A;
+    }
+    
+    /* Teaching specific styles */
+    .teaching-content p {
+      margin-bottom: 2rem;
+      font-size: 1.25rem;
+      line-height: 1.8;
+      color: #374151; /* gray-700 */
+    }
+    .teaching-content blockquote {
+      border-left: 2px solid #C9952A;
+      padding-left: 1.5rem;
+      font-family: 'Georgia', serif;
+      font-style: italic;
+      font-size: 1.5rem;
+      color: #1a1a1a;
+      margin: 3rem 0;
+    }
+    .drop-cap::first-letter {
+      font-family: 'Georgia', serif;
+      font-size: 4.5em;
+      float: left;
+      line-height: 0.85;
+      margin: 0.08em 0.12em 0 0;
+      color: #C9952A;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+
+  <!-- HEADER -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md py-4 border-b border-gray-200">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between">
+      <a href="/" class="text-2xl font-display font-bold text-gray-900">
+        Wisdom of <span class="italic text-gold">Afara</span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="/" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Home</a>
+        <a href="/about.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">About</a>
+        <a href="/teachings.html" class="text-[12px] tracking-[0.2em] uppercase text-gold font-semibold">Teachings</a>
+        <a href="/books.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Bookstore</a>
+        <a href="/diaspora.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">The Diaspora</a>
+        <a href="/programs.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Programs</a>
+        <a href="/news.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">News & Stories</a>
+      </nav>
+      <div class="hidden lg:flex items-center gap-5">
+        <a href="/get-involved.html" class="btn-gold text-[11px] py-3 px-6">Join the Family</a>
+      </div>
+      <button id="mobile-menu-btn" class="lg:hidden text-gray-900 p-2">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="pt-24">
+    <!-- ARTICLE HEADER -->
+    <section class="max-w-[1000px] mx-auto px-6 lg:px-12 pt-16 pb-10">
+      <a href="/teachings.html" class="inline-flex items-center gap-2 font-sans text-[11px] tracking-[0.18em] uppercase text-gray-500 hover:text-gold mb-10 transition-colors">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to the Library
+      </a>
+
+      <div class="flex items-center gap-4 mb-6">
+        <span class="bg-gray-100 px-3 py-1 text-[10px] tracking-[0.2em] uppercase text-gray-600 border border-gray-200">Philosophy</span>
+        <span class="text-xs tracking-widest text-gold uppercase">8 min read</span>
+      </div>
+
+      <h1 class="font-display text-5xl md:text-6xl text-gray-900 leading-[1.1] mb-8">
+        Ubuntu — I Am Because We Are
+      </h1>
+
+      <div class="flex items-center justify-between border-y border-gray-200 py-6 mb-10">
+        <div class="flex items-center gap-4 text-sm font-sans">
+          <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219226697_6a7ee26a.png" alt="Florence Cook" class="w-12 h-12 rounded-full object-cover border border-gold shadow-sm" />
+          <div>
+            <p class="font-bold text-gray-900 tracking-wider uppercase text-[10px]">Florence Cook</p>
+            <p class="text-gray-500 text-xs">Elder & Cultural Director</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-6 text-gray-400 font-sans text-xs tracking-widest uppercase">
+          <span class="flex items-center gap-2"><i data-lucide="eye" class="w-4 h-4"></i> 1,204</span>
+          <span class="flex items-center gap-2" id="header-like-count"><i data-lucide="heart" class="w-4 h-4"></i> 342</span>
+          <span>15 Feb 2026</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- COVER IMAGE -->
+    <section class="max-w-[1200px] mx-auto px-6 lg:px-12 mb-16">
+      <div class="aspect-[21/9] w-full overflow-hidden shadow-md bg-gray-100">
+        <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219458866_84750114.png" alt="Ubuntu Cover" class="w-full h-full object-cover">
+      </div>
+    </section>
+
+    <!-- ARTICLE BODY -->
+    <section class="max-w-[800px] mx-auto px-6 lg:px-12 pb-20">
+      <div class="teaching-content font-display">
+        <p class="drop-cap">
+          In the Nguni languages of Southern Africa, there is a word that defies simple translation into English. That word is <em>Ubuntu</em>. Often reduced to "humanity" or "I am because we are," it is, in truth, an entire cosmological and ethical framework—a way of moving through the world that insists our individual humanity is inextricably bound to the humanity of others.
+        </p>
+
+        <p>
+          To understand Ubuntu is to recognize that a person is a person <em>through</em> other people. We do not enter the world fully formed; we are shaped by the hands that hold us, the communities that raise us, and the ancestors who paved the way. When one of us suffers, the collective suffers. When one of us thrives, the collective is elevated.
+        </p>
+
+        <blockquote>
+          "My humanity is caught up, is inextricably bound up, in yours. We belong in a bundle of life."
+        </blockquote>
+
+        <p>
+          This philosophy did not remain static on the continent. When millions of our ancestors were violently displaced during the transatlantic slave trade, they carried the essence of Ubuntu across the ocean. It was this deeply ingrained understanding of collective survival that allowed enslaved communities to forge new kinship networks on plantations, replacing biological families torn apart by the auction block. 
+        </p>
+
+        <p>
+          It is the same spirit you witness in the mutual aid societies of post-emancipation African American communities, in the "pardner" or "susu" saving systems of the Caribbean, and in the joyous, collective rhythms of a Brazilian samba circle. The oppressor sought to individualize and isolate; the African spirit insisted on the collective.
+        </p>
+
+        <p>
+          Today, the Diaspora finds itself navigating a deeply individualized, hyper-capitalist global society. We are often taught to measure our worth by our personal accumulation of wealth or status. Ubuntu calls us back to a different standard. It asks us to look at our neighbor, our brother in Brixton, our sister in Bahia, and recognize our shared reflection. 
+        </p>
+
+        <p>
+          As we build Wisdom of Afara, this is the cornerstone. We cannot heal alone. We cannot recover our history alone. The work of the Diaspora is not merely personal discovery; it is collective remembrance. We are, because the family is.
+        </p>
+      </div>
+
+      <!-- INTERACTION BAR -->
+      <div class="flex items-center justify-between border-t border-b border-gray-200 py-6 mt-16">
+        <div class="flex items-center gap-4">
+          <button id="like-btn" class="flex items-center gap-2 text-gray-500 hover:text-terracotta transition-colors font-sans text-xs tracking-widest uppercase font-bold">
+            <i data-lucide="heart" id="like-icon" class="w-5 h-5 transition-transform"></i>
+            <span id="footer-like-count">342</span> Likes
+          </button>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="font-sans text-xs tracking-widest uppercase text-gray-500">Share this teaching</span>
+          <button class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:text-gold hover:border-gold transition-colors" onclick="alert('Link copied to clipboard!')">
+            <i data-lucide="link-2" class="w-4 h-4"></i>
+          </button>
+          <button class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:text-gold hover:border-gold transition-colors" onclick="alert('Sharing dialog opened.')">
+            <i data-lucide="share" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMENTS SECTION -->
+    <section class="bg-gray-50 py-24 border-t border-gray-200">
+      <div class="max-w-[800px] mx-auto px-6 lg:px-12">
+        <div class="flex items-center gap-3 mb-10">
+          <i data-lucide="message-circle" class="w-6 h-6 text-gold"></i>
+          <h3 class="font-display text-3xl text-gray-900">Reflections from the Family</h3>
+          <span class="ml-2 bg-gray-200 text-gray-600 px-3 py-1 text-sm font-sans rounded-full" id="comment-count">3</span>
+        </div>
+
+        <!-- Add Comment Form -->
+        <div class="bg-white border border-gray-200 p-8 shadow-sm mb-12">
+          <h4 class="font-sans text-xs tracking-[0.2em] uppercase text-gold font-bold mb-6">Leave your reflection</h4>
+          <form id="comment-form" class="space-y-5">
+            <div class="grid md:grid-cols-2 gap-5">
+              <input type="text" id="comment-name" placeholder="Your name" required class="form-input" />
+              <input type="email" id="comment-email" placeholder="Email (will not be published)" required class="form-input" />
+            </div>
+            <textarea id="comment-body" rows="4" placeholder="Share your thoughts on this teaching..." required class="form-input resize-none"></textarea>
+            <button type="submit" class="btn-gold">Post Reflection</button>
+            <p class="text-xs text-gray-500 font-sans mt-3">Comments are moderated by the elders to maintain a respectful space.</p>
+          </form>
+        </div>
+
+        <!-- Existing Comments -->
+        <div class="space-y-6" id="comments-list">
+          
+          <!-- Comment 1 -->
+          <div class="bg-white border border-gray-200 p-6 shadow-sm">
+            <div class="flex justify-between items-baseline mb-4 border-b border-gray-100 pb-4">
+              <div>
+                <span class="font-display text-xl text-gray-900">Marcus T.</span>
+              </div>
+              <span class="font-sans text-xs tracking-widest uppercase text-gray-400">16 Feb 2026</span>
+            </div>
+            <p class="font-display text-gray-700 text-lg leading-relaxed">
+              This concept is exactly what is missing in the hyper-individualistic society I grew up in. Remembering that our survival is tied to one another changes everything about how you treat your community. Thank you for this teaching.
+            </p>
+          </div>
+
+          <!-- Comment 2 -->
+          <div class="bg-white border border-gray-200 p-6 shadow-sm">
+            <div class="flex justify-between items-baseline mb-4 border-b border-gray-100 pb-4">
+              <div>
+                <span class="font-display text-xl text-gray-900">Aisha Bello</span>
+              </div>
+              <span class="font-sans text-xs tracking-widest uppercase text-gray-400">15 Feb 2026</span>
+            </div>
+            <p class="font-display text-gray-700 text-lg leading-relaxed">
+              My grandmother used to say "a tree cannot make a forest" in Yoruba. It is the exact same sentiment. Beautiful to see it articulated here.
+            </p>
+          </div>
+
+          <!-- Comment 3 -->
+          <div class="bg-white border border-gray-200 p-6 shadow-sm">
+            <div class="flex justify-between items-baseline mb-4 border-b border-gray-100 pb-4">
+              <div>
+                <span class="font-display text-xl text-gray-900">Elias (Rio de Janeiro)</span>
+              </div>
+              <span class="font-sans text-xs tracking-widest uppercase text-gray-400">15 Feb 2026</span>
+            </div>
+            <p class="font-display text-gray-700 text-lg leading-relaxed">
+              We practice this every time we gather for Capoeira. The circle (roda) represents the collective. You cannot play alone. Ubuntu is alive in Brazil!
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-50 border-t border-gray-200">
+    <div class="border-b border-gray-200">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16 grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="eyebrow mb-4">Letters from Afara</div>
+          <h3 class="font-display text-3xl md:text-4xl text-gray-900 leading-tight">
+            Reflections, teachings & gatherings — delivered to your door once a moon.
+          </h3>
+        </div>
+        <form onsubmit="event.preventDefault(); alert('Subscribed to the journal. Welcome to the family.'); this.reset();" class="flex flex-col sm:flex-row gap-3">
+          <input type="email" placeholder="Your email address" class="flex-1 bg-white border border-gray-300 px-5 py-4 text-gray-900 focus:outline-none focus:border-gold text-lg" required>
+          <button type="submit" class="btn-gold whitespace-nowrap">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-4">
+        <a href="/" class="text-2xl font-display font-bold text-gray-900 block mb-2">
+          Wisdom of <span class="italic text-gold">Afara</span>
+        </a>
+        <p class="text-gray-500 text-sm mb-6 uppercase tracking-widest">A home for the Diaspora</p>
+        <p class="text-gray-600 text-lg italic mb-6">
+          "I am a descendant of those people, so I care about them as much as Africans. This wisdom belongs to all of us."
+        </p>
+        <p class="text-gold text-sm font-semibold uppercase tracking-widest">— Florence Cook, Founder</p>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h4 class="eyebrow mb-5 text-gray-900">Discover</h4>
+        <ul class="space-y-3 text-gray-600">
+          <li><a href="/about.html" class="hover:text-gold">Our Story</a></li>
+          <li><a href="/teachings.html" class="hover:text-gold">Teachings</a></li>
+          <li><a href="/diaspora.html" class="hover:text-gold">The Diaspora</a></li>
+          <li><a href="/programs.html" class="hover:text-gold">Programs</a></li>
+          <li><a href="/news.html" class="hover:text-gold">News & Stories</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h4 class="eyebrow mb-5 text-gray-900">Family</h4>
+        <ul class="space-y-3 text-gray-600">
+          <li><a href="/diaspora.html#african-americans" class="hover:text-gold">African Americans</a></li>
+          <li><a href="/diaspora.html#afro-caribbean" class="hover:text-gold">Afro-Caribbeans</a></li>
+          <li><a href="/diaspora.html#afro-latino" class="hover:text-gold">Afro-Latinos</a></li>
+          <li><a href="/diaspora.html#european" class="hover:text-gold">Africans in Europe</a></li>
+          <li><a href="/diaspora.html#mother-africa" class="hover:text-gold">Mother Africa</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h4 class="eyebrow mb-5 text-gray-900">Engage</h4>
+        <ul class="space-y-3 text-gray-600">
+          <li><a href="/get-involved.html" class="hover:text-gold">Become a Member</a></li>
+          <li><a href="/get-involved.html#volunteer" class="hover:text-gold">Volunteer</a></li>
+          <li><a href="/get-involved.html#partner" class="hover:text-gold">Partner</a></li>
+          <li><a href="/get-involved.html#donate" class="hover:text-gold">Donate</a></li>
+          <li><a href="/get-involved.html#contact" class="hover:text-gold">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h4 class="eyebrow mb-5 text-gray-900">Reach Us</h4>
+        <ul class="space-y-4 text-gray-600">
+          <li class="flex items-start gap-2">
+            <i data-lucide="mail" class="w-4 h-4 mt-1 text-gold shrink-0"></i>
+            <span>hello@wisdomofafara.org</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <i data-lucide="map-pin" class="w-4 h-4 mt-1 text-gold shrink-0"></i>
+            <span>London · Lagos · Brooklyn · Salvador</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-200">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 uppercase tracking-widest">
+        <p>© 2026 Wisdom of Afara · wisdomofafara.org · A registered cultural foundation</p>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-gold">Privacy</a>
+          <a href="#" class="hover:text-gold">Terms</a>
+          <a href="#" class="hover:text-gold">Press</a>
+          <a href="#" class="hover:text-gold">Built on</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactivity Scripts -->
+  <script>
+    // Initialize Icons
+    lucide.createIcons();
+
+    // Mobile Menu Logic
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.createElement('div');
+    mobileMenu.className = 'hidden lg:hidden bg-white border-t border-gray-200 mt-3 absolute w-full left-0 z-50 shadow-lg';
+    mobileMenu.innerHTML = `
+      <div class="px-6 py-6 space-y-4 flex flex-col">
+        <a href="/" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">Home</a>
+        <a href="/about.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">About</a>
+        <a href="/teachings.html" class="text-sm tracking-[0.2em] uppercase text-gold">Teachings</a>
+        <a href="/books.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">Bookstore</a>
+        <a href="/diaspora.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">The Diaspora</a>
+        <a href="/programs.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">Programs</a>
+        <a href="/news.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">News & Stories</a>
+      </div>
+    `;
+    document.getElementById('header').appendChild(mobileMenu);
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Like Button Logic
+    let likes = 342;
+    let hasLiked = false;
+    const likeBtn = document.getElementById('like-btn');
+    const likeIcon = document.getElementById('like-icon');
+    const headerCount = document.getElementById('header-like-count');
+    const footerCount = document.getElementById('footer-like-count');
+
+    likeBtn.addEventListener('click', () => {
+      if (!hasLiked) {
+        likes++;
+        likeIcon.classList.add('fill-terracotta', 'text-terracotta', 'scale-110');
+        likeBtn.classList.add('text-terracotta');
+      } else {
+        likes--;
+        likeIcon.classList.remove('fill-terracotta', 'text-terracotta', 'scale-110');
+        likeBtn.classList.remove('text-terracotta');
+      }
+      hasLiked = !hasLiked;
+      headerCount.innerHTML = `<i data-lucide="heart" class="w-4 h-4"></i> ${likes}`;
+      footerCount.innerText = likes;
+      lucide.createIcons(); // Re-render icon in header
+    });
+
+    // Comment Form Logic
+    const commentForm = document.getElementById('comment-form');
+    const commentsList = document.getElementById('comments-list');
+    const commentCount = document.getElementById('comment-count');
+    let totalComments = 3;
+
+    commentForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('comment-name').value;
+      const body = document.getElementById('comment-body').value;
+      
+      // Formatting current date (e.g., "18 Jun 2026")
+      const date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+
+      // Create new comment block
+      const newComment = document.createElement('div');
+      newComment.className = 'bg-white border border-gray-200 p-6 shadow-sm border-l-2 border-l-terracotta';
+      newComment.innerHTML = `
+        <div class="flex justify-between items-baseline mb-4 border-b border-gray-100 pb-4">
+          <div>
+            <span class="font-display text-xl text-gray-900">${name}</span>
+            <span class="ml-3 text-[10px] uppercase tracking-widest text-terracotta bg-orange-50 px-2 py-1 rounded-sm">Awaiting Moderation</span>
+          </div>
+          <span class="font-sans text-xs tracking-widest uppercase text-gray-400">${date}</span>
+        </div>
+        <p class="font-display text-gray-700 text-lg leading-relaxed">
+          ${body}
+        </p>
+      `;
+
+      // Prepend to list
+      commentsList.insertBefore(newComment, commentsList.firstChild);
+      
+      // Update count
+      totalComments++;
+      commentCount.innerText = totalComments;
+
+      // Reset form & notify
+      commentForm.reset();
+      alert('Your reflection has been submitted and is awaiting moderation.');
+    });
+  </script>
+</body>
+</html>
