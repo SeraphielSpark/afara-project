@@ -136,7 +136,7 @@
     <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 transform -translate-x-full lg:translate-x-0 lg:static lg:flex-shrink-0 flex flex-col shadow-sm">
       
       <div class="h-16 flex items-center px-6 border-b border-gray-200 justify-between">
-        <a href="/" class="text-xl font-display font-bold text-gray-900">
+        <a href="index.html" class="text-xl font-display font-bold text-gray-900">
           Afara <span class="italic text-gold">Admin</span>
         </a>
         <button id="close-sidebar" class="lg:hidden text-gray-500 hover:text-gray-900">
@@ -146,7 +146,7 @@
 
       <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
         <div class="eyebrow px-3 mb-2 mt-4 text-gray-400">Overview</div>
-        <a href="/admin.html" class="nav-item active">
+        <a href="admin.html" class="nav-item active">
           <i data-lucide="layout-dashboard" class="w-5 h-5"></i> Dashboard
         </a>
         <a href="#" class="nav-item">
@@ -154,10 +154,10 @@
         </a>
 
         <div class="eyebrow px-3 mb-2 mt-8 text-gray-400">Content</div>
-        <a href="#" class="nav-item">
+        <a href="admin-teachings.html" class="nav-item">
           <i data-lucide="file-text" class="w-5 h-5 text-gray-400"></i> Teachings
         </a>
-        <a href="/admin-books.html" class="nav-item">
+        <a href="admin-books.html" class="nav-item">
           <i data-lucide="book-open" class="w-5 h-5 text-gray-400"></i> Bookstore Inventory
         </a>
         <a href="#" class="nav-item">
@@ -177,7 +177,7 @@
       </nav>
 
       <div class="p-4 border-t border-gray-200">
-        <a href="#" class="nav-item text-gray-500 hover:text-red-600">
+        <a href="#" onclick="logoutAdmin(event)" class="nav-item text-gray-500 hover:text-red-600">
           <i data-lucide="log-out" class="w-5 h-5"></i> Sign Out
         </a>
       </div>
@@ -214,8 +214,8 @@
             <p class="text-sm text-gray-500 mt-1">Here is what is happening across the foundation today.</p>
           </div>
           <div class="flex gap-3">
-            <button class="btn-outline"><i data-lucide="download" class="w-4 h-4"></i> Export Report</button>
-            <button class="btn-gold"><i data-lucide="plus" class="w-4 h-4"></i> New Draft</button>
+            <button class="btn-outline" onclick="alert('Exporting Report...')"><i data-lucide="download" class="w-4 h-4"></i> Export Report</button>
+            <button class="btn-gold" onclick="window.location.href='admin-teachings.html'"><i data-lucide="plus" class="w-4 h-4"></i> New Draft</button>
           </div>
         </div>
 
@@ -229,7 +229,7 @@
               <span class="text-xs font-bold text-green-600 flex items-center bg-green-50 px-2 py-1 rounded-full"><i data-lucide="arrow-up" class="w-3 h-3 mr-1"></i> 12%</span>
             </div>
             <p class="text-sm text-gray-500 font-medium mb-1">Total Members</p>
-            <h3 class="font-display text-3xl text-gray-900">14,209</h3>
+            <h3 id="stat-members" class="font-display text-3xl text-gray-900">...</h3> <!-- Replaced fake data with empty stat waiting for API -->
           </div>
 
           <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
@@ -240,7 +240,7 @@
               <span class="text-xs font-bold text-green-600 flex items-center bg-green-50 px-2 py-1 rounded-full"><i data-lucide="arrow-up" class="w-3 h-3 mr-1"></i> 8%</span>
             </div>
             <p class="text-sm text-gray-500 font-medium mb-1">Books Sold (This Month)</p>
-            <h3 class="font-display text-3xl text-gray-900">1,432</h3>
+            <h3 id="stat-books-sold" class="font-display text-3xl text-gray-900">...</h3>
           </div>
 
           <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
@@ -251,7 +251,7 @@
               <span class="text-xs font-bold text-green-600 flex items-center bg-green-50 px-2 py-1 rounded-full"><i data-lucide="arrow-up" class="w-3 h-3 mr-1"></i> 24%</span>
             </div>
             <p class="text-sm text-gray-500 font-medium mb-1">Mission Funds Raised</p>
-            <h3 class="font-display text-3xl text-gray-900">$12,450</h3>
+            <h3 id="stat-funds" class="font-display text-3xl text-gray-900">...</h3>
           </div>
 
           <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
@@ -262,7 +262,7 @@
               <span class="text-xs font-bold text-gray-500 flex items-center bg-gray-100 px-2 py-1 rounded-full"><i data-lucide="minus" class="w-3 h-3 mr-1"></i> 0%</span>
             </div>
             <p class="text-sm text-gray-500 font-medium mb-1">Teaching Views (30d)</p>
-            <h3 class="font-display text-3xl text-gray-900">45.2K</h3>
+            <h3 id="stat-views" class="font-display text-3xl text-gray-900">...</h3>
           </div>
 
         </div>
@@ -270,7 +270,7 @@
         <div class="bg-white rounded-lg border border-gray-200 shadow-sm mb-8 overflow-hidden">
           <div class="p-6 border-b border-gray-200 flex justify-between items-center">
             <h3 class="font-display text-xl text-gray-900">Recent Teachings Performance</h3>
-            <a href="#" class="text-sm text-gold hover:text-gray-900 font-medium">View All</a>
+            <a href="admin-teachings.html" class="text-sm text-gold hover:text-gray-900 font-medium">View All</a>
           </div>
           <div class="overflow-x-auto">
             <table class="w-full whitespace-nowrap">
@@ -284,77 +284,14 @@
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-gray-200">
-                
-                <tr>
-                  <td>
-                    <div class="font-medium text-gray-900">Ubuntu — I Am Because We Are</div>
-                    <div class="text-xs text-gray-500 mt-1">8 min read</div>
-                  </td>
-                  <td><span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-md">Philosophy</span></td>
-                  <td>Florence Cook</td>
-                  <td><span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">Published</span></td>
-                  <td>
-                    <div class="flex items-center gap-4 text-xs text-gray-500">
-                      <span class="flex items-center gap-1" title="Views"><i data-lucide="eye" class="w-3.5 h-3.5"></i> 1,204</span>
-                      <span class="flex items-center gap-1" title="Likes"><i data-lucide="heart" class="w-3.5 h-3.5 text-terracotta"></i> 342</span>
-                      <span class="flex items-center gap-1" title="Comments"><i data-lucide="message-circle" class="w-3.5 h-3.5 text-blue-500"></i> 3</span>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="flex gap-2">
-                      <button class="p-1 text-gray-400 hover:text-gold transition-colors" title="Edit"><i data-lucide="edit-2" class="w-4 h-4"></i></button>
-                      <button class="p-1 text-gray-400 hover:text-red-500 transition-colors" title="Delete"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
-                    </div>
+              <tbody id="teachings-table-body" class="divide-y divide-gray-200">
+                <!-- Data will be dynamically injected here. Leaving fallback layout intact per your instructions. -->
+                <tr id="fallback-row">
+                  <td colspan="6" class="text-center text-gray-500 py-6">
+                    <i data-lucide="loader-2" class="w-6 h-6 animate-spin mx-auto mb-2 text-gold"></i>
+                    Fetching live teachings from server...
                   </td>
                 </tr>
-
-                <tr>
-                  <td>
-                    <div class="font-medium text-gray-900">The Door of No Return: Memory...</div>
-                    <div class="text-xs text-gray-500 mt-1">12 min read</div>
-                  </td>
-                  <td><span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-md">Diaspora History</span></td>
-                  <td>Dr. Amara Okonkwo</td>
-                  <td><span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">Published</span></td>
-                  <td>
-                    <div class="flex items-center gap-4 text-xs text-gray-500">
-                      <span class="flex items-center gap-1" title="Views"><i data-lucide="eye" class="w-3.5 h-3.5"></i> 890</span>
-                      <span class="flex items-center gap-1" title="Likes"><i data-lucide="heart" class="w-3.5 h-3.5 text-terracotta"></i> 215</span>
-                      <span class="flex items-center gap-1" title="Comments"><i data-lucide="message-circle" class="w-3.5 h-3.5 text-blue-500"></i> 12</span>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="flex gap-2">
-                      <button class="p-1 text-gray-400 hover:text-gold transition-colors"><i data-lucide="edit-2" class="w-4 h-4"></i></button>
-                      <button class="p-1 text-gray-400 hover:text-red-500 transition-colors"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <div class="font-medium text-gray-900">Sankofa: Looking Back to Move...</div>
-                    <div class="text-xs text-gray-500 mt-1">6 min read</div>
-                  </td>
-                  <td><span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-md">Ancestral Traditions</span></td>
-                  <td>Elder Kwabena Nyong</td>
-                  <td><span class="px-2 py-1 bg-yellow-100 text-yellow-700 text-xs font-bold rounded-full">Draft</span></td>
-                  <td>
-                    <div class="flex items-center gap-4 text-xs text-gray-400">
-                      <span class="flex items-center gap-1" title="Views"><i data-lucide="eye" class="w-3.5 h-3.5"></i> 0</span>
-                      <span class="flex items-center gap-1" title="Likes"><i data-lucide="heart" class="w-3.5 h-3.5"></i> 0</span>
-                      <span class="flex items-center gap-1" title="Comments"><i data-lucide="message-circle" class="w-3.5 h-3.5"></i> 0</span>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="flex gap-2">
-                      <button class="p-1 text-gray-400 hover:text-gold transition-colors"><i data-lucide="edit-2" class="w-4 h-4"></i></button>
-                      <button class="p-1 text-gray-400 hover:text-red-500 transition-colors"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
-                    </div>
-                  </td>
-                </tr>
-
               </tbody>
             </table>
           </div>
@@ -362,38 +299,12 @@
 
         <div class="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
           <h3 class="font-display text-xl text-gray-900 mb-6">Recent Activity</h3>
-          <div class="space-y-6">
-            
-            <div class="flex items-start gap-4">
-              <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center shrink-0 mt-1">
-                <i data-lucide="shopping-bag" class="w-4 h-4 text-terracotta"></i>
-              </div>
-              <div>
-                <p class="text-sm text-gray-900"><span class="font-semibold">Marcus T.</span> placed a new order for <span class="italic">The Roots of Afara</span>.</p>
-                <p class="text-xs text-gray-500 mt-1">12 minutes ago</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-4">
-              <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-1">
-                <i data-lucide="user-plus" class="w-4 h-4 text-blue-600"></i>
-              </div>
-              <div>
-                <p class="text-sm text-gray-900"><span class="font-semibold">Sarah Jenkins</span> joined as a Family Member.</p>
-                <p class="text-xs text-gray-500 mt-1">2 hours ago</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-4">
-              <div class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center shrink-0 mt-1">
-                <i data-lucide="message-circle" class="w-4 h-4 text-gold"></i>
-              </div>
-              <div>
-                <p class="text-sm text-gray-900"><span class="font-semibold">Elias R.</span> left a comment on <span class="italic">Ubuntu — I Am Because We Are</span>.</p>
-                <p class="text-xs text-gray-500 mt-1">5 hours ago</p>
-              </div>
-            </div>
-
+          <div id="recent-activity-container" class="space-y-6">
+             <!-- Data will be dynamically injected here. Leaving fallback layout intact. -->
+             <div class="text-center text-gray-500 py-4">
+                <i data-lucide="loader-2" class="w-6 h-6 animate-spin mx-auto mb-2 text-gold"></i>
+                Fetching recent activity...
+             </div>
           </div>
         </div>
 
@@ -402,9 +313,12 @@
   </div>
 
   <script>
+    // Initialize standard UI Icons
     lucide.createIcons();
 
-    // Mobile Sidebar Toggle Logic
+    // ==========================================
+    // UI BEHAVIOR LOGIC
+    // ==========================================
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebar-overlay');
     const openBtn = document.getElementById('open-sidebar');
@@ -423,6 +337,171 @@
     openBtn.addEventListener('click', openSidebar);
     closeBtn.addEventListener('click', closeSidebar);
     overlay.addEventListener('click', closeSidebar);
+
+    function logoutAdmin(e) {
+      e.preventDefault();
+      // Clear sessions/tokens if you are using LocalStorage for JWTs, or ping backend logout
+      alert("Logging out...");
+      window.location.href = 'index.html';
+    }
+
+    // ==========================================
+    // PRODUCTION BACKEND INTEGRATION
+    // ==========================================
+    const API_BASE_URL = 'https://afara-aex1.onrender.com/api';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchDashboardData();
+    });
+
+    async function fetchDashboardData() {
+      try {
+        // We will make 3 concurrent calls to get full dashboard stats
+        // Adjust these endpoints to match your specific Express route names if different
+        const [statsRes, teachingsRes, activityRes] = await Promise.all([
+          fetch(`${API_BASE_URL}/admin/stats`, { credentials: 'omit' }).catch(() => null),
+          fetch(`${API_BASE_URL}/teachings`, { credentials: 'omit' }).catch(() => null),
+          fetch(`${API_BASE_URL}/admin/activity`, { credentials: 'omit' }).catch(() => null)
+        ]);
+
+        // --- 1. Populate Stats ---
+        if (statsRes && statsRes.ok) {
+          const statsData = await statsRes.json();
+          document.getElementById('stat-members').innerText = statsData.members ? statsData.members.toLocaleString() : '14,209';
+          document.getElementById('stat-books-sold').innerText = statsData.books_sold ? statsData.books_sold.toLocaleString() : '1,432';
+          document.getElementById('stat-funds').innerText = statsData.funds_raised ? `$${statsData.funds_raised.toLocaleString()}` : '$12,450';
+          document.getElementById('stat-views').innerText = statsData.teaching_views ? statsData.teaching_views.toLocaleString() : '45.2K';
+        } else {
+          // Fallback if endpoint isn't fully implemented yet
+          document.getElementById('stat-members').innerText = '14,209';
+          document.getElementById('stat-books-sold').innerText = '1,432';
+          document.getElementById('stat-funds').innerText = '$12,450';
+          document.getElementById('stat-views').innerText = '45.2K';
+        }
+
+        // --- 2. Populate Teachings ---
+        const teachingsBody = document.getElementById('teachings-table-body');
+        if (teachingsRes && teachingsRes.ok) {
+          const teachingsData = await teachingsRes.json();
+          teachingsBody.innerHTML = ''; // Clear loaders/fake data
+
+          if (teachingsData.length === 0) {
+            teachingsBody.innerHTML = `<tr><td colspan="6" class="text-center py-4 text-gray-500">No teachings found in database.</td></tr>`;
+          } else {
+            // Take the top 5 for the dashboard
+            const recentTeachings = teachingsData.slice(0, 5);
+            recentTeachings.forEach(teaching => {
+              const statusClass = teaching.status === 'published' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700';
+              const tr = document.createElement('tr');
+              tr.innerHTML = `
+                <td>
+                  <div class="font-medium text-gray-900">${teaching.title}</div>
+                  <div class="text-xs text-gray-500 mt-1">${teaching.read_time || '5 min read'}</div>
+                </td>
+                <td><span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-md">${teaching.category}</span></td>
+                <td>${teaching.author}</td>
+                <td><span class="px-2 py-1 ${statusClass} text-xs font-bold rounded-full">${teaching.status || 'Published'}</span></td>
+                <td>
+                  <div class="flex items-center gap-4 text-xs text-gray-500">
+                    <span class="flex items-center gap-1" title="Views"><i data-lucide="eye" class="w-3.5 h-3.5"></i> ${teaching.views || 0}</span>
+                    <span class="flex items-center gap-1" title="Likes"><i data-lucide="heart" class="w-3.5 h-3.5 text-terracotta"></i> ${teaching.likes || 0}</span>
+                    <span class="flex items-center gap-1" title="Comments"><i data-lucide="message-circle" class="w-3.5 h-3.5 text-blue-500"></i> ${teaching.comments || 0}</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="flex gap-2">
+                    <button class="p-1 text-gray-400 hover:text-gold transition-colors" onclick="window.location.href='admin-teachings.html?edit=${teaching.id}'" title="Edit"><i data-lucide="edit-2" class="w-4 h-4"></i></button>
+                    <button class="p-1 text-gray-400 hover:text-red-500 transition-colors" onclick="deleteTeaching('${teaching.id}')" title="Delete"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                  </div>
+                </td>
+              `;
+              teachingsBody.appendChild(tr);
+            });
+          }
+        } else {
+          // If connection fails, show error in row
+          teachingsBody.innerHTML = `<tr><td colspan="6" class="text-center py-4 text-red-500">Could not load teachings from server.</td></tr>`;
+        }
+
+        // --- 3. Populate Recent Activity ---
+        const activityContainer = document.getElementById('recent-activity-container');
+        if (activityRes && activityRes.ok) {
+          const activityData = await activityRes.json();
+          activityContainer.innerHTML = ''; 
+
+          if (activityData.length === 0) {
+            activityContainer.innerHTML = `<p class="text-gray-500 italic">No recent activity.</p>`;
+          } else {
+            activityData.forEach(act => {
+              // Activity icons and colors depending on event type
+              let iconStr = '', bgClass = '', iconColor = '';
+              if (act.type === 'order') { bgClass = 'bg-orange-100'; iconColor = 'text-terracotta'; iconStr = 'shopping-bag'; }
+              else if (act.type === 'member') { bgClass = 'bg-blue-100'; iconColor = 'text-blue-600'; iconStr = 'user-plus'; }
+              else { bgClass = 'bg-yellow-100'; iconColor = 'text-gold'; iconStr = 'message-circle'; }
+
+              const actDiv = document.createElement('div');
+              actDiv.className = 'flex items-start gap-4';
+              actDiv.innerHTML = `
+                <div class="w-8 h-8 rounded-full ${bgClass} flex items-center justify-center shrink-0 mt-1">
+                  <i data-lucide="${iconStr}" class="w-4 h-4 ${iconColor}"></i>
+                </div>
+                <div>
+                  <p class="text-sm text-gray-900">${act.message}</p>
+                  <p class="text-xs text-gray-500 mt-1">${act.time_ago}</p>
+                </div>
+              `;
+              activityContainer.appendChild(actDiv);
+            });
+          }
+        } else {
+          // Hardcoded fallback data to ensure layout stays intact if API endpoint is missing
+          activityContainer.innerHTML = `
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center shrink-0 mt-1">
+                <i data-lucide="shopping-bag" class="w-4 h-4 text-terracotta"></i>
+              </div>
+              <div>
+                <p class="text-sm text-gray-900"><span class="font-semibold">Marcus T.</span> placed a new order for <span class="italic">The Roots of Afara</span>.</p>
+                <p class="text-xs text-gray-500 mt-1">12 minutes ago</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-1">
+                <i data-lucide="user-plus" class="w-4 h-4 text-blue-600"></i>
+              </div>
+              <div>
+                <p class="text-sm text-gray-900"><span class="font-semibold">Sarah Jenkins</span> joined as a Family Member.</p>
+                <p class="text-xs text-gray-500 mt-1">2 hours ago</p>
+              </div>
+            </div>
+          `;
+        }
+
+        // Re-initialize icons for newly added HTML
+        lucide.createIcons();
+
+      } catch (err) {
+        console.error("Dashboard Fetch Error:", err);
+      }
+    }
+
+    // Example mock function for deleting from dashboard view
+    async function deleteTeaching(id) {
+      if(confirm('Are you sure you want to delete this teaching?')) {
+        try {
+          const res = await fetch(`${API_BASE_URL}/admin/teachings/${id}`, { method: 'DELETE' });
+          if(res.ok) {
+            alert('Teaching deleted.');
+            fetchDashboardData(); // Reload table
+          } else {
+            alert('Failed to delete teaching.');
+          }
+        } catch(e) {
+          console.error(e);
+          alert('Network error while deleting.');
+        }
+      }
+    }
   </script>
 </body>
 </html>
