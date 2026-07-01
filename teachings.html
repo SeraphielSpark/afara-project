@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Teachings - Wisdom of Afara</title>
   
-  <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Tailwind Configuration -->
   <script>
     tailwind.config = {
       theme: {
@@ -28,7 +26,6 @@
     }
   </script>
 
-  <!-- Lucide Icons via CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
@@ -85,7 +82,6 @@
 </head>
 <body class="bg-white text-gray-900 font-sans antialiased">
 
-  <!-- HEADER -->
   <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md py-4 border-b border-gray-200">
     <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between">
       <a href="index.html" class="text-2xl font-display font-bold text-gray-900">
@@ -110,7 +106,6 @@
   </header>
 
   <main class="pt-24">
-    <!-- PAGE HERO -->
     <section class="relative py-24 lg:py-32 bg-gray-50 border-b border-gray-200">
       <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center gap-12">
         <div class="flex-1">
@@ -128,10 +123,8 @@
       </div>
     </section>
 
-    <!-- FILTER BAR -->
     <section class="py-6 border-b border-gray-200 sticky top-[72px] bg-white/95 backdrop-blur z-30 shadow-sm">
       <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex flex-wrap gap-2" id="filter-container">
-        <!-- Javascript handles the active states -->
         <button data-cat="All" class="filter-btn px-5 py-2.5 text-xs tracking-[0.2em] uppercase font-sans border transition-colors bg-gold text-white border-gold">All</button>
         <button data-cat="Philosophy" class="filter-btn px-5 py-2.5 text-xs tracking-[0.2em] uppercase font-sans border transition-colors border-gray-300 text-gray-600 hover:border-gold hover:text-gold">Philosophy</button>
         <button data-cat="Diaspora History" class="filter-btn px-5 py-2.5 text-xs tracking-[0.2em] uppercase font-sans border transition-colors border-gray-300 text-gray-600 hover:border-gold hover:text-gold">Diaspora History</button>
@@ -140,10 +133,9 @@
       </div>
     </section>
 
-    <!-- FEATURED TEACHING -->
     <section id="featured-section" class="py-20 bg-white border-b border-gray-200">
-      <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
-        <article class="group cursor-pointer grid lg:grid-cols-2 gap-12 items-center">
+      <div id="featured-container" class="max-w-[1440px] mx-auto px-6 lg:px-12">
+        <article class="group cursor-pointer grid lg:grid-cols-2 gap-12 items-center" onclick="window.location.href='teaching-detail.html'">
           <div class="aspect-[4/3] lg:aspect-square overflow-hidden shadow-md">
             <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219458866_84750114.png" alt="Ubuntu" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
           </div>
@@ -173,13 +165,11 @@
       </div>
     </section>
 
-    <!-- TEACHINGS GALLERY -->
     <section class="py-20 bg-gray-50">
       <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
         <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           
-          <!-- Teaching 1 (Hidden in 'All', but shown in Philosophy filter) -->
-          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Philosophy" style="display: none;">
+          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Philosophy" style="display: none;" onclick="window.location.href='teaching-detail.html'">
             <div class="aspect-[4/3] overflow-hidden mb-5">
               <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219458866_84750114.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
@@ -192,8 +182,7 @@
             <div class="text-[10px] tracking-[0.2em] uppercase text-gray-900 font-bold border-t border-gray-100 pt-4">By Florence Cook</div>
           </article>
 
-          <!-- Teaching 2 -->
-          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Diaspora History">
+          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Diaspora History" onclick="window.location.href='teaching-detail.html'">
             <div class="aspect-[4/3] overflow-hidden mb-5">
               <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219780390_bb832ec7.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
@@ -206,8 +195,7 @@
             <div class="text-[10px] tracking-[0.2em] uppercase text-gray-900 font-bold border-t border-gray-100 pt-4">By Dr. Amara Okonkwo</div>
           </article>
 
-          <!-- Teaching 3 -->
-          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Ancestral Traditions">
+          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Ancestral Traditions" onclick="window.location.href='teaching-detail.html'">
             <div class="aspect-[4/3] overflow-hidden mb-5">
               <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219610302_237d3119.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
@@ -220,8 +208,7 @@
             <div class="text-[10px] tracking-[0.2em] uppercase text-gray-900 font-bold border-t border-gray-100 pt-4">By Elder Kwabena Nyong</div>
           </article>
 
-          <!-- Teaching 4 -->
-          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Black Identity">
+          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Black Identity" onclick="window.location.href='teaching-detail.html'">
             <div class="aspect-[4/3] overflow-hidden mb-5">
               <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219594169_7354bebe.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
@@ -234,8 +221,7 @@
             <div class="text-[10px] tracking-[0.2em] uppercase text-gray-900 font-bold border-t border-gray-100 pt-4">By Marcus Beaumont</div>
           </article>
 
-          <!-- Teaching 5 -->
-          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Diaspora History">
+          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Diaspora History" onclick="window.location.href='teaching-detail.html'">
             <div class="aspect-[4/3] overflow-hidden mb-5">
               <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219316514_c138e5be.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
@@ -248,8 +234,7 @@
             <div class="text-[10px] tracking-[0.2em] uppercase text-gray-900 font-bold border-t border-gray-100 pt-4">By Dr. Amara Okonkwo</div>
           </article>
 
-          <!-- Teaching 6 -->
-          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Philosophy">
+          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Philosophy" onclick="window.location.href='teaching-detail.html'">
             <div class="aspect-[4/3] overflow-hidden mb-5">
               <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219430250_5b282351.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
@@ -262,8 +247,7 @@
             <div class="text-[10px] tracking-[0.2em] uppercase text-gray-900 font-bold border-t border-gray-100 pt-4">By Elder Kwabena Nyong</div>
           </article>
 
-          <!-- Teaching 7 -->
-          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Black Identity">
+          <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="Black Identity" onclick="window.location.href='teaching-detail.html'">
             <div class="aspect-[4/3] overflow-hidden mb-5">
               <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219274444_b9685329.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
@@ -282,7 +266,6 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="bg-gray-50 border-t border-gray-200">
     <div class="border-b border-gray-200">
       <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16 grid lg:grid-cols-2 gap-12 items-center">
@@ -372,7 +355,6 @@
     </div>
   </footer>
 
-  <!-- Interactivity Scripts -->
   <script>
     // Initialize Icons
     lucide.createIcons();
@@ -398,50 +380,145 @@
       mobileMenu.classList.toggle('hidden');
     });
 
-    // Category Filtering Logic
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const featuredSection = document.getElementById('featured-section');
-    const gridItems = document.querySelectorAll('.grid-item');
+    // ==========================================
+    // DYNAMIC DATA FETCHING (No Code Reduced)
+    // ==========================================
+    const API_BASE_URL = 'https://afara-aex1.onrender.com';
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Reset all buttons to inactive state
-        filterBtns.forEach(b => {
-          b.className = 'filter-btn px-5 py-2.5 text-xs tracking-[0.2em] uppercase font-sans border transition-colors border-gray-300 text-gray-600 hover:border-gold hover:text-gold';
-        });
+    async function fetchTeachings() {
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/teachings`);
+        if (!response.ok) throw new Error('Network response was not ok');
+        const teachings = await response.json();
         
-        // Set clicked button to active state
-        btn.className = 'filter-btn px-5 py-2.5 text-xs tracking-[0.2em] uppercase font-sans border transition-colors bg-gold text-white border-gold';
-
-        const selectedCategory = btn.getAttribute('data-cat');
-
-        if (selectedCategory === 'All') {
-          // Show the featured section
-          featuredSection.style.display = 'block';
+        if (teachings && teachings.length > 0) {
           
-          // Show items from index 1 onwards in the grid, hide the first item (since it's featured)
-          gridItems.forEach((item, index) => {
-            if (index === 0) {
-              item.style.display = 'none';
-            } else {
-              item.style.display = 'block';
-            }
-          });
-        } else {
-          // Hide the featured section entirely
-          featuredSection.style.display = 'none';
+          // 1. Populate Featured Teaching (First item)
+          const featured = teachings[0];
+          const featuredContainer = document.getElementById('featured-container');
+          const coverUrl = featured.cover_image_url || 'https://via.placeholder.com/800x600?text=No+Cover';
+          const authorName = featured.author || 'Wisdom of Afara';
+          const readTime = featured.read_time || '5 min read';
+          const category = featured.category || 'General';
           
-          // Show all items in the grid that match the selected category
-          gridItems.forEach(item => {
-            if (item.getAttribute('data-category') === selectedCategory) {
-              item.style.display = 'block';
-            } else {
-              item.style.display = 'none';
-            }
+          featuredContainer.innerHTML = `
+            <article class="group cursor-pointer grid lg:grid-cols-2 gap-12 items-center" onclick="window.location.href='teaching-detail.html?id=${featured.id}'">
+              <div class="aspect-[4/3] lg:aspect-square overflow-hidden shadow-md">
+                <img src="${coverUrl}" alt="${featured.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              </div>
+              <div>
+                <div class="flex items-center gap-4 mb-4">
+                  <span class="bg-gray-100 px-3 py-1 text-[10px] tracking-[0.2em] uppercase text-gray-600 border border-gray-200">${category}</span>
+                  <span class="text-xs tracking-widest text-gold uppercase">${readTime}</span>
+                </div>
+                <h2 class="font-display text-4xl md:text-5xl text-gray-900 group-hover:text-gold transition-colors leading-tight mb-6">
+                  ${featured.title}
+                </h2>
+                <p class="text-gray-700 text-lg leading-relaxed mb-8 line-clamp-4">
+                  ${featured.body ? featured.body.substring(0, 300) + '...' : ''}
+                </p>
+                <div class="flex items-center gap-4 text-sm font-sans">
+                  <img src="https://via.placeholder.com/100?text=${authorName.charAt(0)}" alt="${authorName}" class="w-10 h-10 rounded-full object-cover border border-gold" />
+                  <div>
+                    <p class="font-bold text-gray-900 tracking-wider uppercase text-[10px]">${authorName}</p>
+                    <p class="text-gray-500">Elder & Contributor</p>
+                  </div>
+                </div>
+                <div class="mt-8 text-xs tracking-[0.22em] uppercase text-gold font-bold flex items-center gap-2">
+                  Read Teaching <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </div>
+              </div>
+            </article>
+          `;
+
+          // 2. Populate Grid (Remaining items, plus featured hidden for filtering)
+          const gridContainer = document.getElementById('posts-grid');
+          gridContainer.innerHTML = ''; // Clear statics
+
+          teachings.forEach((teaching, index) => {
+            const tCoverUrl = teaching.cover_image_url || 'https://via.placeholder.com/600x400?text=No+Cover';
+            const tAuthor = teaching.author || 'Wisdom of Afara';
+            const tReadTime = teaching.read_time || '5 min read';
+            const tCategory = teaching.category || 'General';
+            // First item should be hidden initially in 'All' view since it's in the Featured section
+            const displayStyle = index === 0 ? 'display: none;' : 'display: block;';
+            
+            const gridHTML = `
+              <article class="grid-item group cursor-pointer bg-white border border-gray-200 p-4 shadow-sm" data-category="${tCategory}" style="${displayStyle}" onclick="window.location.href='teaching-detail.html?id=${teaching.id}'">
+                <div class="aspect-[4/3] overflow-hidden mb-5">
+                  <img src="${tCoverUrl}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                </div>
+                <div class="flex justify-between items-center mb-3">
+                  <span class="eyebrow text-[10px] text-gray-500">${tCategory}</span>
+                  <span class="text-xs text-gold uppercase tracking-widest">${tReadTime}</span>
+                </div>
+                <h3 class="font-display text-2xl text-gray-900 group-hover:text-gold transition-colors leading-snug mb-3">${teaching.title}</h3>
+                <p class="text-gray-600 text-sm mb-6 line-clamp-3">${teaching.body ? teaching.body.substring(0, 150) + '...' : ''}</p>
+                <div class="text-[10px] tracking-[0.2em] uppercase text-gray-900 font-bold border-t border-gray-100 pt-4">By ${tAuthor}</div>
+              </article>
+            `;
+            gridContainer.insertAdjacentHTML('beforeend', gridHTML);
           });
+
+          lucide.createIcons(); // Rebind icons for injected DOM
+          bindFiltering(); // Rebind filter logic to new dynamic items
         }
+      } catch (error) {
+        console.error('Failed to fetch teachings. Showing static fallbacks.', error);
+        bindFiltering(); // Ensure static filtering still works
+      }
+    }
+
+    // Category Filtering Logic wrapped in a function to run after fetch
+    function bindFiltering() {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const featuredSection = document.getElementById('featured-section');
+      const gridItems = document.querySelectorAll('.grid-item');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Reset all buttons to inactive state
+          filterBtns.forEach(b => {
+            b.className = 'filter-btn px-5 py-2.5 text-xs tracking-[0.2em] uppercase font-sans border transition-colors border-gray-300 text-gray-600 hover:border-gold hover:text-gold';
+          });
+          
+          // Set clicked button to active state
+          btn.className = 'filter-btn px-5 py-2.5 text-xs tracking-[0.2em] uppercase font-sans border transition-colors bg-gold text-white border-gold';
+
+          const selectedCategory = btn.getAttribute('data-cat');
+
+          if (selectedCategory === 'All') {
+            // Show the featured section
+            featuredSection.style.display = 'block';
+            
+            // Show items from index 1 onwards in the grid, hide the first item (since it's featured)
+            gridItems.forEach((item, index) => {
+              if (index === 0) {
+                item.style.display = 'none';
+              } else {
+                item.style.display = 'block';
+              }
+            });
+          } else {
+            // Hide the featured section entirely
+            featuredSection.style.display = 'none';
+            
+            // Show all items in the grid that match the selected category
+            gridItems.forEach(item => {
+              // Exact match or handle cases with trailing spaces
+              if (item.getAttribute('data-category').trim() === selectedCategory.trim()) {
+                item.style.display = 'block';
+              } else {
+                item.style.display = 'none';
+              }
+            });
+          }
+        });
       });
-    });
+    }
+
+    // Load Live Data on Boot
+    document.addEventListener('DOMContentLoaded', fetchTeachings);
   </script>
 </body>
 </html>

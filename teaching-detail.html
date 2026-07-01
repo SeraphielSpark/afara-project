@@ -3,12 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ubuntu — I Am Because We Are - Wisdom of Afara</title>
+  <title id="page-title">Teaching - Wisdom of Afara</title>
   
-  <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Tailwind Configuration -->
   <script>
     tailwind.config = {
       theme: {
@@ -28,7 +26,6 @@
     }
   </script>
 
-  <!-- Lucide Icons via CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
@@ -123,7 +120,6 @@
 </head>
 <body class="bg-white text-gray-900 font-sans antialiased">
 
-  <!-- HEADER -->
   <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md py-4 border-b border-gray-200">
     <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between">
       <a href="index.html" class="text-2xl font-display font-bold text-gray-900">
@@ -148,77 +144,58 @@
   </header>
 
   <main class="pt-24">
-    <!-- ARTICLE HEADER -->
     <section class="max-w-[1000px] mx-auto px-6 lg:px-12 pt-16 pb-10">
       <a href="teachings.html" class="inline-flex items-center gap-2 font-sans text-[11px] tracking-[0.18em] uppercase text-gray-500 hover:text-gold mb-10 transition-colors">
         <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to the Library
       </a>
 
       <div class="flex items-center gap-4 mb-6">
-        <span class="bg-gray-100 px-3 py-1 text-[10px] tracking-[0.2em] uppercase text-gray-600 border border-gray-200">Philosophy</span>
-        <span class="text-xs tracking-widest text-gold uppercase">8 min read</span>
+        <span id="t-category" class="bg-gray-100 px-3 py-1 text-[10px] tracking-[0.2em] uppercase text-gray-600 border border-gray-200">Philosophy</span>
+        <span id="t-readtime" class="text-xs tracking-widest text-gold uppercase">8 min read</span>
       </div>
 
-      <h1 class="font-display text-5xl md:text-6xl text-gray-900 leading-[1.1] mb-8">
+      <h1 id="t-title" class="font-display text-5xl md:text-6xl text-gray-900 leading-[1.1] mb-8">
         Ubuntu — I Am Because We Are
       </h1>
 
       <div class="flex items-center justify-between border-y border-gray-200 py-6 mb-10">
         <div class="flex items-center gap-4 text-sm font-sans">
-          <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219226697_6a7ee26a.png" alt="Florence Cook" class="w-12 h-12 rounded-full object-cover border border-gold shadow-sm" />
+          <img id="t-author-img" src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219226697_6a7ee26a.png" alt="Author" class="w-12 h-12 rounded-full object-cover border border-gold shadow-sm" />
           <div>
-            <p class="font-bold text-gray-900 tracking-wider uppercase text-[10px]">Florence Cook</p>
-            <p class="text-gray-500 text-xs">Elder & Cultural Director</p>
+            <p id="t-author-name" class="font-bold text-gray-900 tracking-wider uppercase text-[10px]">Florence Cook</p>
+            <p class="text-gray-500 text-xs">Elder & Contributor</p>
           </div>
         </div>
         <div class="flex items-center gap-6 text-gray-400 font-sans text-xs tracking-widest uppercase">
           <span class="flex items-center gap-2"><i data-lucide="eye" class="w-4 h-4"></i> 1,204</span>
           <span class="flex items-center gap-2" id="header-like-count"><i data-lucide="heart" class="w-4 h-4"></i> 342</span>
-          <span>15 Feb 2026</span>
+          <span id="t-date">15 Feb 2026</span>
         </div>
       </div>
     </section>
 
-    <!-- COVER IMAGE -->
     <section class="max-w-[1200px] mx-auto px-6 lg:px-12 mb-16">
       <div class="aspect-[21/9] w-full overflow-hidden shadow-md bg-gray-100">
-        <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219458866_84750114.png" alt="Ubuntu Cover" class="w-full h-full object-cover">
+        <img id="t-cover" src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219458866_84750114.png" alt="Teaching Cover" class="w-full h-full object-cover">
       </div>
     </section>
 
-    <!-- ARTICLE BODY -->
     <section class="max-w-[800px] mx-auto px-6 lg:px-12 pb-20">
-      <div class="teaching-content font-display">
+      <div id="t-body" class="teaching-content font-display">
         <p class="drop-cap">
           In the Nguni languages of Southern Africa, there is a word that defies simple translation into English. That word is <em>Ubuntu</em>. Often reduced to "humanity" or "I am because we are," it is, in truth, an entire cosmological and ethical framework—a way of moving through the world that insists our individual humanity is inextricably bound to the humanity of others.
         </p>
-
         <p>
           To understand Ubuntu is to recognize that a person is a person <em>through</em> other people. We do not enter the world fully formed; we are shaped by the hands that hold us, the communities that raise us, and the ancestors who paved the way. When one of us suffers, the collective suffers. When one of us thrives, the collective is elevated.
         </p>
-
         <blockquote>
           "My humanity is caught up, is inextricably bound up, in yours. We belong in a bundle of life."
         </blockquote>
-
         <p>
           This philosophy did not remain static on the continent. When millions of our ancestors were violently displaced during the transatlantic slave trade, they carried the essence of Ubuntu across the ocean. It was this deeply ingrained understanding of collective survival that allowed enslaved communities to forge new kinship networks on plantations, replacing biological families torn apart by the auction block. 
         </p>
-
-        <p>
-          It is the same spirit you witness in the mutual aid societies of post-emancipation African American communities, in the "pardner" or "susu" saving systems of the Caribbean, and in the joyous, collective rhythms of a Brazilian samba circle. The oppressor sought to individualize and isolate; the African spirit insisted on the collective.
-        </p>
-
-        <p>
-          Today, the Diaspora finds itself navigating a deeply individualized, hyper-capitalist global society. We are often taught to measure our worth by our personal accumulation of wealth or status. Ubuntu calls us back to a different standard. It asks us to look at our neighbor, our brother in Brixton, our sister in Bahia, and recognize our shared reflection. 
-        </p>
-
-        <p>
-          As we build Wisdom of Afara, this is the cornerstone. We cannot heal alone. We cannot recover our history alone. The work of the Diaspora is not merely personal discovery; it is collective remembrance. We are, because the family is.
-        </p>
       </div>
 
-      <!-- INTERACTION BAR -->
       <div class="flex items-center justify-between border-t border-b border-gray-200 py-6 mt-16">
         <div class="flex items-center gap-4">
           <button id="like-btn" class="flex items-center gap-2 text-gray-500 hover:text-terracotta transition-colors font-sans text-xs tracking-widest uppercase font-bold">
@@ -238,7 +215,6 @@
       </div>
     </section>
 
-    <!-- COMMENTS SECTION -->
     <section class="bg-gray-50 py-24 border-t border-gray-200">
       <div class="max-w-[800px] mx-auto px-6 lg:px-12">
         <div class="flex items-center gap-3 mb-10">
@@ -247,7 +223,6 @@
           <span class="ml-2 bg-gray-200 text-gray-600 px-3 py-1 text-sm font-sans rounded-full" id="comment-count">3</span>
         </div>
 
-        <!-- Add Comment Form -->
         <div class="bg-white border border-gray-200 p-8 shadow-sm mb-12">
           <h4 class="font-sans text-xs tracking-[0.2em] uppercase text-gold font-bold mb-6">Leave your reflection</h4>
           <form id="comment-form" class="space-y-5">
@@ -256,15 +231,13 @@
               <input type="email" id="comment-email" placeholder="Email (will not be published)" required class="form-input" />
             </div>
             <textarea id="comment-body" rows="4" placeholder="Share your thoughts on this teaching..." required class="form-input resize-none"></textarea>
-            <button type="submit" class="btn-gold">Post Reflection</button>
+            <button type="submit" class="btn-gold" id="submit-comment-btn">Post Reflection</button>
             <p class="text-xs text-gray-500 font-sans mt-3">Comments are moderated by the elders to maintain a respectful space.</p>
           </form>
         </div>
 
-        <!-- Existing Comments -->
         <div class="space-y-6" id="comments-list">
           
-          <!-- Comment 1 -->
           <div class="bg-white border border-gray-200 p-6 shadow-sm">
             <div class="flex justify-between items-baseline mb-4 border-b border-gray-100 pb-4">
               <div>
@@ -277,7 +250,6 @@
             </p>
           </div>
 
-          <!-- Comment 2 -->
           <div class="bg-white border border-gray-200 p-6 shadow-sm">
             <div class="flex justify-between items-baseline mb-4 border-b border-gray-100 pb-4">
               <div>
@@ -290,7 +262,6 @@
             </p>
           </div>
 
-          <!-- Comment 3 -->
           <div class="bg-white border border-gray-200 p-6 shadow-sm">
             <div class="flex justify-between items-baseline mb-4 border-b border-gray-100 pb-4">
               <div>
@@ -309,7 +280,6 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="bg-gray-50 border-t border-gray-200">
     <div class="border-b border-gray-200">
       <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16 grid lg:grid-cols-2 gap-12 items-center">
@@ -399,7 +369,6 @@
     </div>
   </footer>
 
-  <!-- Interactivity Scripts -->
   <script>
     // Initialize Icons
     lucide.createIcons();
@@ -446,50 +415,154 @@
       hasLiked = !hasLiked;
       headerCount.innerHTML = `<i data-lucide="heart" class="w-4 h-4"></i> ${likes}`;
       footerCount.innerText = likes;
-      lucide.createIcons(); // Re-render icon in header
+      lucide.createIcons();
     });
 
-    // Comment Form Logic
+    // ==========================================
+    // DYNAMIC DATA & COMMENT SUBMISSION LOGIC
+    // ==========================================
+    const API_BASE_URL = 'https://afara-aex1.onrender.com';
+    let currentTeachingId = null;
+    let currentTeachingTitle = 'Unknown Teaching';
+
+    // Helper: Format DB text into proper HTML paragraphs
+    function formatTextToHTML(text) {
+        if(!text) return '';
+        const paragraphs = text.split(/\n+/).filter(p => p.trim() !== '');
+        
+        let html = '';
+        paragraphs.forEach((p, index) => {
+            // Apply drop-cap strictly to the first paragraph
+            if (index === 0) {
+                html += `<p class="drop-cap">${p}</p>`;
+            } else {
+                html += `<p>${p}</p>`;
+            }
+        });
+        return html;
+    }
+
+    async function loadTeachingDetails() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const teachingId = urlParams.get('id');
+
+        if (!teachingId) return; // Degrade gracefully to static HTML if no ID is passed
+
+        currentTeachingId = teachingId;
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/teachings/${teachingId}`);
+            if (!response.ok) throw new Error('Teaching not found');
+            const data = await response.json();
+            
+            currentTeachingTitle = data.title;
+
+            // DOM Updates
+            document.title = `${data.title} - Wisdom of Afara`;
+            document.getElementById('page-title').innerText = `${data.title} - Wisdom of Afara`;
+            
+            document.getElementById('t-category').innerText = data.category || 'General';
+            document.getElementById('t-readtime').innerText = data.read_time || '5 min read';
+            document.getElementById('t-title').innerText = data.title;
+            
+            document.getElementById('t-author-name').innerText = data.author || 'Wisdom of Afara';
+            document.getElementById('t-author-img').src = `https://via.placeholder.com/100?text=${(data.author || 'A').charAt(0)}`;
+
+            if(data.created_at) {
+                const d = new Date(data.created_at);
+                document.getElementById('t-date').innerText = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+            }
+
+            if (data.cover_image_url) {
+                document.getElementById('t-cover').src = data.cover_image_url;
+            }
+            
+            // Format plain text body from the DB into stylized paragraphs
+            if (data.body) {
+                document.getElementById('t-body').innerHTML = formatTextToHTML(data.body);
+            }
+
+        } catch (error) {
+            console.error('Failed to load specific teaching details:', error);
+        }
+    }
+
+    // Trigger details load on boot
+    document.addEventListener('DOMContentLoaded', loadTeachingDetails);
+
+    // Comment Form Live Logic
     const commentForm = document.getElementById('comment-form');
     const commentsList = document.getElementById('comments-list');
-    const commentCount = document.getElementById('comment-count');
+    const commentCountDisplay = document.getElementById('comment-count');
+    const submitBtn = document.getElementById('submit-comment-btn');
     let totalComments = 3;
 
-    commentForm.addEventListener('submit', (e) => {
+    commentForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
       const name = document.getElementById('comment-name').value;
-      const body = document.getElementById('comment-body').value;
+      const email = document.getElementById('comment-email').value;
+      const content = document.getElementById('comment-body').value;
       
-      // Formatting current date (e.g., "18 Jun 2026")
-      const date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      // Freeze button during submit
+      const originalBtnText = submitBtn.innerText;
+      submitBtn.innerText = 'Submitting...';
+      submitBtn.disabled = true;
 
-      // Create new comment block
-      const newComment = document.createElement('div');
-      newComment.className = 'bg-white border border-gray-200 p-6 shadow-sm border-l-2 border-l-terracotta';
-      newComment.innerHTML = `
-        <div class="flex justify-between items-baseline mb-4 border-b border-gray-100 pb-4">
-          <div>
-            <span class="font-display text-xl text-gray-900">${name}</span>
-            <span class="ml-3 text-[10px] uppercase tracking-widest text-terracotta bg-orange-50 px-2 py-1 rounded-sm">Awaiting Moderation</span>
-          </div>
-          <span class="font-sans text-xs tracking-widest uppercase text-gray-400">${date}</span>
-        </div>
-        <p class="font-display text-gray-700 text-lg leading-relaxed">
-          ${body}
-        </p>
-      `;
+      try {
+          // POST Request to live server using the exact schema requirements
+          const response = await fetch(`${API_BASE_URL}/api/reviews`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                  author_name: name,
+                  author_email: email,
+                  content: content,
+                  target_type: 'teaching',
+                  target_id: currentTeachingId, 
+                  target_title: currentTeachingTitle
+              })
+          });
 
-      // Prepend to list
-      commentsList.insertBefore(newComment, commentsList.firstChild);
-      
-      // Update count
-      totalComments++;
-      commentCount.innerText = totalComments;
+          if (!response.ok) throw new Error('Failed to post reflection');
 
-      // Reset form & notify
-      commentForm.reset();
-      alert('Your reflection has been submitted and is awaiting moderation.');
+          // Date formatting for UI injection
+          const date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+
+          // Optimistic UI Update - Create new comment block visually
+          const newComment = document.createElement('div');
+          newComment.className = 'bg-white border border-gray-200 p-6 shadow-sm border-l-2 border-l-terracotta';
+          newComment.innerHTML = `
+            <div class="flex justify-between items-baseline mb-4 border-b border-gray-100 pb-4">
+              <div>
+                <span class="font-display text-xl text-gray-900">${name}</span>
+                <span class="ml-3 text-[10px] uppercase tracking-widest text-terracotta bg-orange-50 px-2 py-1 rounded-sm">Awaiting Moderation</span>
+              </div>
+              <span class="font-sans text-xs tracking-widest uppercase text-gray-400">${date}</span>
+            </div>
+            <p class="font-display text-gray-700 text-lg leading-relaxed">
+              ${content}
+            </p>
+          `;
+
+          // Prepend to list
+          commentsList.insertBefore(newComment, commentsList.firstChild);
+          
+          // Update count
+          totalComments++;
+          commentCountDisplay.innerText = totalComments;
+
+          // Reset form & notify
+          commentForm.reset();
+          alert('Your reflection has been submitted and is awaiting moderation.');
+
+      } catch (error) {
+          console.error(error);
+          alert('There was a problem submitting your comment. Please try again.');
+      } finally {
+          submitBtn.innerText = originalBtnText;
+          submitBtn.disabled = false;
+      }
     });
   </script>
 </body>
