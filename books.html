@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bookstore - Wisdom of Afara Press</title>
   
-  <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Tailwind Configuration -->
   <script>
     tailwind.config = {
       theme: {
@@ -28,7 +26,6 @@
     }
   </script>
 
-  <!-- Lucide Icons via CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
@@ -81,11 +78,18 @@
       background: linear-gradient(90deg, #C9952A 0%, #a87b20 50%, #C9952A 100%);
       width: 100%;
     }
+    /* Loading Skeleton Animation */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .5; }
+    }
+    .animate-pulse-slow {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
   </style>
 </head>
 <body class="bg-white text-gray-900 font-sans antialiased">
 
-  <!-- HEADER -->
   <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md py-4 border-b border-gray-200">
     <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between">
       <a href="index.html" class="text-2xl font-display font-bold text-gray-900">
@@ -101,6 +105,10 @@
         <a href="news.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">News & Stories</a>
       </nav>
       <div class="hidden lg:flex items-center gap-5">
+        <a href="cart.html" class="text-gray-600 hover:text-gold transition-colors relative">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          <span id="nav-cart-badge" class="absolute -top-1 -right-2 bg-terracotta text-white text-[9px] w-4 h-4 flex items-center justify-center rounded-full hidden">0</span>
+        </a>
         <a href="get-involved.html" class="btn-gold text-[11px] py-3 px-6">Join the Family</a>
       </div>
       <button id="mobile-menu-btn" class="lg:hidden text-gray-900 p-2">
@@ -110,7 +118,6 @@
   </header>
 
   <main class="pt-24">
-    <!-- HERO SECTION -->
     <section class="relative py-24 lg:py-32 bg-gray-50 border-b border-gray-200 text-center">
       <div class="max-w-3xl mx-auto px-6">
         <p class="font-sans text-[12px] tracking-[0.3em] uppercase text-gold mb-5">
@@ -129,7 +136,6 @@
 
     <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16">
       
-      <!-- STATS TILES -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-20">
         <div class="text-center px-4 py-6 border border-gray-200 bg-gray-50 shadow-sm">
           <i data-lucide="book-open" class="w-6 h-6 text-gold mx-auto mb-3"></i>
@@ -153,7 +159,6 @@
         </div>
       </div>
 
-      <!-- MISSION DESCRIPTION BANNER -->
       <section class="mb-20 border border-gold/30 bg-orange-50/20 p-10 lg:p-14 shadow-sm">
         <div class="flex items-center gap-2 mb-5">
           <i data-lucide="sparkles" class="w-5 h-5 text-gold"></i>
@@ -176,7 +181,6 @@
         </div>
       </section>
 
-      <!-- THE FULL CATALOG COLLECTION -->
       <section class="mb-20">
         <div class="flex items-end justify-between mb-12 border-b border-gray-200 pb-4">
           <div>
@@ -185,9 +189,8 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div id="books-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
-          <!-- Book 1 -->
           <div class="bg-white border border-gray-200 p-6 flex flex-col justify-between shadow-sm group">
             <div>
               <div class="aspect-[3/4] mb-6 overflow-hidden bg-gray-50 border border-gray-100 shadow-inner">
@@ -204,7 +207,6 @@
             </div>
           </div>
 
-          <!-- Book 2 -->
           <div class="bg-white border border-gray-200 p-6 flex flex-col justify-between shadow-sm group">
             <div>
               <div class="aspect-[3/4] mb-6 overflow-hidden bg-gray-50 border border-gray-100 shadow-inner">
@@ -221,7 +223,6 @@
             </div>
           </div>
 
-          <!-- Book 3 -->
           <div class="bg-white border border-gray-200 p-6 flex flex-col justify-between shadow-sm group">
             <div>
               <div class="aspect-[3/4] mb-6 overflow-hidden bg-gray-50 border border-gray-100 shadow-inner">
@@ -238,7 +239,6 @@
             </div>
           </div>
 
-          <!-- Book 4 -->
           <div class="bg-white border border-gray-200 p-6 flex flex-col justify-between shadow-sm group">
             <div>
               <div class="aspect-[3/4] mb-6 overflow-hidden bg-gray-50 border border-gray-100 shadow-inner">
@@ -259,7 +259,6 @@
       </section>
     </div>
 
-    <!-- GLOBAL MAP STATS / INTERMEDIATE FOOTER QUOTE -->
     <section class="py-24 bg-gray-50 border-t border-gray-200 text-center px-6">
       <div class="max-w-4xl mx-auto">
         <div class="text-gold font-display text-7xl leading-none mb-6">“</div>
@@ -271,7 +270,6 @@
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="bg-gray-50 border-t border-gray-200">
     <div class="border-b border-gray-200">
       <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16 grid lg:grid-cols-2 gap-12 items-center">
@@ -361,7 +359,6 @@
     </div>
   </footer>
 
-  <!-- Interactivity Scripts -->
   <script>
     // Initialize Icons
     lucide.createIcons();
@@ -386,6 +383,78 @@
     menuBtn.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
     });
+
+    // Cart Badge Logic (Global persistence)
+    function updateCartBadge() {
+        const cart = JSON.parse(localStorage.getItem('afara_cart') || '[]');
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const navBadge = document.getElementById('nav-cart-badge');
+        if (navBadge) {
+            if (totalItems > 0) {
+                navBadge.innerText = totalItems;
+                navBadge.classList.remove('hidden');
+            } else {
+                navBadge.classList.add('hidden');
+            }
+        }
+    }
+    updateCartBadge();
+
+    // ==========================================
+    // DYNAMIC DATA FETCHING (No Code Reduced)
+    // ==========================================
+    
+    // UPDATE THIS to your live backend domain in production
+    const API_BASE_URL = 'https://afara-aex1.onrender.com'; // e.g., 'https://api.wisdomofafara.org'
+
+    async function fetchBooks() {
+        const container = document.getElementById('books-container');
+        
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/books`);
+            if (!response.ok) throw new Error('Network response was not ok');
+            const books = await response.json();
+            
+            // If books are returned, replace the static fallbacks with live data
+            if (books && books.length > 0) {
+                container.innerHTML = ''; // Clear static blocks only upon successful DB fetch
+                
+                books.forEach(book => {
+                    const price = parseFloat(book.price).toFixed(2);
+                    const coverUrl = book.cover_image_url || 'https://via.placeholder.com/400x600?text=No+Cover';
+                    const impactText = book.impact_pct ? `${book.impact_pct}% gives back` : 'Impact Edition';
+                    
+                    // Notice the URL slug approach: book-detail.html?id=...
+                    const bookHTML = `
+                        <div class="bg-white border border-gray-200 p-6 flex flex-col justify-between shadow-sm group">
+                            <div>
+                                <div class="aspect-[3/4] mb-6 overflow-hidden bg-gray-50 border border-gray-100 shadow-inner">
+                                    <img src="${coverUrl}" alt="${book.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                                </div>
+                                <span class="text-[10px] uppercase font-bold text-white bg-gold px-2 py-1 inline-block mb-4">${impactText}</span>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest mb-1">${book.author || 'Wisdom of Afara'}</p>
+                                <h3 class="font-display text-2xl text-gray-900 mb-3 group-hover:text-gold transition-colors leading-tight">${book.title}</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">${book.description || ''}</p>
+                            </div>
+                            <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                                <span class="text-xl font-bold text-gray-900">$${price}</span>
+                                <a href="book-detail.html?id=${book.id}" class="btn-outline-gold text-xs py-2 px-4 flex items-center gap-1">View <i data-lucide="eye" class="w-3.5 h-3.5"></i></a>
+                            </div>
+                        </div>
+                    `;
+                    container.insertAdjacentHTML('beforeend', bookHTML);
+                });
+                
+                // Re-initialize icons for newly injected DOM
+                lucide.createIcons();
+            }
+        } catch (error) {
+            console.error('Failed to load live inventory, showing fallbacks.', error);
+        }
+    }
+
+    // Trigger fetch on load
+    document.addEventListener('DOMContentLoaded', fetchBooks);
   </script>
 </body>
 </html>

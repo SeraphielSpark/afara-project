@@ -3,12 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Roots of Afara - Wisdom of Afara Press</title>
+  <title id="page-title">The Roots of Afara - Wisdom of Afara Press</title>
   
-  <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Tailwind Configuration -->
   <script>
     tailwind.config = {
       theme: {
@@ -28,7 +26,6 @@
     }
   </script>
 
-  <!-- Lucide Icons via CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
@@ -89,7 +86,6 @@
 </head>
 <body class="bg-white text-gray-900 font-sans antialiased">
 
-  <!-- HEADER -->
   <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md py-4 border-b border-gray-200">
     <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between">
       <a href="index.html" class="text-2xl font-display font-bold text-gray-900">
@@ -107,7 +103,7 @@
       <div class="hidden lg:flex items-center gap-5">
         <a href="cart.html" class="text-gray-600 hover:text-gold transition-colors relative">
           <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-          <span id="cart-badge" class="absolute -top-1 -right-2 bg-terracotta text-white text-[9px] w-4 h-4 flex items-center justify-center rounded-full hidden">0</span>
+          <span id="nav-cart-badge" class="absolute -top-1 -right-2 bg-terracotta text-white text-[9px] w-4 h-4 flex items-center justify-center rounded-full hidden">0</span>
         </a>
         <a href="get-involved.html" class="btn-gold text-[11px] py-3 px-6">Join the Family</a>
       </div>
@@ -120,33 +116,28 @@
   <main class="pt-32 pb-24">
     <div class="max-w-[1180px] mx-auto px-6 lg:px-12">
       
-      <!-- Back Link -->
       <a href="books.html" class="inline-flex items-center gap-2 font-sans text-[11px] tracking-[0.18em] uppercase text-gray-500 hover:text-gold mb-10 transition-colors">
         <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Bookstore
       </a>
 
-      <!-- PRODUCT OVERVIEW -->
       <div class="grid lg:grid-cols-2 gap-12 mb-20">
         
-        <!-- Product Image -->
         <div class="relative aspect-[3/4] bg-gray-50 border border-gray-200 overflow-hidden shadow-md">
-          <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219458866_84750114.png" alt="The Roots of Afara" class="w-full h-full object-cover" />
+          <img id="book-cover" src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219458866_84750114.png" alt="The Roots of Afara" class="w-full h-full object-cover" />
         </div>
 
-        <!-- Product Details -->
         <div class="flex flex-col justify-center">
-          <p class="font-sans text-[11px] tracking-[0.25em] uppercase text-gold mb-3">Dr. Amara Nkemdirim</p>
-          <h1 class="font-display text-4xl lg:text-5xl text-gray-900 leading-tight mb-5">The Roots of Afara</h1>
+          <p id="book-author" class="font-sans text-[11px] tracking-[0.25em] uppercase text-gold mb-3">Dr. Amara Nkemdirim</p>
+          <h1 id="book-title" class="font-display text-4xl lg:text-5xl text-gray-900 leading-tight mb-5">The Roots of Afara</h1>
           
-          <p class="font-display text-lg text-gray-600 leading-relaxed mb-6">
+          <p id="book-description" class="font-display text-lg text-gray-600 leading-relaxed mb-6 whitespace-pre-line">
             A sweeping journey through the origins of African civilization, tracing the wisdom, traditions, and spiritual heritage that shaped a continent and its diaspora. Richly illustrated and meticulously researched.
           </p>
           
-          <p class="font-sans text-[11px] tracking-[0.15em] uppercase text-gray-400 mb-6">342 pages · Hardcover</p>
+          <p id="book-meta" class="font-sans text-[11px] tracking-[0.15em] uppercase text-gray-400 mb-6">342 pages · Hardcover</p>
           
-          <div class="font-display text-3xl text-gray-900 mb-8">$29.99</div>
+          <div id="book-price" class="font-display text-3xl text-gray-900 mb-8">$29.99</div>
           
-          <!-- Add to Cart Controls -->
           <div class="flex items-center gap-4 mb-6">
             <div class="flex items-center border border-gray-300 bg-white shadow-sm">
               <button id="qty-minus" class="p-4 text-gray-500 hover:text-gold transition-colors"><i data-lucide="minus" class="w-4 h-4"></i></button>
@@ -160,31 +151,28 @@
           
           <div class="flex items-center gap-2 font-display text-gold text-sm mt-4">
             <i data-lucide="heart" class="w-4 h-4 fill-gold"></i>
-            40% of proceeds support the Wisdom of Afara mission.
+            <span id="book-impact-desc">40% of proceeds support the Wisdom of Afara mission.</span>
           </div>
         </div>
       </div>
 
-      <!-- MISSION IMPACT SECTION -->
       <section class="border border-gray-200 bg-gray-50 p-8 lg:p-12 mb-12 shadow-sm">
         <p class="font-sans text-[12px] tracking-[0.25em] uppercase text-gold font-bold mb-3">Mission Impact</p>
         <h2 class="font-display text-3xl text-gray-900 mb-8">How This Book Helps</h2>
         
         <div class="grid lg:grid-cols-2 gap-10">
           
-          <!-- Specific Impact Rows -->
           <div>
             <div class="mb-8">
               <div class="flex justify-between font-sans text-[11px] tracking-[0.15em] uppercase text-gray-500 mb-2">
                 <span>Proceeds Supporting the Mission</span>
-                <span class="text-gold font-bold">40%</span>
+                <span id="book-impact-text" class="text-gold font-bold">40%</span>
               </div>
               <div class="h-2 bg-gray-200 overflow-hidden rounded-full">
-                <div class="h-full bg-gold" style="width: 40%"></div>
+                <div id="book-impact-bar" class="h-full bg-gold transition-all duration-1000" style="width: 40%"></div>
               </div>
             </div>
 
-            <!-- Help Rows -->
             <div class="flex items-start gap-3 py-4 border-b border-gray-200">
               <i data-lucide="graduation-cap" class="w-5 h-5 text-gold mt-0.5 shrink-0"></i>
               <div>
@@ -218,7 +206,6 @@
             </div>
           </div>
 
-          <!-- Impact Stats Grid -->
           <div class="grid grid-cols-2 gap-4 content-start">
             <div class="text-center p-6 bg-white border border-gray-200 shadow-sm">
               <i data-lucide="book-open" class="w-6 h-6 text-gold mx-auto mb-3"></i>
@@ -247,7 +234,6 @@
         </div>
       </section>
 
-      <!-- View Cart Link -->
       <div class="text-center mt-12">
         <a href="cart.html" class="font-sans text-[12px] tracking-[0.2em] uppercase text-gold font-bold hover:underline">
           View Cart →
@@ -257,7 +243,6 @@
     </div>
   </main>
 
-  <!-- FOOTER -->
   <footer class="bg-gray-50 border-t border-gray-200">
     <div class="border-b border-gray-200">
       <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16 grid lg:grid-cols-2 gap-12 items-center">
@@ -347,7 +332,6 @@
     </div>
   </footer>
 
-  <!-- Interactivity Scripts -->
   <script>
     // Initialize Icons
     lucide.createIcons();
@@ -373,7 +357,80 @@
       mobileMenu.classList.toggle('hidden');
     });
 
-    // Quantity Logic
+    // ==========================================
+    // DYNAMIC DATA & CART LOGIC
+    // ==========================================
+
+    const API_BASE_URL = 'https://afara-aex1.onrender.com'; // Update for production
+    
+    // Globals to store current loaded book
+    let currentBookData = null;
+
+    // Cart Badge Logic (Global persistence)
+    function updateCartBadge() {
+        const cart = JSON.parse(localStorage.getItem('afara_cart') || '[]');
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const navBadge = document.getElementById('nav-cart-badge');
+        if (navBadge) {
+            if (totalItems > 0) {
+                navBadge.innerText = totalItems;
+                navBadge.classList.remove('hidden');
+            } else {
+                navBadge.classList.add('hidden');
+            }
+        }
+    }
+    updateCartBadge();
+
+    // Fetch Book Data Based on URL Parameter
+    async function loadBookDetails() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const bookId = urlParams.get('id');
+
+        if (!bookId) return; // If no ID, gracefully degrade to the static HTML fallback
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/books/${bookId}`);
+            if (!response.ok) throw new Error('Book not found');
+            const book = await response.json();
+            
+            // Save globally for the cart function
+            currentBookData = book;
+
+            // DOM Updates
+            document.title = `${book.title} - Wisdom of Afara Press`;
+            document.getElementById('page-title').innerText = `${book.title} - Wisdom of Afara Press`;
+            
+            if (book.cover_image_url) {
+                document.getElementById('book-cover').src = book.cover_image_url;
+            }
+            
+            document.getElementById('book-title').innerText = book.title;
+            document.getElementById('book-author').innerText = book.author || 'Wisdom of Afara';
+            document.getElementById('book-description').innerText = book.description || '';
+            document.getElementById('book-price').innerText = `$${parseFloat(book.price).toFixed(2)}`;
+            
+            // Meta string construction
+            const metaParts = [];
+            if (book.pages) metaParts.push(`${book.pages} pages`);
+            metaParts.push('Hardcover');
+            document.getElementById('book-meta').innerText = metaParts.join(' · ');
+
+            // Impact logic
+            if (book.impact_pct) {
+                document.getElementById('book-impact-text').innerText = `${book.impact_pct}%`;
+                document.getElementById('book-impact-bar').style.width = `${book.impact_pct}%`;
+                document.getElementById('book-impact-desc').innerText = `${book.impact_pct}% of proceeds support the Wisdom of Afara mission.`;
+            }
+
+        } catch (error) {
+            console.error('Failed to load specific book details:', error);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadBookDetails);
+
+    // Quantity Counter Logic
     const qtyMinus = document.getElementById('qty-minus');
     const qtyPlus = document.getElementById('qty-plus');
     const qtyDisplay = document.getElementById('qty-display');
@@ -391,29 +448,53 @@
       qtyDisplay.innerText = currentQty;
     });
 
-    // Add to Cart Logic
+    // Enhanced Add to Cart Logic (Using localStorage)
     const addToCartBtn = document.getElementById('add-to-cart-btn');
-    const cartBadge = document.getElementById('cart-badge');
-    let totalItemsInCart = 0;
 
     addToCartBtn.addEventListener('click', () => {
-      totalItemsInCart += currentQty;
+      // Create a fallback book object if running off static data
+      const bookToAdd = currentBookData || {
+          id: 'static-001',
+          title: document.getElementById('book-title').innerText,
+          price: document.getElementById('book-price').innerText.replace('$', ''),
+          cover_image_url: document.getElementById('book-cover').src,
+      };
+
+      // Fetch existing cart
+      const cart = JSON.parse(localStorage.getItem('afara_cart') || '[]');
       
-      // Update UI to show added state
+      // Check if already in cart
+      const existingItemIndex = cart.findIndex(item => item.id === bookToAdd.id);
+      
+      if (existingItemIndex > -1) {
+          cart[existingItemIndex].quantity += currentQty;
+      } else {
+          cart.push({
+              id: bookToAdd.id,
+              title: bookToAdd.title,
+              price: parseFloat(bookToAdd.price),
+              image: bookToAdd.cover_image_url,
+              quantity: currentQty
+          });
+      }
+
+      // Save and update UI
+      localStorage.setItem('afara_cart', JSON.stringify(cart));
+      updateCartBadge();
+      
+      // UI button feedback
       const originalHTML = addToCartBtn.innerHTML;
       addToCartBtn.innerHTML = `<i data-lucide="check" class="w-5 h-5"></i> Added`;
       addToCartBtn.disabled = true;
       lucide.createIcons();
       
-      // Update cart badge
-      cartBadge.innerText = totalItemsInCart;
-      cartBadge.classList.remove('hidden');
-
       // Revert button after 2 seconds
       setTimeout(() => {
         addToCartBtn.innerHTML = originalHTML;
         addToCartBtn.disabled = false;
         lucide.createIcons();
+        currentQty = 1; // Reset qty
+        qtyDisplay.innerText = currentQty;
       }, 2000);
     });
   </script>
