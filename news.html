@@ -80,6 +80,7 @@
       </div>
     </section>
 
+    <!-- FILTER BAR -->
     <section class="py-6 border-b border-gray-200 sticky top-[72px] bg-white/95 backdrop-blur z-30 shadow-sm">
       <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex flex-wrap gap-2" id="filter-container">
         <button data-cat="All" class="filter-btn px-5 py-2.5 text-xs tracking-[0.2em] uppercase font-sans border transition-colors bg-gold text-white border-gold">All</button>
@@ -90,83 +91,121 @@
       </div>
     </section>
 
-    <div id="dynamic-news-container">
-      <section id="featured-section" class="py-20 bg-white">
-        <div class="max-w-[1440px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-12">
-          <article class="lg:col-span-7 group cursor-pointer">
-            <div class="aspect-[16/10] overflow-hidden mb-8 shadow-md">
-              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219226697_6a7ee26a.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            </div>
-            <div class="eyebrow mb-3 text-gray-500">Letter from Florence · 12 Jan 2026</div>
-            <h2 class="font-display text-4xl md:text-5xl text-gray-900 group-hover:text-gold transition-colors leading-tight mb-5">Why I Started Wisdom of Afara</h2>
-            <p class="text-gray-700 text-xl leading-relaxed mb-5">A letter to the family I never met but always knew. On the night I made the decision, on the prayer my grandmother taught me, on what is at stake.</p>
-            <div class="text-xs tracking-[0.22em] uppercase text-gold font-bold flex items-center gap-2">By Florence Cook <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></div>
-          </article>
-          <div class="lg:col-span-5 space-y-10">
-            <article class="group cursor-pointer grid grid-cols-3 gap-5">
-              <div class="aspect-[4/5] overflow-hidden shadow-sm">
-                <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219342477_a58a4e22.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              </div>
-              <div class="col-span-2">
-                <div class="eyebrow text-[10px] mb-2 text-gray-500">Diaspora Stories · 02 Jan 2026</div>
-                <h3 class="font-display text-xl text-gray-900 group-hover:text-gold transition-colors leading-tight mb-2">A Night of Storytelling in Salvador, Bahia</h3>
-                <p class="text-gray-600 text-sm leading-relaxed mb-3 line-clamp-3">We sat in a courtyard in the Pelourinho. The elders began at sunset. By midnight, twenty children were sleeping on grandmothers' laps. The stories did not stop.</p>
-                <div class="text-[10px] tracking-[0.2em] uppercase text-gold font-bold">By Marcus Beaumont</div>
-              </div>
-            </article>
-            <article class="group cursor-pointer grid grid-cols-3 gap-5">
-              <div class="aspect-[4/5] overflow-hidden shadow-sm">
-                <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219316514_c138e5be.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              </div>
-              <div class="col-span-2">
-                <div class="eyebrow text-[10px] mb-2 text-gray-500">Diaspora Stories · 18 Dec 2025</div>
-                <h3 class="font-display text-xl text-gray-900 group-hover:text-gold transition-colors leading-tight mb-2">Honouring Our Caribbean Elders: Voices from Kingston</h3>
-                <p class="text-gray-600 text-sm leading-relaxed mb-3 line-clamp-3">Auntie Pearl is 91. She remembers a Jamaica before tourism. She sang us a hymn her grandmother taught her, in a language she did not know was Yoruba.</p>
-                <div class="text-[10px] tracking-[0.2em] uppercase text-gold font-bold">By Renée Adams</div>
-              </div>
-            </article>
-            <article class="group cursor-pointer grid grid-cols-3 gap-5">
-              <div class="aspect-[4/5] overflow-hidden shadow-sm">
-                <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219430250_5b282351.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              </div>
-              <div class="col-span-2">
-                <div class="eyebrow text-[10px] mb-2 text-gray-500">Events · 04 Dec 2025</div>
-                <h3 class="font-display text-xl text-gray-900 group-hover:text-gold transition-colors leading-tight mb-2">The Homecoming 2025 A Recap</h3>
-                <p class="text-gray-600 text-sm leading-relaxed mb-3 line-clamp-3">Five days. Three hundred souls. One pilgrimage to Cape Coast. The photos do not quite capture it, but they try.</p>
-                <div class="text-[10px] tracking-[0.2em] uppercase text-gold font-bold">By Editorial Team</div>
-              </div>
-            </article>
+    <!-- FEATURED SECTION (Shown only when 'All' is selected) -->
+    <section id="featured-section" class="py-20 bg-white">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-12">
+        <article class="lg:col-span-7 group cursor-pointer" onclick="window.location.href='news-detail.html?id=static-1'">
+          <div class="aspect-[16/10] overflow-hidden mb-8 shadow-md">
+            <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219226697_6a7ee26a.png" alt="Florence Cook" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
           </div>
-        </div>
-      </section>
+          <div class="eyebrow mb-3 text-gray-500">Letter from Florence · 12 Jan 2026</div>
+          <h2 class="font-display text-4xl md:text-5xl text-gray-900 group-hover:text-gold transition-colors leading-tight mb-5">
+            Why I Started Wisdom of Afara
+          </h2>
+          <p class="text-gray-700 text-xl leading-relaxed mb-5">
+            A letter to the family I never met but always knew. On the night I made the decision, on the prayer my grandmother taught me, on what is at stake.
+          </p>
+          <div class="text-xs tracking-[0.22em] uppercase text-gold font-bold flex items-center gap-2">
+            By Florence Cook <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </div>
+        </article>
 
-      <section class="py-20 bg-gray-50 border-t border-gray-200">
-        <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
-          <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <article class="grid-item group cursor-pointer" data-category="Reflections">
-              <div class="aspect-[4/3] overflow-hidden mb-5 shadow-sm">
-                <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219396085_582dd6c3.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              </div>
-              <div class="eyebrow text-[10px] mb-2 text-gray-500">Reflections · 20 Nov 2025</div>
-              <h3 class="font-display text-xl text-gray-900 group-hover:text-gold transition-colors leading-snug mb-2">On Black British Identity, A Generation On</h3>
-              <p class="text-gray-600 text-sm mb-4 line-clamp-3">My father came on the Windrush. I went to a grammar school. My daughter speaks Yoruba. We are not the same person, but we are the same family.</p>
-              <div class="text-[10px] tracking-[0.2em] uppercase text-gold font-bold">By Dr. Amara Okonkwo</div>
-            </article>
-            <article class="grid-item group cursor-pointer" data-category="Diaspora Stories">
-              <div class="aspect-[4/3] overflow-hidden mb-5 shadow-sm">
-                <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219274444_b9685329.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              </div>
-              <div class="eyebrow text-[10px] mb-2 text-gray-500">Diaspora Stories · 08 Nov 2025</div>
-              <h3 class="font-display text-xl text-gray-900 group-hover:text-gold transition-colors leading-snug mb-2">When African Americans Come Home to Ghana</h3>
-              <p class="text-gray-600 text-sm mb-4 line-clamp-3">Kwame, born Kevin in Memphis, has lived in Accra for nine years. "It is not that everything is easy here. It is that I am no longer explaining myself."</p>
-              <div class="text-[10px] tracking-[0.2em] uppercase text-gold font-bold">By Florence Cook</div>
-            </article>
-          </div>
+        <div class="lg:col-span-5 space-y-10">
+          <article class="group cursor-pointer grid grid-cols-3 gap-5" onclick="window.location.href='news-detail.html?id=static-2'">
+            <div class="aspect-[4/5] overflow-hidden shadow-sm">
+              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219342477_a58a4e22.png" alt="" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div class="col-span-2">
+              <div class="eyebrow text-[10px] mb-2 text-gray-500">Diaspora Stories · 02 Jan 2026</div>
+              <h3 class="font-display text-xl text-gray-900 group-hover:text-gold transition-colors leading-tight mb-2">A Night of Storytelling in Salvador, Bahia</h3>
+              <p class="text-gray-600 text-sm leading-relaxed mb-3 line-clamp-3">We sat in a courtyard in the Pelourinho. The elders began at sunset. By midnight, twenty children were sleeping on grandmothers' laps. The stories did not stop.</p>
+              <div class="text-[10px] tracking-[0.2em] uppercase text-gold font-bold">By Marcus Beaumont</div>
+            </div>
+          </article>
+
+          <article class="group cursor-pointer grid grid-cols-3 gap-5" onclick="window.location.href='news-detail.html?id=static-3'">
+            <div class="aspect-[4/5] overflow-hidden shadow-sm">
+              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219316514_c138e5be.png" alt="" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div class="col-span-2">
+              <div class="eyebrow text-[10px] mb-2 text-gray-500">Diaspora Stories · 18 Dec 2025</div>
+              <h3 class="font-display text-xl text-gray-900 group-hover:text-gold transition-colors leading-tight mb-2">Honouring Our Caribbean Elders: Voices from Kingston</h3>
+              <p class="text-gray-600 text-sm leading-relaxed mb-3 line-clamp-3">Auntie Pearl is 91. She remembers a Jamaica before tourism. She sang us a hymn her grandmother taught her, in a language she did not know was Yoruba.</p>
+              <div class="text-[10px] tracking-[0.2em] uppercase text-gold font-bold">By Renée Adams</div>
+            </div>
+          </article>
+
+          <article class="group cursor-pointer grid grid-cols-3 gap-5" onclick="window.location.href='news-detail.html?id=static-4'">
+            <div class="aspect-[4/5] overflow-hidden shadow-sm">
+              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219430250_5b282351.png" alt="" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div class="col-span-2">
+              <div class="eyebrow text-[10px] mb-2 text-gray-500">Events · 04 Dec 2025</div>
+              <h3 class="font-display text-xl text-gray-900 group-hover:text-gold transition-colors leading-tight mb-2">The Homecoming 2025 A Recap</h3>
+              <p class="text-gray-600 text-sm leading-relaxed mb-3 line-clamp-3">Five days. Three hundred souls. One pilgrimage to Cape Coast. The photos do not quite capture it, but they try.</p>
+              <div class="text-[10px] tracking-[0.2em] uppercase text-gold font-bold">By Editorial Team</div>
+            </div>
+          </article>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
+
+    <!-- MAIN POSTS GRID (DYNAMIC ITEMS PREPEND HERE, STATIC ITEMS REMAIN) -->
+    <section class="py-20 bg-gray-50 border-t border-gray-200">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+        <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          
+          <!-- Static Post 1 -->
+          <article class="grid-item group cursor-pointer static-item" data-category="Reflections" onclick="window.location.href='news-detail.html?id=static-5'">
+            <div class="aspect-[4/3] overflow-hidden mb-5 shadow-sm">
+              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219396085_582dd6c3.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div class="eyebrow text-[10px] mb-2 text-gray-500">Reflections · 20 Nov 2025</div>
+            <h3 class="font-display text-xl text-gray-900 group-hover:text-gold transition-colors leading-snug mb-2">On Black British Identity, A Generation On</h3>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-3">My father came on the Windrush. I went to a grammar school. My daughter speaks Yoruba. We are not the same person, but we are the same family.</p>
+            <div class="text-[10px] tracking-[0.2em] uppercase text-gold font-bold">By Dr. Amara Okonkwo</div>
+          </article>
+
+          <!-- Static Post 2 -->
+          <article class="grid-item group cursor-pointer static-item" data-category="Diaspora Stories" onclick="window.location.href='news-detail.html?id=static-6'">
+            <div class="aspect-[4/3] overflow-hidden mb-5 shadow-sm">
+              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219274444_b9685329.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div class="eyebrow text-[10px] mb-2 text-gray-500">Diaspora Stories · 08 Nov 2025</div>
+            <h3 class="font-display text-xl text-gray-900 group-hover:text-gold transition-colors leading-snug mb-2">When African Americans Come Home to Ghana</h3>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-3">Kwame, born Kevin in Memphis, has lived in Accra for nine years. "It is not that everything is easy here. It is that I am no longer explaining myself."</p>
+            <div class="text-[10px] tracking-[0.2em] uppercase text-gold font-bold">By Florence Cook</div>
+          </article>
+
+          <!-- Static Post 3 -->
+          <article class="grid-item group cursor-pointer static-item" data-category="Reflections" onclick="window.location.href='news-detail.html?id=static-7'">
+            <div class="aspect-[4/3] overflow-hidden mb-5 shadow-sm">
+              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219610302_237d3119.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div class="eyebrow text-[10px] mb-2 text-gray-500">Reflections · 24 Oct 2025</div>
+            <h3 class="font-display text-xl text-gray-900 group-hover:text-gold transition-colors leading-snug mb-2">The Drum That Could Not Be Silenced</h3>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-3">Slave codes banned the drum across the Caribbean and Americas. The drum survived anyway it became the heartbeat of every Black music we now have.</p>
+            <div class="text-[10px] tracking-[0.2em] uppercase text-gold font-bold">By Elder Kwabena Nyong</div>
+          </article>
+
+          <!-- Static Post 4 -->
+          <article class="grid-item group cursor-pointer static-item" data-category="Events" onclick="window.location.href='news-detail.html?id=static-8'">
+            <div class="aspect-[4/3] overflow-hidden mb-5 shadow-sm">
+              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219594169_7354bebe.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div class="eyebrow text-[10px] mb-2 text-gray-500">Events · 15 Sep 2025</div>
+            <h3 class="font-display text-xl text-gray-900 group-hover:text-gold transition-colors leading-snug mb-2">Notting Hill Carnival A Family Affair</h3>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-3">The biggest African gathering in Europe is in West London every August. We took our youth chapter. They did not stop dancing for ten hours.</p>
+            <div class="text-[10px] tracking-[0.2em] uppercase text-gold font-bold">By Editorial Team</div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
   </main>
 
+  <!-- FOOTER -->
   <footer class="bg-gray-50 border-t border-gray-200">
     <div class="border-b border-gray-200">
       <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16 grid lg:grid-cols-2 gap-12 items-center">
@@ -182,76 +221,17 @@
         </form>
       </div>
     </div>
-
     <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
       <div class="lg:col-span-4">
-        <a href="/" class="text-2xl font-display font-bold text-gray-900 block mb-2">
-          Wisdom of <span class="italic text-gold">Afara</span>
-        </a>
+        <a href="/" class="text-2xl font-display font-bold text-gray-900 block mb-2">Wisdom of <span class="italic text-gold">Afara</span></a>
         <p class="text-gray-500 text-sm mb-6 uppercase tracking-widest">A home for the Diaspora</p>
-        <p class="text-gray-600 text-lg italic mb-6">
-          "I am a descendant of those people, so I care about them as much as Africans. This wisdom belongs to all of us."
-        </p>
+        <p class="text-gray-600 text-lg italic mb-6">"I am a descendant of those people, so I care about them as much as Africans. This wisdom belongs to all of us."</p>
         <p class="text-gold text-sm font-semibold uppercase tracking-widest">— Florence Cook, Founder</p>
       </div>
-
-      <div class="lg:col-span-2">
-        <h4 class="eyebrow mb-5 text-gray-900">Discover</h4>
-        <ul class="space-y-3 text-gray-600">
-          <li><a href="about.html" class="hover:text-gold">Our Story</a></li>
-          <li><a href="teachings.html" class="hover:text-gold">Teachings</a></li>
-          <li><a href="diaspora.html" class="hover:text-gold">The Diaspora</a></li>
-          <li><a href="programs.html" class="hover:text-gold">Programs</a></li>
-          <li><a href="news.html" class="hover:text-gold">News & Stories</a></li>
-        </ul>
-      </div>
-
-      <div class="lg:col-span-2">
-        <h4 class="eyebrow mb-5 text-gray-900">Family</h4>
-        <ul class="space-y-3 text-gray-600">
-          <li><a href="diaspora.html#african-americans" class="hover:text-gold">African Americans</a></li>
-          <li><a href="diaspora.html#afro-caribbean" class="hover:text-gold">Afro-Caribbeans</a></li>
-          <li><a href="diaspora.html#afro-latino" class="hover:text-gold">Afro-Latinos</a></li>
-          <li><a href="diaspora.html#european" class="hover:text-gold">Africans in Europe</a></li>
-          <li><a href="diaspora.html#mother-africa" class="hover:text-gold">Mother Africa</a></li>
-        </ul>
-      </div>
-
-      <div class="lg:col-span-2">
-        <h4 class="eyebrow mb-5 text-gray-900">Engage</h4>
-        <ul class="space-y-3 text-gray-600">
-          <li><a href="get-involved.html" class="hover:text-gold">Become a Member</a></li>
-          <li><a href="get-involved.html#volunteer" class="hover:text-gold">Volunteer</a></li>
-          <li><a href="get-involved.html#partner" class="hover:text-gold">Partner</a></li>
-          <li><a href="get-involved.html#donate" class="hover:text-gold">Donate</a></li>
-          <li><a href="get-involved.html#contact" class="hover:text-gold">Contact</a></li>
-        </ul>
-      </div>
-
-      <div class="lg:col-span-2">
-        <h4 class="eyebrow mb-5 text-gray-900">Reach Us</h4>
-        <ul class="space-y-4 text-gray-600">
-          <li class="flex items-start gap-2">
-            <i data-lucide="mail" class="w-4 h-4 mt-1 text-gold shrink-0"></i>
-            <span>hello@wisdomofafara.org</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <i data-lucide="map-pin" class="w-4 h-4 mt-1 text-gold shrink-0"></i>
-            <span>London · Lagos · Brooklyn · Salvador</span>
-          </li>
-        </ul>
-      </div>
     </div>
-
     <div class="border-t border-gray-200">
       <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 uppercase tracking-widest">
         <p>© 2026 Wisdom of Afara · wisdomofafara.org · A registered cultural foundation</p>
-        <div class="flex gap-6">
-          <a href="#" class="hover:text-gold">Privacy</a>
-          <a href="#" class="hover:text-gold">Terms</a>
-          <a href="#" class="hover:text-gold">Press</a>
-          <a href="#" class="hover:text-gold">Built on</a>
-        </div>
       </div>
     </div>
   </footer>
@@ -274,10 +254,7 @@
       </div>
     `;
     document.getElementById('header').appendChild(mobileMenu);
-
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
+    menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
 
     const API_BASE_URL = 'https://afara-aex1.onrender.com';
 
@@ -293,64 +270,13 @@
             const data = await res.json();
             
             if(data && data.length > 0) {
-                const mainContainer = document.getElementById('dynamic-news-container');
+                const grid = document.getElementById('posts-grid');
                 
-                // Construct Featured Section (Top 1 + Side 3)
-                const featured = data[0];
-                const sides = data.slice(1, 4);
-                const rest = data.slice(4);
-
-                let sidesHTML = '';
-                sides.forEach(s => {
-                    const sCover = s.cover_image_url || 'https://via.placeholder.com/400x500';
-                    sidesHTML += `
-                      <article class="group cursor-pointer grid grid-cols-3 gap-5">
-                        <div class="aspect-[4/5] overflow-hidden shadow-sm">
-                          <img src="${sCover}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                        </div>
-                        <div class="col-span-2">
-                          <div class="eyebrow text-[10px] mb-2 text-gray-500">${s.category || 'General'} · ${formatDate(s.date)}</div>
-                          <h3 class="font-display text-xl text-gray-900 group-hover:text-gold transition-colors leading-tight mb-2">${s.title}</h3>
-                          <p class="text-gray-600 text-sm leading-relaxed mb-3 line-clamp-3">${s.excerpt || ''}</p>
-                          <div class="text-[10px] tracking-[0.2em] uppercase text-gold font-bold">By ${s.author || 'Afara Press'}</div>
-                        </div>
-                      </article>
-                    `;
-                });
-
-                const fCover = featured.cover_image_url || 'https://via.placeholder.com/1200x800';
-                const featuredHTML = `
-                  <section id="featured-section" class="py-20 bg-white">
-                    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-12">
-                      <article class="lg:col-span-7 group cursor-pointer">
-                        <div class="aspect-[16/10] overflow-hidden mb-8 shadow-md">
-                          <img src="${fCover}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                        </div>
-                        <div class="eyebrow mb-3 text-gray-500">${featured.category || 'General'} · ${formatDate(featured.date)}</div>
-                        <h2 class="font-display text-4xl md:text-5xl text-gray-900 group-hover:text-gold transition-colors leading-tight mb-5">${featured.title}</h2>
-                        <p class="text-gray-700 text-xl leading-relaxed mb-5">${featured.excerpt || ''}</p>
-                        <div class="text-xs tracking-[0.22em] uppercase text-gold font-bold flex items-center gap-2">By ${featured.author || 'Afara Press'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></div>
-                      </article>
-                      <div class="lg:col-span-5 space-y-10">
-                        ${sidesHTML}
-                      </div>
-                    </div>
-                  </section>
-                `;
-
-                // Construct Grid Section
-                let gridHTML = `
-                  <section class="py-20 bg-gray-50 border-t border-gray-200">
-                    <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
-                      <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                `;
-                
-                // Push ALL items into the grid for filtering purposes, but hide the first 4 initially
-                data.forEach((n, index) => {
-                    const display = index < 4 ? 'display: none;' : 'display: block;';
+                // We reverse the array so that the newest item is inserted at the top of the grid
+                data.reverse().forEach(n => {
                     const cover = n.cover_image_url || 'https://via.placeholder.com/400x300';
-                    gridHTML += `
-                      <article class="grid-item group cursor-pointer" data-category="${n.category}" style="${display}">
+                    const html = `
+                      <article class="grid-item group cursor-pointer" data-category="${n.category}" onclick="window.location.href='news-detail.html?id=${n.id}'">
                         <div class="aspect-[4/3] overflow-hidden mb-5 shadow-sm">
                           <img src="${cover}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                         </div>
@@ -360,15 +286,15 @@
                         <div class="text-[10px] tracking-[0.2em] uppercase text-gold font-bold">By ${n.author || 'Afara Press'}</div>
                       </article>
                     `;
+                    // INSERT AT THE TOP, WITHOUT OVERWRITING STATIC DATA
+                    grid.insertAdjacentHTML('afterbegin', html);
                 });
-                gridHTML += `</div></div></section>`;
 
-                mainContainer.innerHTML = featuredHTML + gridHTML;
                 lucide.createIcons();
                 bindFiltering();
             }
         } catch (e) {
-            console.error('Failed to load live news, defaulting to static.', e);
+            console.error('Failed to load live news, defaulting to static only.', e);
             bindFiltering();
         }
     }
@@ -386,10 +312,7 @@
             const selectedCategory = btn.getAttribute('data-cat');
             if (selectedCategory === 'All') {
               if (featuredSection) featuredSection.style.display = 'block';
-              gridItems.forEach((item, index) => {
-                if (index < 4) item.style.display = 'none';
-                else item.style.display = 'block';
-              });
+              gridItems.forEach(item => item.style.display = 'block');
             } else {
               if (featuredSection) featuredSection.style.display = 'none';
               gridItems.forEach(item => {

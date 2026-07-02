@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Diaspora Region - Wisdom of Afara</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#C9952A',
+            dark: '#1a1a1a',
+            light: '#ffffff',
+            terracotta: '#C1440E',
+          },
+          fontFamily: {
+            display: ['Georgia', 'serif'], 
+            sans: ['system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body { background-color: #ffffff; color: #1a1a1a; margin: 0; padding: 0; }
+    .eyebrow { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: #C9952A; font-weight: 600; }
+    .btn-gold { display: inline-flex; align-items: center; gap: 0.5rem; background-color: #C9952A; color: #ffffff; padding: 0.75rem 1.5rem; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; transition: background-color 0.3s; border: none; cursor: pointer; }
+    .btn-gold:hover { background-color: #a87b20; }
+    .form-input { width: 100%; background-color: #ffffff; border: 1px solid #e5e7eb; padding: 0.75rem 1rem; color: #1a1a1a; font-family: 'Georgia', serif; outline: none; transition: border-color 0.3s; }
+    .form-input:focus { border-color: #C9952A; }
+    .kente-thin { height: 1px; background: linear-gradient(90deg, #C9952A 0%, #a87b20 50%, #C9952A 100%); width: 100%; }
+    
+    .article-content p { margin-bottom: 2rem; font-size: 1.25rem; line-height: 1.8; color: #374151; }
+    .drop-cap::first-letter { font-family: 'Georgia', serif; font-size: 4.5em; float: left; line-height: 0.85; margin: 0.08em 0.12em 0 0; color: #C9952A; font-weight: 700; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md py-4 border-b border-gray-200">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between">
+      <a href="/" class="text-2xl font-display font-bold text-gray-900">Wisdom of <span class="italic text-gold">Afara</span></a>
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="index.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Home</a>
+        <a href="about.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">About</a>
+        <a href="teachings.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Teachings</a>
+        <a href="books.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Bookstore</a>
+        <a href="diaspora.html" class="text-[12px] tracking-[0.2em] uppercase text-gold font-semibold">The Diaspora</a>
+        <a href="programs.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Programs</a>
+        <a href="news.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">News & Stories</a>
+      </nav>
+      <div class="hidden lg:flex items-center gap-5">
+        <a href="get-involved.html" class="btn-gold text-[11px] py-3 px-6">Join the Family</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-24">
+    <!-- REGION HEADER -->
+    <section class="max-w-[1000px] mx-auto px-6 lg:px-12 pt-16 pb-10">
+      <a href="diaspora.html" class="inline-flex items-center gap-2 font-sans text-[11px] tracking-[0.18em] uppercase text-gray-500 hover:text-gold mb-10 transition-colors">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Diaspora
+      </a>
+
+      <div class="flex items-center gap-4 mb-6">
+        <span id="d-eyebrow" class="bg-gray-100 px-3 py-1 text-[10px] tracking-[0.2em] uppercase text-gray-600 border border-gray-200">Region Focus</span>
+      </div>
+
+      <h1 id="d-name" class="font-display text-5xl md:text-7xl text-gray-900 leading-[1.1] mb-8">
+        African Americans
+      </h1>
+
+      <div class="grid grid-cols-2 max-w-sm gap-px bg-gray-200 mt-px border border-gray-200 shadow-sm mb-10">
+        <div class="bg-white p-4 text-center">
+          <div class="eyebrow mb-1">Population</div>
+          <div id="d-pop" class="font-display text-xl text-gold">~46M</div>
+        </div>
+        <div class="bg-white p-4 text-center">
+          <div class="eyebrow mb-1">Reach</div>
+          <div id="d-reach" class="font-display text-sm text-gray-900">USA · Canada</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COVER IMAGE -->
+    <section class="max-w-[1200px] mx-auto px-6 lg:px-12 mb-16 relative">
+      <div class="aspect-[21/9] w-full overflow-hidden shadow-md bg-gray-100 relative">
+        <img id="d-cover" src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219274444_b9685329.jpg" class="w-full h-full object-cover">
+        <div class="absolute bottom-0 left-0 right-0 kente-thin"></div>
+      </div>
+    </section>
+
+    <!-- ARTICLE BODY -->
+    <section class="max-w-[800px] mx-auto px-6 lg:px-12 pb-20">
+      
+      <p id="d-highlight" class="text-2xl text-gold font-display italic leading-relaxed mb-12 pb-8 border-b border-gray-200">
+        From the cotton fields of Mississippi to the brownstones of Harlem, from the migrations to Chicago to the protests in Selma a people who built a country and were never paid for it.
+      </p>
+
+      <div id="d-body" class="article-content font-display mb-16">
+        <p class="drop-cap">African Americans carry a particular gravity in the Diaspora. Most cannot trace a specific village. Most cannot speak the tongue their great-great-grandparents dreamed in. Yet from this very deprivation came one of the most influential cultures the modern world has ever produced...</p>
+      </div>
+
+      <!-- Features Block -->
+      <div id="d-features-container" class="space-y-4 mb-16">
+         <!-- Injected via JS -->
+      </div>
+
+      <!-- Quote Block -->
+      <div id="d-quote-container" class="bg-gray-50 border-l-2 border-gold p-8 mb-16">
+        <i data-lucide="quote" class="w-6 h-6 text-gold mb-4"></i>
+        <p id="d-quote-text" class="font-display italic text-xl text-gray-900 leading-relaxed mb-4">"My great-grandmother could not read. She memorised every Negro spiritual. That, too, is a library."</p>
+        <p id="d-quote-author" class="eyebrow text-gray-600">— Renée, 34 · Atlanta, Georgia</p>
+      </div>
+    </section>
+
+    <!-- COMMENTS SECTION -->
+    <section class="bg-gray-50 py-24 border-t border-gray-200">
+      <div class="max-w-[800px] mx-auto px-6 lg:px-12">
+        <div class="flex items-center gap-3 mb-10">
+          <i data-lucide="message-circle" class="w-6 h-6 text-gold"></i>
+          <h3 class="font-display text-3xl text-gray-900">Regional Discussions</h3>
+        </div>
+
+        <div class="bg-white border border-gray-200 p-8 shadow-sm mb-12">
+          <h4 class="font-sans text-xs tracking-[0.2em] uppercase text-gold font-bold mb-6">Leave your reflection</h4>
+          <form id="comment-form" class="space-y-5">
+            <div class="grid md:grid-cols-2 gap-5">
+              <input type="text" id="comment-name" placeholder="Your name" required class="form-input" />
+              <input type="email" id="comment-email" placeholder="Email (will not be published)" required class="form-input" />
+            </div>
+            <textarea id="comment-body" rows="4" placeholder="Share your thoughts on this region..." required class="form-input resize-none"></textarea>
+            <button type="submit" class="btn-gold" id="submit-comment-btn">Post Reflection</button>
+            <p class="text-xs text-gray-500 font-sans mt-3">Comments are moderated by the elders to maintain a respectful space.</p>
+          </form>
+        </div>
+
+        <div class="space-y-6" id="comments-list">
+           <!-- New comments appear here -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gray-50 border-t border-gray-200">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16 text-center text-xs text-gray-500 uppercase tracking-widest">
+      <p>© 2026 Wisdom of Afara · wisdomofafara.org</p>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+    const API_BASE_URL = 'https://afara-aex1.onrender.com';
+    let currentDiasporaId = null;
+    let currentDiasporaTitle = 'Diaspora Region';
+
+    function formatTextToHTML(text) {
+        if(!text) return '';
+        const paragraphs = text.split(/\n+/).filter(p => p.trim() !== '');
+        let html = '';
+        paragraphs.forEach((p, i) => {
+            html += (i === 0) ? `<p class="drop-cap">${p}</p>` : `<p>${p}</p>`;
+        });
+        return html;
+    }
+
+    async function loadDiasporaDetails() {
+        const params = new URLSearchParams(window.location.search);
+        const regionId = params.get('id');
+        if (!regionId || regionId.startsWith('static-')) return;
+
+        currentDiasporaId = regionId;
+        try {
+            const res = await fetch(`${API_BASE_URL}/api/diaspora`); // You can also make a specific /api/diaspora/:id endpoint if preferred
+            if (!res.ok) throw new Error('Region not found');
+            const dataList = await res.json();
+            const data = dataList.find(d => d.id === regionId);
+            
+            if(!data) throw new Error('Data not found');
+
+            currentDiasporaTitle = data.name;
+            document.title = `${data.name} - Wisdom of Afara`;
+            document.getElementById('page-title').innerText = `${data.name} - Wisdom of Afara`;
+            
+            document.getElementById('d-eyebrow').innerText = data.eyebrow || 'Region Focus';
+            document.getElementById('d-name').innerText = data.name;
+            document.getElementById('d-pop').innerText = data.population || '—';
+            document.getElementById('d-reach').innerText = data.reach || '—';
+            
+            if (data.cover_image_url) document.getElementById('d-cover').src = data.cover_image_url;
+            
+            document.getElementById('d-highlight').innerText = data.highlight || '';
+            document.getElementById('d-body').innerHTML = formatTextToHTML(data.body);
+
+            // Features setup
+            let featuresHTML = '';
+            if(data.feat1_title && data.feat1_text) featuresHTML += `<div class="flex gap-6 py-4 border-t border-gray-200"><div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">${data.feat1_title}</div><div class="text-gray-800 text-lg flex-1">${data.feat1_text}</div></div>`;
+            if(data.feat2_title && data.feat2_text) featuresHTML += `<div class="flex gap-6 py-4 border-t border-gray-200"><div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">${data.feat2_title}</div><div class="text-gray-800 text-lg flex-1">${data.feat2_text}</div></div>`;
+            if(data.feat3_title && data.feat3_text) featuresHTML += `<div class="flex gap-6 py-4 border-t border-gray-200"><div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">${data.feat3_title}</div><div class="text-gray-800 text-lg flex-1">${data.feat3_text}</div></div>`;
+            if(featuresHTML) featuresHTML += `<div class="border-b border-gray-200"></div>`;
+            document.getElementById('d-features-container').innerHTML = featuresHTML;
+
+            // Quote setup
+            if(data.quote_text) {
+                document.getElementById('d-quote-text').innerText = data.quote_text;
+                document.getElementById('d-quote-author').innerText = data.quote_author || '';
+            } else {
+                document.getElementById('d-quote-container').style.display = 'none';
+            }
+
+        } catch (error) {
+            console.error('Failed to load specific region:', error);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadDiasporaDetails);
+
+    // Comment Form Logic
+    document.getElementById('comment-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('comment-name').value;
+      const email = document.getElementById('comment-email').value;
+      const content = document.getElementById('comment-body').value;
+      const btn = document.getElementById('submit-comment-btn');
+      
+      btn.innerText = 'Submitting...'; btn.disabled = true;
+
+      try {
+          const res = await fetch(`${API_BASE_URL}/api/reviews`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                  author_name: name, author_email: email, content: content,
+                  target_type: 'diaspora', target_id: currentDiasporaId, target_title: currentDiasporaTitle
+              })
+          });
+
+          if (!res.ok) throw new Error('Failed to post');
+          
+          const list = document.getElementById('comments-list');
+          const date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+          const newComment = document.createElement('div');
+          newComment.className = 'bg-white border border-gray-200 p-6 shadow-sm border-l-2 border-l-terracotta';
+          newComment.innerHTML = `
+            <div class="flex justify-between items-baseline mb-4 border-b border-gray-100 pb-4">
+              <div>
+                <span class="font-display text-xl text-gray-900">${name}</span>
+                <span class="ml-3 text-[10px] uppercase tracking-widest text-terracotta bg-orange-50 px-2 py-1 rounded-sm">Awaiting Moderation</span>
+              </div>
+              <span class="font-sans text-xs tracking-widest uppercase text-gray-400">${date}</span>
+            </div>
+            <p class="font-display text-gray-700 text-lg leading-relaxed">${content}</p>
+          `;
+          list.insertBefore(newComment, list.firstChild);
+          e.target.reset();
+          alert('Reflection submitted for moderation.');
+      } catch (err) {
+          alert('Error submitting comment.');
+      } finally {
+          btn.innerText = 'Post Reflection'; btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

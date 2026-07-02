@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Journal Entry - Wisdom of Afara</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#C9952A',
+            dark: '#1a1a1a',
+            light: '#ffffff',
+            terracotta: '#C1440E',
+          },
+          fontFamily: {
+            display: ['Georgia', 'serif'], 
+            sans: ['system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body { background-color: #ffffff; color: #1a1a1a; margin: 0; padding: 0; }
+    .eyebrow { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: #C9952A; font-weight: 600; }
+    .btn-gold { display: inline-flex; align-items: center; gap: 0.5rem; background-color: #C9952A; color: #ffffff; padding: 0.75rem 1.5rem; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; transition: background-color 0.3s; border: none; cursor: pointer; }
+    .btn-gold:hover { background-color: #a87b20; }
+    .form-input { width: 100%; background-color: #ffffff; border: 1px solid #e5e7eb; padding: 0.75rem 1rem; color: #1a1a1a; font-family: 'Georgia', serif; outline: none; transition: border-color 0.3s; }
+    .form-input:focus { border-color: #C9952A; }
+    .article-content p { margin-bottom: 2rem; font-size: 1.25rem; line-height: 1.8; color: #374151; }
+    .drop-cap::first-letter { font-family: 'Georgia', serif; font-size: 4.5em; float: left; line-height: 0.85; margin: 0.08em 0.12em 0 0; color: #C9952A; font-weight: 700; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md py-4 border-b border-gray-200">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between">
+      <a href="/" class="text-2xl font-display font-bold text-gray-900">Wisdom of <span class="italic text-gold">Afara</span></a>
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="index.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Home</a>
+        <a href="about.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">About</a>
+        <a href="teachings.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Teachings</a>
+        <a href="books.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Bookstore</a>
+        <a href="diaspora.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">The Diaspora</a>
+        <a href="programs.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Programs</a>
+        <a href="news.html" class="text-[12px] tracking-[0.2em] uppercase text-gold font-semibold">News & Stories</a>
+      </nav>
+      <div class="hidden lg:flex items-center gap-5">
+        <a href="get-involved.html" class="btn-gold text-[11px] py-3 px-6">Join the Family</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-24">
+    <section class="max-w-[1000px] mx-auto px-6 lg:px-12 pt-16 pb-10">
+      <a href="news.html" class="inline-flex items-center gap-2 font-sans text-[11px] tracking-[0.18em] uppercase text-gray-500 hover:text-gold mb-10 transition-colors">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Journal
+      </a>
+
+      <div class="flex items-center gap-4 mb-6">
+        <span id="n-category" class="bg-gray-100 px-3 py-1 text-[10px] tracking-[0.2em] uppercase text-gray-600 border border-gray-200">Letter from Florence</span>
+      </div>
+
+      <h1 id="n-title" class="font-display text-5xl md:text-6xl text-gray-900 leading-[1.1] mb-8">
+        Why I Started Wisdom of Afara
+      </h1>
+
+      <div class="flex items-center justify-between border-y border-gray-200 py-6 mb-10">
+        <div class="flex items-center gap-4 text-sm font-sans">
+          <img id="n-author-img" src="https://via.placeholder.com/100?text=F" alt="Author" class="w-12 h-12 rounded-full object-cover border border-gold shadow-sm" />
+          <div>
+            <p id="n-author-name" class="font-bold text-gray-900 tracking-wider uppercase text-[10px]">Florence Cook</p>
+            <p class="text-gray-500 text-xs">Author</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-6 text-gray-400 font-sans text-xs tracking-widest uppercase">
+          <span id="n-date">12 Jan 2026</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- COVER IMAGE -->
+    <section class="max-w-[1200px] mx-auto px-6 lg:px-12 mb-16">
+      <div class="aspect-[21/9] w-full overflow-hidden shadow-md bg-gray-100">
+        <img id="n-cover" src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219226697_6a7ee26a.png" class="w-full h-full object-cover">
+      </div>
+    </section>
+
+    <!-- ARTICLE BODY -->
+    <section class="max-w-[800px] mx-auto px-6 lg:px-12 pb-20">
+      <div id="n-body" class="article-content font-display">
+        <p class="drop-cap">A letter to the family I never met but always knew. On the night I made the decision, on the prayer my grandmother taught me, on what is at stake.</p>
+        <p>This space is a sanctuary built out of memory. We are piecing together a map drawn by our ancestors...</p>
+      </div>
+    </section>
+
+    <!-- COMMENTS SECTION -->
+    <section class="bg-gray-50 py-24 border-t border-gray-200">
+      <div class="max-w-[800px] mx-auto px-6 lg:px-12">
+        <div class="flex items-center gap-3 mb-10">
+          <i data-lucide="message-circle" class="w-6 h-6 text-gold"></i>
+          <h3 class="font-display text-3xl text-gray-900">Community Reflections</h3>
+        </div>
+
+        <div class="bg-white border border-gray-200 p-8 shadow-sm mb-12">
+          <h4 class="font-sans text-xs tracking-[0.2em] uppercase text-gold font-bold mb-6">Leave your reflection</h4>
+          <form id="comment-form" class="space-y-5">
+            <div class="grid md:grid-cols-2 gap-5">
+              <input type="text" id="comment-name" placeholder="Your name" required class="form-input" />
+              <input type="email" id="comment-email" placeholder="Email (will not be published)" required class="form-input" />
+            </div>
+            <textarea id="comment-body" rows="4" placeholder="Share your thoughts..." required class="form-input resize-none"></textarea>
+            <button type="submit" class="btn-gold" id="submit-comment-btn">Post Reflection</button>
+            <p class="text-xs text-gray-500 font-sans mt-3">Comments are moderated by the elders to maintain a respectful space.</p>
+          </form>
+        </div>
+
+        <div class="space-y-6" id="comments-list">
+          <div class="bg-white border border-gray-200 p-6 shadow-sm">
+            <div class="flex justify-between items-baseline mb-4 border-b border-gray-100 pb-4">
+              <span class="font-display text-xl text-gray-900">Marcus T.</span>
+              <span class="font-sans text-xs tracking-widest uppercase text-gray-400">14 Jan 2026</span>
+            </div>
+            <p class="font-display text-gray-700 text-lg leading-relaxed">Thank you for this beautiful letter. I feel seen.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-50 border-t border-gray-200">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16 text-center text-xs text-gray-500 uppercase tracking-widest">
+      <p>© 2026 Wisdom of Afara · wisdomofafara.org</p>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+    const API_BASE_URL = 'https://afara-aex1.onrender.com';
+    let currentNewsId = null;
+    let currentNewsTitle = 'Journal Entry';
+
+    function formatTextToHTML(text) {
+        if(!text) return '';
+        const paragraphs = text.split(/\n+/).filter(p => p.trim() !== '');
+        let html = '';
+        paragraphs.forEach((p, i) => {
+            html += (i === 0) ? `<p class="drop-cap">${p}</p>` : `<p>${p}</p>`;
+        });
+        return html;
+    }
+
+    async function loadNewsDetails() {
+        const params = new URLSearchParams(window.location.search);
+        const newsId = params.get('id');
+        if (!newsId || newsId.startsWith('static-')) return; 
+
+        currentNewsId = newsId;
+        try {
+            const res = await fetch(`${API_BASE_URL}/api/news/${newsId}`);
+            if (!res.ok) throw new Error('News not found');
+            const data = await res.json();
+            
+            currentNewsTitle = data.title;
+            document.title = `${data.title} - Wisdom of Afara`;
+            document.getElementById('page-title').innerText = `${data.title} - Wisdom of Afara`;
+            document.getElementById('n-category').innerText = data.category || 'Update';
+            document.getElementById('n-title').innerText = data.title;
+            document.getElementById('n-author-name').innerText = data.author || 'Afara Press';
+            document.getElementById('n-author-img').src = `https://via.placeholder.com/100?text=${(data.author || 'A').charAt(0)}`;
+            
+            if(data.date) {
+                const d = new Date(data.date);
+                document.getElementById('n-date').innerText = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+            }
+            if (data.cover_image_url) document.getElementById('n-cover').src = data.cover_image_url;
+            if (data.body) document.getElementById('n-body').innerHTML = formatTextToHTML(data.body);
+
+        } catch (error) {
+            console.error('Failed to load specific news:', error);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadNewsDetails);
+
+    // Comment Form Logic
+    document.getElementById('comment-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('comment-name').value;
+      const email = document.getElementById('comment-email').value;
+      const content = document.getElementById('comment-body').value;
+      const btn = document.getElementById('submit-comment-btn');
+      
+      btn.innerText = 'Submitting...'; btn.disabled = true;
+
+      try {
+          const res = await fetch(`${API_BASE_URL}/api/reviews`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                  author_name: name, author_email: email, content: content,
+                  target_type: 'news', target_id: currentNewsId, target_title: currentNewsTitle
+              })
+          });
+
+          if (!res.ok) throw new Error('Failed to post');
+          
+          const list = document.getElementById('comments-list');
+          const date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+          const newComment = document.createElement('div');
+          newComment.className = 'bg-white border border-gray-200 p-6 shadow-sm border-l-2 border-l-terracotta';
+          newComment.innerHTML = `
+            <div class="flex justify-between items-baseline mb-4 border-b border-gray-100 pb-4">
+              <div>
+                <span class="font-display text-xl text-gray-900">${name}</span>
+                <span class="ml-3 text-[10px] uppercase tracking-widest text-terracotta bg-orange-50 px-2 py-1 rounded-sm">Awaiting Moderation</span>
+              </div>
+              <span class="font-sans text-xs tracking-widest uppercase text-gray-400">${date}</span>
+            </div>
+            <p class="font-display text-gray-700 text-lg leading-relaxed">${content}</p>
+          `;
+          list.insertBefore(newComment, list.firstChild);
+          e.target.reset();
+          alert('Reflection submitted for moderation.');
+      } catch (err) {
+          alert('Error submitting comment.');
+      } finally {
+          btn.innerText = 'Post Reflection'; btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
