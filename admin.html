@@ -79,7 +79,6 @@
 </head>
 <body class="font-sans antialiased overflow-x-hidden">
 
-<!-- ===================== LOGIN SCREEN ===================== -->
 <div id="login-screen">
   <div class="login-card">
     <div class="text-center mb-8">
@@ -103,10 +102,8 @@
   </div>
 </div>
 
-<!-- ===================== MAIN APP ===================== -->
 <div id="main-app" class="hidden flex h-screen overflow-hidden">
 
-  <!-- SIDEBAR -->
   <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 transform -translate-x-full lg:translate-x-0 lg:static lg:flex-shrink-0 flex flex-col shadow-sm">
     <div class="h-16 flex items-center px-6 border-b border-gray-200 justify-between">
       <span class="text-xl font-display font-bold text-gray-900">Afara <span class="italic text-gold">Admin</span></span>
@@ -125,11 +122,17 @@
       </a>
 
       <div class="eyebrow px-3 mb-2 mt-8 text-gray-400">Content</div>
+      <a class="nav-item" onclick="switchTab('news', this)">
+        <i data-lucide="newspaper" class="w-5 h-5 text-gray-400"></i> News &amp; Journal
+      </a>
       <a class="nav-item" onclick="switchTab('teachings', this)">
         <i data-lucide="file-text" class="w-5 h-5 text-gray-400"></i> Teachings
       </a>
+      <a class="nav-item" onclick="switchTab('diaspora', this)">
+        <i data-lucide="globe-2" class="w-5 h-5 text-gray-400"></i> Diaspora Regions
+      </a>
       <a class="nav-item" onclick="switchTab('books', this)">
-        <i data-lucide="book-open" class="w-5 h-5 text-gray-400"></i> Bookstore Inventory
+        <i data-lucide="book-open" class="w-5 h-5 text-gray-400"></i> Bookstore
       </a>
       <a class="nav-item" onclick="switchTab('programs', this)">
         <i data-lucide="calendar" class="w-5 h-5 text-gray-400"></i> Programs &amp; Events
@@ -156,10 +159,8 @@
 
   <div id="sidebar-overlay" class="fixed inset-0 bg-gray-900 bg-opacity-50 z-40 hidden lg:hidden"></div>
 
-  <!-- MAIN CONTENT -->
   <div class="flex-1 flex flex-col overflow-hidden">
 
-    <!-- TOPBAR -->
     <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 shadow-sm flex-shrink-0">
       <div class="flex items-center gap-4">
         <button id="open-sidebar" class="lg:hidden text-gray-500 hover:text-gray-900">
@@ -179,10 +180,8 @@
       </div>
     </header>
 
-    <!-- SCROLLABLE AREA -->
     <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 p-6 lg:p-8">
 
-      <!-- ============ TAB: DASHBOARD ============ -->
       <div id="tab-dashboard" class="tab-content active">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
@@ -194,7 +193,6 @@
           </div>
         </div>
 
-        <!-- Stats Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <div class="stat-card">
             <div class="flex justify-between items-start mb-4">
@@ -230,7 +228,6 @@
           </div>
         </div>
 
-        <!-- Recent Teachings Table -->
         <div class="bg-white rounded-lg border border-gray-200 shadow-sm mb-8 overflow-hidden">
           <div class="p-6 border-b border-gray-200 flex justify-between items-center">
             <h3 class="font-display text-xl text-gray-900">Recent Teachings</h3>
@@ -248,7 +245,6 @@
           </div>
         </div>
 
-        <!-- Recent Activity -->
         <div class="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
           <h3 class="font-display text-xl text-gray-900 mb-6">Recent Activity</h3>
           <div id="recent-activity-container" class="space-y-5">
@@ -257,7 +253,6 @@
         </div>
       </div>
 
-      <!-- ============ TAB: ANALYTICS ============ -->
       <div id="tab-analytics" class="tab-content">
         <div class="mb-8">
           <h2 class="font-display text-2xl text-gray-900">Analytics</h2>
@@ -293,7 +288,34 @@
         </div>
       </div>
 
-      <!-- ============ TAB: TEACHINGS ============ -->
+      <div id="tab-news" class="tab-content">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+          <div>
+            <h2 class="font-display text-2xl text-gray-900">News & Journal</h2>
+            <p class="text-sm text-gray-500 mt-1">Manage letters, diaspora stories, and event recaps.</p>
+          </div>
+          <div class="flex gap-3 items-center">
+            <div class="search-wrap">
+              <i data-lucide="search"></i>
+              <input type="text" id="news-search" class="search-input" placeholder="Search news..." oninput="filterNews(this.value)">
+            </div>
+            <button class="btn-gold" onclick="openNewsModal()"><i data-lucide="plus" class="w-4 h-4"></i> Add Post</button>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr><th>Cover</th><th>Title</th><th>Category</th><th>Date</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="news-body">
+                <tr><td colspan="5" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
       <div id="tab-teachings" class="tab-content">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
@@ -322,7 +344,34 @@
         </div>
       </div>
 
-      <!-- ============ TAB: BOOKS ============ -->
+      <div id="tab-diaspora" class="tab-content">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+          <div>
+            <h2 class="font-display text-2xl text-gray-900">Diaspora Regions</h2>
+            <p class="text-sm text-gray-500 mt-1">Manage the content for the 5 global branches of the family.</p>
+          </div>
+          <div class="flex gap-3 items-center">
+            <div class="search-wrap">
+              <i data-lucide="search"></i>
+              <input type="text" id="diaspora-search" class="search-input" placeholder="Search regions..." oninput="filterDiaspora(this.value)">
+            </div>
+            <button class="btn-gold" onclick="openDiasporaModal()"><i data-lucide="plus" class="w-4 h-4"></i> Add Region</button>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr><th>Image</th><th>Name</th><th>Slug</th><th>Population</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="diaspora-body">
+                <tr><td colspan="5" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
       <div id="tab-books" class="tab-content">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
@@ -351,7 +400,6 @@
         </div>
       </div>
 
-      <!-- ============ TAB: PROGRAMS ============ -->
       <div id="tab-programs" class="tab-content">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
@@ -374,7 +422,6 @@
         </div>
       </div>
 
-      <!-- ============ TAB: MEMBERS ============ -->
       <div id="tab-members" class="tab-content">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
@@ -400,7 +447,6 @@
         </div>
       </div>
 
-      <!-- ============ TAB: REVIEWS ============ -->
       <div id="tab-reviews" class="tab-content">
         <div class="mb-8">
           <h2 class="font-display text-2xl text-gray-900">Comments &amp; Reviews</h2>
@@ -411,7 +457,6 @@
         </div>
       </div>
 
-      <!-- ============ TAB: DONATIONS ============ -->
       <div id="tab-donations" class="tab-content">
         <div class="mb-8">
           <h2 class="font-display text-2xl text-gray-900">Donations</h2>
@@ -449,9 +494,137 @@
   </div>
 </div>
 
-<!-- ===================== MODALS ===================== -->
+<div class="modal-overlay" id="news-modal">
+  <div class="modal-box">
+    <div class="flex justify-between items-center p-6 border-b border-gray-200">
+      <h3 class="font-display text-xl text-gray-900" id="news-modal-title">Add Journal Post</h3>
+      <button onclick="closeModal('news-modal')" class="text-gray-400 hover:text-gray-700"><i data-lucide="x" class="w-5 h-5"></i></button>
+    </div>
+    <div class="p-6 space-y-5">
+      <input type="hidden" id="news-id">
+      <div>
+        <label class="form-label">Title <span class="text-red-500">*</span></label>
+        <input type="text" id="n-title" class="form-input" placeholder="Letter from Florence">
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="form-label">Category <span class="text-red-500">*</span></label>
+          <select id="n-category" class="form-input">
+            <option value="Letter from Florence">Letter from Florence</option>
+            <option value="Diaspora Stories">Diaspora Stories</option>
+            <option value="Events">Events</option>
+            <option value="Reflections">Reflections</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label">Date</label>
+          <input type="date" id="n-date" class="form-input">
+        </div>
+      </div>
+      <div>
+        <label class="form-label">Author</label>
+        <input type="text" id="n-author" class="form-input" placeholder="Florence Cook">
+      </div>
+      <div>
+        <label class="form-label">Excerpt (Short Preview)</label>
+        <textarea id="n-excerpt" class="form-input" rows="2" placeholder="A brief summary for the grid..."></textarea>
+      </div>
+      <div>
+        <label class="form-label">Full Body Content</label>
+        <textarea id="n-body" class="form-input" rows="5" placeholder="Full article text..."></textarea>
+      </div>
+      <div>
+        <label class="form-label">Cover Image</label>
+        <input type="file" id="n-cover" class="form-input" accept="image/jpeg,image/png,image/webp">
+        <p class="text-xs text-gray-400 mt-1">JPEG, PNG, or WebP. Max 10MB.</p>
+        <div id="n-cover-preview" class="mt-2 hidden">
+          <img id="n-cover-img" src="" alt="" class="h-24 rounded object-cover">
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-end gap-3 p-6 border-t border-gray-200">
+      <button class="btn-outline" onclick="closeModal('news-modal')">Cancel</button>
+      <button class="btn-gold" id="news-save-btn" onclick="saveNews()"><i data-lucide="save" class="w-4 h-4"></i> Save Post</button>
+    </div>
+  </div>
+</div>
 
-<!-- Teaching Modal -->
+<div class="modal-overlay" id="diaspora-modal">
+  <div class="modal-box">
+    <div class="flex justify-between items-center p-6 border-b border-gray-200">
+      <h3 class="font-display text-xl text-gray-900" id="diaspora-modal-title">Edit Region</h3>
+      <button onclick="closeModal('diaspora-modal')" class="text-gray-400 hover:text-gray-700"><i data-lucide="x" class="w-5 h-5"></i></button>
+    </div>
+    <div class="p-6 space-y-5">
+      <input type="hidden" id="diaspora-id">
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="form-label">Region Name <span class="text-red-500">*</span></label>
+          <input type="text" id="d-name" class="form-input" placeholder="African Americans">
+        </div>
+        <div>
+          <label class="form-label">Slug (URL safe) <span class="text-red-500">*</span></label>
+          <input type="text" id="d-slug" class="form-input" placeholder="african-americans">
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="form-label">Population</label>
+          <input type="text" id="d-population" class="form-input" placeholder="~46M">
+        </div>
+        <div>
+          <label class="form-label">Reach</label>
+          <input type="text" id="d-reach" class="form-input" placeholder="USA · Canada">
+        </div>
+      </div>
+      <div>
+        <label class="form-label">Eyebrow (Subtitle)</label>
+        <input type="text" id="d-eyebrow" class="form-input" placeholder="Souls of the South & North">
+      </div>
+      <div>
+        <label class="form-label">Highlight Text (Gold, Italic)</label>
+        <textarea id="d-highlight" class="form-input" rows="2" placeholder="From the cotton fields..."></textarea>
+      </div>
+      <div>
+        <label class="form-label">Main Body Description</label>
+        <textarea id="d-body" class="form-input" rows="4" placeholder="African Americans carry a particular gravity..."></textarea>
+      </div>
+      
+      <h4 class="font-bold text-gray-900 border-b border-gray-200 pb-2 pt-2">Cultural Features</h4>
+      <div class="grid grid-cols-12 gap-2 items-center">
+        <input type="text" id="d-f1-title" class="col-span-4 form-input" placeholder="Music">
+        <input type="text" id="d-f1-text" class="col-span-8 form-input" placeholder="Gospel · Blues · Jazz · Hip-Hop">
+      </div>
+      <div class="grid grid-cols-12 gap-2 items-center">
+        <input type="text" id="d-f2-title" class="col-span-4 form-input" placeholder="Movements">
+        <input type="text" id="d-f2-text" class="col-span-8 form-input" placeholder="Abolition · Civil Rights">
+      </div>
+      <div class="grid grid-cols-12 gap-2 items-center">
+        <input type="text" id="d-f3-title" class="col-span-4 form-input" placeholder="Sacred Sites">
+        <input type="text" id="d-f3-text" class="col-span-8 form-input" placeholder="Selma · Tulsa · Harlem">
+      </div>
+
+      <h4 class="font-bold text-gray-900 border-b border-gray-200 pb-2 pt-2">Featured Quote</h4>
+      <div class="grid grid-cols-1 gap-4">
+        <textarea id="d-quote" class="form-input" rows="2" placeholder='"My great-grandmother could not read..."'></textarea>
+        <input type="text" id="d-quote-author" class="form-input" placeholder="— Renée, 34 · Atlanta">
+      </div>
+
+      <div>
+        <label class="form-label">Cover Image</label>
+        <input type="file" id="d-cover" class="form-input" accept="image/jpeg,image/png,image/webp">
+        <div id="d-cover-preview" class="mt-2 hidden">
+          <img id="d-cover-img" src="" alt="" class="h-24 rounded object-cover">
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-end gap-3 p-6 border-t border-gray-200">
+      <button class="btn-outline" onclick="closeModal('diaspora-modal')">Cancel</button>
+      <button class="btn-gold" id="diaspora-save-btn" onclick="saveDiaspora()"><i data-lucide="save" class="w-4 h-4"></i> Save Region</button>
+    </div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="teaching-modal">
   <div class="modal-box">
     <div class="flex justify-between items-center p-6 border-b border-gray-200">
@@ -510,7 +683,6 @@
   </div>
 </div>
 
-<!-- Book Modal -->
 <div class="modal-overlay" id="book-modal">
   <div class="modal-box">
     <div class="flex justify-between items-center p-6 border-b border-gray-200">
@@ -573,7 +745,6 @@
   </div>
 </div>
 
-<!-- Program Modal -->
 <div class="modal-overlay" id="program-modal">
   <div class="modal-box">
     <div class="flex justify-between items-center p-6 border-b border-gray-200">
@@ -633,7 +804,6 @@
   </div>
 </div>
 
-<!-- Confirm Delete Modal -->
 <div class="modal-overlay" id="confirm-modal">
   <div class="modal-box" style="max-width:400px">
     <div class="p-6 text-center">
@@ -650,13 +820,14 @@
   </div>
 </div>
 
-<!-- ===================== SCRIPTS ===================== -->
 <script>
 const API_BASE = 'https://afara-aex1.onrender.com/api';
 let ADMIN_API_KEY = '';
 let allTeachings = [];
 let allBooks = [];
 let allMembers = [];
+let allNews = [];
+let allDiaspora = [];
 let chartsInitialized = false;
 
 // ==========================================
@@ -714,6 +885,25 @@ function confirmDelete(message, callback) {
   document.getElementById('confirm-yes-btn').onclick = () => { closeModal('confirm-modal'); callback(); };
   document.getElementById('confirm-modal').classList.add('open');
 }
+
+// Preview general image inputs
+function handleImagePreview(inputId, previewBoxId, imgId) {
+  document.getElementById(inputId).addEventListener('change', function() {
+    if (this.files && this.files[0]) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        document.getElementById(imgId).src = e.target.result;
+        document.getElementById(previewBoxId).classList.remove('hidden');
+      };
+      reader.readAsDataURL(this.files[0]);
+    }
+  });
+}
+handleImagePreview('t-cover', 't-cover-preview', 't-cover-img');
+handleImagePreview('b-cover', 'b-cover-preview', 'b-cover-img');
+handleImagePreview('n-cover', 'n-cover-preview', 'n-cover-img');
+handleImagePreview('d-cover', 'd-cover-preview', 'd-cover-img');
+
 
 // ==========================================
 // LOGIN / LOGOUT
@@ -784,7 +974,6 @@ function doLogout() {
   fetch(API_BASE + '/admin/logout', { method: 'POST', credentials: 'include' }).catch(() => {});
 }
 
-// Enter key on login
 document.getElementById('login-password').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
 document.getElementById('login-username').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
 
@@ -794,7 +983,9 @@ document.getElementById('login-username').addEventListener('keydown', e => { if 
 const tabTitles = {
   dashboard: 'Dashboard Overview',
   analytics: 'Analytics',
+  news: 'News & Journal',
   teachings: 'Teachings',
+  diaspora: 'Diaspora Regions',
   books: 'Bookstore Inventory',
   programs: 'Programs & Events',
   members: 'Members',
@@ -809,8 +1000,10 @@ function switchTab(tabId, el) {
   if (el) el.classList.add('active');
   document.getElementById('topbar-title').textContent = tabTitles[tabId] || '';
   closeSidebar();
-  // Lazy load
+  
+  if (tabId === 'news') loadNews();
   if (tabId === 'teachings') loadTeachings();
+  if (tabId === 'diaspora') loadDiaspora();
   if (tabId === 'books') loadBooks();
   if (tabId === 'programs') loadPrograms();
   if (tabId === 'members') loadMembers();
@@ -862,11 +1055,6 @@ async function loadDashboard() {
       document.getElementById('stat-books').textContent = (s.books || 0).toLocaleString();
       document.getElementById('stat-funds').textContent = fmtCurrency(s.donations_total || 0);
       document.getElementById('stat-teachings').textContent = (s.teachings || 0).toLocaleString();
-    } else {
-      document.getElementById('stat-members').textContent = '—';
-      document.getElementById('stat-books').textContent = '—';
-      document.getElementById('stat-funds').textContent = '—';
-      document.getElementById('stat-teachings').textContent = '—';
     }
 
     // Teachings table
@@ -879,8 +1067,6 @@ async function loadDashboard() {
       } else {
         tbody.innerHTML = data.slice(0, 5).map(t => buildTeachingRow(t, true)).join('');
       }
-    } else {
-      tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-red-400 text-sm">Could not load teachings.</td></tr>';
     }
 
     // Activity
@@ -896,18 +1082,258 @@ async function loadDashboard() {
           return '<div class="flex items-start gap-4"><div class="w-8 h-8 rounded-full ' + bg + ' flex items-center justify-center shrink-0 mt-0.5"><i data-lucide="' + icon + '" class="w-4 h-4 ' + color + '"></i></div><div><p class="text-sm text-gray-900">' + a.message + '</p><p class="text-xs text-gray-500 mt-0.5">' + a.time_ago + '</p></div></div>';
         }).join('');
       }
-    } else {
-      actEl.innerHTML = '<p class="text-gray-400 text-sm italic">Activity feed not available.</p>';
     }
-
     lucide.createIcons();
-  } catch (e) {
-    console.error('Dashboard error:', e);
-  }
+  } catch (e) { console.error(e); }
 }
 
 // ==========================================
-// TEACHINGS CRUD
+// NEWS CRUD
+// ==========================================
+async function loadNews() {
+  const tbody = document.getElementById('news-body');
+  tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>';
+  lucide.createIcons();
+  try {
+    const res = await fetch(API_BASE + '/news', { headers: apiHeaders() });
+    if (!res.ok) throw new Error('Failed');
+    allNews = await res.json();
+    renderNews(allNews);
+  } catch (e) {
+    tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-red-400 text-sm">Could not load news.</td></tr>';
+  }
+}
+
+function renderNews(list) {
+  const tbody = document.getElementById('news-body');
+  if (!list.length) {
+    tbody.innerHTML = '<tr><td colspan="5"><div class="empty-state"><i data-lucide="newspaper" class="w-10 h-10 mx-auto mb-2"></i><p>No posts yet.</p><button class="btn-gold mt-4" onclick="openNewsModal()">Add First Post</button></div></td></tr>';
+  } else {
+    tbody.innerHTML = list.map(n => {
+      const cover = n.cover_image_url
+        ? '<img src="' + n.cover_image_url + '" class="img-thumb" onerror="this.style.display=\'none\'">'
+        : '<div class="img-thumb bg-gray-100 flex items-center justify-center"><i data-lucide="image" class="w-4 h-4 text-gray-300"></i></div>';
+      return '<tr><td>' + cover + '</td><td><div class="font-medium text-gray-900 max-w-xs truncate">' + n.title + '</div><div class="text-xs text-gray-500 truncate mt-1">' + (n.excerpt || '') + '</div></td><td><span class="badge-gray">' + (n.category || '—') + '</span></td><td>' + fmtDate(n.date) + '</td><td><div class="flex gap-1"><button class="action-btn" onclick="editNews(' + JSON.stringify(n).replace(/"/g, '&quot;') + ')"><i data-lucide="edit-2" class="w-4 h-4"></i></button><button class="action-btn del" onclick="deleteNews(\'' + n.id + '\')"><i data-lucide="trash-2" class="w-4 h-4"></i></button></div></td></tr>';
+    }).join('');
+  }
+  lucide.createIcons();
+}
+
+function filterNews(q) {
+  const f = allNews.filter(n => n.title.toLowerCase().includes(q.toLowerCase()) || (n.category || '').toLowerCase().includes(q.toLowerCase()));
+  renderNews(f);
+}
+
+function openNewsModal() {
+  document.getElementById('news-id').value = '';
+  ['n-title','n-author','n-date','n-excerpt','n-body'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('n-category').value = 'Letter from Florence';
+  document.getElementById('n-cover').value = '';
+  document.getElementById('n-cover-preview').classList.add('hidden');
+  document.getElementById('news-modal-title').textContent = 'Add Journal Post';
+  document.getElementById('news-save-btn').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Save Post';
+  lucide.createIcons();
+  openModal('news-modal');
+}
+
+function editNews(n) {
+  document.getElementById('news-id').value = n.id;
+  document.getElementById('n-title').value = n.title || '';
+  document.getElementById('n-category').value = n.category || '';
+  document.getElementById('n-date').value = n.date ? n.date.split('T')[0] : '';
+  document.getElementById('n-author').value = n.author || '';
+  document.getElementById('n-excerpt').value = n.excerpt || '';
+  document.getElementById('n-body').value = n.body || '';
+  document.getElementById('n-cover').value = '';
+  if (n.cover_image_url) {
+    document.getElementById('n-cover-img').src = n.cover_image_url;
+    document.getElementById('n-cover-preview').classList.remove('hidden');
+  } else {
+    document.getElementById('n-cover-preview').classList.add('hidden');
+  }
+  document.getElementById('news-modal-title').textContent = 'Edit Journal Post';
+  document.getElementById('news-save-btn').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Update Post';
+  lucide.createIcons();
+  openModal('news-modal');
+}
+
+async function saveNews() {
+  const id = document.getElementById('news-id').value;
+  const title = document.getElementById('n-title').value.trim();
+  if (!title) { showToast('Title is required.', 'error'); return; }
+
+  setLoading('news-save-btn', true);
+  try {
+    const fd = new FormData();
+    fd.append('title', title);
+    fd.append('category', document.getElementById('n-category').value);
+    fd.append('date', document.getElementById('n-date').value);
+    fd.append('author', document.getElementById('n-author').value);
+    fd.append('excerpt', document.getElementById('n-excerpt').value);
+    fd.append('body', document.getElementById('n-body').value);
+    const file = document.getElementById('n-cover').files[0];
+    if (file) fd.append('coverImage', file);
+
+    const url = id ? API_BASE + '/admin/news/' + id : API_BASE + '/admin/news';
+    const method = id ? 'PUT' : 'POST';
+    const res = await fetch(url, { method, headers: { 'x-admin-api-key': ADMIN_API_KEY }, body: fd });
+
+    if (!res.ok) throw new Error('Save failed');
+    showToast(id ? 'Post updated!' : 'Post created!');
+    closeModal('news-modal');
+    loadNews();
+  } catch (e) {
+    showToast('Error saving post.', 'error');
+  } finally {
+    setLoading('news-save-btn', false, '<i data-lucide="save" class="w-4 h-4"></i> Save Post');
+    lucide.createIcons();
+  }
+}
+
+async function deleteNews(id) {
+  confirmDelete('Delete this post permanently?', async () => {
+    try {
+      await fetch(API_BASE + '/admin/news/' + id, { method: 'DELETE', headers: apiHeaders() });
+      showToast('Post deleted.');
+      loadNews();
+    } catch { showToast('Failed to delete.', 'error'); }
+  });
+}
+
+// ==========================================
+// DIASPORA CRUD
+// ==========================================
+async function loadDiaspora() {
+  const tbody = document.getElementById('diaspora-body');
+  tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>';
+  lucide.createIcons();
+  try {
+    const res = await fetch(API_BASE + '/diaspora', { headers: apiHeaders() });
+    if (!res.ok) throw new Error('Failed');
+    allDiaspora = await res.json();
+    renderDiaspora(allDiaspora);
+  } catch (e) {
+    tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-red-400 text-sm">Could not load regions.</td></tr>';
+  }
+}
+
+function renderDiaspora(list) {
+  const tbody = document.getElementById('diaspora-body');
+  if (!list.length) {
+    tbody.innerHTML = '<tr><td colspan="5"><div class="empty-state"><i data-lucide="globe-2" class="w-10 h-10 mx-auto mb-2"></i><p>No regions created.</p><button class="btn-gold mt-4" onclick="openDiasporaModal()">Add First Region</button></div></td></tr>';
+  } else {
+    tbody.innerHTML = list.map(d => {
+      const cover = d.cover_image_url
+        ? '<img src="' + d.cover_image_url + '" class="img-thumb" onerror="this.style.display=\'none\'">'
+        : '<div class="img-thumb bg-gray-100 flex items-center justify-center"><i data-lucide="image" class="w-4 h-4 text-gray-300"></i></div>';
+      return '<tr><td>' + cover + '</td><td><div class="font-medium text-gray-900">' + d.name + '</div></td><td><span class="badge-gray">' + d.slug + '</span></td><td>' + (d.population || '—') + '</td><td><div class="flex gap-1"><button class="action-btn" onclick="editDiaspora(' + JSON.stringify(d).replace(/"/g, '&quot;') + ')"><i data-lucide="edit-2" class="w-4 h-4"></i></button><button class="action-btn del" onclick="deleteDiaspora(\'' + d.id + '\')"><i data-lucide="trash-2" class="w-4 h-4"></i></button></div></td></tr>';
+    }).join('');
+  }
+  lucide.createIcons();
+}
+
+function filterDiaspora(q) {
+  const f = allDiaspora.filter(d => d.name.toLowerCase().includes(q.toLowerCase()) || d.slug.toLowerCase().includes(q.toLowerCase()));
+  renderDiaspora(f);
+}
+
+function openDiasporaModal() {
+  document.getElementById('diaspora-id').value = '';
+  ['d-name','d-slug','d-population','d-reach','d-eyebrow','d-highlight','d-body','d-f1-title','d-f1-text','d-f2-title','d-f2-text','d-f3-title','d-f3-text','d-quote','d-quote-author'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('d-cover').value = '';
+  document.getElementById('d-cover-preview').classList.add('hidden');
+  document.getElementById('diaspora-modal-title').textContent = 'Add Diaspora Region';
+  document.getElementById('diaspora-save-btn').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Save Region';
+  lucide.createIcons();
+  openModal('diaspora-modal');
+}
+
+function editDiaspora(d) {
+  document.getElementById('diaspora-id').value = d.id;
+  document.getElementById('d-name').value = d.name || '';
+  document.getElementById('d-slug').value = d.slug || '';
+  document.getElementById('d-population').value = d.population || '';
+  document.getElementById('d-reach').value = d.reach || '';
+  document.getElementById('d-eyebrow').value = d.eyebrow || '';
+  document.getElementById('d-highlight').value = d.highlight || '';
+  document.getElementById('d-body').value = d.body || '';
+  document.getElementById('d-f1-title').value = d.feat1_title || '';
+  document.getElementById('d-f1-text').value = d.feat1_text || '';
+  document.getElementById('d-f2-title').value = d.feat2_title || '';
+  document.getElementById('d-f2-text').value = d.feat2_text || '';
+  document.getElementById('d-f3-title').value = d.feat3_title || '';
+  document.getElementById('d-f3-text').value = d.feat3_text || '';
+  document.getElementById('d-quote').value = d.quote_text || '';
+  document.getElementById('d-quote-author').value = d.quote_author || '';
+  
+  document.getElementById('d-cover').value = '';
+  if (d.cover_image_url) {
+    document.getElementById('d-cover-img').src = d.cover_image_url;
+    document.getElementById('d-cover-preview').classList.remove('hidden');
+  } else {
+    document.getElementById('d-cover-preview').classList.add('hidden');
+  }
+  document.getElementById('diaspora-modal-title').textContent = 'Edit Region';
+  document.getElementById('diaspora-save-btn').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Update Region';
+  lucide.createIcons();
+  openModal('diaspora-modal');
+}
+
+async function saveDiaspora() {
+  const id = document.getElementById('diaspora-id').value;
+  const name = document.getElementById('d-name').value.trim();
+  const slug = document.getElementById('d-slug').value.trim();
+  if (!name || !slug) { showToast('Name and Slug are required.', 'error'); return; }
+
+  setLoading('diaspora-save-btn', true);
+  try {
+    const fd = new FormData();
+    fd.append('name', name); fd.append('slug', slug);
+    fd.append('population', document.getElementById('d-population').value);
+    fd.append('reach', document.getElementById('d-reach').value);
+    fd.append('eyebrow', document.getElementById('d-eyebrow').value);
+    fd.append('highlight', document.getElementById('d-highlight').value);
+    fd.append('body', document.getElementById('d-body').value);
+    fd.append('feat1_title', document.getElementById('d-f1-title').value);
+    fd.append('feat1_text', document.getElementById('d-f1-text').value);
+    fd.append('feat2_title', document.getElementById('d-f2-title').value);
+    fd.append('feat2_text', document.getElementById('d-f2-text').value);
+    fd.append('feat3_title', document.getElementById('d-f3-title').value);
+    fd.append('feat3_text', document.getElementById('d-f3-text').value);
+    fd.append('quote_text', document.getElementById('d-quote').value);
+    fd.append('quote_author', document.getElementById('d-quote-author').value);
+    
+    const file = document.getElementById('d-cover').files[0];
+    if (file) fd.append('coverImage', file);
+
+    const url = id ? API_BASE + '/admin/diaspora/' + id : API_BASE + '/admin/diaspora';
+    const method = id ? 'PUT' : 'POST';
+    const res = await fetch(url, { method, headers: { 'x-admin-api-key': ADMIN_API_KEY }, body: fd });
+
+    if (!res.ok) throw new Error('Save failed');
+    showToast(id ? 'Region updated!' : 'Region created!');
+    closeModal('diaspora-modal');
+    loadDiaspora();
+  } catch (e) {
+    showToast('Error saving region.', 'error');
+  } finally {
+    setLoading('diaspora-save-btn', false, '<i data-lucide="save" class="w-4 h-4"></i> Save Region');
+    lucide.createIcons();
+  }
+}
+
+async function deleteDiaspora(id) {
+  confirmDelete('Delete this region permanently?', async () => {
+    try {
+      await fetch(API_BASE + '/admin/diaspora/' + id, { method: 'DELETE', headers: apiHeaders() });
+      showToast('Region deleted.');
+      loadDiaspora();
+    } catch { showToast('Failed to delete.', 'error'); }
+  });
+}
+
+// ==========================================
+// TEACHINGS CRUD (existing)
 // ==========================================
 async function loadTeachings() {
   const tbody = document.getElementById('teachings-body');
@@ -984,17 +1410,6 @@ function editTeaching(t) {
   lucide.createIcons();
   openModal('teaching-modal');
 }
-
-document.getElementById('t-cover').addEventListener('change', function() {
-  if (this.files && this.files[0]) {
-    const reader = new FileReader();
-    reader.onload = e => {
-      document.getElementById('t-cover-img').src = e.target.result;
-      document.getElementById('t-cover-preview').classList.remove('hidden');
-    };
-    reader.readAsDataURL(this.files[0]);
-  }
-});
 
 async function saveTeaching() {
   const id = document.getElementById('teaching-id').value;
@@ -1120,17 +1535,6 @@ function editBook(b) {
   lucide.createIcons();
   openModal('book-modal');
 }
-
-document.getElementById('b-cover').addEventListener('change', function() {
-  if (this.files && this.files[0]) {
-    const reader = new FileReader();
-    reader.onload = e => {
-      document.getElementById('b-cover-img').src = e.target.result;
-      document.getElementById('b-cover-preview').classList.remove('hidden');
-    };
-    reader.readAsDataURL(this.files[0]);
-  }
-});
 
 async function saveBook() {
   const id = document.getElementById('book-id').value;
@@ -1374,7 +1778,6 @@ async function loadDonations() {
     const res = await fetch(API_BASE + '/admin/donations', { headers: apiHeaders() });
     if (!res.ok) throw new Error();
     const data = await res.json();
-    // Stats
     const total = data.reduce((s, d) => s + parseFloat(d.amount || 0), 0);
     const avg = data.length ? total / data.length : 0;
     document.getElementById('don-total').textContent = fmtCurrency(total);

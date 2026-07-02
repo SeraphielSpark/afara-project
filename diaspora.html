@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Diaspora - Wisdom of Afara</title>
   
-  <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Tailwind Configuration -->
   <script>
     tailwind.config = {
       theme: {
@@ -27,64 +24,21 @@
       }
     }
   </script>
-
-  <!-- Lucide Icons via CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
-    body {
-      background-color: #ffffff;
-      color: #1a1a1a;
-      margin: 0;
-      padding: 0;
-    }
-    .eyebrow {
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #C9952A;
-      font-weight: 600;
-    }
-    .btn-gold {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background-color: #C9952A;
-      color: #ffffff;
-      padding: 0.75rem 1.5rem;
-      font-size: 0.875rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      transition: background-color 0.3s;
-    }
-    .btn-gold:hover {
-      background-color: #a87b20;
-    }
-    .kente-thin {
-      height: 1px;
-      background: linear-gradient(90deg, #C9952A 0%, #a87b20 50%, #C9952A 100%);
-      width: 100%;
-    }
-    .gold-underline {
-      position: relative;
-      display: inline-block;
-    }
-    .gold-underline::after {
-      content: "";
-      position: absolute;
-      left: 0; right: 0; bottom: -4px;
-      height: 1px;
-      background: #C9952A;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
-    }
+    body { background-color: #ffffff; color: #1a1a1a; margin: 0; padding: 0; }
+    .eyebrow { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: #C9952A; font-weight: 600; }
+    .btn-gold { display: inline-flex; align-items: center; gap: 0.5rem; background-color: #C9952A; color: #ffffff; padding: 0.75rem 1.5rem; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; transition: background-color 0.3s; }
+    .btn-gold:hover { background-color: #a87b20; }
+    .kente-thin { height: 1px; background: linear-gradient(90deg, #C9952A 0%, #a87b20 50%, #C9952A 100%); width: 100%; }
+    .gold-underline { position: relative; display: inline-block; }
+    .gold-underline::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: #C9952A; transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
     .gold-underline:hover::after { transform: scaleX(1); }
   </style>
 </head>
 <body class="bg-white text-gray-900 font-sans antialiased">
 
-  <!-- HEADER -->
   <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md py-4 border-b border-gray-200">
     <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between">
       <a href="/" class="text-2xl font-display font-bold text-gray-900">
@@ -109,7 +63,6 @@
   </header>
 
   <main class="pt-24">
-    <!-- PAGE HERO -->
     <section class="relative py-24 lg:py-32 bg-gray-50 border-b border-gray-200">
       <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center gap-12">
         <div class="flex-1">
@@ -127,7 +80,6 @@
       </div>
     </section>
 
-    <!-- INTRO / QUOTE -->
     <section class="py-32 bg-white">
       <div class="max-w-3xl mx-auto px-6 text-center">
         <i data-lucide="quote" class="w-10 h-10 text-gold mx-auto mb-6"></i>
@@ -138,314 +90,73 @@
       </div>
     </section>
 
-    <!-- REGIONS -->
-    
-    <!-- 1. African Americans -->
-    <section id="african-americans" class="py-32 scroll-mt-24 bg-gray-50 border-t border-gray-200">
-      <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
-        <div class="grid lg:grid-cols-12 gap-12 items-start">
-          <div class="lg:col-span-6">
-            <div class="aspect-[4/5] overflow-hidden relative shadow-md">
-              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219274444_b9685329.jpg" alt="African Americans" class="w-full h-full object-cover" />
-              <div class="absolute bottom-0 left-0 right-0 kente-thin"></div>
-            </div>
-            <div class="grid grid-cols-2 gap-px bg-gray-200 mt-px border-x border-b border-gray-200 shadow-sm">
-              <div class="bg-white p-6">
-                <div class="eyebrow mb-2">Population</div>
-                <div class="font-display text-3xl text-gold">~46M</div>
+    <div id="dynamic-diaspora-container">
+      
+      <section id="african-americans" class="py-32 scroll-mt-24 bg-gray-50 border-t border-gray-200 region-section">
+        <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+          <div class="grid lg:grid-cols-12 gap-12 items-start">
+            <div class="lg:col-span-6">
+              <div class="aspect-[4/5] overflow-hidden relative shadow-md">
+                <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219274444_b9685329.jpg" class="w-full h-full object-cover" />
+                <div class="absolute bottom-0 left-0 right-0 kente-thin"></div>
               </div>
-              <div class="bg-white p-6">
-                <div class="eyebrow mb-2">Reach</div>
-                <div class="font-display text-lg text-gray-900 leading-tight">USA · Canada</div>
+              <div class="grid grid-cols-2 gap-px bg-gray-200 mt-px border-x border-b border-gray-200 shadow-sm">
+                <div class="bg-white p-6"><div class="eyebrow mb-2">Population</div><div class="font-display text-3xl text-gold">~46M</div></div>
+                <div class="bg-white p-6"><div class="eyebrow mb-2">Reach</div><div class="font-display text-lg text-gray-900 leading-tight">USA · Canada</div></div>
               </div>
             </div>
-          </div>
-          <div class="lg:col-span-6">
-            <div class="eyebrow mb-5">Souls of the South & North</div>
-            <h2 class="font-display text-5xl md:text-6xl text-gray-900 leading-[0.95] mb-8">African Americans</h2>
-            
-            <p class="text-2xl text-gold font-display italic leading-relaxed mb-8">
-              From the cotton fields of Mississippi to the brownstones of Harlem, from the migrations to Chicago to the protests in Selma a people who built a country and were never paid for it.
-            </p>
-            <p class="text-lg text-gray-700 leading-relaxed mb-10">
-              African Americans carry a particular gravity in the Diaspora. Most cannot trace a specific village. Most cannot speak the tongue their great-great-grandparents dreamed in. Yet from this very deprivation came one of the most influential cultures the modern world has ever produced: gospel, blues, jazz, hip-hop, civil rights, Black church theology, the literature of Toni Morrison and James Baldwin, the leadership of Du Bois, King and Malcolm. We honour the genius forged in chains, and we walk together with our American kin in the long unfinished work of liberation.
-            </p>
-            
-            <div class="space-y-4 mb-10">
-              <div class="flex gap-6 py-4 border-t border-gray-200">
-                <div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Music</div>
-                <div class="text-gray-800 text-lg flex-1">Gospel · Blues · Jazz · Soul · Hip-Hop</div>
+            <div class="lg:col-span-6">
+              <div class="eyebrow mb-5">Souls of the South & North</div>
+              <h2 class="font-display text-5xl md:text-6xl text-gray-900 leading-[0.95] mb-8">African Americans</h2>
+              <p class="text-2xl text-gold font-display italic leading-relaxed mb-8">From the cotton fields of Mississippi to the brownstones of Harlem, from the migrations to Chicago to the protests in Selma a people who built a country and were never paid for it.</p>
+              <p class="text-lg text-gray-700 leading-relaxed mb-10">African Americans carry a particular gravity in the Diaspora. Most cannot trace a specific village. Most cannot speak the tongue their great-great-grandparents dreamed in. Yet from this very deprivation came one of the most influential cultures the modern world has ever produced...</p>
+              <div class="space-y-4 mb-10">
+                <div class="flex gap-6 py-4 border-t border-gray-200"><div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Music</div><div class="text-gray-800 text-lg flex-1">Gospel · Blues · Jazz · Soul · Hip-Hop</div></div>
+                <div class="flex gap-6 py-4 border-t border-gray-200"><div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Movements</div><div class="text-gray-800 text-lg flex-1">Abolition · Harlem Renaissance · Civil Rights · BLM</div></div>
+                <div class="flex gap-6 py-4 border-t border-gray-200"><div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Sacred Sites</div><div class="text-gray-800 text-lg flex-1">Selma · Tulsa · Harlem · Mississippi Delta</div></div>
+                <div class="border-b border-gray-200"></div>
               </div>
-              <div class="flex gap-6 py-4 border-t border-gray-200">
-                <div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Movements</div>
-                <div class="text-gray-800 text-lg flex-1">Abolition · Harlem Renaissance · Civil Rights · BLM</div>
+              <div class="bg-gray-100 border-l-2 border-gold p-8">
+                <i data-lucide="quote" class="w-6 h-6 text-gold mb-4"></i>
+                <p class="font-display italic text-xl text-gray-900 leading-relaxed mb-4">"My great-grandmother could not read. She memorised every Negro spiritual. That, too, is a library."</p>
+                <p class="eyebrow text-gray-600">— Renée, 34 · Atlanta, Georgia</p>
               </div>
-              <div class="flex gap-6 py-4 border-t border-gray-200">
-                <div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Sacred Sites</div>
-                <div class="text-gray-800 text-lg flex-1">Selma · Tulsa · Harlem · Mississippi Delta</div>
-              </div>
-              <div class="border-b border-gray-200"></div>
             </div>
-
-            <div class="bg-gray-100 border-l-2 border-gold p-8">
-              <i data-lucide="quote" class="w-6 h-6 text-gold mb-4"></i>
-              <p class="font-display italic text-xl text-gray-900 leading-relaxed mb-4">"My great-grandmother could not read. She memorised every Negro spiritual. That, too, is a library."</p>
-              <p class="eyebrow text-gray-600">— Renée, 34 · Atlanta, Georgia</p>
-            </div>
-
-            <a href="teachings.html" class="inline-flex items-center gap-3 mt-10 gold-underline font-sans text-xs tracking-[0.22em] uppercase text-gold font-bold">
-              Explore Teachings on African Americans <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-            </a>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- 2. Afro-Caribbeans -->
-    <section id="afro-caribbean" class="py-32 scroll-mt-24 bg-white border-t border-gray-200">
-      <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
-        <div class="grid lg:grid-cols-12 gap-12 items-start lg:[&>*:first-child]:order-2">
-          <div class="lg:col-span-6">
-            <div class="aspect-[4/5] overflow-hidden relative shadow-md">
-              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219316514_c138e5be.png" alt="Afro-Caribbeans" class="w-full h-full object-cover" />
-              <div class="absolute bottom-0 left-0 right-0 kente-thin"></div>
-            </div>
-            <div class="grid grid-cols-2 gap-px bg-gray-200 mt-px border-x border-b border-gray-200 shadow-sm">
-              <div class="bg-gray-50 p-6">
-                <div class="eyebrow mb-2">Population</div>
-                <div class="font-display text-3xl text-gold">~44M</div>
+      <section id="afro-caribbean" class="py-32 scroll-mt-24 bg-white border-t border-gray-200 region-section">
+        <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+          <div class="grid lg:grid-cols-12 gap-12 items-start lg:[&>*:first-child]:order-2">
+            <div class="lg:col-span-6">
+              <div class="aspect-[4/5] overflow-hidden relative shadow-md">
+                <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219316514_c138e5be.png" class="w-full h-full object-cover" />
+                <div class="absolute bottom-0 left-0 right-0 kente-thin"></div>
               </div>
-              <div class="bg-gray-50 p-6">
-                <div class="eyebrow mb-2">Reach</div>
-                <div class="font-display text-lg text-gray-900 leading-tight">Jamaica · Haiti · Cuba · Trinidad & 22 more</div>
+              <div class="grid grid-cols-2 gap-px bg-gray-200 mt-px border-x border-b border-gray-200 shadow-sm">
+                <div class="bg-gray-50 p-6"><div class="eyebrow mb-2">Population</div><div class="font-display text-3xl text-gold">~44M</div></div>
+                <div class="bg-gray-50 p-6"><div class="eyebrow mb-2">Reach</div><div class="font-display text-lg text-gray-900 leading-tight">Jamaica · Haiti · Cuba · Trinidad & 22 more</div></div>
               </div>
             </div>
-          </div>
-          <div class="lg:col-span-6">
-            <div class="eyebrow mb-5">Islands of the Diaspora</div>
-            <h2 class="font-display text-5xl md:text-6xl text-gray-900 leading-[0.95] mb-8">Afro-Caribbeans</h2>
-            
-            <p class="text-2xl text-gold font-display italic leading-relaxed mb-8">
-              Jamaica, Haiti, Trinidad, Barbados, Cuba, the Dominican Republic, Guyana a sea of small nations whose cultural reach spans the planet.
-            </p>
-            <p class="text-lg text-gray-700 leading-relaxed mb-10">
-              The Caribbean is where the Diaspora first improvised itself into existence. Stolen Africans of dozens of ethnicities Igbo, Yoruba, Akan, Kongo, Mandinka were thrown together on plantations, and from that violent collision came something new and astonishing: Vodou and Santería, reggae and calypso, soca and dancehall, the first free Black republic on earth. Caribbean people taught the Diaspora how to keep dancing under empire. They are our memory keepers and our rhythm.
-            </p>
-            
-            <div class="space-y-4 mb-10">
-              <div class="flex gap-6 py-4 border-t border-gray-200">
-                <div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Spiritualities</div>
-                <div class="text-gray-800 text-lg flex-1">Vodou · Santería · Rastafari · Obeah</div>
-              </div>
-              <div class="flex gap-6 py-4 border-t border-gray-200">
-                <div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Music</div>
-                <div class="text-gray-800 text-lg flex-1">Reggae · Calypso · Soca · Dancehall · Mento</div>
-              </div>
-              <div class="flex gap-6 py-4 border-t border-gray-200">
-                <div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Liberators</div>
-                <div class="text-gray-800 text-lg flex-1">Toussaint · Marley · Garvey · C.L.R. James</div>
-              </div>
-              <div class="border-b border-gray-200"></div>
-            </div>
-
-            <div class="bg-gray-50 border-l-2 border-gold p-8">
-              <i data-lucide="quote" class="w-6 h-6 text-gold mb-4"></i>
-              <p class="font-display italic text-xl text-gray-900 leading-relaxed mb-4">"In Jamaica we don't say goodbye. We say walk good. The road is long, but you are not walking alone."</p>
-              <p class="eyebrow text-gray-600">— Devon, 58 · Kingston, Jamaica</p>
-            </div>
-
-            <a href="teachings.html" class="inline-flex items-center gap-3 mt-10 gold-underline font-sans text-xs tracking-[0.22em] uppercase text-gold font-bold">
-              Explore Teachings on Afro-Caribbeans <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. Afro-Latinos -->
-    <section id="afro-latino" class="py-32 scroll-mt-24 bg-gray-50 border-t border-gray-200">
-      <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
-        <div class="grid lg:grid-cols-12 gap-12 items-start">
-          <div class="lg:col-span-6">
-            <div class="aspect-[4/5] overflow-hidden relative shadow-md">
-              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219342477_a58a4e22.png" alt="Afro-Latinos" class="w-full h-full object-cover" />
-              <div class="absolute bottom-0 left-0 right-0 kente-thin"></div>
-            </div>
-            <div class="grid grid-cols-2 gap-px bg-gray-200 mt-px border-x border-b border-gray-200 shadow-sm">
-              <div class="bg-white p-6">
-                <div class="eyebrow mb-2">Population</div>
-                <div class="font-display text-3xl text-gold">~133M</div>
-              </div>
-              <div class="bg-white p-6">
-                <div class="eyebrow mb-2">Reach</div>
-                <div class="font-display text-lg text-gray-900 leading-tight">Brazil · Colombia · Mexico · 18 more</div>
+            <div class="lg:col-span-6">
+              <div class="eyebrow mb-5">Islands of the Diaspora</div>
+              <h2 class="font-display text-5xl md:text-6xl text-gray-900 leading-[0.95] mb-8">Afro-Caribbeans</h2>
+              <p class="text-2xl text-gold font-display italic leading-relaxed mb-8">Jamaica, Haiti, Trinidad, Barbados, Cuba, the Dominican Republic, Guyana a sea of small nations whose cultural reach spans the planet.</p>
+              <p class="text-lg text-gray-700 leading-relaxed mb-10">The Caribbean is where the Diaspora first improvised itself into existence. Stolen Africans of dozens of ethnicities were thrown together on plantations...</p>
+              <div class="space-y-4 mb-10">
+                <div class="flex gap-6 py-4 border-t border-gray-200"><div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Spiritualities</div><div class="text-gray-800 text-lg flex-1">Vodou · Santería · Rastafari · Obeah</div></div>
+                <div class="flex gap-6 py-4 border-t border-gray-200"><div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Music</div><div class="text-gray-800 text-lg flex-1">Reggae · Calypso · Soca · Dancehall · Mento</div></div>
+                <div class="flex gap-6 py-4 border-t border-gray-200"><div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Liberators</div><div class="text-gray-800 text-lg flex-1">Toussaint · Marley · Garvey · C.L.R. James</div></div>
+                <div class="border-b border-gray-200"></div>
               </div>
             </div>
-          </div>
-          <div class="lg:col-span-6">
-            <div class="eyebrow mb-5">Latin Roots, African Soul</div>
-            <h2 class="font-display text-5xl md:text-6xl text-gray-900 leading-[0.95] mb-8">Afro-Latinos</h2>
-            
-            <p class="text-2xl text-gold font-display italic leading-relaxed mb-8">
-              Brazil, Colombia, Venezuela, Mexico, Peru, the Dominican Republic Latin America is, by population, the largest Diaspora region on earth.
-            </p>
-            <p class="text-lg text-gray-700 leading-relaxed mb-10">
-              More Africans were brought to Brazil alone than to all of North America combined. Salvador da Bahia is, in many ways, the most African city outside of Africa. From Candomblé to capoeira, from samba to cumbia, from the Quilombo dos Palmares to the Garífuna of Honduras Afro-Latinos hold an enormous, often invisible, share of the Diaspora story. We are working to make them visible to themselves, to their nations, and to the world.
-            </p>
-            
-            <div class="space-y-4 mb-10">
-              <div class="flex gap-6 py-4 border-t border-gray-200">
-                <div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Religions</div>
-                <div class="text-gray-800 text-lg flex-1">Candomblé · Umbanda · Palo · Lucumí</div>
-              </div>
-              <div class="flex gap-6 py-4 border-t border-gray-200">
-                <div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Movements</div>
-                <div class="text-gray-800 text-lg flex-1">Quilombo · Garífuna · Cimarrón · Negritude</div>
-              </div>
-              <div class="flex gap-6 py-4 border-t border-gray-200">
-                <div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Music</div>
-                <div class="text-gray-800 text-lg flex-1">Samba · Cumbia · Bomba · Capoeira songs</div>
-              </div>
-              <div class="border-b border-gray-200"></div>
-            </div>
-
-            <div class="bg-gray-100 border-l-2 border-gold p-8">
-              <i data-lucide="quote" class="w-6 h-6 text-gold mb-4"></i>
-              <p class="font-display italic text-xl text-gray-900 leading-relaxed mb-4">"My grandmother prayed to Yemanjá at the sea every Friday. I did not know she was praying to Africa."</p>
-              <p class="eyebrow text-gray-600">— Luana, 29 · Salvador, Bahia</p>
-            </div>
-
-            <a href="teachings.html" class="inline-flex items-center gap-3 mt-10 gold-underline font-sans text-xs tracking-[0.22em] uppercase text-gold font-bold">
-              Explore Teachings on Afro-Latinos <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. Africans in Europe -->
-    <section id="european" class="py-32 scroll-mt-24 bg-white border-t border-gray-200">
-      <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
-        <div class="grid lg:grid-cols-12 gap-12 items-start lg:[&>*:first-child]:order-2">
-          <div class="lg:col-span-6">
-            <div class="aspect-[4/5] overflow-hidden relative shadow-md">
-              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219396085_582dd6c3.png" alt="Africans in Europe" class="w-full h-full object-cover" />
-              <div class="absolute bottom-0 left-0 right-0 kente-thin"></div>
-            </div>
-            <div class="grid grid-cols-2 gap-px bg-gray-200 mt-px border-x border-b border-gray-200 shadow-sm">
-              <div class="bg-gray-50 p-6">
-                <div class="eyebrow mb-2">Population</div>
-                <div class="font-display text-3xl text-gold">~12M</div>
-              </div>
-              <div class="bg-gray-50 p-6">
-                <div class="eyebrow mb-2">Reach</div>
-                <div class="font-display text-lg text-gray-900 leading-tight">UK · France · Portugal · 15 more</div>
-              </div>
-            </div>
-          </div>
-          <div class="lg:col-span-6">
-            <div class="eyebrow mb-5">Diaspora in the Old World</div>
-            <h2 class="font-display text-5xl md:text-6xl text-gray-900 leading-[0.95] mb-8">Africans in Europe</h2>
-            
-            <p class="text-2xl text-gold font-display italic leading-relaxed mb-8">
-              London, Paris, Lisbon, Amsterdam, Berlin, Rome children and grandchildren of empire, building Black Britain, Black France, Black Germany.
-            </p>
-            <p class="text-lg text-gray-700 leading-relaxed mb-10">
-              Europe's African Diaspora is in many ways the youngest and the most rapidly growing. Some are the descendants of post-war Caribbean migrations to the United Kingdom and France. Others arrived from Senegal, Ghana, Nigeria, Somalia, Angola and Cape Verde in the 1970s, 80s and 90s. They are remaking the cultures of their host cities but they often live with a particular question: am I European, African, both, neither? Wisdom of Afara was born in this very community, and we are committed to giving European Africans the cultural anchor empire has tried to deny them.
-            </p>
-            
-            <div class="space-y-4 mb-10">
-              <div class="flex gap-6 py-4 border-t border-gray-200">
-                <div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Communities</div>
-                <div class="text-gray-800 text-lg flex-1">Black British · Afro-French · Afro-Portuguese</div>
-              </div>
-              <div class="flex gap-6 py-4 border-t border-gray-200">
-                <div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Cultural Forces</div>
-                <div class="text-gray-800 text-lg flex-1">Grime · Afrobeats UK · Afro-French rap · Notting Hill Carnival</div>
-              </div>
-              <div class="flex gap-6 py-4 border-t border-gray-200">
-                <div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Voices</div>
-                <div class="text-gray-800 text-lg flex-1">Reni Eddo-Lodge · Léopold Senghor · Stuart Hall</div>
-              </div>
-              <div class="border-b border-gray-200"></div>
-            </div>
-
-            <div class="bg-gray-50 border-l-2 border-gold p-8">
-              <i data-lucide="quote" class="w-6 h-6 text-gold mb-4"></i>
-              <p class="font-display italic text-xl text-gray-900 leading-relaxed mb-4">"My father came from Lagos with one suitcase. I went to Cambridge. The story between those two facts is the whole story."</p>
-              <p class="eyebrow text-gray-600">— Tomi, 31 · London, England</p>
-            </div>
-
-            <a href="teachings.html" class="inline-flex items-center gap-3 mt-10 gold-underline font-sans text-xs tracking-[0.22em] uppercase text-gold font-bold">
-              Explore Teachings on Africans in Europe <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. Mother Africa -->
-    <section id="mother-africa" class="py-32 scroll-mt-24 bg-gray-50 border-t border-gray-200">
-      <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
-        <div class="grid lg:grid-cols-12 gap-12 items-start">
-          <div class="lg:col-span-6">
-            <div class="aspect-[4/5] overflow-hidden relative shadow-md">
-              <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219430250_5b282351.png" alt="Mother Africa" class="w-full h-full object-cover" />
-              <div class="absolute bottom-0 left-0 right-0 kente-thin"></div>
-            </div>
-            <div class="grid grid-cols-2 gap-px bg-gray-200 mt-px border-x border-b border-gray-200 shadow-sm">
-              <div class="bg-white p-6">
-                <div class="eyebrow mb-2">Population</div>
-                <div class="font-display text-3xl text-gold">~1.4B</div>
-              </div>
-              <div class="bg-white p-6">
-                <div class="eyebrow mb-2">Reach</div>
-                <div class="font-display text-lg text-gray-900 leading-tight">54 sovereign nations</div>
-              </div>
-            </div>
-          </div>
-          <div class="lg:col-span-6">
-            <div class="eyebrow mb-5">The Continent that Birthed Us All</div>
-            <h2 class="font-display text-5xl md:text-6xl text-gray-900 leading-[0.95] mb-8">Mother Africa</h2>
-            
-            <p class="text-2xl text-gold font-display italic leading-relaxed mb-8">
-              54 nations. Over 2,000 languages. The cradle of humanity itself. The mother who never forgot.
-            </p>
-            <p class="text-lg text-gray-700 leading-relaxed mb-10">
-              No Diaspora project is honest without the continent at its centre. Africa is not a backdrop, not an idea, not a memory it is a living, sovereign, breathtakingly diverse home of 1.4 billion people, with the world's youngest population and its oldest civilisations. From the libraries of Timbuktu to the mountains of Ethiopia, from the Yoruba kingdoms to the Bantu migrations, from Lagos studios to Kigali tech startups Africa is the present and the future, not only the past. We honour those who never left, who held the fire while we were taken, and we listen to them as elders.
-            </p>
-            
-            <div class="space-y-4 mb-10">
-              <div class="flex gap-6 py-4 border-t border-gray-200">
-                <div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Civilisations</div>
-                <div class="text-gray-800 text-lg flex-1">Kemet · Mali · Songhai · Great Zimbabwe · Aksum</div>
-              </div>
-              <div class="flex gap-6 py-4 border-t border-gray-200">
-                <div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Languages</div>
-                <div class="text-gray-800 text-lg flex-1">Swahili · Yoruba · Amharic · Wolof · Zulu · 2,000+</div>
-              </div>
-              <div class="flex gap-6 py-4 border-t border-gray-200">
-                <div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">Movements</div>
-                <div class="text-gray-800 text-lg flex-1">Pan-Africanism · African Renaissance · Afrobeats</div>
-              </div>
-              <div class="border-b border-gray-200"></div>
-            </div>
-
-            <div class="bg-gray-100 border-l-2 border-gold p-8">
-              <i data-lucide="quote" class="w-6 h-6 text-gold mb-4"></i>
-              <p class="font-display italic text-xl text-gray-900 leading-relaxed mb-4">"You did not return. You came home. We never lost you. We were just waiting."</p>
-              <p class="eyebrow text-gray-600">— Auntie Akosua, 71 · Cape Coast, Ghana</p>
-            </div>
-
-            <a href="teachings.html" class="inline-flex items-center gap-3 mt-10 gold-underline font-sans text-xs tracking-[0.22em] uppercase text-gold font-bold">
-              Explore Teachings on Mother Africa <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-            </a>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- UNITY -->
+    </div>
+
     <section id="unity" class="relative py-40 overflow-hidden bg-white">
       <div class="absolute inset-0">
         <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219594169_7354bebe.png" alt="Community" class="w-full h-full object-cover opacity-10 grayscale" />
@@ -465,7 +176,6 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="bg-gray-50 border-t border-gray-200">
     <div class="border-b border-gray-200">
       <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16 grid lg:grid-cols-2 gap-12 items-center">
@@ -475,7 +185,7 @@
             Reflections, teachings & gatherings delivered to your door once a moon.
           </h3>
         </div>
-        <form class="flex flex-col sm:flex-row gap-3">
+        <form onsubmit="event.preventDefault(); alert('Subscribed to the journal. Welcome to the family.'); this.reset();" class="flex flex-col sm:flex-row gap-3">
           <input type="email" placeholder="Your email address" class="flex-1 bg-white border border-gray-300 px-5 py-4 text-gray-900 focus:outline-none focus:border-gold text-lg" required>
           <button type="submit" class="btn-gold whitespace-nowrap">Subscribe</button>
         </form>
@@ -508,11 +218,11 @@
       <div class="lg:col-span-2">
         <h4 class="eyebrow mb-5 text-gray-900">Family</h4>
         <ul class="space-y-3 text-gray-600">
-          <li><a href="diaspora.html#african-americans" class="hover:text-gold">African Americans</a></li>
-          <li><a href="diaspora.html#afro-caribbean" class="hover:text-gold">Afro-Caribbeans</a></li>
-          <li><a href="diaspora.html#afro-latino" class="hover:text-gold">Afro-Latinos</a></li>
-          <li><a href="diaspora.html#european" class="hover:text-gold">Africans in Europe</a></li>
-          <li><a href="diaspora.html#mother-africa" class="hover:text-gold">Mother Africa</a></li>
+          <li><a href="#african-americans" class="hover:text-gold">African Americans</a></li>
+          <li><a href="#afro-caribbean" class="hover:text-gold">Afro-Caribbeans</a></li>
+          <li><a href="#afro-latino" class="hover:text-gold">Afro-Latinos</a></li>
+          <li><a href="#european" class="hover:text-gold">Africans in Europe</a></li>
+          <li><a href="#mother-africa" class="hover:text-gold">Mother Africa</a></li>
         </ul>
       </div>
 
@@ -555,15 +265,12 @@
     </div>
   </footer>
 
-  <!-- Interactivity Scripts -->
   <script>
-    // Initialize Icons
     lucide.createIcons();
 
-    // Mobile Menu Logic
     const menuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.createElement('div');
-    mobileMenu.className = 'hidden lg:hidden bg-white border-t border-gray-200 mt-3 absolute w-full left-0 z-50';
+    mobileMenu.className = 'hidden lg:hidden bg-white border-t border-gray-200 mt-3 absolute w-full left-0 z-50 shadow-lg';
     mobileMenu.innerHTML = `
       <div class="px-6 py-6 space-y-4 flex flex-col">
         <a href="index.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">Home</a>
@@ -576,10 +283,89 @@
       </div>
     `;
     document.getElementById('header').appendChild(mobileMenu);
+    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
 
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
+    const API_BASE_URL = 'https://afara-aex1.onrender.com';
+
+    async function fetchDiaspora() {
+        try {
+            const res = await fetch(`${API_BASE_URL}/api/diaspora`);
+            if(!res.ok) throw new Error('Fetch failed');
+            const data = await res.json();
+            
+            if(data && data.length > 0) {
+                const container = document.getElementById('dynamic-diaspora-container');
+                container.innerHTML = '';
+                
+                data.forEach((d, index) => {
+                    const isEven = index % 2 !== 0;
+                    const bgClass = isEven ? 'bg-white' : 'bg-gray-50';
+                    const orderClass = isEven ? 'lg:[&>*:first-child]:order-2' : '';
+                    const innerBg = isEven ? 'bg-gray-50' : 'bg-white';
+                    
+                    let featuresHTML = '';
+                    if(d.feat1_title && d.feat1_text) featuresHTML += `<div class="flex gap-6 py-4 border-t border-gray-200"><div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">${d.feat1_title}</div><div class="text-gray-800 text-lg flex-1">${d.feat1_text}</div></div>`;
+                    if(d.feat2_title && d.feat2_text) featuresHTML += `<div class="flex gap-6 py-4 border-t border-gray-200"><div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">${d.feat2_title}</div><div class="text-gray-800 text-lg flex-1">${d.feat2_text}</div></div>`;
+                    if(d.feat3_title && d.feat3_text) featuresHTML += `<div class="flex gap-6 py-4 border-t border-gray-200"><div class="eyebrow w-32 shrink-0 pt-1 text-gray-500">${d.feat3_title}</div><div class="text-gray-800 text-lg flex-1">${d.feat3_text}</div></div>`;
+
+                    let quoteHTML = '';
+                    if(d.quote_text) {
+                        quoteHTML = `
+                          <div class="${isEven ? 'bg-gray-50' : 'bg-gray-100'} border-l-2 border-gold p-8">
+                            <i data-lucide="quote" class="w-6 h-6 text-gold mb-4"></i>
+                            <p class="font-display italic text-xl text-gray-900 leading-relaxed mb-4">${d.quote_text}</p>
+                            <p class="eyebrow text-gray-600">${d.quote_author || ''}</p>
+                          </div>
+                        `;
+                    }
+
+                    const cover = d.cover_image_url || 'https://via.placeholder.com/800x1000';
+
+                    const sectionHTML = `
+                      <section id="${d.slug}" class="py-32 scroll-mt-24 ${bgClass} border-t border-gray-200 region-section">
+                        <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+                          <div class="grid lg:grid-cols-12 gap-12 items-start ${orderClass}">
+                            <div class="lg:col-span-6">
+                              <div class="aspect-[4/5] overflow-hidden relative shadow-md">
+                                <img src="${cover}" class="w-full h-full object-cover" />
+                                <div class="absolute bottom-0 left-0 right-0 kente-thin"></div>
+                              </div>
+                              <div class="grid grid-cols-2 gap-px bg-gray-200 mt-px border-x border-b border-gray-200 shadow-sm">
+                                <div class="${innerBg} p-6"><div class="eyebrow mb-2">Population</div><div class="font-display text-3xl text-gold">${d.population || '—'}</div></div>
+                                <div class="${innerBg} p-6"><div class="eyebrow mb-2">Reach</div><div class="font-display text-lg text-gray-900 leading-tight">${d.reach || '—'}</div></div>
+                              </div>
+                            </div>
+                            <div class="lg:col-span-6">
+                              <div class="eyebrow mb-5">${d.eyebrow || ''}</div>
+                              <h2 class="font-display text-5xl md:text-6xl text-gray-900 leading-[0.95] mb-8">${d.name}</h2>
+                              <p class="text-2xl text-gold font-display italic leading-relaxed mb-8">${d.highlight || ''}</p>
+                              <p class="text-lg text-gray-700 leading-relaxed mb-10 whitespace-pre-line">${d.body || ''}</p>
+                              
+                              <div class="space-y-4 mb-10">
+                                ${featuresHTML}
+                                ${featuresHTML ? '<div class="border-b border-gray-200"></div>' : ''}
+                              </div>
+                              
+                              ${quoteHTML}
+
+                              <a href="teachings.html" class="inline-flex items-center gap-3 mt-10 gold-underline font-sans text-xs tracking-[0.22em] uppercase text-gold font-bold">
+                                Explore Teachings on ${d.name} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+                    `;
+                    container.insertAdjacentHTML('beforeend', sectionHTML);
+                });
+                lucide.createIcons();
+            }
+        } catch (e) {
+            console.error('Failed to load live diaspora regions, defaulting to static.', e);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchDiaspora);
   </script>
 </body>
 </html>
