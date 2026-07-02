@@ -39,6 +39,15 @@
 </head>
 <body class="bg-white text-gray-900 font-sans antialiased">
 
+  <div id="page-loader" class="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center transition-opacity duration-700">
+    <div class="relative flex items-center justify-center w-20 h-20 mb-6">
+      <div class="absolute inset-0 border-2 border-gray-100 rounded-full animate-pulse"></div>
+      <div class="absolute inset-0 border-2 border-transparent border-t-gold rounded-full animate-spin"></div>
+      <i data-lucide="globe-2" class="w-6 h-6 text-gold relative z-10"></i>
+    </div>
+    <p class="font-display text-3xl text-gray-900 tracking-wide mb-3">Wisdom of <span class="italic text-gold">Afara</span></p>
+    <p class="text-[10px] tracking-[0.3em] uppercase text-gray-400 animate-pulse">Gathering the global family...</p>
+  </div>
   <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md py-4 border-b border-gray-200">
     <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between">
       <a href="/" class="text-2xl font-display font-bold text-gray-900">
@@ -90,10 +99,8 @@
       </div>
     </section>
 
-    <!-- DYNAMIC REGIONS (New items will be prepended here, static items preserved below) -->
     <div id="dynamic-diaspora-container">
       
-      <!-- Static Fallback 1: African Americans -->
       <section id="african-americans" class="py-32 scroll-mt-24 bg-gray-50 border-t border-gray-200 region-section">
         <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
           <div class="grid lg:grid-cols-12 gap-12 items-start">
@@ -134,7 +141,6 @@
         </div>
       </section>
 
-      <!-- Static Fallback 2: Afro-Caribbeans -->
       <section id="afro-caribbean" class="py-32 scroll-mt-24 bg-white border-t border-gray-200 region-section">
         <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
           <div class="grid lg:grid-cols-12 gap-12 items-start lg:[&>*:first-child]:order-2">
@@ -177,7 +183,6 @@
 
     </div>
 
-    <!-- UNITY -->
     <section id="unity" class="relative py-40 overflow-hidden bg-white">
       <div class="absolute inset-0">
         <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219594169_7354bebe.png" alt="Community" class="w-full h-full object-cover opacity-10 grayscale" />
@@ -197,19 +202,50 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="bg-gray-50 border-t border-gray-200">
-    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16 text-center text-xs text-gray-500 uppercase tracking-widest">
-      <p>© 2026 Wisdom of Afara · wisdomofafara.org</p>
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="eyebrow mb-4">Letters from Afara</div>
+        <h3 class="font-display text-3xl md:text-4xl text-gray-900 leading-tight">
+          Reflections, teachings & gatherings delivered to your door once a moon.
+        </h3>
+      </div>
+      <form onsubmit="event.preventDefault(); alert('Subscribed to the journal. Welcome to the family.'); this.reset();" class="flex flex-col sm:flex-row gap-3">
+        <input type="email" placeholder="Your email address" class="flex-1 bg-white border border-gray-300 px-5 py-4 text-gray-900 focus:outline-none focus:border-gold text-lg" required>
+        <button type="submit" class="btn-gold whitespace-nowrap">Subscribe</button>
+      </form>
+    </div>
+    <div class="border-t border-gray-200">
+      <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-6 text-center text-xs text-gray-500 uppercase tracking-widest">
+        <p>© 2026 Wisdom of Afara · wisdomofafara.org</p>
+      </div>
     </div>
   </footer>
 
   <script>
     lucide.createIcons();
 
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.createElement('div');
+    mobileMenu.className = 'hidden lg:hidden bg-white border-t border-gray-200 mt-3 absolute w-full left-0 z-50 shadow-lg';
+    mobileMenu.innerHTML = `
+      <div class="px-6 py-6 space-y-4 flex flex-col">
+        <a href="index.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">Home</a>
+        <a href="about.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">About</a>
+        <a href="teachings.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">Teachings</a>
+        <a href="books.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">Bookstore</a>
+        <a href="diaspora.html" class="text-sm tracking-[0.2em] uppercase text-gold">The Diaspora</a>
+        <a href="programs.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">Programs</a>
+        <a href="news.html" class="text-sm tracking-[0.2em] uppercase text-gray-600 hover:text-gold">News & Stories</a>
+      </div>
+    `;
+    document.getElementById('header').appendChild(mobileMenu);
+    menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+
     const API_BASE_URL = 'https://afara-aex1.onrender.com';
 
     async function fetchDiaspora() {
+        const loader = document.getElementById('page-loader');
         try {
             const res = await fetch(`${API_BASE_URL}/api/diaspora`);
             if(!res.ok) throw new Error('Fetch failed');
@@ -220,7 +256,6 @@
                 
                 // We reverse the array to inject newer ones at the very top
                 data.reverse().forEach((d, index) => {
-                    // Logic to alternate layouts based on existing count
                     const isEven = index % 2 !== 0; 
                     const bgClass = isEven ? 'bg-white' : 'bg-gray-50';
                     const orderClass = isEven ? 'lg:[&>*:first-child]:order-2' : '';
@@ -287,6 +322,12 @@
             }
         } catch (e) {
             console.error('Failed to load live diaspora regions, defaulting to static only.', e);
+        } finally {
+            // Gracefully remove loader
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 700);
+            }
         }
     }
 
