@@ -97,6 +97,10 @@
         <a href="news.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">News & Stories</a>
       </nav>
       <div class="hidden lg:flex items-center gap-5">
+        <a href="cart.html" class="text-gray-600 hover:text-gold transition-colors relative">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          <span id="nav-cart-badge" class="absolute -top-1 -right-2 bg-terracotta text-white text-[9px] w-4 h-4 flex items-center justify-center rounded-full hidden">0</span>
+        </a>
         <a href="get-involved.html" class="btn-gold text-[11px] py-3 px-6">Join the Family</a>
       </div>
       <button id="mobile-menu-btn" class="lg:hidden text-gray-900 p-2">
@@ -232,7 +236,7 @@
           </a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div id="home-teachings-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <a href="teachings.html" class="group block">
             <div class="aspect-[4/5] overflow-hidden mb-5 relative">
               <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219458866_84750114.png" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -309,13 +313,13 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div id="home-books-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div class="bg-white border border-gray-200 p-6 flex flex-col justify-between shadow-sm group">
             <div>
               <span class="text-[10px] uppercase font-bold text-white bg-gold px-2 py-1 inline-block mb-4">40% gives back</span>
               <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Dr. Amara Nkemdirim</p>
               <h3 class="font-display text-xl text-gray-900 mb-3 group-hover:text-gold transition-colors">The Roots of Afara</h3>
-              <p class="text-gray-600 text-sm leading-relaxed mb-6">A sweeping journey through the origins of African civilization, tracing the wisdom, traditions, and spiritual heritage that shaped a continent and its diaspora. Richly illustrated and meticulously researched.</p>
+              <p class="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">A sweeping journey through the origins of African civilization, tracing the wisdom, traditions, and spiritual heritage that shaped a continent and its diaspora. Richly illustrated and meticulously researched.</p>
             </div>
             <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
               <span class="text-lg font-bold text-gray-900">$29.99</span>
@@ -327,7 +331,7 @@
               <span class="text-[10px] uppercase font-bold text-white bg-gold px-2 py-1 inline-block mb-4">35% gives back</span>
               <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Kwame Osei</p>
               <h3 class="font-display text-xl text-gray-900 mb-3 group-hover:text-gold transition-colors">Voices of the Ancestors</h3>
-              <p class="text-gray-600 text-sm leading-relaxed mb-6">An anthology of oral traditions, proverbs, and stories passed down through generations, preserving the living memory of African peoples for the world.</p>
+              <p class="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">An anthology of oral traditions, proverbs, and stories passed down through generations, preserving the living memory of African peoples for the world.</p>
             </div>
             <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
               <span class="text-lg font-bold text-gray-900">$24.99</span>
@@ -339,7 +343,7 @@
               <span class="text-[10px] uppercase font-bold text-white bg-gold px-2 py-1 inline-block mb-4">50% gives back</span>
               <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Adaeze Mbeki</p>
               <h3 class="font-display text-xl text-gray-900 mb-3 group-hover:text-gold transition-colors">Daughters of the Sun</h3>
-              <p class="text-gray-600 text-sm leading-relaxed mb-6">Celebrating the matriarchs, queens, and everyday heroines whose strength built nations. A tribute to African womanhood across the ages.</p>
+              <p class="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">Celebrating the matriarchs, queens, and everyday heroines whose strength built nations. A tribute to African womanhood across the ages.</p>
             </div>
             <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
               <span class="text-lg font-bold text-gray-900">$27.99</span>
@@ -351,7 +355,7 @@
               <span class="text-[10px] uppercase font-bold text-white bg-gold px-2 py-1 inline-block mb-4">45% gives back</span>
               <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Marcus Adeyemi</p>
               <h3 class="font-display text-xl text-gray-900 mb-3 group-hover:text-gold transition-colors">The Bridge Home</h3>
-              <p class="text-gray-600 text-sm leading-relaxed mb-6">A moving exploration of the diaspora experience, connecting the descendants of Africa scattered across the world back to their shared roots.</p>
+              <p class="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">A moving exploration of the diaspora experience, connecting the descendants of Africa scattered across the world back to their shared roots.</p>
             </div>
             <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
               <span class="text-lg font-bold text-gray-900">$25.99</span>
@@ -406,7 +410,7 @@
           <p class="text-gray-600 mt-4 text-lg">Spaces virtual and physical where the family meets, learns and remembers.</p>
         </div>
 
-        <div class="space-y-2">
+        <div id="home-programs-container" class="space-y-2">
           <a href="programs.html" class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center py-8 px-6 bg-white border border-gray-200 hover:border-gold transition-colors group">
             <div class="md:col-span-2 eyebrow text-gray-500 flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4"></i>15 Mar 2026</div>
             <div class="md:col-span-3 text-gray-600 flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-gold"></i>London · In-Person</div>
@@ -629,6 +633,145 @@
 
     menuBtn.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
+    });
+
+    // Cart Badge Logic (Global persistence)
+    function updateCartBadge() {
+        const cart = JSON.parse(localStorage.getItem('afara_cart') || '[]');
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const navBadge = document.getElementById('nav-cart-badge');
+        if (navBadge) {
+            if (totalItems > 0) {
+                navBadge.innerText = totalItems;
+                navBadge.classList.remove('hidden');
+            } else {
+                navBadge.classList.add('hidden');
+            }
+        }
+    }
+    updateCartBadge();
+
+    // ==========================================
+    // DYNAMIC HOMEPAGE DATA FETCHING
+    // ==========================================
+    const API_BASE_URL = 'https://afara-aex1.onrender.com';
+
+    // 1. Fetch Latest Teachings
+    async function fetchHomeTeachings() {
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/teachings`);
+        if (!response.ok) throw new Error('Failed to fetch teachings');
+        const teachings = await response.json();
+
+        if (teachings && teachings.length > 0) {
+          const container = document.getElementById('home-teachings-container');
+          container.innerHTML = ''; // Clear statics
+          
+          // Display top 4 teachings
+          teachings.slice(0, 4).forEach(t => {
+            const coverUrl = t.cover_image_url || 'https://via.placeholder.com/400x500?text=No+Cover';
+            const html = `
+              <a href="teaching-detail.html?id=${t.id}" class="group block">
+                <div class="aspect-[4/5] overflow-hidden mb-5 relative shadow-sm border border-gray-100">
+                  <img src="${coverUrl}" alt="${t.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <div class="absolute top-4 left-4 bg-white px-3 py-1 eyebrow text-[10px]">${t.category || 'General'}</div>
+                </div>
+                <h3 class="font-display text-xl text-gray-900 group-hover:text-gold transition-colors leading-snug">${t.title}</h3>
+                <p class="text-gray-500 text-sm mt-3 uppercase tracking-wider">${t.read_time || '5 min read'}</p>
+              </a>
+            `;
+            container.insertAdjacentHTML('beforeend', html);
+          });
+        }
+      } catch (err) {
+        console.error('Home Teachings Error:', err);
+      }
+    }
+
+    // 2. Fetch Latest Books
+    async function fetchHomeBooks() {
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/books`);
+        if (!response.ok) throw new Error('Failed to fetch books');
+        const books = await response.json();
+
+        if (books && books.length > 0) {
+          const container = document.getElementById('home-books-container');
+          container.innerHTML = ''; // Clear statics
+          
+          // Display top 4 books
+          books.slice(0, 4).forEach(b => {
+            const impactText = b.impact_pct ? `${b.impact_pct}% gives back` : 'Impact Edition';
+            const price = parseFloat(b.price).toFixed(2);
+            const html = `
+              <div class="bg-white border border-gray-200 p-6 flex flex-col justify-between shadow-sm group">
+                <div>
+                  <span class="text-[10px] uppercase font-bold text-white bg-gold px-2 py-1 inline-block mb-4">${impactText}</span>
+                  <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">${b.author || 'Wisdom of Afara'}</p>
+                  <h3 class="font-display text-xl text-gray-900 mb-3 group-hover:text-gold transition-colors">${b.title}</h3>
+                  <p class="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">${b.description || ''}</p>
+                </div>
+                <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                  <span class="text-lg font-bold text-gray-900">$${price}</span>
+                  <a href="book-detail.html?id=${b.id}" class="text-gold text-sm font-bold uppercase hover:text-gray-900 transition-colors">View →</a>
+                </div>
+              </div>
+            `;
+            container.insertAdjacentHTML('beforeend', html);
+          });
+        }
+      } catch (err) {
+        console.error('Home Books Error:', err);
+      }
+    }
+
+    // 3. Fetch Upcoming Programs
+    async function fetchHomePrograms() {
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/programs`);
+        if (!response.ok) throw new Error('Failed to fetch programs');
+        const programs = await response.json();
+
+        if (programs && programs.length > 0) {
+          const container = document.getElementById('home-programs-container');
+          container.innerHTML = ''; // Clear statics
+          
+          // Display top 3 programs
+          programs.slice(0, 3).forEach(p => {
+            // Format date correctly
+            let displayDate = 'TBA';
+            if (p.date) {
+               const d = new Date(p.date);
+               displayDate = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+            }
+
+            const typeLabel = (p.type || 'Event').toUpperCase();
+            const html = `
+              <a href="programs.html" class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center py-8 px-6 bg-white border border-gray-200 hover:border-gold transition-colors group">
+                <div class="md:col-span-2 eyebrow text-gray-500 flex items-center gap-2">
+                  <i data-lucide="calendar" class="w-4 h-4"></i>${displayDate}
+                </div>
+                <div class="md:col-span-3 text-gray-600 flex items-center gap-2">
+                  <i data-lucide="map-pin" class="w-4 h-4 text-gold"></i>${p.location || 'TBA'}
+                </div>
+                <div class="md:col-span-5 font-display text-2xl text-gray-900 group-hover:text-gold transition-colors">${p.title}</div>
+                <div class="md:col-span-2 md:text-right text-gold text-xs font-bold uppercase tracking-widest">${typeLabel} →</div>
+              </a>
+            `;
+            container.insertAdjacentHTML('beforeend', html);
+          });
+          lucide.createIcons(); // Re-bind icons for injected html
+        }
+      } catch (err) {
+        console.error('Home Programs Error:', err);
+      }
+    }
+
+    // Execute fetches on load
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchHomeTeachings();
+      fetchHomeBooks();
+      fetchHomePrograms();
     });
   </script>
 </body>
