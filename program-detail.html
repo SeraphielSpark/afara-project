@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Program Details - Wisdom of Afara</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#C9952A',
+            dark: '#1a1a1a',
+            light: '#ffffff',
+            terracotta: '#C1440E',
+          },
+          fontFamily: {
+            display: ['Georgia', 'serif'], 
+            sans: ['system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- PDF & Canvas Generation Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    body { background-color: #ffffff; color: #1a1a1a; margin: 0; padding: 0; }
+    .eyebrow { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: #C9952A; font-weight: 600; }
+    .btn-gold { display: inline-flex; align-items: center; gap: 0.5rem; background-color: #C9952A; color: #ffffff; padding: 0.75rem 1.5rem; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; transition: background-color 0.3s; border: none; cursor: pointer; }
+    .btn-gold:hover { background-color: #a87b20; }
+    .btn-gold:disabled { opacity: 0.7; cursor: not-allowed; }
+    .btn-outline-gold { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid #C9952A; color: #C9952A; padding: 0.75rem 1.5rem; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.3s; background: transparent; cursor: pointer; }
+    .btn-outline-gold:hover { background-color: #C9952A; color: #ffffff; }
+    .btn-outline-gold:disabled { opacity: 0.7; cursor: not-allowed; }
+    .kente-thin { height: 1px; background: linear-gradient(90deg, #C9952A 0%, #a87b20 50%, #C9952A 100%); width: 100%; }
+    
+    .article-content p { margin-bottom: 1.5rem; font-size: 1.125rem; line-height: 1.8; color: #4b5563; }
+    
+    /* Payment Modal Styles */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 100; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay.open { display: flex; animation: fadeIn 0.3s ease; }
+    .modal-box { background: white; border-radius: 0.5rem; width: 100%; max-width: 500px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); overflow: hidden; }
+    @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+    /* Page Loading Overlay */
+    #page-loading-overlay {
+      position: fixed; inset: 0; z-index: 200; background: #ffffff;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      transition: opacity 0.5s ease;
+    }
+    .loader-ring { position: relative; width: 56px; height: 56px; margin-bottom: 1.5rem; }
+    .loader-ring::before, .loader-ring::after {
+      content: ''; position: absolute; inset: 0; border-radius: 9999px; border: 3px solid transparent;
+    }
+    .loader-ring::before { border-color: rgba(201,149,42,0.15); }
+    .loader-ring::after { border-top-color: #C9952A; animation: spin 0.9s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    #page-content { opacity: 0; transition: opacity 0.6s ease; }
+    #page-content.is-ready { opacity: 1; }
+
+    /* Ticket Base Layout */
+    #ticket-success { display: none; }
+    #downloadable-ticket {
+      background-image: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0 0h20v20H0V0zm10 10l10 10H0L10 10z" fill="%23C9952A" fill-opacity="0.03" fill-rule="evenodd"/%3E%3C/svg%3E');
+    }
+
+    @keyframes ticketReveal {
+      from { opacity: 0; transform: translateY(16px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .ticket-reveal { animation: ticketReveal 0.55s cubic-bezier(0.16, 1, 0.3, 1); }
+
+    @keyframes checkPop {
+      0% { transform: scale(0); opacity: 0; }
+      60% { transform: scale(1.15); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .check-pop { animation: checkPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+
+  <!-- Page Loading Overlay: shown until backend data has arrived -->
+  <div id="page-loading-overlay">
+    <div class="loader-ring"></div>
+    <p class="eyebrow text-gray-400">Loading Gathering Details</p>
+  </div>
+
+  <div id="page-content">
+
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md py-4 border-b border-gray-200">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between">
+      <a href="/" class="text-2xl font-display font-bold text-gray-900">Wisdom of <span class="italic text-gold">Afara</span></a>
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="index.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Home</a>
+        <a href="about.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">About</a>
+        <a href="teachings.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Teachings</a>
+        <a href="books.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Bookstore</a>
+        <a href="diaspora.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">The Diaspora</a>
+        <a href="programs.html" class="text-[12px] tracking-[0.2em] uppercase text-gold font-semibold">Programs</a>
+        <a href="news.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">News & Stories</a>
+      </nav>
+      <div class="hidden lg:flex items-center gap-5">
+        <a href="get-involved.html" class="btn-gold text-[11px] py-3 px-6">Join the Family</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-24 pb-24">
+    <section class="max-w-[1200px] mx-auto px-6 lg:px-12 pt-16">
+      <a href="programs.html" class="inline-flex items-center gap-2 font-sans text-[11px] tracking-[0.18em] uppercase text-gray-500 hover:text-gold mb-10 transition-colors">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Programs
+      </a>
+
+      <div class="grid lg:grid-cols-12 gap-16 items-start">
+        
+        <div class="lg:col-span-7">
+          <div class="aspect-[16/10] w-full overflow-hidden shadow-md bg-gray-100 mb-10 border border-gray-200">
+            <img id="p-cover" src="https://via.placeholder.com/800x500?text=Event+Cover" class="w-full h-full object-cover">
+          </div>
+
+          <h2 class="font-display text-3xl text-gray-900 mb-6">About this Gathering</h2>
+          <div id="p-body" class="article-content font-display mb-10 whitespace-pre-line">
+            Loading description...
+          </div>
+
+          <div id="speakers-section" class="hidden">
+            <div class="eyebrow mb-4">Led By</div>
+            <div id="p-speakers-list" class="flex flex-wrap gap-4">
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 relative">
+          <div class="sticky top-32 bg-gray-50 border border-gray-200 p-8 shadow-sm">
+            <div class="flex items-center gap-4 mb-6">
+              <span id="p-type" class="bg-gold/10 text-gold px-3 py-1 text-[10px] tracking-[0.2em] uppercase font-bold border border-gold/20">Event</span>
+              <span id="p-status" class="text-xs tracking-widest text-green-600 uppercase font-bold flex items-center gap-1"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Upcoming</span>
+            </div>
+
+            <h1 id="p-title" class="font-display text-4xl text-gray-900 leading-[1.1] mb-8">
+              Gathering Title
+            </h1>
+
+            <div class="space-y-6 mb-8 border-t border-b border-gray-200 py-6">
+              <div class="flex items-start gap-4">
+                <i data-lucide="calendar" class="w-5 h-5 text-gold mt-1"></i>
+                <div>
+                  <div class="eyebrow text-gray-500 mb-1">Date</div>
+                  <div id="p-date" class="font-bold text-gray-900">TBA</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <i data-lucide="map-pin" class="w-5 h-5 text-gold mt-1" id="location-icon"></i>
+                <div>
+                  <div class="eyebrow text-gray-500 mb-1">Location</div>
+                  <div id="p-location" class="font-bold text-gray-900">TBA</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <i data-lucide="users" class="w-5 h-5 text-gold mt-1"></i>
+                <div>
+                  <div class="eyebrow text-gray-500 mb-1">Capacity</div>
+                  <div id="p-seats" class="font-bold text-gray-900">Limited Seats</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between mb-8">
+              <div class="eyebrow text-gray-500">Ticket Price</div>
+              <div id="p-price-display" class="font-display text-3xl text-gray-900">Free</div>
+            </div>
+
+            <button id="primary-action-btn" onclick="handleTicketAction()" class="btn-gold w-full justify-center py-4 text-sm shadow-md hover:shadow-lg">
+              Loading...
+            </button>
+
+            <!-- TICKET DISPLAY SECTION -->
+            <div id="ticket-success" class="mt-4">
+              <div class="text-center mb-6">
+                <i data-lucide="check-circle" class="w-8 h-8 text-green-600 mx-auto mb-2 check-pop"></i>
+                <h4 class="font-display text-xl text-gray-900">Registration Confirmed!</h4>
+                <p class="text-sm text-gray-600">Your seat has been reserved.</p>
+              </div>
+
+              <!-- This is the actual ticket element to be captured -->
+              <div id="downloadable-ticket" class="bg-white border-2 border-gold rounded-lg shadow-md mb-6 relative p-6 pb-8">
+                <div class="absolute top-0 right-0 bg-gold text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-tr-lg rounded-bl-lg">Admit One</div>
+
+                <h3 class="font-display text-2xl text-gray-900 mb-1 pr-16 leading-snug" id="ticket-title-display">Event Title</h3>
+                <p class="text-xs text-gold uppercase tracking-widest font-bold mb-5" id="ticket-type-display">Event</p>
+
+                <div class="grid grid-cols-2 gap-4 text-sm font-sans mb-5">
+                  <div>
+                    <span class="block text-[10px] text-gray-400 uppercase tracking-widest mb-1">Date</span>
+                    <span class="font-bold text-gray-900 block leading-snug" id="ticket-date-display">Date</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-gray-400 uppercase tracking-widest mb-1">Location</span>
+                    <span class="font-bold text-gray-900 block leading-snug" id="ticket-location-display">Location</span>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 text-sm font-sans mb-5 pb-5 border-b border-gray-100">
+                  <div>
+                    <span class="block text-[10px] text-gray-400 uppercase tracking-widest mb-1">Admission</span>
+                    <span class="font-bold text-gray-900 block leading-snug" id="ticket-admission-display">General Admission</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-gray-400 uppercase tracking-widest mb-1">Price Paid</span>
+                    <span class="font-bold text-gray-900 block leading-snug" id="ticket-price-display">Free</span>
+                  </div>
+                </div>
+
+                <div id="access-info-box" class="bg-gray-50 border border-gray-200 p-3 text-left mb-4">
+                  <div class="eyebrow text-[10px] mb-1 text-terracotta" id="access-info-label">Entry Instructions</div>
+                  <p class="text-xs text-gray-700 font-sans leading-relaxed" id="access-info-text">Please arrive 15 minutes early with this ticket.</p>
+                  <a id="p-meeting-link" href="#" target="_blank" class="hidden text-blue-600 hover:underline text-xs break-all font-sans mt-2">link</a>
+                </div>
+
+                <div class="border-t border-dashed border-gray-300 pt-4 flex justify-between items-center mt-2">
+                  <div class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Wisdom of Afara</div>
+                  <div class="font-mono text-gray-400 tracking-widest text-xs font-bold" id="ticket-id-display">#AFA-000000</div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <button id="download-pdf-btn" onclick="downloadTicketPDF()" class="btn-gold w-full justify-center text-xs py-3"><i data-lucide="download" class="w-4 h-4"></i> PDF</button>
+                <button id="download-image-btn" onclick="downloadTicketImage()" class="btn-outline-gold w-full justify-center text-xs py-3"><i data-lucide="image" class="w-4 h-4"></i> Image</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="payment-modal">
+    <div class="modal-box">
+      <div class="p-6 bg-gray-50 border-b border-gray-200">
+        <h3 class="font-display text-2xl text-gray-900 mb-1">Secure Checkout</h3>
+        <p class="text-sm text-gray-500" id="checkout-item-name">Ticket for Event</p>
+      </div>
+      <div class="p-8 text-center">
+        <div class="font-display text-4xl text-gray-900 mb-8" id="checkout-price">$0.00</div>
+        
+        <p class="text-sm text-gray-600 mb-6">
+          This is a demonstration environment. In production, this would trigger Stripe or PayPal.
+        </p>
+
+        <button onclick="processTestPayment()" class="btn-gold w-full justify-center py-4 mb-4" id="pay-btn">
+          <i data-lucide="credit-card" class="w-5 h-5"></i> Test Payment Bypass
+        </button>
+        <button onclick="closePaymentModal()" class="text-sm text-gray-500 hover:text-gray-900 underline">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-gray-50 border-t border-gray-200">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16 text-center text-xs text-gray-500 uppercase tracking-widest">
+      <p>© 2026 Wisdom of Afara · wisdomofafara.org</p>
+    </div>
+  </footer>
+
+  </div><!-- /#page-content -->
+
+  <script>
+    lucide.createIcons();
+    const API_BASE_URL = 'https://afara-aex1.onrender.com';
+    let currentProgram = null;
+
+    function formatDate(d) {
+        if(!d) return 'TBA';
+        return new Date(d).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    // Reveal the page once data is ready (or once we know it failed), hide the loading overlay
+    function revealPage() {
+        const overlay = document.getElementById('page-loading-overlay');
+        const content = document.getElementById('page-content');
+        content.classList.add('is-ready');
+        overlay.style.opacity = '0';
+        overlay.style.pointerEvents = 'none';
+        setTimeout(() => { overlay.style.display = 'none'; }, 500);
+    }
+
+    async function loadProgramDetails() {
+        const params = new URLSearchParams(window.location.search);
+        const programId = params.get('id');
+        if (!programId) {
+            document.getElementById('p-title').innerText = "Program Not Found";
+            document.getElementById('primary-action-btn').style.display = 'none';
+            document.getElementById('p-body').innerText = "Please select a valid program from the directory.";
+            revealPage();
+            return;
+        }
+
+        try {
+            if(programId.startsWith('static-')) {
+               document.getElementById('p-title').innerText = "Roots Circle: An Evening with Florence";
+               document.getElementById('p-date').innerText = "Sunday, 15 March 2026";
+               document.getElementById('p-location').innerText = "London · In-Person";
+               document.getElementById('p-body').innerText = "Join founder Florence Cook and our London elders for an intimate evening of storytelling, communal learning, and reflection on the journey of the Diaspora. Space is strictly limited.";
+               document.getElementById('primary-action-btn').innerHTML = '<i data-lucide="ticket" class="w-5 h-5"></i> Register for Free';
+               
+               currentProgram = {
+                   id: programId,
+                   title: "Roots Circle: An Evening with Florence",
+                   type: "Workshop",
+                   date: "2026-03-15",
+                   location: "London · In-Person",
+                   price: 0
+               };
+               lucide.createIcons();
+               revealPage();
+               return;
+            }
+
+            const res = await fetch(`${API_BASE_URL}/api/programs/${programId}`);
+            if (!res.ok) throw new Error('Program not found');
+            const data = await res.json();
+            currentProgram = data;
+
+            document.title = `${data.title} - Wisdom of Afara`;
+            document.getElementById('page-title').innerText = `${data.title} - Wisdom of Afara`;
+            document.getElementById('p-title').innerText = data.title;
+            document.getElementById('p-type').innerText = data.type || 'Event';
+            document.getElementById('p-status').innerHTML = `<i data-lucide="${data.status === 'upcoming' ? 'check-circle' : 'info'}" class="w-3.5 h-3.5"></i> ${data.status || 'Upcoming'}`;
+            
+            if (data.cover_image_url) document.getElementById('p-cover').src = data.cover_image_url;
+            if (data.description) document.getElementById('p-body').innerText = data.description;
+
+            document.getElementById('p-date').innerText = formatDate(data.date);
+            document.getElementById('p-seats').innerText = data.seats ? `${data.seats} available` : 'Limited Capacity';
+            
+            if (data.meeting_link && !data.location) {
+                document.getElementById('p-location').innerText = "Virtual (Link provided upon registration)";
+                document.getElementById('location-icon').setAttribute('data-lucide', 'monitor-play');
+            } else {
+                document.getElementById('p-location').innerText = data.location || 'TBA';
+                document.getElementById('location-icon').setAttribute('data-lucide', 'map-pin');
+            }
+
+            if (data.speakers) {
+                document.getElementById('speakers-section').classList.remove('hidden');
+                const speakerArray = data.speakers.split(',').map(s => s.trim());
+                document.getElementById('p-speakers-list').innerHTML = speakerArray.map(s => 
+                    `<div class="bg-white border border-gray-200 px-4 py-2 text-sm font-bold text-gray-900 flex items-center gap-2"><div class="w-2 h-2 bg-gold rounded-full"></div>${s}</div>`
+                ).join('');
+            }
+
+            const price = parseFloat(data.price || 0);
+            if (price === 0) {
+                document.getElementById('p-price-display').innerText = 'Free';
+                document.getElementById('primary-action-btn').innerHTML = '<i data-lucide="ticket" class="w-5 h-5"></i> Register for Free';
+            } else {
+                const formattedPrice = `$${price.toFixed(2)}`;
+                document.getElementById('p-price-display').innerText = formattedPrice;
+                document.getElementById('primary-action-btn').innerHTML = `<i data-lucide="credit-card" class="w-5 h-5"></i> Buy Ticket (${formattedPrice})`;
+                document.getElementById('checkout-item-name').innerText = data.title;
+                document.getElementById('checkout-price').innerText = formattedPrice;
+            }
+            lucide.createIcons();
+            revealPage();
+
+        } catch (error) {
+            console.error('Failed to load specific program:', error);
+            document.getElementById('p-title').innerText = "Program Not Found";
+            document.getElementById('primary-action-btn').style.display = 'none';
+            document.getElementById('p-body').innerText = "We could not find the details for this gathering.";
+            revealPage();
+        }
+    }
+
+    function handleTicketAction() {
+        if (!currentProgram) return;
+        const price = parseFloat(currentProgram.price || 0);
+        
+        if (price === 0) {
+            issueTicket();
+        } else {
+            document.getElementById('payment-modal').classList.add('open');
+        }
+    }
+
+    function closePaymentModal() {
+        document.getElementById('payment-modal').classList.remove('open');
+    }
+
+    function processTestPayment() {
+        const btn = document.getElementById('pay-btn');
+        btn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Processing...';
+        btn.disabled = true;
+        lucide.createIcons();
+
+        setTimeout(() => {
+            closePaymentModal();
+            issueTicket();
+        }, 1500);
+    }
+
+    function issueTicket() {
+        document.getElementById('primary-action-btn').style.display = 'none';
+
+        const ticketSuccess = document.getElementById('ticket-success');
+        ticketSuccess.style.display = 'block';
+        ticketSuccess.classList.remove('ticket-reveal');
+        void ticketSuccess.offsetWidth; // restart animation
+        ticketSuccess.classList.add('ticket-reveal');
+
+        const randId = Math.floor(100000 + Math.random() * 900000);
+        const price = parseFloat(currentProgram.price || 0);
+
+        // Populate the physical/visual ticket
+        document.getElementById('ticket-title-display').innerText = currentProgram.title;
+        document.getElementById('ticket-type-display').innerText = currentProgram.type || 'Event';
+        document.getElementById('ticket-admission-display').innerText = currentProgram.type ? `${currentProgram.type} · General Admission` : 'General Admission';
+        document.getElementById('ticket-date-display').innerText = formatDate(currentProgram.date);
+        document.getElementById('ticket-id-display').innerText = `#AFA-${randId}`;
+        document.getElementById('ticket-price-display').innerText = price === 0 ? 'Free' : `$${price.toFixed(2)}`;
+
+        const accessLabel = document.getElementById('access-info-label');
+        const accessText = document.getElementById('access-info-text');
+        const linkEl = document.getElementById('p-meeting-link');
+
+        if (currentProgram.meeting_link) {
+            document.getElementById('ticket-location-display').innerText = "Virtual Event";
+            accessLabel.innerText = "How to Join";
+            accessText.innerText = "This is a virtual gathering. Use the link below at the scheduled date and time to join.";
+            linkEl.href = currentProgram.meeting_link;
+            linkEl.innerText = currentProgram.meeting_link;
+            linkEl.classList.remove('hidden');
+        } else {
+            document.getElementById('ticket-location-display').innerText = currentProgram.location || 'TBA';
+            accessLabel.innerText = "Entry Instructions";
+            accessText.innerText = `Please arrive 15 minutes early and present this ticket (digital or printed) at check-in.${currentProgram.location ? ' Venue: ' + currentProgram.location : ''}`;
+            linkEl.classList.add('hidden');
+        }
+
+        lucide.createIcons();
+    }
+
+    // --- Ticket capture helpers -------------------------------------------------
+    // Fix for the "content cut in half" bug: html2canvas snapshots relative to the
+    // current page scroll position. If the ticket isn't at the top of the viewport
+    // when captured, the canvas region is offset and slices through the ticket.
+    // We correct for scroll offset explicitly and force exact width/height so the
+    // canvas always matches the ticket's real, fully-laid-out dimensions.
+    async function prepareTicketForCapture(el) {
+        if (document.fonts && document.fonts.ready) {
+            try { await document.fonts.ready; } catch (e) { /* ignore */ }
+        }
+        // Wait two animation frames so layout/paint is fully settled before capture
+        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    }
+
+    async function captureTicket(el) {
+        await prepareTicketForCapture(el);
+        return await html2canvas(el, {
+            scale: 3,
+            backgroundColor: '#ffffff',
+            useCORS: true,
+            allowTaint: true,
+            logging: false,
+            scrollX: 0,
+            scrollY: -window.scrollY,
+            windowWidth: document.documentElement.scrollWidth,
+            windowHeight: document.documentElement.scrollHeight,
+            width: el.scrollWidth,
+            height: el.scrollHeight
+        });
+    }
+
+    // PDF Generation
+    window.jspdf = window.jspdf || {};
+    async function downloadTicketPDF() {
+        const btn = document.getElementById('download-pdf-btn');
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Generating...';
+        btn.disabled = true;
+        lucide.createIcons();
+
+        try {
+            const ticketEl = document.getElementById('downloadable-ticket');
+            const canvas = await captureTicket(ticketEl);
+            const imgData = canvas.toDataURL('image/png');
+
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF({
+                orientation: canvas.width >= canvas.height ? 'landscape' : 'portrait',
+                unit: 'px',
+                format: [canvas.width, canvas.height]
+            });
+            pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+
+            const cleanTitle = currentProgram.title.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+            pdf.save(`Afara_Ticket_${cleanTitle}.pdf`);
+        } catch (err) {
+            console.error('PDF generation failed:', err);
+            alert('Sorry, we could not generate the PDF ticket. Please try again.');
+        } finally {
+            btn.innerHTML = originalHTML;
+            btn.disabled = false;
+            lucide.createIcons();
+        }
+    }
+
+    // Image Generation
+    async function downloadTicketImage() {
+        const btn = document.getElementById('download-image-btn');
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Generating...';
+        btn.disabled = true;
+        lucide.createIcons();
+
+        try {
+            const ticketEl = document.getElementById('downloadable-ticket');
+            const canvas = await captureTicket(ticketEl);
+
+            const link = document.createElement('a');
+            const cleanTitle = currentProgram.title.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+            link.download = `Afara_Ticket_${cleanTitle}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        } catch (err) {
+            console.error('Image generation failed:', err);
+            alert('Sorry, we could not generate the ticket image. Please try again.');
+        } finally {
+            btn.innerHTML = originalHTML;
+            btn.disabled = false;
+            lucide.createIcons();
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadProgramDetails);
+  </script>
+</body>
+</html>
