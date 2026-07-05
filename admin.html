@@ -1,0 +1,1903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Wisdom of Afara</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#C9952A',
+            dark: '#1a1a1a',
+            light: '#ffffff',
+            terracotta: '#C1440E',
+          },
+          fontFamily: {
+            display: ['Georgia', 'serif'],
+            sans: ['system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    body { background-color: #f9fafb; color: #1a1a1a; margin: 0; padding: 0; }
+    .eyebrow { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: #6b7280; font-weight: 600; }
+    .btn-gold { display: inline-flex; align-items: center; gap: 0.5rem; background-color: #C9952A; color: #fff; padding: 0.5rem 1rem; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; transition: background-color 0.3s; border: none; cursor: pointer; border-radius: 0.25rem; }
+    .btn-gold:hover { background-color: #a87b20; }
+    .btn-outline { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid #d1d5db; color: #374151; background-color: #fff; padding: 0.5rem 1rem; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.2s; cursor: pointer; border-radius: 0.25rem; }
+    .btn-outline:hover { background-color: #f3f4f6; }
+    .btn-danger { display: inline-flex; align-items: center; gap: 0.5rem; background-color: #dc2626; color: #fff; padding: 0.5rem 1rem; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; border: none; cursor: pointer; border-radius: 0.25rem; transition: background-color 0.2s; }
+    .btn-danger:hover { background-color: #b91c1c; }
+    #sidebar { transition: transform 0.3s ease-in-out; }
+    .nav-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; color: #4b5563; border-radius: 0.375rem; transition: all 0.2s; font-size: 0.875rem; font-weight: 500; cursor: pointer; text-decoration: none; }
+    .nav-item:hover { background-color: #f3f4f6; color: #111827; }
+    .nav-item.active { background-color: #fef3c7; color: #a87b20; }
+    .nav-item.active svg { color: #C9952A; }
+    th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #6b7280; font-weight: 600; padding: 0.875rem 1rem; text-align: left; border-bottom: 1px solid #e5e7eb; background-color: #f9fafb; }
+    td { padding: 0.875rem 1rem; border-bottom: 1px solid #e5e7eb; font-size: 0.875rem; color: #374151; }
+    tr:hover td { background-color: #fafafa; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay.open { display: flex; }
+    .modal-box { background: white; border-radius: 0.5rem; width: 100%; max-width: 640px; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+    .form-input { width: 100%; padding: 0.625rem 0.875rem; border: 1px solid #d1d5db; border-radius: 0.375rem; font-size: 0.875rem; color: #111827; outline: none; transition: border-color 0.2s; }
+    .form-input:focus { border-color: #C9952A; box-shadow: 0 0 0 3px rgba(201,149,42,0.15); }
+    .form-label { display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #6b7280; margin-bottom: 0.375rem; }
+    select.form-input { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.75rem center; padding-right: 2rem; }
+    textarea.form-input { resize: vertical; min-height: 100px; }
+    .spinner { animation: spin 1s linear infinite; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .badge-green { display: inline-flex; align-items: center; padding: 0.2rem 0.6rem; background: #dcfce7; color: #15803d; font-size: 0.7rem; font-weight: 700; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .badge-yellow { display: inline-flex; align-items: center; padding: 0.2rem 0.6rem; background: #fef9c3; color: #a16207; font-size: 0.7rem; font-weight: 700; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .badge-red { display: inline-flex; align-items: center; padding: 0.2rem 0.6rem; background: #fee2e2; color: #dc2626; font-size: 0.7rem; font-weight: 700; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .badge-gray { display: inline-flex; align-items: center; padding: 0.2rem 0.6rem; background: #f3f4f6; color: #6b7280; font-size: 0.7rem; font-weight: 700; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em; }
+    #login-screen { position: fixed; inset: 0; background: #1a1a1a; z-index: 9999; display: flex; align-items: center; justify-content: center; }
+    .login-card { background: white; border-radius: 0.75rem; padding: 2.5rem; width: 100%; max-width: 420px; box-shadow: 0 24px 80px rgba(0,0,0,0.4); }
+    .toast { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9998; padding: 0.875rem 1.25rem; border-radius: 0.375rem; font-size: 0.875rem; font-weight: 500; color: white; box-shadow: 0 8px 24px rgba(0,0,0,0.2); animation: slideIn 0.3s ease; display: flex; align-items: center; gap: 0.5rem; }
+    .toast.success { background: #15803d; }
+    .toast.error { background: #dc2626; }
+    @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .search-input { padding: 0.5rem 0.875rem 0.5rem 2.25rem; border: 1px solid #d1d5db; border-radius: 0.375rem; font-size: 0.875rem; outline: none; }
+    .search-input:focus { border-color: #C9952A; }
+    .search-wrap { position: relative; }
+    .search-wrap svg { position: absolute; left: 0.625rem; top: 50%; transform: translateY(-50%); color: #9ca3af; width: 1rem; height: 1rem; }
+    .empty-state { text-align: center; padding: 3rem 1rem; color: #9ca3af; }
+    .empty-state svg { margin: 0 auto 1rem; opacity: 0.4; }
+    .stat-card { background: white; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #e5e7eb; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .img-thumb { width: 2.5rem; height: 2.5rem; border-radius: 0.25rem; object-fit: cover; background: #f3f4f6; flex-shrink: 0; }
+    .action-btn { padding: 0.375rem; border-radius: 0.25rem; border: none; background: transparent; cursor: pointer; color: #9ca3af; transition: color 0.2s; }
+    .action-btn:hover { color: #C9952A; }
+    .action-btn.del:hover { color: #dc2626; }
+  </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden">
+
+<div id="login-screen">
+  <div class="login-card">
+    <div class="text-center mb-8">
+      <h1 class="font-display text-2xl text-gray-900 mb-1">Afara <span class="italic text-gold">Admin</span></h1>
+      <p class="text-sm text-gray-500">Sign in to manage the foundation</p>
+    </div>
+    <div id="login-error" class="hidden mb-4 p-3 bg-red-50 border border-red-200 text-red-700 text-sm rounded-md"></div>
+    <div class="space-y-4">
+      <div>
+        <label class="form-label">Username</label>
+        <input type="text" id="login-username" class="form-input" placeholder="admin" autocomplete="username">
+      </div>
+      <div>
+        <label class="form-label">Password</label>
+        <input type="password" id="login-password" class="form-input" placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <button onclick="doLogin()" id="login-btn" class="btn-gold w-full justify-center py-3 mt-2">
+        <i data-lucide="log-in" class="w-4 h-4"></i> Sign In
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="main-app" class="hidden flex h-screen overflow-hidden">
+
+  <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 transform -translate-x-full lg:translate-x-0 lg:static lg:flex-shrink-0 flex flex-col shadow-sm">
+    <div class="h-16 flex items-center px-6 border-b border-gray-200 justify-between">
+      <span class="text-xl font-display font-bold text-gray-900">Afara <span class="italic text-gold">Admin</span></span>
+      <button id="close-sidebar" class="lg:hidden text-gray-500 hover:text-gray-900">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+      <div class="eyebrow px-3 mb-2 mt-2 text-gray-400">Overview</div>
+      <a class="nav-item active" onclick="switchTab('dashboard', this)">
+        <i data-lucide="layout-dashboard" class="w-5 h-5"></i> Dashboard
+      </a>
+      <a class="nav-item" onclick="switchTab('analytics', this)">
+        <i data-lucide="bar-chart-3" class="w-5 h-5 text-gray-400"></i> Analytics
+      </a>
+
+      <div class="eyebrow px-3 mb-2 mt-8 text-gray-400">Content</div>
+      <a class="nav-item" onclick="switchTab('news', this)">
+        <i data-lucide="newspaper" class="w-5 h-5 text-gray-400"></i> News &amp; Journal
+      </a>
+      <a class="nav-item" onclick="switchTab('teachings', this)">
+        <i data-lucide="file-text" class="w-5 h-5 text-gray-400"></i> Teachings
+      </a>
+      <a class="nav-item" onclick="switchTab('diaspora', this)">
+        <i data-lucide="globe-2" class="w-5 h-5 text-gray-400"></i> Diaspora Regions
+      </a>
+      <a class="nav-item" onclick="switchTab('books', this)">
+        <i data-lucide="book-open" class="w-5 h-5 text-gray-400"></i> Bookstore
+      </a>
+      <a class="nav-item" onclick="switchTab('programs', this)">
+        <i data-lucide="calendar" class="w-5 h-5 text-gray-400"></i> Programs &amp; Events
+      </a>
+
+      <div class="eyebrow px-3 mb-2 mt-8 text-gray-400">Community</div>
+      <a class="nav-item" onclick="switchTab('members', this)">
+        <i data-lucide="users" class="w-5 h-5 text-gray-400"></i> Members
+      </a>
+      <a class="nav-item" onclick="switchTab('reviews', this)">
+        <i data-lucide="message-square" class="w-5 h-5 text-gray-400"></i> Comments &amp; Reviews
+      </a>
+      <a class="nav-item" onclick="switchTab('donations', this)">
+        <i data-lucide="heart" class="w-5 h-5 text-gray-400"></i> Donations
+      </a>
+    </nav>
+
+    <div class="p-4 border-t border-gray-200">
+      <a class="nav-item text-gray-500 hover:text-red-600" onclick="doLogout()">
+        <i data-lucide="log-out" class="w-5 h-5"></i> Sign Out
+      </a>
+    </div>
+  </aside>
+
+  <div id="sidebar-overlay" class="fixed inset-0 bg-gray-900 bg-opacity-50 z-40 hidden lg:hidden"></div>
+
+  <div class="flex-1 flex flex-col overflow-hidden">
+
+    <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 shadow-sm flex-shrink-0">
+      <div class="flex items-center gap-4">
+        <button id="open-sidebar" class="lg:hidden text-gray-500 hover:text-gray-900">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+        <h1 class="font-display text-xl text-gray-900 hidden sm:block" id="topbar-title">Dashboard Overview</h1>
+      </div>
+      <div class="flex items-center gap-4">
+        <button class="text-gray-400 hover:text-gold relative">
+          <i data-lucide="bell" class="w-5 h-5"></i>
+          <span id="notif-dot" class="hidden absolute -top-1 -right-1 w-2.5 h-2.5 bg-terracotta rounded-full border-2 border-white"></span>
+        </button>
+        <div class="flex items-center gap-2">
+          <div class="h-8 w-8 rounded-full bg-gold flex items-center justify-center text-white text-sm font-bold" id="admin-avatar">A</div>
+          <span class="text-sm text-gray-700 hidden sm:block" id="admin-name">Admin</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 p-6 lg:p-8">
+
+      <div id="tab-dashboard" class="tab-content active">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+          <div>
+            <h2 class="font-display text-2xl text-gray-900">Dashboard Overview</h2>
+            <p class="text-sm text-gray-500 mt-1">What is happening across the foundation today.</p>
+          </div>
+          <div class="flex gap-3">
+            <button class="btn-gold" onclick="openTeachingModal()"><i data-lucide="plus" class="w-4 h-4"></i> New Teaching</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div class="stat-card">
+            <div class="flex justify-between items-start mb-4">
+              <div class="p-2 bg-blue-50 rounded-md"><i data-lucide="users" class="w-5 h-5 text-blue-600"></i></div>
+              <span class="text-xs font-bold text-green-600 flex items-center bg-green-50 px-2 py-1 rounded-full"><i data-lucide="arrow-up" class="w-3 h-3 mr-1"></i> 12%</span>
+            </div>
+            <p class="text-sm text-gray-500 font-medium mb-1">Total Members</p>
+            <h3 id="stat-members" class="font-display text-3xl text-gray-900"><i data-lucide="loader-2" class="w-6 h-6 spinner text-gold"></i></h3>
+          </div>
+          <div class="stat-card">
+            <div class="flex justify-between items-start mb-4">
+              <div class="p-2 bg-orange-50 rounded-md"><i data-lucide="book-open" class="w-5 h-5 text-terracotta"></i></div>
+              <span class="text-xs font-bold text-green-600 flex items-center bg-green-50 px-2 py-1 rounded-full"><i data-lucide="arrow-up" class="w-3 h-3 mr-1"></i> 8%</span>
+            </div>
+            <p class="text-sm text-gray-500 font-medium mb-1">Books in Store</p>
+            <h3 id="stat-books" class="font-display text-3xl text-gray-900"><i data-lucide="loader-2" class="w-6 h-6 spinner text-gold"></i></h3>
+          </div>
+          <div class="stat-card">
+            <div class="flex justify-between items-start mb-4">
+              <div class="p-2 bg-yellow-50 rounded-md"><i data-lucide="dollar-sign" class="w-5 h-5 text-gold"></i></div>
+              <span class="text-xs font-bold text-green-600 flex items-center bg-green-50 px-2 py-1 rounded-full"><i data-lucide="arrow-up" class="w-3 h-3 mr-1"></i> 24%</span>
+            </div>
+            <p class="text-sm text-gray-500 font-medium mb-1">Total Donations</p>
+            <h3 id="stat-funds" class="font-display text-3xl text-gray-900"><i data-lucide="loader-2" class="w-6 h-6 spinner text-gold"></i></h3>
+          </div>
+          <div class="stat-card">
+            <div class="flex justify-between items-start mb-4">
+              <div class="p-2 bg-purple-50 rounded-md"><i data-lucide="file-text" class="w-5 h-5 text-purple-600"></i></div>
+              <span class="text-xs font-bold text-gray-500 flex items-center bg-gray-100 px-2 py-1 rounded-full"><i data-lucide="minus" class="w-3 h-3 mr-1"></i> Live</span>
+            </div>
+            <p class="text-sm text-gray-500 font-medium mb-1">Total Teachings</p>
+            <h3 id="stat-teachings" class="font-display text-3xl text-gray-900"><i data-lucide="loader-2" class="w-6 h-6 spinner text-gold"></i></h3>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm mb-8 overflow-hidden">
+          <div class="p-6 border-b border-gray-200 flex justify-between items-center">
+            <h3 class="font-display text-xl text-gray-900">Recent Teachings</h3>
+            <button class="text-sm text-gold hover:text-gray-900 font-medium" onclick="switchTab('teachings', document.querySelector('[onclick*=teachings]'))">View All</button>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full whitespace-nowrap">
+              <thead>
+                <tr><th>Title</th><th>Category</th><th>Author</th><th>Status</th><th>Audio</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="dash-teachings-body">
+                <tr><td colspan="6" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+          <h3 class="font-display text-xl text-gray-900 mb-6">Recent Activity</h3>
+          <div id="recent-activity-container" class="space-y-5">
+            <div class="text-center py-4"><i data-lucide="loader-2" class="w-6 h-6 spinner text-gold mx-auto"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-analytics" class="tab-content">
+        <div class="mb-8">
+          <h2 class="font-display text-2xl text-gray-900">Analytics</h2>
+          <p class="text-sm text-gray-500 mt-1">Growth and engagement across the platform.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+          <div class="stat-card text-center">
+            <p class="eyebrow text-gray-400 mb-2">Total Teachings Published</p>
+            <h3 id="an-teachings" class="font-display text-4xl text-gray-900">—</h3>
+          </div>
+          <div class="stat-card text-center">
+            <p class="eyebrow text-gray-400 mb-2">Newsletter Subscribers</p>
+            <h3 id="an-subscribers" class="font-display text-4xl text-gray-900">—</h3>
+          </div>
+          <div class="stat-card text-center">
+            <p class="eyebrow text-gray-400 mb-2">Books in Catalogue</p>
+            <h3 id="an-books" class="font-display text-4xl text-gray-900">—</h3>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+            <h3 class="font-display text-lg text-gray-900 mb-4">Teachings by Category</h3>
+            <canvas id="chart-categories" height="220"></canvas>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+            <h3 class="font-display text-lg text-gray-900 mb-4">Books by Price Range</h3>
+            <canvas id="chart-books" height="220"></canvas>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 shadow-sm p-6 lg:col-span-2">
+            <h3 class="font-display text-lg text-gray-900 mb-4">Member Growth (Subscribers)</h3>
+            <div id="analytics-members-note" class="text-sm text-gray-500 italic">Loading member data...</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-news" class="tab-content">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+          <div>
+            <h2 class="font-display text-2xl text-gray-900">News & Journal</h2>
+            <p class="text-sm text-gray-500 mt-1">Manage letters, diaspora stories, and event recaps.</p>
+          </div>
+          <div class="flex gap-3 items-center">
+            <div class="search-wrap">
+              <i data-lucide="search"></i>
+              <input type="text" id="news-search" class="search-input" placeholder="Search news..." oninput="filterNews(this.value)">
+            </div>
+            <button class="btn-gold" onclick="openNewsModal()"><i data-lucide="plus" class="w-4 h-4"></i> Add Post</button>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr><th>Cover</th><th>Title</th><th>Category</th><th>Date</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="news-body">
+                <tr><td colspan="5" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-teachings" class="tab-content">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+          <div>
+            <h2 class="font-display text-2xl text-gray-900">Teachings</h2>
+            <p class="text-sm text-gray-500 mt-1">Manage all published and draft teachings.</p>
+          </div>
+          <div class="flex gap-3 items-center">
+            <div class="search-wrap">
+              <i data-lucide="search"></i>
+              <input type="text" id="teachings-search" class="search-input" placeholder="Search teachings..." oninput="filterTeachings(this.value)">
+            </div>
+            <button class="btn-gold" onclick="openTeachingModal()"><i data-lucide="plus" class="w-4 h-4"></i> Add Teaching</button>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr><th>Cover</th><th>Title</th><th>Category</th><th>Author</th><th>Status</th><th>Audio</th><th>Date</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="teachings-body">
+                <tr><td colspan="8" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-diaspora" class="tab-content">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+          <div>
+            <h2 class="font-display text-2xl text-gray-900">Diaspora Regions</h2>
+            <p class="text-sm text-gray-500 mt-1">Manage the content for the 5 global branches of the family.</p>
+          </div>
+          <div class="flex gap-3 items-center">
+            <div class="search-wrap">
+              <i data-lucide="search"></i>
+              <input type="text" id="diaspora-search" class="search-input" placeholder="Search regions..." oninput="filterDiaspora(this.value)">
+            </div>
+            <button class="btn-gold" onclick="openDiasporaModal()"><i data-lucide="plus" class="w-4 h-4"></i> Add Region</button>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr><th>Image</th><th>Name</th><th>Slug</th><th>Population</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="diaspora-body">
+                <tr><td colspan="5" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-books" class="tab-content">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+          <div>
+            <h2 class="font-display text-2xl text-gray-900">Bookstore Inventory</h2>
+            <p class="text-sm text-gray-500 mt-1">Manage the books available in the store.</p>
+          </div>
+          <div class="flex gap-3 items-center">
+            <div class="search-wrap">
+              <i data-lucide="search"></i>
+              <input type="text" id="books-search" class="search-input" placeholder="Search books..." oninput="filterBooks(this.value)">
+            </div>
+            <button class="btn-gold" onclick="openBookModal()"><i data-lucide="plus" class="w-4 h-4"></i> Add Book</button>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr><th>Cover</th><th>Title</th><th>Author</th><th>Price</th><th>Pages</th><th>Tag</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="books-body">
+                <tr><td colspan="7" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-programs" class="tab-content">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+          <div>
+            <h2 class="font-display text-2xl text-gray-900">Programs &amp; Events</h2>
+            <p class="text-sm text-gray-500 mt-1">Manage retreats, courses, and community gatherings.</p>
+          </div>
+          <button class="btn-gold" onclick="openProgramModal()"><i data-lucide="plus" class="w-4 h-4"></i> Add Program</button>
+        </div>
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr><th>Cover</th><th>Title</th><th>Type</th><th>Date</th><th>Location</th><th>Price</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="programs-body">
+                <tr><td colspan="7" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-members" class="tab-content">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+          <div>
+            <h2 class="font-display text-2xl text-gray-900">Members</h2>
+            <p class="text-sm text-gray-500 mt-1">All newsletter subscribers and registered community members.</p>
+          </div>
+          <div class="search-wrap">
+            <i data-lucide="search"></i>
+            <input type="text" id="members-search" class="search-input" placeholder="Search by email..." oninput="filterMembers(this.value)">
+          </div>
+        </div>
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr><th>#</th><th>Email</th><th>Joined</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="members-body">
+                <tr><td colspan="4" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-reviews" class="tab-content">
+        <div class="mb-8">
+          <h2 class="font-display text-2xl text-gray-900">Comments &amp; Reviews</h2>
+          <p class="text-sm text-gray-500 mt-1">Moderate community feedback on teachings and books.</p>
+        </div>
+        <div id="reviews-container" class="space-y-4">
+          <div class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></div>
+        </div>
+      </div>
+
+      <div id="tab-donations" class="tab-content">
+        <div class="mb-8">
+          <h2 class="font-display text-2xl text-gray-900">Donations</h2>
+          <p class="text-sm text-gray-500 mt-1">Mission fund contributions from the community.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+          <div class="stat-card text-center">
+            <p class="eyebrow text-gray-400 mb-2">Total Raised</p>
+            <h3 id="don-total" class="font-display text-3xl text-gray-900">—</h3>
+          </div>
+          <div class="stat-card text-center">
+            <p class="eyebrow text-gray-400 mb-2">Number of Donors</p>
+            <h3 id="don-count" class="font-display text-3xl text-gray-900">—</h3>
+          </div>
+          <div class="stat-card text-center">
+            <p class="eyebrow text-gray-400 mb-2">Average Donation</p>
+            <h3 id="don-avg" class="font-display text-3xl text-gray-900">—</h3>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr><th>Donor</th><th>Email</th><th>Amount</th><th>Message</th><th>Date</th></tr>
+              </thead>
+              <tbody id="donations-body">
+                <tr><td colspan="5" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<div class="modal-overlay" id="news-modal">
+  <div class="modal-box">
+    <div class="flex justify-between items-center p-6 border-b border-gray-200">
+      <h3 class="font-display text-xl text-gray-900" id="news-modal-title">Add Journal Post</h3>
+      <button onclick="closeModal('news-modal')" class="text-gray-400 hover:text-gray-700"><i data-lucide="x" class="w-5 h-5"></i></button>
+    </div>
+    <div class="p-6 space-y-5">
+      <input type="hidden" id="news-id">
+      <div>
+        <label class="form-label">Title <span class="text-red-500">*</span></label>
+        <input type="text" id="n-title" class="form-input" placeholder="Letter from Florence">
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="form-label">Category <span class="text-red-500">*</span></label>
+          <select id="n-category" class="form-input">
+            <option value="Letter from Florence">Letter from Florence</option>
+            <option value="Diaspora Stories">Diaspora Stories</option>
+            <option value="Events">Events</option>
+            <option value="Reflections">Reflections</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label">Date</label>
+          <input type="date" id="n-date" class="form-input">
+        </div>
+      </div>
+      <div>
+        <label class="form-label">Author</label>
+        <input type="text" id="n-author" class="form-input" placeholder="Florence Cook">
+      </div>
+      <div>
+        <label class="form-label">Excerpt (Short Preview)</label>
+        <textarea id="n-excerpt" class="form-input" rows="2" placeholder="A brief summary for the grid..."></textarea>
+      </div>
+      <div>
+        <label class="form-label">Full Body Content</label>
+        <textarea id="n-body" class="form-input" rows="5" placeholder="Full article text..."></textarea>
+      </div>
+      <div>
+        <label class="form-label">Cover Image</label>
+        <input type="file" id="n-cover" class="form-input" accept="image/jpeg,image/png,image/webp">
+        <p class="text-xs text-gray-400 mt-1">JPEG, PNG, or WebP. Max 10MB.</p>
+        <div id="n-cover-preview" class="mt-2 hidden">
+          <img id="n-cover-img" src="" alt="" class="h-24 rounded object-cover">
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-end gap-3 p-6 border-t border-gray-200">
+      <button class="btn-outline" onclick="closeModal('news-modal')">Cancel</button>
+      <button class="btn-gold" id="news-save-btn" onclick="saveNews()"><i data-lucide="save" class="w-4 h-4"></i> Save Post</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="diaspora-modal">
+  <div class="modal-box">
+    <div class="flex justify-between items-center p-6 border-b border-gray-200">
+      <h3 class="font-display text-xl text-gray-900" id="diaspora-modal-title">Edit Region</h3>
+      <button onclick="closeModal('diaspora-modal')" class="text-gray-400 hover:text-gray-700"><i data-lucide="x" class="w-5 h-5"></i></button>
+    </div>
+    <div class="p-6 space-y-5">
+      <input type="hidden" id="diaspora-id">
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="form-label">Region Name <span class="text-red-500">*</span></label>
+          <input type="text" id="d-name" class="form-input" placeholder="African Americans">
+        </div>
+        <div>
+          <label class="form-label">Slug (URL safe) <span class="text-red-500">*</span></label>
+          <input type="text" id="d-slug" class="form-input" placeholder="african-americans">
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="form-label">Population</label>
+          <input type="text" id="d-population" class="form-input" placeholder="~46M">
+        </div>
+        <div>
+          <label class="form-label">Reach</label>
+          <input type="text" id="d-reach" class="form-input" placeholder="USA · Canada">
+        </div>
+      </div>
+      <div>
+        <label class="form-label">Eyebrow (Subtitle)</label>
+        <input type="text" id="d-eyebrow" class="form-input" placeholder="Souls of the South & North">
+      </div>
+      <div>
+        <label class="form-label">Highlight Text (Gold, Italic)</label>
+        <textarea id="d-highlight" class="form-input" rows="2" placeholder="From the cotton fields..."></textarea>
+      </div>
+      <div>
+        <label class="form-label">Main Body Description</label>
+        <textarea id="d-body" class="form-input" rows="4" placeholder="African Americans carry a particular gravity..."></textarea>
+      </div>
+      
+      <h4 class="font-bold text-gray-900 border-b border-gray-200 pb-2 pt-2">Cultural Features</h4>
+      <div class="grid grid-cols-12 gap-2 items-center">
+        <input type="text" id="d-f1-title" class="col-span-4 form-input" placeholder="Music">
+        <input type="text" id="d-f1-text" class="col-span-8 form-input" placeholder="Gospel · Blues · Jazz · Hip-Hop">
+      </div>
+      <div class="grid grid-cols-12 gap-2 items-center">
+        <input type="text" id="d-f2-title" class="col-span-4 form-input" placeholder="Movements">
+        <input type="text" id="d-f2-text" class="col-span-8 form-input" placeholder="Abolition · Civil Rights">
+      </div>
+      <div class="grid grid-cols-12 gap-2 items-center">
+        <input type="text" id="d-f3-title" class="col-span-4 form-input" placeholder="Sacred Sites">
+        <input type="text" id="d-f3-text" class="col-span-8 form-input" placeholder="Selma · Tulsa · Harlem">
+      </div>
+
+      <h4 class="font-bold text-gray-900 border-b border-gray-200 pb-2 pt-2">Featured Quote</h4>
+      <div class="grid grid-cols-1 gap-4">
+        <textarea id="d-quote" class="form-input" rows="2" placeholder='"My great-grandmother could not read..."'></textarea>
+        <input type="text" id="d-quote-author" class="form-input" placeholder="— Renée, 34 · Atlanta">
+      </div>
+
+      <div>
+        <label class="form-label">Cover Image</label>
+        <input type="file" id="d-cover" class="form-input" accept="image/jpeg,image/png,image/webp">
+        <div id="d-cover-preview" class="mt-2 hidden">
+          <img id="d-cover-img" src="" alt="" class="h-24 rounded object-cover">
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-end gap-3 p-6 border-t border-gray-200">
+      <button class="btn-outline" onclick="closeModal('diaspora-modal')">Cancel</button>
+      <button class="btn-gold" id="diaspora-save-btn" onclick="saveDiaspora()"><i data-lucide="save" class="w-4 h-4"></i> Save Region</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="teaching-modal">
+  <div class="modal-box">
+    <div class="flex justify-between items-center p-6 border-b border-gray-200">
+      <h3 class="font-display text-xl text-gray-900" id="teaching-modal-title">Add New Teaching</h3>
+      <button onclick="closeModal('teaching-modal')" class="text-gray-400 hover:text-gray-700"><i data-lucide="x" class="w-5 h-5"></i></button>
+    </div>
+    <div class="p-6 space-y-5">
+      <input type="hidden" id="teaching-id">
+      <div>
+        <label class="form-label">Title <span class="text-red-500">*</span></label>
+        <input type="text" id="t-title" class="form-input" placeholder="The Root of All Wisdom">
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="form-label">Category <span class="text-red-500">*</span></label>
+          <select id="t-category" class="form-input">
+            <option value="">Select category</option>
+            <option>Wisdom</option><option>Philosophy</option><option>Spirituality</option>
+            <option>Community</option><option>History</option><option>Healing</option>
+            <option>Leadership</option><option>Youth</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label">Read Time</label>
+          <input type="text" id="t-readtime" class="form-input" placeholder="5 min read">
+        </div>
+      </div>
+      <div>
+        <label class="form-label">Author <span class="text-red-500">*</span></label>
+        <input type="text" id="t-author" class="form-input" placeholder="Florence Adeyemi">
+      </div>
+      <div>
+        <label class="form-label">Status</label>
+        <select id="t-status" class="form-input">
+          <option value="draft">Draft</option>
+          <option value="published">Published</option>
+        </select>
+      </div>
+      <div>
+        <label class="form-label">Body Content <span class="text-red-500">*</span></label>
+        <textarea id="t-body" class="form-input" rows="6" placeholder="Write the teaching content here..."></textarea>
+      </div>
+      <div>
+        <label class="form-label">Cover Image</label>
+        <input type="file" id="t-cover" class="form-input" accept="image/jpeg,image/png,image/webp">
+        <p class="text-xs text-gray-400 mt-1">JPEG, PNG, or WebP. Max 10MB.</p>
+        <div id="t-cover-preview" class="mt-2 hidden">
+          <img id="t-cover-img" src="" alt="" class="h-24 rounded object-cover">
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-end gap-3 p-6 border-t border-gray-200">
+      <button class="btn-outline" onclick="closeModal('teaching-modal')">Cancel</button>
+      <button class="btn-gold" id="teaching-save-btn" onclick="saveTeaching()"><i data-lucide="save" class="w-4 h-4"></i> Save Teaching</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="book-modal">
+  <div class="modal-box">
+    <div class="flex justify-between items-center p-6 border-b border-gray-200">
+      <h3 class="font-display text-xl text-gray-900" id="book-modal-title">Add New Book</h3>
+      <button onclick="closeModal('book-modal')" class="text-gray-400 hover:text-gray-700"><i data-lucide="x" class="w-5 h-5"></i></button>
+    </div>
+    <div class="p-6 space-y-5">
+      <input type="hidden" id="book-id">
+      <div>
+        <label class="form-label">Title <span class="text-red-500">*</span></label>
+        <input type="text" id="b-title" class="form-input" placeholder="The Roots of Afara">
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="form-label">Author <span class="text-red-500">*</span></label>
+          <input type="text" id="b-author" class="form-input" placeholder="Dr. Adeyemi">
+        </div>
+        <div>
+          <label class="form-label">Price ($) <span class="text-red-500">*</span></label>
+          <input type="number" id="b-price" class="form-input" placeholder="19.99" step="0.01" min="0">
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="form-label">Pages</label>
+          <input type="number" id="b-pages" class="form-input" placeholder="320" min="1">
+        </div>
+        <div>
+          <label class="form-label">Tag</label>
+          <select id="b-tag" class="form-input">
+            <option value="">None</option>
+            <option value="bestseller">Bestseller</option>
+            <option value="new">New</option>
+            <option value="featured">Featured</option>
+            <option value="recommended">Recommended</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label class="form-label">Impact % (goes to mission)</label>
+        <input type="number" id="b-impact" class="form-input" placeholder="20" min="0" max="100">
+      </div>
+      <div>
+        <label class="form-label">Description</label>
+        <textarea id="b-desc" class="form-input" rows="4" placeholder="A profound journey through..."></textarea>
+      </div>
+      <div>
+        <label class="form-label">Cover Image</label>
+        <input type="file" id="b-cover" class="form-input" accept="image/jpeg,image/png,image/webp">
+        <p class="text-xs text-gray-400 mt-1">JPEG, PNG, or WebP. Max 10MB.</p>
+        <div id="b-cover-preview" class="mt-2 hidden">
+          <img id="b-cover-img" src="" alt="" class="h-24 rounded object-cover">
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-end gap-3 p-6 border-t border-gray-200">
+      <button class="btn-outline" onclick="closeModal('book-modal')">Cancel</button>
+      <button class="btn-gold" id="book-save-btn" onclick="saveBook()"><i data-lucide="save" class="w-4 h-4"></i> Save Book</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="program-modal">
+  <div class="modal-box">
+    <div class="flex justify-between items-center p-6 border-b border-gray-200">
+      <h3 class="font-display text-xl text-gray-900" id="program-modal-title">Add Program / Event</h3>
+      <button onclick="closeModal('program-modal')" class="text-gray-400 hover:text-gray-700"><i data-lucide="x" class="w-5 h-5"></i></button>
+    </div>
+    <div class="p-6 space-y-5">
+      <input type="hidden" id="program-id">
+      <div>
+        <label class="form-label">Title <span class="text-red-500">*</span></label>
+        <input type="text" id="p-title" class="form-input" placeholder="Annual Wisdom Retreat">
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="form-label">Type</label>
+          <select id="p-type" class="form-input">
+            <option value="retreat">Retreat</option>
+            <option value="course">Course</option>
+            <option value="event">Event</option>
+            <option value="workshop">Workshop</option>
+            <option value="webinar">Webinar</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label">Status</label>
+          <select id="p-status" class="form-input">
+            <option value="upcoming">Upcoming</option>
+            <option value="ongoing">Ongoing</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="form-label">Date</label>
+          <input type="date" id="p-date" class="form-input">
+        </div>
+        <div>
+          <label class="form-label">Available Seats</label>
+          <input type="number" id="p-seats" class="form-input" placeholder="30" min="0">
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="form-label">Physical Location</label>
+          <input type="text" id="p-location" class="form-input" placeholder="Lagos, Nigeria">
+        </div>
+        <div>
+          <label class="form-label">Meeting Link (e.g. Zoom)</label>
+          <input type="text" id="p-meeting-link" class="form-input" placeholder="https://zoom.us/j/...">
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="form-label">Price ($) <span class="text-xs text-gray-400 font-normal">(0 for free)</span></label>
+          <input type="number" id="p-price" class="form-input" placeholder="0.00" step="0.01" min="0">
+        </div>
+        <div>
+          <label class="form-label">Speakers / Teachers</label>
+          <input type="text" id="p-speakers" class="form-input" placeholder="Florence Cook, Kwame Osei">
+        </div>
+      </div>
+
+      <div>
+        <label class="form-label">Description</label>
+        <textarea id="p-desc" class="form-input" rows="3" placeholder="A 5-day immersive retreat..."></textarea>
+      </div>
+
+      <div>
+        <label class="form-label">Cover Image</label>
+        <input type="file" id="p-cover" class="form-input" accept="image/jpeg,image/png,image/webp">
+        <div id="p-cover-preview" class="mt-2 hidden">
+          <img id="p-cover-img" src="" alt="" class="h-24 rounded object-cover">
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-end gap-3 p-6 border-t border-gray-200">
+      <button class="btn-outline" onclick="closeModal('program-modal')">Cancel</button>
+      <button class="btn-gold" id="program-save-btn" onclick="saveProgram()"><i data-lucide="save" class="w-4 h-4"></i> Save Program</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="confirm-modal">
+  <div class="modal-box" style="max-width:400px">
+    <div class="p-6 text-center">
+      <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <i data-lucide="trash-2" class="w-6 h-6 text-red-600"></i>
+      </div>
+      <h3 class="font-display text-xl text-gray-900 mb-2">Confirm Delete</h3>
+      <p class="text-sm text-gray-500 mb-6" id="confirm-message">Are you sure you want to delete this item? This cannot be undone.</p>
+      <div class="flex gap-3 justify-center">
+        <button class="btn-outline" onclick="closeModal('confirm-modal')">Cancel</button>
+        <button class="btn-danger" id="confirm-yes-btn">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const API_BASE = 'https://afara-aex1.onrender.com/api';
+let ADMIN_API_KEY = '';
+let allTeachings = [];
+let allBooks = [];
+let allMembers = [];
+let allNews = [];
+let allDiaspora = [];
+let allPrograms = [];
+let chartsInitialized = false;
+
+function apiHeaders(isFormData) {
+  const h = { 'x-admin-api-key': ADMIN_API_KEY };
+  if (!isFormData) h['Content-Type'] = 'application/json';
+  return h;
+}
+
+function showToast(msg, type = 'success') {
+  const existing = document.querySelector('.toast');
+  if (existing) existing.remove();
+  const t = document.createElement('div');
+  t.className = 'toast ' + type;
+  t.innerHTML = '<i data-lucide="' + (type === 'success' ? 'check-circle' : 'alert-circle') + '" class="w-4 h-4"></i> ' + msg;
+  document.body.appendChild(t);
+  lucide.createIcons();
+  setTimeout(() => t.remove(), 3500);
+}
+
+function fmtDate(d) {
+  if (!d) return '—';
+  return new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+function fmtCurrency(n) {
+  if (n == null || isNaN(n)) return '—';
+  if (parseFloat(n) === 0) return 'Free';
+  return '$' + parseFloat(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function statusBadge(s) {
+  if (!s) return '<span class="badge-gray">Unknown</span>';
+  const map = { published: 'badge-green', draft: 'badge-yellow', upcoming: 'badge-green', ongoing: 'badge-yellow', completed: 'badge-gray', cancelled: 'badge-red', approved: 'badge-green', pending: 'badge-yellow', rejected: 'badge-red' };
+  return '<span class="' + (map[s.toLowerCase()] || 'badge-gray') + '">' + s + '</span>';
+}
+
+function setLoading(btnId, loading, originalText) {
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+  if (loading) {
+    btn.disabled = true;
+    btn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 spinner"></i> Saving...';
+    lucide.createIcons();
+  } else {
+    btn.disabled = false;
+    btn.innerHTML = originalText;
+    lucide.createIcons();
+  }
+}
+
+function confirmDelete(message, callback) {
+  document.getElementById('confirm-message').textContent = message;
+  document.getElementById('confirm-yes-btn').onclick = () => { closeModal('confirm-modal'); callback(); };
+  document.getElementById('confirm-modal').classList.add('open');
+}
+
+function handleImagePreview(inputId, previewBoxId, imgId) {
+  document.getElementById(inputId).addEventListener('change', function() {
+    if (this.files && this.files[0]) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        document.getElementById(imgId).src = e.target.result;
+        document.getElementById(previewBoxId).classList.remove('hidden');
+      };
+      reader.readAsDataURL(this.files[0]);
+    }
+  });
+}
+handleImagePreview('t-cover', 't-cover-preview', 't-cover-img');
+handleImagePreview('b-cover', 'b-cover-preview', 'b-cover-img');
+handleImagePreview('n-cover', 'n-cover-preview', 'n-cover-img');
+handleImagePreview('d-cover', 'd-cover-preview', 'd-cover-img');
+handleImagePreview('p-cover', 'p-cover-preview', 'p-cover-img');
+
+async function doLogin() {
+  const username = document.getElementById('login-username').value.trim();
+  const password = document.getElementById('login-password').value;
+  const errEl = document.getElementById('login-error');
+  const btn = document.getElementById('login-btn');
+
+  if (!username || !password) {
+    errEl.textContent = 'Please enter your username and password.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 spinner"></i> Signing in...';
+  lucide.createIcons();
+  errEl.classList.add('hidden');
+
+  try {
+    const res = await fetch(API_BASE + '/admin/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password }),
+      credentials: 'include'
+    });
+    const data = await res.json();
+    if (res.ok && data.apiKey) {
+      ADMIN_API_KEY = data.apiKey;
+      sessionStorage.setItem('afara_admin_key', data.apiKey);
+      sessionStorage.setItem('afara_admin_name', data.name || 'Admin');
+      showApp(data.name || 'Admin');
+    } else {
+      errEl.textContent = data.error || 'Invalid credentials. Please try again.';
+      errEl.classList.remove('hidden');
+    }
+  } catch (e) {
+    errEl.textContent = 'Could not reach the server. Please check your connection.';
+    errEl.classList.remove('hidden');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i data-lucide="log-in" class="w-4 h-4"></i> Sign In';
+    lucide.createIcons();
+  }
+}
+
+function showApp(name) {
+  document.getElementById('login-screen').style.display = 'none';
+  const mainApp = document.getElementById('main-app');
+  mainApp.classList.remove('hidden');
+  mainApp.style.display = 'flex';
+  document.getElementById('admin-name').textContent = name;
+  document.getElementById('admin-avatar').textContent = name.charAt(0).toUpperCase();
+  loadDashboard();
+}
+
+function doLogout() {
+  ADMIN_API_KEY = '';
+  sessionStorage.removeItem('afara_admin_key');
+  sessionStorage.removeItem('afara_admin_name');
+  document.getElementById('main-app').style.display = 'none';
+  document.getElementById('main-app').classList.add('hidden');
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('login-username').value = '';
+  document.getElementById('login-password').value = '';
+  fetch(API_BASE + '/admin/logout', { method: 'POST', credentials: 'include' }).catch(() => {});
+}
+
+document.getElementById('login-password').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+document.getElementById('login-username').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+const tabTitles = {
+  dashboard: 'Dashboard Overview',
+  analytics: 'Analytics',
+  news: 'News & Journal',
+  teachings: 'Teachings',
+  diaspora: 'Diaspora Regions',
+  books: 'Bookstore Inventory',
+  programs: 'Programs & Events',
+  members: 'Members',
+  reviews: 'Comments & Reviews',
+  donations: 'Donations'
+};
+
+function switchTab(tabId, el) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  if (el) el.classList.add('active');
+  document.getElementById('topbar-title').textContent = tabTitles[tabId] || '';
+  closeSidebar();
+  
+  if (tabId === 'news') loadNews();
+  if (tabId === 'teachings') loadTeachings();
+  if (tabId === 'diaspora') loadDiaspora();
+  if (tabId === 'books') loadBooks();
+  if (tabId === 'programs') loadPrograms();
+  if (tabId === 'members') loadMembers();
+  if (tabId === 'reviews') loadReviews();
+  if (tabId === 'donations') loadDonations();
+  if (tabId === 'analytics') loadAnalytics();
+}
+
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('sidebar-overlay');
+document.getElementById('open-sidebar').addEventListener('click', () => {
+  sidebar.classList.remove('-translate-x-full');
+  overlay.classList.remove('hidden');
+});
+document.getElementById('close-sidebar').addEventListener('click', closeSidebar);
+overlay.addEventListener('click', closeSidebar);
+function closeSidebar() {
+  sidebar.classList.add('-translate-x-full');
+  overlay.classList.add('hidden');
+}
+
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) closeModal(m.id); });
+});
+
+async function loadDashboard() {
+  try {
+    const [statsRes, teachingsRes, activityRes] = await Promise.all([
+      fetch(API_BASE + '/admin/stats', { headers: apiHeaders() }).catch(() => null),
+      fetch(API_BASE + '/admin/teachings', { headers: apiHeaders() }).catch(() => null),
+      fetch(API_BASE + '/admin/activity', { headers: apiHeaders() }).catch(() => null)
+    ]);
+
+    if (statsRes && statsRes.ok) {
+      const s = await statsRes.json();
+      document.getElementById('stat-members').textContent = (s.members || 0).toLocaleString();
+      document.getElementById('stat-books').textContent = (s.books || 0).toLocaleString();
+      document.getElementById('stat-funds').textContent = fmtCurrency(s.donations_total || 0);
+      document.getElementById('stat-teachings').textContent = (s.teachings || 0).toLocaleString();
+    }
+
+    const tbody = document.getElementById('dash-teachings-body');
+    if (teachingsRes && teachingsRes.ok) {
+      const data = await teachingsRes.json();
+      allTeachings = data;
+      if (!data.length) {
+        tbody.innerHTML = '<tr><td colspan="6" class="empty-state">No teachings yet.</td></tr>';
+      } else {
+        tbody.innerHTML = data.slice(0, 5).map(t => buildTeachingRow(t, true)).join('');
+      }
+    }
+
+    const actEl = document.getElementById('recent-activity-container');
+    if (activityRes && activityRes.ok) {
+      const acts = await activityRes.json();
+      if (!acts.length) {
+        actEl.innerHTML = '<p class="text-gray-400 text-sm italic">No recent activity recorded.</p>';
+      } else {
+        actEl.innerHTML = acts.map(a => {
+          const icons = { order: ['shopping-bag', 'bg-orange-100', 'text-terracotta'], member: ['user-plus', 'bg-blue-100', 'text-blue-600'], comment: ['message-circle', 'bg-yellow-100', 'text-gold'] };
+          const [icon, bg, color] = icons[a.type] || ['activity', 'bg-gray-100', 'text-gray-500'];
+          return '<div class="flex items-start gap-4"><div class="w-8 h-8 rounded-full ' + bg + ' flex items-center justify-center shrink-0 mt-0.5"><i data-lucide="' + icon + '" class="w-4 h-4 ' + color + '"></i></div><div><p class="text-sm text-gray-900">' + a.message + '</p><p class="text-xs text-gray-500 mt-0.5">' + a.time_ago + '</p></div></div>';
+        }).join('');
+      }
+    }
+    lucide.createIcons();
+  } catch (e) { console.error(e); }
+}
+
+async function loadNews() {
+  const tbody = document.getElementById('news-body');
+  tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>';
+  lucide.createIcons();
+  try {
+    const res = await fetch(API_BASE + '/news', { headers: apiHeaders() });
+    if (!res.ok) throw new Error('Failed');
+    allNews = await res.json();
+    renderNews(allNews);
+  } catch (e) {
+    tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-red-400 text-sm">Could not load news.</td></tr>';
+  }
+}
+
+function renderNews(list) {
+  const tbody = document.getElementById('news-body');
+  if (!list.length) {
+    tbody.innerHTML = '<tr><td colspan="5"><div class="empty-state"><i data-lucide="newspaper" class="w-10 h-10 mx-auto mb-2"></i><p>No posts yet.</p><button class="btn-gold mt-4" onclick="openNewsModal()">Add First Post</button></div></td></tr>';
+  } else {
+    tbody.innerHTML = list.map(n => {
+      const cover = n.cover_image_url
+        ? '<img src="' + n.cover_image_url + '" class="img-thumb" onerror="this.style.display=\'none\'">'
+        : '<div class="img-thumb bg-gray-100 flex items-center justify-center"><i data-lucide="image" class="w-4 h-4 text-gray-300"></i></div>';
+      return '<tr><td>' + cover + '</td><td><div class="font-medium text-gray-900 max-w-xs truncate">' + n.title + '</div><div class="text-xs text-gray-500 truncate mt-1">' + (n.excerpt || '') + '</div></td><td><span class="badge-gray">' + (n.category || '—') + '</span></td><td>' + fmtDate(n.date) + '</td><td><div class="flex gap-1"><button class="action-btn" onclick="editNews(' + JSON.stringify(n).replace(/"/g, '&quot;') + ')"><i data-lucide="edit-2" class="w-4 h-4"></i></button><button class="action-btn del" onclick="deleteNews(\'' + n.id + '\')"><i data-lucide="trash-2" class="w-4 h-4"></i></button></div></td></tr>';
+    }).join('');
+  }
+  lucide.createIcons();
+}
+
+function filterNews(q) {
+  const f = allNews.filter(n => n.title.toLowerCase().includes(q.toLowerCase()) || (n.category || '').toLowerCase().includes(q.toLowerCase()));
+  renderNews(f);
+}
+
+function openNewsModal() {
+  document.getElementById('news-id').value = '';
+  ['n-title','n-author','n-date','n-excerpt','n-body'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('n-category').value = 'Letter from Florence';
+  document.getElementById('n-cover').value = '';
+  document.getElementById('n-cover-preview').classList.add('hidden');
+  document.getElementById('news-modal-title').textContent = 'Add Journal Post';
+  document.getElementById('news-save-btn').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Save Post';
+  lucide.createIcons();
+  openModal('news-modal');
+}
+
+function editNews(n) {
+  document.getElementById('news-id').value = n.id;
+  document.getElementById('n-title').value = n.title || '';
+  document.getElementById('n-category').value = n.category || '';
+  document.getElementById('n-date').value = n.date ? n.date.split('T')[0] : '';
+  document.getElementById('n-author').value = n.author || '';
+  document.getElementById('n-excerpt').value = n.excerpt || '';
+  document.getElementById('n-body').value = n.body || '';
+  document.getElementById('n-cover').value = '';
+  if (n.cover_image_url) {
+    document.getElementById('n-cover-img').src = n.cover_image_url;
+    document.getElementById('n-cover-preview').classList.remove('hidden');
+  } else {
+    document.getElementById('n-cover-preview').classList.add('hidden');
+  }
+  document.getElementById('news-modal-title').textContent = 'Edit Journal Post';
+  document.getElementById('news-save-btn').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Update Post';
+  lucide.createIcons();
+  openModal('news-modal');
+}
+
+async function saveNews() {
+  const id = document.getElementById('news-id').value;
+  const title = document.getElementById('n-title').value.trim();
+  if (!title) { showToast('Title is required.', 'error'); return; }
+
+  setLoading('news-save-btn', true);
+  try {
+    const fd = new FormData();
+    fd.append('title', title);
+    fd.append('category', document.getElementById('n-category').value);
+    fd.append('date', document.getElementById('n-date').value);
+    fd.append('author', document.getElementById('n-author').value);
+    fd.append('excerpt', document.getElementById('n-excerpt').value);
+    fd.append('body', document.getElementById('n-body').value);
+    const file = document.getElementById('n-cover').files[0];
+    if (file) fd.append('coverImage', file);
+
+    const url = id ? API_BASE + '/admin/news/' + id : API_BASE + '/admin/news';
+    const method = id ? 'PUT' : 'POST';
+    const res = await fetch(url, { method, headers: { 'x-admin-api-key': ADMIN_API_KEY }, body: fd });
+
+    if (!res.ok) throw new Error('Save failed');
+    showToast(id ? 'Post updated!' : 'Post created!');
+    closeModal('news-modal');
+    loadNews();
+  } catch (e) {
+    showToast('Error saving post.', 'error');
+  } finally {
+    setLoading('news-save-btn', false, '<i data-lucide="save" class="w-4 h-4"></i> Save Post');
+    lucide.createIcons();
+  }
+}
+
+async function deleteNews(id) {
+  confirmDelete('Delete this post permanently?', async () => {
+    try {
+      await fetch(API_BASE + '/admin/news/' + id, { method: 'DELETE', headers: apiHeaders() });
+      showToast('Post deleted.');
+      loadNews();
+    } catch { showToast('Failed to delete.', 'error'); }
+  });
+}
+
+async function loadDiaspora() {
+  const tbody = document.getElementById('diaspora-body');
+  tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>';
+  lucide.createIcons();
+  try {
+    const res = await fetch(API_BASE + '/diaspora', { headers: apiHeaders() });
+    if (!res.ok) throw new Error('Failed');
+    allDiaspora = await res.json();
+    renderDiaspora(allDiaspora);
+  } catch (e) {
+    tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-red-400 text-sm">Could not load regions.</td></tr>';
+  }
+}
+
+function renderDiaspora(list) {
+  const tbody = document.getElementById('diaspora-body');
+  if (!list.length) {
+    tbody.innerHTML = '<tr><td colspan="5"><div class="empty-state"><i data-lucide="globe-2" class="w-10 h-10 mx-auto mb-2"></i><p>No regions created.</p><button class="btn-gold mt-4" onclick="openDiasporaModal()">Add First Region</button></div></td></tr>';
+  } else {
+    tbody.innerHTML = list.map(d => {
+      const cover = d.cover_image_url
+        ? '<img src="' + d.cover_image_url + '" class="img-thumb" onerror="this.style.display=\'none\'">'
+        : '<div class="img-thumb bg-gray-100 flex items-center justify-center"><i data-lucide="image" class="w-4 h-4 text-gray-300"></i></div>';
+      return '<tr><td>' + cover + '</td><td><div class="font-medium text-gray-900">' + d.name + '</div></td><td><span class="badge-gray">' + d.slug + '</span></td><td>' + (d.population || '—') + '</td><td><div class="flex gap-1"><button class="action-btn" onclick="editDiaspora(' + JSON.stringify(d).replace(/"/g, '&quot;') + ')"><i data-lucide="edit-2" class="w-4 h-4"></i></button><button class="action-btn del" onclick="deleteDiaspora(\'' + d.id + '\')"><i data-lucide="trash-2" class="w-4 h-4"></i></button></div></td></tr>';
+    }).join('');
+  }
+  lucide.createIcons();
+}
+
+function filterDiaspora(q) {
+  const f = allDiaspora.filter(d => d.name.toLowerCase().includes(q.toLowerCase()) || d.slug.toLowerCase().includes(q.toLowerCase()));
+  renderDiaspora(f);
+}
+
+function openDiasporaModal() {
+  document.getElementById('diaspora-id').value = '';
+  ['d-name','d-slug','d-population','d-reach','d-eyebrow','d-highlight','d-body','d-f1-title','d-f1-text','d-f2-title','d-f2-text','d-f3-title','d-f3-text','d-quote','d-quote-author'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('d-cover').value = '';
+  document.getElementById('d-cover-preview').classList.add('hidden');
+  document.getElementById('diaspora-modal-title').textContent = 'Add Diaspora Region';
+  document.getElementById('diaspora-save-btn').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Save Region';
+  lucide.createIcons();
+  openModal('diaspora-modal');
+}
+
+function editDiaspora(d) {
+  document.getElementById('diaspora-id').value = d.id;
+  document.getElementById('d-name').value = d.name || '';
+  document.getElementById('d-slug').value = d.slug || '';
+  document.getElementById('d-population').value = d.population || '';
+  document.getElementById('d-reach').value = d.reach || '';
+  document.getElementById('d-eyebrow').value = d.eyebrow || '';
+  document.getElementById('d-highlight').value = d.highlight || '';
+  document.getElementById('d-body').value = d.body || '';
+  document.getElementById('d-f1-title').value = d.feat1_title || '';
+  document.getElementById('d-f1-text').value = d.feat1_text || '';
+  document.getElementById('d-f2-title').value = d.feat2_title || '';
+  document.getElementById('d-f2-text').value = d.feat2_text || '';
+  document.getElementById('d-f3-title').value = d.feat3_title || '';
+  document.getElementById('d-f3-text').value = d.feat3_text || '';
+  document.getElementById('d-quote').value = d.quote_text || '';
+  document.getElementById('d-quote-author').value = d.quote_author || '';
+  
+  document.getElementById('d-cover').value = '';
+  if (d.cover_image_url) {
+    document.getElementById('d-cover-img').src = d.cover_image_url;
+    document.getElementById('d-cover-preview').classList.remove('hidden');
+  } else {
+    document.getElementById('d-cover-preview').classList.add('hidden');
+  }
+  document.getElementById('diaspora-modal-title').textContent = 'Edit Region';
+  document.getElementById('diaspora-save-btn').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Update Region';
+  lucide.createIcons();
+  openModal('diaspora-modal');
+}
+
+async function saveDiaspora() {
+  const id = document.getElementById('diaspora-id').value;
+  const name = document.getElementById('d-name').value.trim();
+  const slug = document.getElementById('d-slug').value.trim();
+  if (!name || !slug) { showToast('Name and Slug are required.', 'error'); return; }
+
+  setLoading('diaspora-save-btn', true);
+  try {
+    const fd = new FormData();
+    fd.append('name', name); fd.append('slug', slug);
+    fd.append('population', document.getElementById('d-population').value);
+    fd.append('reach', document.getElementById('d-reach').value);
+    fd.append('eyebrow', document.getElementById('d-eyebrow').value);
+    fd.append('highlight', document.getElementById('d-highlight').value);
+    fd.append('body', document.getElementById('d-body').value);
+    fd.append('feat1_title', document.getElementById('d-f1-title').value);
+    fd.append('feat1_text', document.getElementById('d-f1-text').value);
+    fd.append('feat2_title', document.getElementById('d-f2-title').value);
+    fd.append('feat2_text', document.getElementById('d-f2-text').value);
+    fd.append('feat3_title', document.getElementById('d-f3-title').value);
+    fd.append('feat3_text', document.getElementById('d-f3-text').value);
+    fd.append('quote_text', document.getElementById('d-quote').value);
+    fd.append('quote_author', document.getElementById('d-quote-author').value);
+    
+    const file = document.getElementById('d-cover').files[0];
+    if (file) fd.append('coverImage', file);
+
+    const url = id ? API_BASE + '/admin/diaspora/' + id : API_BASE + '/admin/diaspora';
+    const method = id ? 'PUT' : 'POST';
+    const res = await fetch(url, { method, headers: { 'x-admin-api-key': ADMIN_API_KEY }, body: fd });
+
+    if (!res.ok) throw new Error('Save failed');
+    showToast(id ? 'Region updated!' : 'Region created!');
+    closeModal('diaspora-modal');
+    loadDiaspora();
+  } catch (e) {
+    showToast('Error saving region.', 'error');
+  } finally {
+    setLoading('diaspora-save-btn', false, '<i data-lucide="save" class="w-4 h-4"></i> Save Region');
+    lucide.createIcons();
+  }
+}
+
+async function deleteDiaspora(id) {
+  confirmDelete('Delete this region permanently?', async () => {
+    try {
+      await fetch(API_BASE + '/admin/diaspora/' + id, { method: 'DELETE', headers: apiHeaders() });
+      showToast('Region deleted.');
+      loadDiaspora();
+    } catch { showToast('Failed to delete.', 'error'); }
+  });
+}
+
+async function loadTeachings() {
+  const tbody = document.getElementById('teachings-body');
+  tbody.innerHTML = '<tr><td colspan="8" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>';
+  lucide.createIcons();
+  try {
+    const res = await fetch(API_BASE + '/admin/teachings', { headers: apiHeaders() });
+    if (!res.ok) throw new Error('Failed');
+    allTeachings = await res.json();
+    renderTeachings(allTeachings);
+  } catch (e) {
+    tbody.innerHTML = '<tr><td colspan="8" class="text-center py-4 text-red-400 text-sm">Could not load teachings from server.</td></tr>';
+  }
+}
+
+function renderTeachings(list) {
+  const tbody = document.getElementById('teachings-body');
+  if (!list.length) {
+    tbody.innerHTML = '<tr><td colspan="8"><div class="empty-state"><i data-lucide="file-text" class="w-10 h-10 mx-auto mb-2"></i><p>No teachings found.</p><button class="btn-gold mt-4" onclick="openTeachingModal()">Add Your First Teaching</button></div></td></tr>';
+  } else {
+    tbody.innerHTML = list.map(t => buildTeachingRow(t, false)).join('');
+  }
+  lucide.createIcons();
+}
+
+function buildTeachingRow(t, compact) {
+  const cover = t.cover_image_url
+    ? '<img src="' + t.cover_image_url + '" class="img-thumb" onerror="this.style.display=\'none\'">'
+    : '<div class="img-thumb bg-gray-100 flex items-center justify-center"><i data-lucide="image" class="w-4 h-4 text-gray-300"></i></div>';
+    
+  const audioBadge = t.audio_status === 'ready' ? '<span class="badge-green"><i data-lucide="headphones" class="w-3 h-3 mr-1"></i> Ready</span>' :
+                     t.audio_status === 'generating' ? '<span class="badge-yellow"><i data-lucide="loader-2" class="w-3 h-3 mr-1 spinner"></i> Gen</span>' :
+                     t.audio_status === 'failed' ? '<span class="badge-red">Failed</span>' :
+                     '<span class="badge-gray">None</span>';
+                     
+  const audioAction = `<button class="action-btn" onclick="generateAudio('${t.id}')" title="Generate Audio Narrator"><i data-lucide="mic" class="w-4 h-4"></i></button>`;
+
+  if (compact) {
+    return '<tr><td><div class="font-medium text-gray-900 max-w-xs truncate">' + t.title + '</div></td><td><span class="badge-gray">' + (t.category || '—') + '</span></td><td>' + (t.author || '—') + '</td><td>' + statusBadge(t.status || 'published') + '</td><td>' + audioBadge + '</td><td><div class="flex gap-1"><button class="action-btn" onclick="editTeaching(' + JSON.stringify(t).replace(/"/g, '&quot;') + ')"><i data-lucide="edit-2" class="w-4 h-4"></i></button>' + audioAction + '<button class="action-btn del" onclick="deleteTeaching(\'' + t.id + '\')"><i data-lucide="trash-2" class="w-4 h-4"></i></button></div></td></tr>';
+  }
+  return '<tr><td>' + cover + '</td><td><div class="font-medium text-gray-900 max-w-xs truncate">' + t.title + '</div><div class="text-xs text-gray-400 mt-0.5">' + (t.read_time || '') + '</div></td><td><span class="badge-gray">' + (t.category || '—') + '</span></td><td>' + (t.author || '—') + '</td><td>' + statusBadge(t.status || 'published') + '</td><td>' + audioBadge + '</td><td class="text-gray-400 text-xs">' + fmtDate(t.created_at) + '</td><td><div class="flex gap-1"><button class="action-btn" onclick="editTeaching(' + JSON.stringify(t).replace(/"/g, '&quot;') + ')"><i data-lucide="edit-2" class="w-4 h-4"></i></button>' + audioAction + '<button class="action-btn del" onclick="deleteTeaching(\'' + t.id + '\')"><i data-lucide="trash-2" class="w-4 h-4"></i></button></div></td></tr>';
+}
+
+function filterTeachings(q) {
+  const f = allTeachings.filter(t => t.title.toLowerCase().includes(q.toLowerCase()) || (t.author || '').toLowerCase().includes(q.toLowerCase()) || (t.category || '').toLowerCase().includes(q.toLowerCase()));
+  renderTeachings(f);
+}
+
+async function generateAudio(id) {
+    try {
+        const res = await fetch(API_BASE + '/admin/teachings/' + id + '/generate-audio', {
+            method: 'POST',
+            headers: apiHeaders()
+        });
+        if (!res.ok) {
+            const e = await res.json();
+            throw new Error(e.error || 'Failed to start audio generation');
+        }
+        showToast('Audio generation started! It will update automatically when ready.');
+        // Reload UI to show generating badge
+        loadTeachings();
+        loadDashboard();
+    } catch (e) {
+        showToast(e.message, 'error');
+    }
+}
+
+function openTeachingModal(data) {
+  document.getElementById('teaching-id').value = '';
+  document.getElementById('t-title').value = '';
+  document.getElementById('t-category').value = '';
+  document.getElementById('t-readtime').value = '';
+  document.getElementById('t-author').value = '';
+  document.getElementById('t-status').value = 'draft';
+  document.getElementById('t-body').value = '';
+  document.getElementById('t-cover').value = '';
+  document.getElementById('t-cover-preview').classList.add('hidden');
+  document.getElementById('teaching-modal-title').textContent = 'Add New Teaching';
+  document.getElementById('teaching-save-btn').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Save Teaching';
+  lucide.createIcons();
+  openModal('teaching-modal');
+}
+
+function editTeaching(t) {
+  document.getElementById('teaching-id').value = t.id;
+  document.getElementById('t-title').value = t.title || '';
+  document.getElementById('t-category').value = t.category || '';
+  document.getElementById('t-readtime').value = t.read_time || '';
+  document.getElementById('t-author').value = t.author || '';
+  document.getElementById('t-status').value = t.status || 'draft';
+  document.getElementById('t-body').value = t.body || '';
+  document.getElementById('t-cover').value = '';
+  if (t.cover_image_url) {
+    document.getElementById('t-cover-img').src = t.cover_image_url;
+    document.getElementById('t-cover-preview').classList.remove('hidden');
+  } else {
+    document.getElementById('t-cover-preview').classList.add('hidden');
+  }
+  document.getElementById('teaching-modal-title').textContent = 'Edit Teaching';
+  document.getElementById('teaching-save-btn').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Update Teaching';
+  lucide.createIcons();
+  openModal('teaching-modal');
+}
+
+async function saveTeaching() {
+  const id = document.getElementById('teaching-id').value;
+  const title = document.getElementById('t-title').value.trim();
+  const category = document.getElementById('t-category').value;
+  const read_time = document.getElementById('t-readtime').value.trim();
+  const author = document.getElementById('t-author').value.trim();
+  const status = document.getElementById('t-status').value;
+  const body = document.getElementById('t-body').value.trim();
+  const file = document.getElementById('t-cover').files[0];
+
+  if (!title || !category || !author || !body) { showToast('Please fill in all required fields.', 'error'); return; }
+
+  setLoading('teaching-save-btn', true);
+
+  try {
+    const fd = new FormData();
+    fd.append('title', title);
+    fd.append('category', category);
+    fd.append('read_time', read_time);
+    fd.append('author', author);
+    fd.append('status', status);
+    fd.append('body', body);
+    if (file) fd.append('coverImage', file);
+
+    const url = id ? API_BASE + '/admin/teachings/' + id : API_BASE + '/admin/teachings';
+    const method = id ? 'PUT' : 'POST';
+    const res = await fetch(url, { method, headers: { 'x-admin-api-key': ADMIN_API_KEY }, body: fd });
+
+    if (!res.ok) { const e = await res.json(); throw new Error(e.error || 'Save failed'); }
+    showToast(id ? 'Teaching updated!' : 'Teaching created!');
+    closeModal('teaching-modal');
+    loadTeachings();
+    loadDashboard();
+  } catch (e) {
+    showToast(e.message || 'Error saving teaching.', 'error');
+  } finally {
+    setLoading('teaching-save-btn', false, '<i data-lucide="save" class="w-4 h-4"></i> Save Teaching');
+    lucide.createIcons();
+  }
+}
+
+async function deleteTeaching(id) {
+  confirmDelete('Delete this teaching permanently?', async () => {
+    try {
+      const res = await fetch(API_BASE + '/admin/teachings/' + id, { method: 'DELETE', headers: apiHeaders() });
+      if (!res.ok) throw new Error();
+      showToast('Teaching deleted.');
+      loadTeachings();
+      loadDashboard();
+    } catch { showToast('Failed to delete.', 'error'); }
+  });
+}
+
+async function loadBooks() {
+  const tbody = document.getElementById('books-body');
+  tbody.innerHTML = '<tr><td colspan="7" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>';
+  lucide.createIcons();
+  try {
+    const res = await fetch(API_BASE + '/admin/books', { headers: apiHeaders() });
+    if (!res.ok) throw new Error('Failed');
+    allBooks = await res.json();
+    renderBooks(allBooks);
+  } catch (e) {
+    tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-red-400 text-sm">Could not load books.</td></tr>';
+  }
+}
+
+function renderBooks(list) {
+  const tbody = document.getElementById('books-body');
+  if (!list.length) {
+    tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state"><i data-lucide="book-open" class="w-10 h-10 mx-auto mb-2"></i><p>No books in the store yet.</p><button class="btn-gold mt-4" onclick="openBookModal()">Add First Book</button></div></td></tr>';
+  } else {
+    tbody.innerHTML = list.map(b => {
+      const cover = b.cover_image_url
+        ? '<img src="' + b.cover_image_url + '" class="img-thumb" onerror="this.style.display=\'none\'">'
+        : '<div class="img-thumb bg-gray-100 flex items-center justify-center"><i data-lucide="image" class="w-4 h-4 text-gray-300"></i></div>';
+      const tag = b.tag ? '<span class="badge-yellow">' + b.tag + '</span>' : '—';
+      return '<tr><td>' + cover + '</td><td><div class="font-medium text-gray-900 max-w-xs truncate">' + b.title + '</div></td><td>' + (b.author || '—') + '</td><td class="font-medium text-gray-900">' + fmtCurrency(b.price) + '</td><td>' + (b.pages || '—') + '</td><td>' + tag + '</td><td><div class="flex gap-1"><button class="action-btn" onclick="editBook(' + JSON.stringify(b).replace(/"/g, '&quot;') + ')"><i data-lucide="edit-2" class="w-4 h-4"></i></button><button class="action-btn del" onclick="deleteBook(\'' + b.id + '\')"><i data-lucide="trash-2" class="w-4 h-4"></i></button></div></td></tr>';
+    }).join('');
+  }
+  lucide.createIcons();
+}
+
+function filterBooks(q) {
+  const f = allBooks.filter(b => b.title.toLowerCase().includes(q.toLowerCase()) || (b.author || '').toLowerCase().includes(q.toLowerCase()));
+  renderBooks(f);
+}
+
+function openBookModal() {
+  document.getElementById('book-id').value = '';
+  ['b-title','b-author','b-price','b-pages','b-impact','b-desc'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('b-tag').value = '';
+  document.getElementById('b-cover').value = '';
+  document.getElementById('b-cover-preview').classList.add('hidden');
+  document.getElementById('book-modal-title').textContent = 'Add New Book';
+  document.getElementById('book-save-btn').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Save Book';
+  lucide.createIcons();
+  openModal('book-modal');
+}
+
+function editBook(b) {
+  document.getElementById('book-id').value = b.id;
+  document.getElementById('b-title').value = b.title || '';
+  document.getElementById('b-author').value = b.author || '';
+  document.getElementById('b-price').value = b.price || '';
+  document.getElementById('b-pages').value = b.pages || '';
+  document.getElementById('b-tag').value = b.tag || '';
+  document.getElementById('b-impact').value = b.impact_pct || '';
+  document.getElementById('b-desc').value = b.description || '';
+  document.getElementById('b-cover').value = '';
+  if (b.cover_image_url) {
+    document.getElementById('b-cover-img').src = b.cover_image_url;
+    document.getElementById('b-cover-preview').classList.remove('hidden');
+  } else {
+    document.getElementById('b-cover-preview').classList.add('hidden');
+  }
+  document.getElementById('book-modal-title').textContent = 'Edit Book';
+  document.getElementById('book-save-btn').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Update Book';
+  lucide.createIcons();
+  openModal('book-modal');
+}
+
+async function saveBook() {
+  const id = document.getElementById('book-id').value;
+  const title = document.getElementById('b-title').value.trim();
+  const author = document.getElementById('b-author').value.trim();
+  const price = document.getElementById('b-price').value;
+  if (!title || !author || !price) { showToast('Title, author, and price are required.', 'error'); return; }
+
+  setLoading('book-save-btn', true);
+  try {
+    const fd = new FormData();
+    fd.append('title', title);
+    fd.append('author', author);
+    fd.append('price', price);
+    fd.append('pages', document.getElementById('b-pages').value);
+    fd.append('tag', document.getElementById('b-tag').value);
+    fd.append('impact_pct', document.getElementById('b-impact').value);
+    fd.append('description', document.getElementById('b-desc').value.trim());
+    const file = document.getElementById('b-cover').files[0];
+    if (file) fd.append('coverImage', file);
+
+    const url = id ? API_BASE + '/admin/books/' + id : API_BASE + '/admin/books';
+    const method = id ? 'PUT' : 'POST';
+    const res = await fetch(url, { method, headers: { 'x-admin-api-key': ADMIN_API_KEY }, body: fd });
+    if (!res.ok) { const e = await res.json(); throw new Error(e.error || 'Save failed'); }
+    showToast(id ? 'Book updated!' : 'Book added!');
+    closeModal('book-modal');
+    loadBooks();
+    loadDashboard();
+  } catch (e) {
+    showToast(e.message || 'Error saving book.', 'error');
+  } finally {
+    setLoading('book-save-btn', false, '<i data-lucide="save" class="w-4 h-4"></i> Save Book');
+    lucide.createIcons();
+  }
+}
+
+async function deleteBook(id) {
+  confirmDelete('Delete this book from the store permanently?', async () => {
+    try {
+      const res = await fetch(API_BASE + '/admin/books/' + id, { method: 'DELETE', headers: apiHeaders() });
+      if (!res.ok) throw new Error();
+      showToast('Book deleted.');
+      loadBooks();
+      loadDashboard();
+    } catch { showToast('Failed to delete.', 'error'); }
+  });
+}
+
+async function loadPrograms() {
+  const tbody = document.getElementById('programs-body');
+  tbody.innerHTML = '<tr><td colspan="7" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>';
+  lucide.createIcons();
+  try {
+    const res = await fetch(API_BASE + '/admin/programs', { headers: apiHeaders() });
+    if (!res.ok) throw new Error();
+    allPrograms = await res.json();
+    if (!allPrograms.length) {
+      tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state"><i data-lucide="calendar" class="w-10 h-10 mx-auto mb-2"></i><p>No programs yet.</p><button class="btn-gold mt-4" onclick="openProgramModal()">Add First Program</button></div></td></tr>';
+    } else {
+      tbody.innerHTML = allPrograms.map(p => {
+        const cover = p.cover_image_url
+          ? '<img src="' + p.cover_image_url + '" class="img-thumb" onerror="this.style.display=\'none\'">'
+          : '<div class="img-thumb bg-gray-100 flex items-center justify-center"><i data-lucide="image" class="w-4 h-4 text-gray-300"></i></div>';
+        return '<tr><td>' + cover + '</td><td><div class="font-medium text-gray-900 max-w-xs truncate">' + p.title + '</div></td><td><span class="badge-gray">' + (p.type || '—') + '</span></td><td>' + fmtDate(p.date) + '</td><td class="max-w-[120px] truncate">' + (p.location || '—') + '</td><td class="font-medium text-gray-900">' + fmtCurrency(p.price) + '</td><td><div class="flex gap-1"><button class="action-btn" onclick="editProgram(' + JSON.stringify(p).replace(/"/g, '&quot;') + ')"><i data-lucide="edit-2" class="w-4 h-4"></i></button><button class="action-btn del" onclick="deleteProgram(\'' + p.id + '\')"><i data-lucide="trash-2" class="w-4 h-4"></i></button></div></td></tr>';
+      }).join('');
+    }
+    lucide.createIcons();
+  } catch {
+    tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-red-400 text-sm">Could not load programs.</td></tr>';
+  }
+}
+
+function openProgramModal() {
+  document.getElementById('program-id').value = '';
+  ['p-title','p-date','p-seats','p-location','p-meeting-link','p-price','p-speakers','p-desc'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('p-type').value = 'retreat';
+  document.getElementById('p-status').value = 'upcoming';
+  document.getElementById('p-cover').value = '';
+  document.getElementById('p-cover-preview').classList.add('hidden');
+  document.getElementById('program-modal-title').textContent = 'Add Program / Event';
+  document.getElementById('program-save-btn').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Save Program';
+  lucide.createIcons();
+  openModal('program-modal');
+}
+
+function editProgram(p) {
+  document.getElementById('program-id').value = p.id;
+  document.getElementById('p-title').value = p.title || '';
+  document.getElementById('p-type').value = p.type || 'retreat';
+  document.getElementById('p-status').value = p.status || 'upcoming';
+  document.getElementById('p-date').value = p.date ? p.date.split('T')[0] : '';
+  document.getElementById('p-seats').value = p.seats || '';
+  document.getElementById('p-location').value = p.location || '';
+  document.getElementById('p-meeting-link').value = p.meeting_link || '';
+  document.getElementById('p-price').value = p.price || '';
+  document.getElementById('p-speakers').value = p.speakers || '';
+  document.getElementById('p-desc').value = p.description || '';
+  
+  document.getElementById('p-cover').value = '';
+  if (p.cover_image_url) {
+    document.getElementById('p-cover-img').src = p.cover_image_url;
+    document.getElementById('p-cover-preview').classList.remove('hidden');
+  } else {
+    document.getElementById('p-cover-preview').classList.add('hidden');
+  }
+
+  document.getElementById('program-modal-title').textContent = 'Edit Program';
+  document.getElementById('program-save-btn').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Update Program';
+  lucide.createIcons();
+  openModal('program-modal');
+}
+
+async function saveProgram() {
+  const id = document.getElementById('program-id').value;
+  const title = document.getElementById('p-title').value.trim();
+  if (!title) { showToast('Title is required.', 'error'); return; }
+
+  setLoading('program-save-btn', true);
+  try {
+    const fd = new FormData();
+    fd.append('title', title);
+    fd.append('type', document.getElementById('p-type').value);
+    fd.append('status', document.getElementById('p-status').value);
+    fd.append('date', document.getElementById('p-date').value);
+    fd.append('seats', document.getElementById('p-seats').value);
+    fd.append('location', document.getElementById('p-location').value.trim());
+    fd.append('meeting_link', document.getElementById('p-meeting-link').value.trim());
+    fd.append('price', document.getElementById('p-price').value);
+    fd.append('speakers', document.getElementById('p-speakers').value.trim());
+    fd.append('description', document.getElementById('p-desc').value.trim());
+    
+    const file = document.getElementById('p-cover').files[0];
+    if (file) fd.append('coverImage', file);
+
+    const url = id ? API_BASE + '/admin/programs/' + id : API_BASE + '/admin/programs';
+    const method = id ? 'PUT' : 'POST';
+    const res = await fetch(url, { method, headers: { 'x-admin-api-key': ADMIN_API_KEY }, body: fd });
+    if (!res.ok) { const e = await res.json(); throw new Error(e.error || 'Save failed'); }
+    showToast(id ? 'Program updated!' : 'Program created!');
+    closeModal('program-modal');
+    loadPrograms();
+  } catch (e) {
+    showToast(e.message || 'Error saving program.', 'error');
+  } finally {
+    setLoading('program-save-btn', false, '<i data-lucide="save" class="w-4 h-4"></i> Save Program');
+    lucide.createIcons();
+  }
+}
+
+async function deleteProgram(id) {
+  confirmDelete('Delete this program permanently?', async () => {
+    try {
+      const res = await fetch(API_BASE + '/admin/programs/' + id, { method: 'DELETE', headers: apiHeaders() });
+      if (!res.ok) throw new Error();
+      showToast('Program deleted.');
+      loadPrograms();
+    } catch { showToast('Failed to delete.', 'error'); }
+  });
+}
+
+async function loadMembers() {
+  const tbody = document.getElementById('members-body');
+  tbody.innerHTML = '<tr><td colspan="4" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>';
+  lucide.createIcons();
+  try {
+    const res = await fetch(API_BASE + '/admin/members', { headers: apiHeaders() });
+    if (!res.ok) throw new Error();
+    allMembers = await res.json();
+    renderMembers(allMembers);
+  } catch {
+    tbody.innerHTML = '<tr><td colspan="4" class="text-center py-4 text-red-400 text-sm">Could not load members.</td></tr>';
+  }
+}
+
+function renderMembers(list) {
+  const tbody = document.getElementById('members-body');
+  if (!list.length) {
+    tbody.innerHTML = '<tr><td colspan="4"><div class="empty-state"><i data-lucide="users" class="w-10 h-10 mx-auto mb-2"></i><p>No members yet.</p></div></td></tr>';
+  } else {
+    tbody.innerHTML = list.map((m, i) => '<tr><td class="text-gray-400">' + (i + 1) + '</td><td class="font-medium text-gray-900">' + m.email + '</td><td class="text-gray-500">' + fmtDate(m.created_at) + '</td><td><button class="action-btn del" onclick="deleteMember(\'' + m.id + '\', \'' + m.email + '\')"><i data-lucide="trash-2" class="w-4 h-4"></i></button></td></tr>').join('');
+  }
+  lucide.createIcons();
+}
+
+function filterMembers(q) {
+  const f = allMembers.filter(m => m.email.toLowerCase().includes(q.toLowerCase()));
+  renderMembers(f);
+}
+
+async function deleteMember(id, email) {
+  confirmDelete('Remove ' + email + ' from the mailing list?', async () => {
+    try {
+      const res = await fetch(API_BASE + '/admin/members/' + id, { method: 'DELETE', headers: apiHeaders() });
+      if (!res.ok) throw new Error();
+      showToast('Member removed.');
+      loadMembers();
+      loadDashboard();
+    } catch { showToast('Failed to remove member.', 'error'); }
+  });
+}
+
+async function loadReviews() {
+  const container = document.getElementById('reviews-container');
+  container.innerHTML = '<div class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></div>';
+  lucide.createIcons();
+  try {
+    const res = await fetch(API_BASE + '/admin/reviews', { headers: apiHeaders() });
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    if (!data.length) {
+      container.innerHTML = '<div class="empty-state"><i data-lucide="message-square" class="w-10 h-10 mx-auto mb-2"></i><p>No comments or reviews yet.</p></div>';
+    } else {
+      container.innerHTML = data.map(r => {
+        const statusBtn = r.status !== 'approved'
+          ? '<button class="btn-gold" style="padding:0.25rem 0.75rem;font-size:0.75rem" onclick="approveReview(\'' + r.id + '\')"><i data-lucide="check" class="w-3 h-3"></i> Approve</button>'
+          : '<span class="badge-green">Approved</span>';
+        return '<div class="bg-white border border-gray-200 rounded-lg p-5"><div class="flex justify-between items-start gap-4"><div class="flex-1"><div class="flex items-center gap-2 mb-1"><span class="font-medium text-sm text-gray-900">' + (r.author_name || 'Anonymous') + '</span><span class="text-gray-300">·</span><span class="text-xs text-gray-400">' + fmtDate(r.created_at) + '</span>' + statusBadge(r.status || 'pending') + '</div><p class="text-sm text-gray-600 mt-2">' + r.content + '</p>' + (r.target_title ? '<p class="text-xs text-gray-400 mt-1">On: <span class="italic">' + r.target_title + '</span></p>' : '') + '</div><div class="flex gap-2 shrink-0">' + statusBtn + '<button class="action-btn del" onclick="deleteReview(\'' + r.id + '\')"><i data-lucide="trash-2" class="w-4 h-4"></i></button></div></div></div>';
+      }).join('');
+    }
+    lucide.createIcons();
+  } catch {
+    container.innerHTML = '<div class="text-center py-4 text-red-400 text-sm">Could not load reviews.</div>';
+  }
+}
+
+async function approveReview(id) {
+  try {
+    const res = await fetch(API_BASE + '/admin/reviews/' + id + '/approve', { method: 'PUT', headers: apiHeaders() });
+    if (!res.ok) throw new Error();
+    showToast('Review approved!');
+    loadReviews();
+  } catch { showToast('Failed to approve.', 'error'); }
+}
+
+async function deleteReview(id) {
+  confirmDelete('Delete this comment permanently?', async () => {
+    try {
+      const res = await fetch(API_BASE + '/admin/reviews/' + id, { method: 'DELETE', headers: apiHeaders() });
+      if (!res.ok) throw new Error();
+      showToast('Review deleted.');
+      loadReviews();
+    } catch { showToast('Failed to delete.', 'error'); }
+  });
+}
+
+async function loadDonations() {
+  const tbody = document.getElementById('donations-body');
+  tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>';
+  lucide.createIcons();
+  try {
+    const res = await fetch(API_BASE + '/admin/donations', { headers: apiHeaders() });
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    const total = data.reduce((s, d) => s + parseFloat(d.amount || 0), 0);
+    const avg = data.length ? total / data.length : 0;
+    document.getElementById('don-total').textContent = fmtCurrency(total);
+    document.getElementById('don-count').textContent = data.length.toLocaleString();
+    document.getElementById('don-avg').textContent = fmtCurrency(avg);
+    if (!data.length) {
+      tbody.innerHTML = '<tr><td colspan="5"><div class="empty-state"><i data-lucide="heart" class="w-10 h-10 mx-auto mb-2"></i><p>No donations recorded yet.</p></div></td></tr>';
+    } else {
+      tbody.innerHTML = data.map(d => '<tr><td class="font-medium text-gray-900">' + (d.donor_name || 'Anonymous') + '</td><td class="text-gray-500">' + (d.email || '—') + '</td><td class="font-bold text-gold">' + fmtCurrency(d.amount) + '</td><td class="text-gray-500 max-w-xs truncate">' + (d.message || '—') + '</td><td class="text-gray-400 text-xs">' + fmtDate(d.created_at) + '</td></tr>').join('');
+    }
+    lucide.createIcons();
+  } catch {
+    tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-red-400 text-sm">Could not load donations.</td></tr>';
+  }
+}
+
+let categoryChart, booksChart;
+async function loadAnalytics() {
+  try {
+    const [teachingsRes, booksRes, membersRes] = await Promise.all([
+      fetch(API_BASE + '/admin/teachings', { headers: apiHeaders() }).catch(() => null),
+      fetch(API_BASE + '/admin/books', { headers: apiHeaders() }).catch(() => null),
+      fetch(API_BASE + '/admin/members', { headers: apiHeaders() }).catch(() => null)
+    ]);
+
+    let teachings = [], books = [], members = [];
+    if (teachingsRes && teachingsRes.ok) teachings = await teachingsRes.json();
+    if (booksRes && booksRes.ok) books = await booksRes.json();
+    if (membersRes && membersRes.ok) members = await membersRes.json();
+
+    document.getElementById('an-teachings').textContent = teachings.filter(t => t.status === 'published').length;
+    document.getElementById('an-subscribers').textContent = members.length.toLocaleString();
+    document.getElementById('an-books').textContent = books.length;
+
+    const catCounts = {};
+    teachings.forEach(t => { catCounts[t.category || 'Uncategorized'] = (catCounts[t.category || 'Uncategorized'] || 0) + 1; });
+    const catLabels = Object.keys(catCounts);
+    const catData = Object.values(catCounts);
+
+    if (categoryChart) categoryChart.destroy();
+    const ctx1 = document.getElementById('chart-categories').getContext('2d');
+    categoryChart = new Chart(ctx1, {
+      type: 'doughnut',
+      data: {
+        labels: catLabels,
+        datasets: [{ data: catData, backgroundColor: ['#C9952A','#C1440E','#1a6b4a','#6366f1','#0ea5e9','#f59e0b','#10b981','#ef4444'], borderWidth: 2, borderColor: '#fff' }]
+      },
+      options: { responsive: true, plugins: { legend: { position: 'bottom', labels: { font: { size: 11 } } } } }
+    });
+
+    const ranges = { '$0–10': 0, '$10–20': 0, '$20–50': 0, '$50+': 0 };
+    books.forEach(b => {
+      const p = parseFloat(b.price || 0);
+      if (p < 10) ranges['$0–10']++;
+      else if (p < 20) ranges['$10–20']++;
+      else if (p < 50) ranges['$20–50']++;
+      else ranges['$50+']++;
+    });
+
+    if (booksChart) booksChart.destroy();
+    const ctx2 = document.getElementById('chart-books').getContext('2d');
+    booksChart = new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(ranges),
+        datasets: [{ label: 'Books', data: Object.values(ranges), backgroundColor: '#C9952A', borderRadius: 4 }]
+      },
+      options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } } }
+    });
+
+    document.getElementById('analytics-members-note').textContent = members.length + ' total newsletter subscribers on record.';
+
+  } catch (e) {
+    console.error('Analytics error:', e);
+  }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  lucide.createIcons();
+  const savedKey = sessionStorage.getItem('afara_admin_key');
+  const savedName = sessionStorage.getItem('afara_admin_name');
+  if (savedKey) {
+    ADMIN_API_KEY = savedKey;
+    showApp(savedName || 'Admin');
+  }
+});
+</script>
+</body>
+</html>
