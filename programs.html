@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Programs & Events - Wisdom of Afara</title>
   
-  <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Tailwind Configuration -->
   <script>
     tailwind.config = {
       theme: {
@@ -28,7 +26,6 @@
     }
   </script>
 
-  <!-- Lucide Icons via CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
@@ -85,7 +82,15 @@
 </head>
 <body class="bg-white text-gray-900 font-sans antialiased">
 
-  <!-- HEADER -->
+  <div id="page-loader" class="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center transition-opacity duration-700">
+    <div class="relative flex items-center justify-center w-20 h-20 mb-6">
+      <div class="absolute inset-0 border-2 border-gray-100 rounded-full animate-pulse"></div>
+      <div class="absolute inset-0 border-2 border-transparent border-t-gold rounded-full animate-spin"></div>
+      <i data-lucide="calendar" class="w-6 h-6 text-gold relative z-10"></i>
+    </div>
+    <p class="font-display text-3xl text-gray-900 tracking-wide mb-3">Wisdom of <span class="italic text-gold">Afara</span></p>
+    <p class="text-[10px] tracking-[0.3em] uppercase text-gray-400 animate-pulse">Loading upcoming gatherings...</p>
+  </div>
   <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md py-4 border-b border-gray-200">
     <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between">
       <a href="/" class="text-2xl font-display font-bold text-gray-900">
@@ -110,7 +115,6 @@
   </header>
 
   <main class="pt-24">
-    <!-- PAGE HERO -->
     <section class="relative py-24 lg:py-32 bg-gray-50 border-b border-gray-200">
       <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center gap-12">
         <div class="flex-1">
@@ -128,7 +132,6 @@
       </div>
     </section>
 
-    <!-- UPCOMING EVENTS LIST -->
     <section class="py-24 bg-white">
       <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
         <div class="mb-16">
@@ -136,10 +139,9 @@
           <p class="text-gray-600 mt-4 text-lg">Reserve your seat at our table. Custodians and Family Members receive priority booking.</p>
         </div>
 
-        <div class="space-y-8">
+        <div id="dynamic-programs-container" class="space-y-8">
           
-          <!-- Event 1 -->
-          <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-10 px-8 bg-gray-50 border border-gray-200 shadow-sm group hover:border-gold transition-colors">
+          <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-10 px-8 bg-gray-50 border border-gray-200 shadow-sm group hover:border-gold transition-colors cursor-pointer" onclick="window.location.href='program-detail.html?id=static-1'">
             <div class="lg:col-span-3">
               <div class="aspect-[4/3] overflow-hidden shadow-sm">
                 <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219396085_582dd6c3.png" alt="Roots Circle" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
@@ -157,12 +159,11 @@
             </div>
             <div class="lg:col-span-3 lg:text-right flex flex-col lg:items-end justify-center gap-4">
               <span class="text-gold text-xs font-bold uppercase tracking-widest bg-gold/10 px-3 py-1 inline-block">Workshop</span>
-              <button onclick="alert('Ticket registration will open soon for this event.')" class="btn-outline-gold mt-2 w-full lg:w-auto justify-center">Reserve a Seat</button>
+              <button class="btn-outline-gold mt-2 w-full lg:w-auto justify-center">Reserve a Seat</button>
             </div>
           </article>
 
-          <!-- Event 2 -->
-          <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-10 px-8 bg-gray-50 border border-gray-200 shadow-sm group hover:border-gold transition-colors">
+          <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-10 px-8 bg-gray-50 border border-gray-200 shadow-sm group hover:border-gold transition-colors cursor-pointer" onclick="window.location.href='program-detail.html?id=static-2'">
             <div class="lg:col-span-3">
               <div class="aspect-[4/3] overflow-hidden shadow-sm">
                 <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219342477_a58a4e22.png" alt="Diaspora Dialogues" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
@@ -180,12 +181,11 @@
             </div>
             <div class="lg:col-span-3 lg:text-right flex flex-col lg:items-end justify-center gap-4">
               <span class="text-gold text-xs font-bold uppercase tracking-widest bg-gold/10 px-3 py-1 inline-block">Conversation</span>
-              <button onclick="alert('Ticket registration will open soon for this event.')" class="btn-outline-gold mt-2 w-full lg:w-auto justify-center">Register (Free)</button>
+              <button class="btn-outline-gold mt-2 w-full lg:w-auto justify-center">Register (Free)</button>
             </div>
           </article>
 
-          <!-- Event 3 -->
-          <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-10 px-8 bg-gray-50 border border-gray-200 shadow-sm group hover:border-gold transition-colors">
+          <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-10 px-8 bg-gray-50 border border-gray-200 shadow-sm group hover:border-gold transition-colors cursor-pointer" onclick="window.location.href='program-detail.html?id=static-3'">
             <div class="lg:col-span-3">
               <div class="aspect-[4/3] overflow-hidden shadow-sm">
                 <img src="https://d64gsuwffb70l.cloudfront.net/69ee35e2c41a845894066f13_1777219430250_5b282351.png" alt="Annual Gathering" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
@@ -203,7 +203,7 @@
             </div>
             <div class="lg:col-span-3 lg:text-right flex flex-col lg:items-end justify-center gap-4">
               <span class="text-gold text-xs font-bold uppercase tracking-widest bg-gold/10 px-3 py-1 inline-block">Pilgrimage</span>
-              <button onclick="alert('Ticket registration will open soon for this event.')" class="btn-gold mt-2 w-full lg:w-auto justify-center">View Itinerary</button>
+              <button class="btn-gold mt-2 w-full lg:w-auto justify-center">View Itinerary</button>
             </div>
           </article>
 
@@ -211,7 +211,6 @@
       </div>
     </section>
 
-    <!-- REQUEST A PROGRAM -->
     <section class="py-32 bg-gray-50 border-t border-gray-200">
       <div class="max-w-[1440px] mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
         <div>
@@ -233,7 +232,6 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="bg-gray-50 border-t border-gray-200">
     <div class="border-b border-gray-200">
       <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16 grid lg:grid-cols-2 gap-12 items-center">
@@ -323,7 +321,6 @@
     </div>
   </footer>
 
-  <!-- Interactivity Scripts -->
   <script>
     // Initialize Icons
     lucide.createIcons();
@@ -348,6 +345,68 @@
     menuBtn.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
     });
+
+    const API_BASE_URL = 'https://afara-aex1.onrender.com';
+
+    function formatDate(d) {
+        if(!d) return '';
+        return new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    }
+
+    async function fetchPrograms() {
+        const loader = document.getElementById('page-loader');
+        try {
+            const res = await fetch(`${API_BASE_URL}/api/programs`);
+            if(!res.ok) throw new Error('Fetch failed');
+            const data = await res.json();
+            
+            if(data && data.length > 0) {
+                const container = document.getElementById('dynamic-programs-container');
+                
+                // Reverse to prepend newest items first, keeping static items at the bottom
+                data.reverse().forEach(p => {
+                    const cover = p.cover_image_url || 'https://via.placeholder.com/400x300?text=Event+Cover';
+                    const isVirtual = p.meeting_link ? '<i data-lucide="monitor-play" class="w-4 h-4 text-gold"></i>Virtual' : `<i data-lucide="map-pin" class="w-4 h-4 text-gold"></i>${p.location || 'TBA'}`;
+                    const priceLabel = parseFloat(p.price) === 0 ? 'Register (Free)' : `Buy Ticket ($${parseFloat(p.price).toFixed(2)})`;
+                    const btnClass = parseFloat(p.price) === 0 ? 'btn-outline-gold' : 'btn-gold';
+
+                    const html = `
+                      <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-10 px-8 bg-gray-50 border border-gray-200 shadow-sm group hover:border-gold transition-colors cursor-pointer" onclick="window.location.href='program-detail.html?id=${p.id}'">
+                        <div class="lg:col-span-3">
+                          <div class="aspect-[4/3] overflow-hidden shadow-sm">
+                            <img src="${cover}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                          </div>
+                        </div>
+                        <div class="lg:col-span-6">
+                          <div class="flex flex-wrap gap-4 mb-3">
+                            <div class="eyebrow text-gray-500 flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4"></i>${formatDate(p.date)}</div>
+                            <div class="eyebrow text-gray-500 flex items-center gap-2">${isVirtual}</div>
+                          </div>
+                          <h3 class="font-display text-3xl text-gray-900 group-hover:text-gold transition-colors mb-4">${p.title}</h3>
+                          <p class="text-gray-600 text-base leading-relaxed line-clamp-3">${p.description || ''}</p>
+                        </div>
+                        <div class="lg:col-span-3 lg:text-right flex flex-col lg:items-end justify-center gap-4">
+                          <span class="text-gold text-xs font-bold uppercase tracking-widest bg-gold/10 px-3 py-1 inline-block">${p.type || 'Event'}</span>
+                          <button class="${btnClass} mt-2 w-full lg:w-auto justify-center">${priceLabel}</button>
+                        </div>
+                      </article>
+                    `;
+                    // Insert at the top
+                    container.insertAdjacentHTML('afterbegin', html);
+                });
+                lucide.createIcons();
+            }
+        } catch (e) {
+            console.error('Failed to load live programs, defaulting to static only.', e);
+        } finally {
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 700);
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchPrograms);
   </script>
 </body>
 </html>

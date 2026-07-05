@@ -412,7 +412,7 @@
           <div class="overflow-x-auto">
             <table class="w-full">
               <thead>
-                <tr><th>Title</th><th>Type</th><th>Date</th><th>Location</th><th>Seats</th><th>Status</th><th>Actions</th></tr>
+                <tr><th>Cover</th><th>Title</th><th>Type</th><th>Date</th><th>Location</th><th>Price</th><th>Actions</th></tr>
               </thead>
               <tbody id="programs-body">
                 <tr><td colspan="7" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>
@@ -778,6 +778,7 @@
           </select>
         </div>
       </div>
+      
       <div class="grid grid-cols-2 gap-4">
         <div>
           <label class="form-label">Date</label>
@@ -788,13 +789,40 @@
           <input type="number" id="p-seats" class="form-input" placeholder="30" min="0">
         </div>
       </div>
-      <div>
-        <label class="form-label">Location</label>
-        <input type="text" id="p-location" class="form-input" placeholder="Lagos, Nigeria / Online">
+      
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="form-label">Physical Location</label>
+          <input type="text" id="p-location" class="form-input" placeholder="Lagos, Nigeria">
+        </div>
+        <div>
+          <label class="form-label">Meeting Link (e.g. Zoom)</label>
+          <input type="text" id="p-meeting-link" class="form-input" placeholder="https://zoom.us/j/...">
+        </div>
       </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="form-label">Price ($) <span class="text-xs text-gray-400 font-normal">(0 for free)</span></label>
+          <input type="number" id="p-price" class="form-input" placeholder="0.00" step="0.01" min="0">
+        </div>
+        <div>
+          <label class="form-label">Speakers / Teachers</label>
+          <input type="text" id="p-speakers" class="form-input" placeholder="Florence Cook, Kwame Osei">
+        </div>
+      </div>
+
       <div>
         <label class="form-label">Description</label>
         <textarea id="p-desc" class="form-input" rows="3" placeholder="A 5-day immersive retreat..."></textarea>
+      </div>
+
+      <div>
+        <label class="form-label">Cover Image</label>
+        <input type="file" id="p-cover" class="form-input" accept="image/jpeg,image/png,image/webp">
+        <div id="p-cover-preview" class="mt-2 hidden">
+          <img id="p-cover-img" src="" alt="" class="h-24 rounded object-cover">
+        </div>
       </div>
     </div>
     <div class="flex justify-end gap-3 p-6 border-t border-gray-200">
@@ -828,6 +856,7 @@ let allBooks = [];
 let allMembers = [];
 let allNews = [];
 let allDiaspora = [];
+let allPrograms = [];
 let chartsInitialized = false;
 
 // ==========================================
@@ -856,7 +885,8 @@ function fmtDate(d) {
 }
 
 function fmtCurrency(n) {
-  if (n == null) return '—';
+  if (n == null || isNaN(n)) return '—';
+  if (parseFloat(n) === 0) return 'Free';
   return '$' + parseFloat(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
@@ -903,6 +933,7 @@ handleImagePreview('t-cover', 't-cover-preview', 't-cover-img');
 handleImagePreview('b-cover', 'b-cover-preview', 'b-cover-img');
 handleImagePreview('n-cover', 'n-cover-preview', 'n-cover-img');
 handleImagePreview('d-cover', 'd-cover-preview', 'd-cover-img');
+handleImagePreview('p-cover', 'p-cover-preview', 'p-cover-img');
 
 
 // ==========================================
@@ -1594,12 +1625,15 @@ async function loadPrograms() {
   try {
     const res = await fetch(API_BASE + '/admin/programs', { headers: apiHeaders() });
     if (!res.ok) throw new Error();
-    const data = await res.json();
-    if (!data.length) {
+    allPrograms = await res.json();
+    if (!allPrograms.length) {
       tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state"><i data-lucide="calendar" class="w-10 h-10 mx-auto mb-2"></i><p>No programs yet.</p><button class="btn-gold mt-4" onclick="openProgramModal()">Add First Program</button></div></td></tr>';
     } else {
-      tbody.innerHTML = data.map(p => {
-        return '<tr><td><div class="font-medium text-gray-900">' + p.title + '</div></td><td><span class="badge-gray">' + (p.type || '—') + '</span></td><td>' + fmtDate(p.date) + '</td><td>' + (p.location || '—') + '</td><td>' + (p.seats != null ? p.seats : '—') + '</td><td>' + statusBadge(p.status || 'upcoming') + '</td><td><div class="flex gap-1"><button class="action-btn" onclick="editProgram(' + JSON.stringify(p).replace(/"/g, '&quot;') + ')"><i data-lucide="edit-2" class="w-4 h-4"></i></button><button class="action-btn del" onclick="deleteProgram(\'' + p.id + '\')"><i data-lucide="trash-2" class="w-4 h-4"></i></button></div></td></tr>';
+      tbody.innerHTML = allPrograms.map(p => {
+        const cover = p.cover_image_url
+          ? '<img src="' + p.cover_image_url + '" class="img-thumb" onerror="this.style.display=\'none\'">'
+          : '<div class="img-thumb bg-gray-100 flex items-center justify-center"><i data-lucide="image" class="w-4 h-4 text-gray-300"></i></div>';
+        return '<tr><td>' + cover + '</td><td><div class="font-medium text-gray-900 max-w-xs truncate">' + p.title + '</div></td><td><span class="badge-gray">' + (p.type || '—') + '</span></td><td>' + fmtDate(p.date) + '</td><td class="max-w-[120px] truncate">' + (p.location || '—') + '</td><td class="font-medium text-gray-900">' + fmtCurrency(p.price) + '</td><td><div class="flex gap-1"><button class="action-btn" onclick="editProgram(' + JSON.stringify(p).replace(/"/g, '&quot;') + ')"><i data-lucide="edit-2" class="w-4 h-4"></i></button><button class="action-btn del" onclick="deleteProgram(\'' + p.id + '\')"><i data-lucide="trash-2" class="w-4 h-4"></i></button></div></td></tr>';
       }).join('');
     }
     lucide.createIcons();
@@ -1610,9 +1644,11 @@ async function loadPrograms() {
 
 function openProgramModal() {
   document.getElementById('program-id').value = '';
-  ['p-title','p-date','p-seats','p-location','p-desc'].forEach(id => document.getElementById(id).value = '');
+  ['p-title','p-date','p-seats','p-location','p-meeting-link','p-price','p-speakers','p-desc'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('p-type').value = 'retreat';
   document.getElementById('p-status').value = 'upcoming';
+  document.getElementById('p-cover').value = '';
+  document.getElementById('p-cover-preview').classList.add('hidden');
   document.getElementById('program-modal-title').textContent = 'Add Program / Event';
   document.getElementById('program-save-btn').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Save Program';
   lucide.createIcons();
@@ -1627,7 +1663,19 @@ function editProgram(p) {
   document.getElementById('p-date').value = p.date ? p.date.split('T')[0] : '';
   document.getElementById('p-seats').value = p.seats || '';
   document.getElementById('p-location').value = p.location || '';
+  document.getElementById('p-meeting-link').value = p.meeting_link || '';
+  document.getElementById('p-price').value = p.price || '';
+  document.getElementById('p-speakers').value = p.speakers || '';
   document.getElementById('p-desc').value = p.description || '';
+  
+  document.getElementById('p-cover').value = '';
+  if (p.cover_image_url) {
+    document.getElementById('p-cover-img').src = p.cover_image_url;
+    document.getElementById('p-cover-preview').classList.remove('hidden');
+  } else {
+    document.getElementById('p-cover-preview').classList.add('hidden');
+  }
+
   document.getElementById('program-modal-title').textContent = 'Edit Program';
   document.getElementById('program-save-btn').innerHTML = '<i data-lucide="save" class="w-4 h-4"></i> Update Program';
   lucide.createIcons();
@@ -1641,18 +1689,24 @@ async function saveProgram() {
 
   setLoading('program-save-btn', true);
   try {
-    const body = {
-      title,
-      type: document.getElementById('p-type').value,
-      status: document.getElementById('p-status').value,
-      date: document.getElementById('p-date').value,
-      seats: document.getElementById('p-seats').value,
-      location: document.getElementById('p-location').value.trim(),
-      description: document.getElementById('p-desc').value.trim()
-    };
+    const fd = new FormData();
+    fd.append('title', title);
+    fd.append('type', document.getElementById('p-type').value);
+    fd.append('status', document.getElementById('p-status').value);
+    fd.append('date', document.getElementById('p-date').value);
+    fd.append('seats', document.getElementById('p-seats').value);
+    fd.append('location', document.getElementById('p-location').value.trim());
+    fd.append('meeting_link', document.getElementById('p-meeting-link').value.trim());
+    fd.append('price', document.getElementById('p-price').value);
+    fd.append('speakers', document.getElementById('p-speakers').value.trim());
+    fd.append('description', document.getElementById('p-desc').value.trim());
+    
+    const file = document.getElementById('p-cover').files[0];
+    if (file) fd.append('coverImage', file);
+
     const url = id ? API_BASE + '/admin/programs/' + id : API_BASE + '/admin/programs';
     const method = id ? 'PUT' : 'POST';
-    const res = await fetch(url, { method, headers: apiHeaders(), body: JSON.stringify(body) });
+    const res = await fetch(url, { method, headers: { 'x-admin-api-key': ADMIN_API_KEY }, body: fd });
     if (!res.ok) { const e = await res.json(); throw new Error(e.error || 'Save failed'); }
     showToast(id ? 'Program updated!' : 'Program created!');
     closeModal('program-modal');

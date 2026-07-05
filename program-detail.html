@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Program Details - Wisdom of Afara</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#C9952A',
+            dark: '#1a1a1a',
+            light: '#ffffff',
+            terracotta: '#C1440E',
+          },
+          fontFamily: {
+            display: ['Georgia', 'serif'], 
+            sans: ['system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body { background-color: #ffffff; color: #1a1a1a; margin: 0; padding: 0; }
+    .eyebrow { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: #C9952A; font-weight: 600; }
+    .btn-gold { display: inline-flex; align-items: center; gap: 0.5rem; background-color: #C9952A; color: #ffffff; padding: 0.75rem 1.5rem; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; transition: background-color 0.3s; border: none; cursor: pointer; }
+    .btn-gold:hover { background-color: #a87b20; }
+    .btn-outline-gold { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid #C9952A; color: #C9952A; padding: 0.75rem 1.5rem; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.3s; background: transparent; cursor: pointer; }
+    .btn-outline-gold:hover { background-color: #C9952A; color: #ffffff; }
+    .kente-thin { height: 1px; background: linear-gradient(90deg, #C9952A 0%, #a87b20 50%, #C9952A 100%); width: 100%; }
+    
+    .article-content p { margin-bottom: 1.5rem; font-size: 1.125rem; line-height: 1.8; color: #4b5563; }
+    
+    /* Payment Modal Styles */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 100; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay.open { display: flex; animation: fadeIn 0.3s ease; }
+    .modal-box { background: white; border-radius: 0.5rem; width: 100%; max-width: 500px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); overflow: hidden; }
+    @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    
+    /* Ticket Styles */
+    .ticket-container { border: 2px dashed #C9952A; background: #fffbf0; border-radius: 0.5rem; padding: 1.5rem; text-align: center; display: none; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/95 backdrop-blur-md py-4 border-b border-gray-200">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex items-center justify-between">
+      <a href="/" class="text-2xl font-display font-bold text-gray-900">Wisdom of <span class="italic text-gold">Afara</span></a>
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="index.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Home</a>
+        <a href="about.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">About</a>
+        <a href="teachings.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Teachings</a>
+        <a href="books.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">Bookstore</a>
+        <a href="diaspora.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">The Diaspora</a>
+        <a href="programs.html" class="text-[12px] tracking-[0.2em] uppercase text-gold font-semibold">Programs</a>
+        <a href="news.html" class="text-[12px] tracking-[0.2em] uppercase text-gray-600 hover:text-gold transition-colors">News & Stories</a>
+      </nav>
+      <div class="hidden lg:flex items-center gap-5">
+        <a href="get-involved.html" class="btn-gold text-[11px] py-3 px-6">Join the Family</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-24 pb-24">
+    <section class="max-w-[1200px] mx-auto px-6 lg:px-12 pt-16">
+      <a href="programs.html" class="inline-flex items-center gap-2 font-sans text-[11px] tracking-[0.18em] uppercase text-gray-500 hover:text-gold mb-10 transition-colors">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Programs
+      </a>
+
+      <div class="grid lg:grid-cols-12 gap-16 items-start">
+        
+        <div class="lg:col-span-7">
+          <div class="aspect-[16/10] w-full overflow-hidden shadow-md bg-gray-100 mb-10 border border-gray-200">
+            <img id="p-cover" src="https://via.placeholder.com/800x500?text=Event+Cover" class="w-full h-full object-cover">
+          </div>
+
+          <h2 class="font-display text-3xl text-gray-900 mb-6">About this Gathering</h2>
+          <div id="p-body" class="article-content font-display mb-10 whitespace-pre-line">
+            Loading description...
+          </div>
+
+          <div id="speakers-section" class="hidden">
+            <div class="eyebrow mb-4">Led By</div>
+            <div id="p-speakers-list" class="flex flex-wrap gap-4">
+              </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 relative">
+          <div class="sticky top-32 bg-gray-50 border border-gray-200 p-8 shadow-sm">
+            <div class="flex items-center gap-4 mb-6">
+              <span id="p-type" class="bg-gold/10 text-gold px-3 py-1 text-[10px] tracking-[0.2em] uppercase font-bold border border-gold/20">Event</span>
+              <span id="p-status" class="text-xs tracking-widest text-green-600 uppercase font-bold flex items-center gap-1"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Upcoming</span>
+            </div>
+
+            <h1 id="p-title" class="font-display text-4xl text-gray-900 leading-[1.1] mb-8">
+              Gathering Title
+            </h1>
+
+            <div class="space-y-6 mb-8 border-t border-b border-gray-200 py-6">
+              <div class="flex items-start gap-4">
+                <i data-lucide="calendar" class="w-5 h-5 text-gold mt-1"></i>
+                <div>
+                  <div class="eyebrow text-gray-500 mb-1">Date</div>
+                  <div id="p-date" class="font-bold text-gray-900">TBA</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <i data-lucide="map-pin" class="w-5 h-5 text-gold mt-1" id="location-icon"></i>
+                <div>
+                  <div class="eyebrow text-gray-500 mb-1">Location</div>
+                  <div id="p-location" class="font-bold text-gray-900">TBA</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <i data-lucide="users" class="w-5 h-5 text-gold mt-1"></i>
+                <div>
+                  <div class="eyebrow text-gray-500 mb-1">Capacity</div>
+                  <div id="p-seats" class="font-bold text-gray-900">Limited Seats</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between mb-8">
+              <div class="eyebrow text-gray-500">Ticket Price</div>
+              <div id="p-price-display" class="font-display text-3xl text-gray-900">Free</div>
+            </div>
+
+            <button id="primary-action-btn" onclick="handleTicketAction()" class="btn-gold w-full justify-center py-4 text-sm shadow-md hover:shadow-lg">
+              Loading...
+            </button>
+
+            <div id="ticket-success" class="ticket-container mt-6">
+              <i data-lucide="ticket" class="w-8 h-8 text-gold mx-auto mb-3"></i>
+              <h4 class="font-display text-xl text-gray-900 mb-2">Registration Confirmed!</h4>
+              <p class="text-sm text-gray-600 mb-4">Your seat has been reserved. Details have been emailed to you.</p>
+              <div id="virtual-link-box" class="hidden bg-white border border-gray-200 p-3 text-left">
+                <div class="eyebrow text-xs mb-1">Meeting Link</div>
+                <a id="p-meeting-link" href="#" target="_blank" class="text-blue-600 hover:underline text-sm truncate block font-sans">link</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="payment-modal">
+    <div class="modal-box">
+      <div class="p-6 bg-gray-50 border-b border-gray-200">
+        <h3 class="font-display text-2xl text-gray-900 mb-1">Secure Checkout</h3>
+        <p class="text-sm text-gray-500" id="checkout-item-name">Ticket for Event</p>
+      </div>
+      <div class="p-8 text-center">
+        <div class="font-display text-4xl text-gray-900 mb-8" id="checkout-price">$0.00</div>
+        
+        <p class="text-sm text-gray-600 mb-6">
+          This is a demonstration environment. In production, this would trigger Stripe or PayPal.
+        </p>
+
+        <button onclick="processTestPayment()" class="btn-gold w-full justify-center py-4 mb-4" id="pay-btn">
+          <i data-lucide="credit-card" class="w-5 h-5"></i> Test Payment Bypass
+        </button>
+        <button onclick="closePaymentModal()" class="text-sm text-gray-500 hover:text-gray-900 underline">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-gray-50 border-t border-gray-200">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-12 py-16 text-center text-xs text-gray-500 uppercase tracking-widest">
+      <p>© 2026 Wisdom of Afara · wisdomofafara.org</p>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+    const API_BASE_URL = 'https://afara-aex1.onrender.com';
+    let currentProgram = null;
+
+    function formatDate(d) {
+        if(!d) return 'TBA';
+        return new Date(d).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    async function loadProgramDetails() {
+        const params = new URLSearchParams(window.location.search);
+        const programId = params.get('id');
+        if (!programId) return;
+
+        try {
+            // For static fallbacks
+            if(programId.startsWith('static-')) {
+               document.getElementById('p-title').innerText = "Roots Circle: An Evening with Florence";
+               document.getElementById('p-date').innerText = "Sunday, 15 March 2026";
+               document.getElementById('p-location').innerText = "London · In-Person";
+               document.getElementById('p-body').innerText = "Join founder Florence Cook and our London elders for an intimate evening of storytelling, communal learning, and reflection on the journey of the Diaspora. Space is strictly limited.";
+               document.getElementById('primary-action-btn').innerText = "Reserve a Seat";
+               return;
+            }
+
+            const res = await fetch(`${API_BASE_URL}/api/programs/${programId}`);
+            if (!res.ok) throw new Error('Program not found');
+            const data = await res.json();
+            currentProgram = data;
+
+            // Header & Title
+            document.title = `${data.title} - Wisdom of Afara`;
+            document.getElementById('page-title').innerText = `${data.title} - Wisdom of Afara`;
+            document.getElementById('p-title').innerText = data.title;
+            document.getElementById('p-type').innerText = data.type || 'Event';
+            document.getElementById('p-status').innerHTML = `<i data-lucide="${data.status === 'upcoming' ? 'check-circle' : 'info'}" class="w-3.5 h-3.5"></i> ${data.status || 'Upcoming'}`;
+            
+            // Image & Body
+            if (data.cover_image_url) document.getElementById('p-cover').src = data.cover_image_url;
+            if (data.description) document.getElementById('p-body').innerText = data.description;
+
+            // Details
+            document.getElementById('p-date').innerText = formatDate(data.date);
+            document.getElementById('p-seats').innerText = data.seats ? `${data.seats} available` : 'Limited Capacity';
+            
+            // Location vs Zoom
+            if (data.meeting_link && !data.location) {
+                document.getElementById('p-location').innerText = "Virtual (Link provided upon registration)";
+                document.getElementById('location-icon').setAttribute('data-lucide', 'monitor-play');
+            } else {
+                document.getElementById('p-location').innerText = data.location || 'TBA';
+                document.getElementById('location-icon').setAttribute('data-lucide', 'map-pin');
+            }
+
+            // Speakers
+            if (data.speakers) {
+                document.getElementById('speakers-section').classList.remove('hidden');
+                const speakerArray = data.speakers.split(',').map(s => s.trim());
+                document.getElementById('p-speakers-list').innerHTML = speakerArray.map(s => 
+                    `<div class="bg-white border border-gray-200 px-4 py-2 text-sm font-bold text-gray-900 flex items-center gap-2"><div class="w-2 h-2 bg-gold rounded-full"></div>${s}</div>`
+                ).join('');
+            }
+
+            // Price & Button
+            const price = parseFloat(data.price || 0);
+            if (price === 0) {
+                document.getElementById('p-price-display').innerText = 'Free';
+                document.getElementById('primary-action-btn').innerHTML = '<i data-lucide="ticket" class="w-5 h-5"></i> Register for Free';
+            } else {
+                const formattedPrice = `$${price.toFixed(2)}`;
+                document.getElementById('p-price-display').innerText = formattedPrice;
+                document.getElementById('primary-action-btn').innerHTML = `<i data-lucide="credit-card" class="w-5 h-5"></i> Buy Ticket (${formattedPrice})`;
+                
+                // Set modal values
+                document.getElementById('checkout-item-name').innerText = data.title;
+                document.getElementById('checkout-price').innerText = formattedPrice;
+            }
+            lucide.createIcons();
+
+        } catch (error) {
+            console.error('Failed to load specific program:', error);
+            document.getElementById('p-title').innerText = "Program Not Found";
+            document.getElementById('primary-action-btn').style.display = 'none';
+        }
+    }
+
+    // Interaction Logic
+    function handleTicketAction() {
+        if (!currentProgram) return;
+        const price = parseFloat(currentProgram.price || 0);
+        
+        if (price === 0) {
+            // Free flow - instant success
+            issueTicket();
+        } else {
+            // Paid flow - open modal
+            document.getElementById('payment-modal').classList.add('open');
+        }
+    }
+
+    function closePaymentModal() {
+        document.getElementById('payment-modal').classList.remove('open');
+    }
+
+    function processTestPayment() {
+        const btn = document.getElementById('pay-btn');
+        btn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Processing...';
+        btn.disabled = true;
+        lucide.createIcons();
+
+        // Simulate network delay
+        setTimeout(() => {
+            closePaymentModal();
+            issueTicket();
+        }, 1500);
+    }
+
+    function issueTicket() {
+        // Hide button, show success
+        document.getElementById('primary-action-btn').style.display = 'none';
+        document.getElementById('ticket-success').style.display = 'block';
+
+        // If virtual, show the link
+        if (currentProgram && currentProgram.meeting_link) {
+            document.getElementById('virtual-link-box').classList.remove('hidden');
+            const linkEl = document.getElementById('p-meeting-link');
+            linkEl.href = currentProgram.meeting_link;
+            linkEl.innerText = currentProgram.meeting_link;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadProgramDetails);
+  </script>
+</body>
+</html>
