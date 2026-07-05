@@ -859,9 +859,6 @@ let allDiaspora = [];
 let allPrograms = [];
 let chartsInitialized = false;
 
-// ==========================================
-// HELPERS
-// ==========================================
 function apiHeaders(isFormData) {
   const h = { 'x-admin-api-key': ADMIN_API_KEY };
   if (!isFormData) h['Content-Type'] = 'application/json';
@@ -916,7 +913,6 @@ function confirmDelete(message, callback) {
   document.getElementById('confirm-modal').classList.add('open');
 }
 
-// Preview general image inputs
 function handleImagePreview(inputId, previewBoxId, imgId) {
   document.getElementById(inputId).addEventListener('change', function() {
     if (this.files && this.files[0]) {
@@ -935,10 +931,6 @@ handleImagePreview('n-cover', 'n-cover-preview', 'n-cover-img');
 handleImagePreview('d-cover', 'd-cover-preview', 'd-cover-img');
 handleImagePreview('p-cover', 'p-cover-preview', 'p-cover-img');
 
-
-// ==========================================
-// LOGIN / LOGOUT
-// ==========================================
 async function doLogin() {
   const username = document.getElementById('login-username').value.trim();
   const password = document.getElementById('login-password').value;
@@ -1008,9 +1000,6 @@ function doLogout() {
 document.getElementById('login-password').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
 document.getElementById('login-username').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
 
-// ==========================================
-// TAB NAVIGATION
-// ==========================================
 const tabTitles = {
   dashboard: 'Dashboard Overview',
   analytics: 'Analytics',
@@ -1043,9 +1032,6 @@ function switchTab(tabId, el) {
   if (tabId === 'analytics') loadAnalytics();
 }
 
-// ==========================================
-// SIDEBAR TOGGLE
-// ==========================================
 const sidebar = document.getElementById('sidebar');
 const overlay = document.getElementById('sidebar-overlay');
 document.getElementById('open-sidebar').addEventListener('click', () => {
@@ -1059,18 +1045,12 @@ function closeSidebar() {
   overlay.classList.add('hidden');
 }
 
-// ==========================================
-// MODAL HELPERS
-// ==========================================
 function openModal(id) { document.getElementById(id).classList.add('open'); }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 document.querySelectorAll('.modal-overlay').forEach(m => {
   m.addEventListener('click', e => { if (e.target === m) closeModal(m.id); });
 });
 
-// ==========================================
-// DASHBOARD
-// ==========================================
 async function loadDashboard() {
   try {
     const [statsRes, teachingsRes, activityRes] = await Promise.all([
@@ -1079,7 +1059,6 @@ async function loadDashboard() {
       fetch(API_BASE + '/admin/activity', { headers: apiHeaders() }).catch(() => null)
     ]);
 
-    // Stats
     if (statsRes && statsRes.ok) {
       const s = await statsRes.json();
       document.getElementById('stat-members').textContent = (s.members || 0).toLocaleString();
@@ -1088,7 +1067,6 @@ async function loadDashboard() {
       document.getElementById('stat-teachings').textContent = (s.teachings || 0).toLocaleString();
     }
 
-    // Teachings table
     const tbody = document.getElementById('dash-teachings-body');
     if (teachingsRes && teachingsRes.ok) {
       const data = await teachingsRes.json();
@@ -1100,7 +1078,6 @@ async function loadDashboard() {
       }
     }
 
-    // Activity
     const actEl = document.getElementById('recent-activity-container');
     if (activityRes && activityRes.ok) {
       const acts = await activityRes.json();
@@ -1118,9 +1095,6 @@ async function loadDashboard() {
   } catch (e) { console.error(e); }
 }
 
-// ==========================================
-// NEWS CRUD
-// ==========================================
 async function loadNews() {
   const tbody = document.getElementById('news-body');
   tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>';
@@ -1231,9 +1205,6 @@ async function deleteNews(id) {
   });
 }
 
-// ==========================================
-// DIASPORA CRUD
-// ==========================================
 async function loadDiaspora() {
   const tbody = document.getElementById('diaspora-body');
   tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>';
@@ -1363,9 +1334,6 @@ async function deleteDiaspora(id) {
   });
 }
 
-// ==========================================
-// TEACHINGS CRUD (existing)
-// ==========================================
 async function loadTeachings() {
   const tbody = document.getElementById('teachings-body');
   tbody.innerHTML = '<tr><td colspan="7" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>';
@@ -1495,9 +1463,6 @@ async function deleteTeaching(id) {
   });
 }
 
-// ==========================================
-// BOOKS CRUD
-// ==========================================
 async function loadBooks() {
   const tbody = document.getElementById('books-body');
   tbody.innerHTML = '<tr><td colspan="7" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>';
@@ -1615,9 +1580,6 @@ async function deleteBook(id) {
   });
 }
 
-// ==========================================
-// PROGRAMS & EVENTS
-// ==========================================
 async function loadPrograms() {
   const tbody = document.getElementById('programs-body');
   tbody.innerHTML = '<tr><td colspan="7" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>';
@@ -1730,9 +1692,6 @@ async function deleteProgram(id) {
   });
 }
 
-// ==========================================
-// MEMBERS
-// ==========================================
 async function loadMembers() {
   const tbody = document.getElementById('members-body');
   tbody.innerHTML = '<tr><td colspan="4" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>';
@@ -1774,9 +1733,6 @@ async function deleteMember(id, email) {
   });
 }
 
-// ==========================================
-// REVIEWS / COMMENTS
-// ==========================================
 async function loadReviews() {
   const container = document.getElementById('reviews-container');
   container.innerHTML = '<div class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></div>';
@@ -1821,9 +1777,6 @@ async function deleteReview(id) {
   });
 }
 
-// ==========================================
-// DONATIONS
-// ==========================================
 async function loadDonations() {
   const tbody = document.getElementById('donations-body');
   tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>';
@@ -1848,9 +1801,6 @@ async function loadDonations() {
   }
 }
 
-// ==========================================
-// ANALYTICS
-// ==========================================
 let categoryChart, booksChart;
 async function loadAnalytics() {
   try {
@@ -1869,7 +1819,6 @@ async function loadAnalytics() {
     document.getElementById('an-subscribers').textContent = members.length.toLocaleString();
     document.getElementById('an-books').textContent = books.length;
 
-    // Category chart
     const catCounts = {};
     teachings.forEach(t => { catCounts[t.category || 'Uncategorized'] = (catCounts[t.category || 'Uncategorized'] || 0) + 1; });
     const catLabels = Object.keys(catCounts);
@@ -1886,7 +1835,6 @@ async function loadAnalytics() {
       options: { responsive: true, plugins: { legend: { position: 'bottom', labels: { font: { size: 11 } } } } }
     });
 
-    // Books price range chart
     const ranges = { '$0–10': 0, '$10–20': 0, '$20–50': 0, '$50+': 0 };
     books.forEach(b => {
       const p = parseFloat(b.price || 0);
@@ -1907,7 +1855,6 @@ async function loadAnalytics() {
       options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } } }
     });
 
-    // Members note
     document.getElementById('analytics-members-note').textContent = members.length + ' total newsletter subscribers on record.';
 
   } catch (e) {
@@ -1915,9 +1862,6 @@ async function loadAnalytics() {
   }
 }
 
-// ==========================================
-// INIT — check session storage
-// ==========================================
 window.addEventListener('DOMContentLoaded', () => {
   lucide.createIcons();
   const savedKey = sessionStorage.getItem('afara_admin_key');
