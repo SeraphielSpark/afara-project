@@ -236,10 +236,10 @@
           <div class="overflow-x-auto">
             <table class="w-full whitespace-nowrap">
               <thead>
-                <tr><th>Title</th><th>Category</th><th>Author</th><th>Status</th><th>Actions</th></tr>
+                <tr><th>Title</th><th>Category</th><th>Author</th><th>Status</th><th>Audio</th><th>Actions</th></tr>
               </thead>
               <tbody id="dash-teachings-body">
-                <tr><td colspan="5" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>
+                <tr><td colspan="6" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>
               </tbody>
             </table>
           </div>
@@ -334,10 +334,10 @@
           <div class="overflow-x-auto">
             <table class="w-full">
               <thead>
-                <tr><th>Cover</th><th>Title</th><th>Category</th><th>Author</th><th>Status</th><th>Date</th><th>Actions</th></tr>
+                <tr><th>Cover</th><th>Title</th><th>Category</th><th>Author</th><th>Status</th><th>Audio</th><th>Date</th><th>Actions</th></tr>
               </thead>
               <tbody id="teachings-body">
-                <tr><td colspan="7" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>
+                <tr><td colspan="8" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>
               </tbody>
             </table>
           </div>
@@ -1072,7 +1072,7 @@ async function loadDashboard() {
       const data = await teachingsRes.json();
       allTeachings = data;
       if (!data.length) {
-        tbody.innerHTML = '<tr><td colspan="5" class="empty-state">No teachings yet.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="6" class="empty-state">No teachings yet.</td></tr>';
       } else {
         tbody.innerHTML = data.slice(0, 5).map(t => buildTeachingRow(t, true)).join('');
       }
@@ -1336,7 +1336,7 @@ async function deleteDiaspora(id) {
 
 async function loadTeachings() {
   const tbody = document.getElementById('teachings-body');
-  tbody.innerHTML = '<tr><td colspan="7" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>';
+  tbody.innerHTML = '<tr><td colspan="8" class="text-center py-8"><i data-lucide="loader-2" class="w-5 h-5 spinner text-gold mx-auto"></i></td></tr>';
   lucide.createIcons();
   try {
     const res = await fetch(API_BASE + '/admin/teachings', { headers: apiHeaders() });
@@ -1344,14 +1344,14 @@ async function loadTeachings() {
     allTeachings = await res.json();
     renderTeachings(allTeachings);
   } catch (e) {
-    tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-red-400 text-sm">Could not load teachings from server.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="8" class="text-center py-4 text-red-400 text-sm">Could not load teachings from server.</td></tr>';
   }
 }
 
 function renderTeachings(list) {
   const tbody = document.getElementById('teachings-body');
   if (!list.length) {
-    tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state"><i data-lucide="file-text" class="w-10 h-10 mx-auto mb-2"></i><p>No teachings found.</p><button class="btn-gold mt-4" onclick="openTeachingModal()">Add Your First Teaching</button></div></td></tr>';
+    tbody.innerHTML = '<tr><td colspan="8"><div class="empty-state"><i data-lucide="file-text" class="w-10 h-10 mx-auto mb-2"></i><p>No teachings found.</p><button class="btn-gold mt-4" onclick="openTeachingModal()">Add Your First Teaching</button></div></td></tr>';
   } else {
     tbody.innerHTML = list.map(t => buildTeachingRow(t, false)).join('');
   }
@@ -1362,15 +1362,42 @@ function buildTeachingRow(t, compact) {
   const cover = t.cover_image_url
     ? '<img src="' + t.cover_image_url + '" class="img-thumb" onerror="this.style.display=\'none\'">'
     : '<div class="img-thumb bg-gray-100 flex items-center justify-center"><i data-lucide="image" class="w-4 h-4 text-gray-300"></i></div>';
+    
+  const audioBadge = t.audio_status === 'ready' ? '<span class="badge-green"><i data-lucide="headphones" class="w-3 h-3 mr-1"></i> Ready</span>' :
+                     t.audio_status === 'generating' ? '<span class="badge-yellow"><i data-lucide="loader-2" class="w-3 h-3 mr-1 spinner"></i> Gen</span>' :
+                     t.audio_status === 'failed' ? '<span class="badge-red">Failed</span>' :
+                     '<span class="badge-gray">None</span>';
+                     
+  const audioAction = `<button class="action-btn" onclick="generateAudio('${t.id}')" title="Generate Audio Narrator"><i data-lucide="mic" class="w-4 h-4"></i></button>`;
+
   if (compact) {
-    return '<tr><td><div class="font-medium text-gray-900 max-w-xs truncate">' + t.title + '</div></td><td><span class="badge-gray">' + (t.category || '—') + '</span></td><td>' + (t.author || '—') + '</td><td>' + statusBadge(t.status || 'published') + '</td><td><div class="flex gap-1"><button class="action-btn" onclick="editTeaching(' + JSON.stringify(t).replace(/"/g, '&quot;') + ')"><i data-lucide="edit-2" class="w-4 h-4"></i></button><button class="action-btn del" onclick="deleteTeaching(\'' + t.id + '\')"><i data-lucide="trash-2" class="w-4 h-4"></i></button></div></td></tr>';
+    return '<tr><td><div class="font-medium text-gray-900 max-w-xs truncate">' + t.title + '</div></td><td><span class="badge-gray">' + (t.category || '—') + '</span></td><td>' + (t.author || '—') + '</td><td>' + statusBadge(t.status || 'published') + '</td><td>' + audioBadge + '</td><td><div class="flex gap-1"><button class="action-btn" onclick="editTeaching(' + JSON.stringify(t).replace(/"/g, '&quot;') + ')"><i data-lucide="edit-2" class="w-4 h-4"></i></button>' + audioAction + '<button class="action-btn del" onclick="deleteTeaching(\'' + t.id + '\')"><i data-lucide="trash-2" class="w-4 h-4"></i></button></div></td></tr>';
   }
-  return '<tr><td>' + cover + '</td><td><div class="font-medium text-gray-900 max-w-xs truncate">' + t.title + '</div><div class="text-xs text-gray-400 mt-0.5">' + (t.read_time || '') + '</div></td><td><span class="badge-gray">' + (t.category || '—') + '</span></td><td>' + (t.author || '—') + '</td><td>' + statusBadge(t.status || 'published') + '</td><td class="text-gray-400 text-xs">' + fmtDate(t.created_at) + '</td><td><div class="flex gap-1"><button class="action-btn" onclick="editTeaching(' + JSON.stringify(t).replace(/"/g, '&quot;') + ')"><i data-lucide="edit-2" class="w-4 h-4"></i></button><button class="action-btn del" onclick="deleteTeaching(\'' + t.id + '\')"><i data-lucide="trash-2" class="w-4 h-4"></i></button></div></td></tr>';
+  return '<tr><td>' + cover + '</td><td><div class="font-medium text-gray-900 max-w-xs truncate">' + t.title + '</div><div class="text-xs text-gray-400 mt-0.5">' + (t.read_time || '') + '</div></td><td><span class="badge-gray">' + (t.category || '—') + '</span></td><td>' + (t.author || '—') + '</td><td>' + statusBadge(t.status || 'published') + '</td><td>' + audioBadge + '</td><td class="text-gray-400 text-xs">' + fmtDate(t.created_at) + '</td><td><div class="flex gap-1"><button class="action-btn" onclick="editTeaching(' + JSON.stringify(t).replace(/"/g, '&quot;') + ')"><i data-lucide="edit-2" class="w-4 h-4"></i></button>' + audioAction + '<button class="action-btn del" onclick="deleteTeaching(\'' + t.id + '\')"><i data-lucide="trash-2" class="w-4 h-4"></i></button></div></td></tr>';
 }
 
 function filterTeachings(q) {
   const f = allTeachings.filter(t => t.title.toLowerCase().includes(q.toLowerCase()) || (t.author || '').toLowerCase().includes(q.toLowerCase()) || (t.category || '').toLowerCase().includes(q.toLowerCase()));
   renderTeachings(f);
+}
+
+async function generateAudio(id) {
+    try {
+        const res = await fetch(API_BASE + '/admin/teachings/' + id + '/generate-audio', {
+            method: 'POST',
+            headers: apiHeaders()
+        });
+        if (!res.ok) {
+            const e = await res.json();
+            throw new Error(e.error || 'Failed to start audio generation');
+        }
+        showToast('Audio generation started! It will update automatically when ready.');
+        // Reload UI to show generating badge
+        loadTeachings();
+        loadDashboard();
+    } catch (e) {
+        showToast(e.message, 'error');
+    }
 }
 
 function openTeachingModal(data) {

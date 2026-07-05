@@ -116,6 +116,10 @@
       color: #C9952A;
       font-weight: 700;
     }
+    /* Custom Audio Player adjustments */
+    audio::-webkit-media-controls-panel {
+      background-color: #f9fafb;
+    }
   </style>
 </head>
 <body class="bg-white text-gray-900 font-sans antialiased">
@@ -181,6 +185,21 @@
     </section>
 
     <section class="max-w-[800px] mx-auto px-6 lg:px-12 pb-20">
+      
+      <div id="t-audio-container" class="hidden mb-12 bg-gray-50 border border-gold/30 p-5 rounded-lg flex flex-col sm:flex-row items-start sm:items-center gap-5 shadow-sm">
+        <div class="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold shrink-0">
+          <i data-lucide="headphones" class="w-6 h-6"></i>
+        </div>
+        <div class="flex-1 w-full">
+          <p class="text-sm font-bold text-gray-900 mb-1">Prefer to listen?</p>
+          <p class="text-xs text-gray-500 mb-3">Our AI griot will read this teaching to you.</p>
+          <audio id="t-audio-player" controls class="w-full h-10 outline-none rounded-md">
+            <source src="" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+      </div>
+
       <div id="t-body" class="teaching-content font-display">
         <p class="drop-cap">
           In the Nguni languages of Southern Africa, there is a word that defies simple translation into English. That word is <em>Ubuntu</em>. Often reduced to "humanity" or "I am because we are," it is, in truth, an entire cosmological and ethical framework—a way of moving through the world that insists our individual humanity is inextricably bound to the humanity of others.
@@ -475,6 +494,15 @@
 
             if (data.cover_image_url) {
                 document.getElementById('t-cover').src = data.cover_image_url;
+            }
+            
+            // Toggle Audio Player if ready
+            if (data.audio_status === 'ready' && data.audio_url) {
+                const audioContainer = document.getElementById('t-audio-container');
+                const audioPlayer = document.getElementById('t-audio-player');
+                
+                audioPlayer.src = data.audio_url;
+                audioContainer.classList.remove('hidden');
             }
             
             // Format plain text body from the DB into stylized paragraphs
